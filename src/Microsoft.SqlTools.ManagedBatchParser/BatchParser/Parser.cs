@@ -564,7 +564,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser
                 case LexerTokenType.Text:
                     userName = ParseUserName();
                     password = ParsePassword();
-                    if(userName == null || password == null)
+                    if (userName == null || password == null)
                     {
                         //found some text but couldn't parse for user/password
                         RaiseError(ErrorCode.UnrecognizedToken);

@@ -37,7 +37,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         }
 
         [Test]
-        public async Task ValidateUpdatableColumnOutOfRange([Values(-1,2,100)]int columnId)
+        public async Task ValidateUpdatableColumnOutOfRange([Values(-1, 2, 100)] int columnId)
         {
             // Setup: Create a result set
             var rs = await GetResultSet(
@@ -77,8 +77,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         public async Task GetWhereClauseSimple(DbColumn col, object val, string nullClause)
         {
             // Setup: Create a result set and metadata provider with a single column
-            var cols = new[] {col};
-            ResultSet rs = await GetResultSet(cols, new[] {val});
+            var cols = new[] { col };
+            ResultSet rs = await GetResultSet(cols, new[] { val });
             EditTableMetadata etm = Common.GetCustomEditTableMetadata(cols);
 
             RowEditTester rt = new RowEditTester(rs, etm);
@@ -96,7 +96,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         {
             get
             {
-                yield return new object[] {new TestDbColumn("col"), DBNull.Value, "IS NULL"};
+                yield return new object[] { new TestDbColumn("col"), DBNull.Value, "IS NULL" };
                 yield return new object[] {
                     new TestDbColumn
                     {
@@ -134,8 +134,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         public async Task GetWhereClauseMultipleKeyColumns()
         {
             // Setup: Create a result set and metadata provider with multiple key columns
-            DbColumn[] cols = {new TestDbColumn("col1"), new TestDbColumn("col2")};
-            ResultSet rs = await GetResultSet(cols, new object[] {"abc", "def"});
+            DbColumn[] cols = { new TestDbColumn("col1"), new TestDbColumn("col2") };
+            ResultSet rs = await GetResultSet(cols, new object[] { "abc", "def" });
             EditTableMetadata etm = Common.GetCustomEditTableMetadata(cols);
 
             RowEditTester rt = new RowEditTester(rs, etm);
@@ -146,9 +146,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         public async Task GetWhereClauseNoKeyColumns()
         {
             // Setup: Create a result set and metadata provider with no key columns
-            DbColumn[] cols = {new TestDbColumn("col1"), new TestDbColumn("col2")};
-            ResultSet rs = await GetResultSet(cols, new object[] {"abc", "def"});
-            EditTableMetadata etm = Common.GetCustomEditTableMetadata(new DbColumn[] {});
+            DbColumn[] cols = { new TestDbColumn("col1"), new TestDbColumn("col2") };
+            ResultSet rs = await GetResultSet(cols, new object[] { "abc", "def" });
+            EditTableMetadata etm = Common.GetCustomEditTableMetadata(new DbColumn[] { });
 
             RowEditTester rt = new RowEditTester(rs, etm);
             rt.ValidateWhereClauseNoKeys();
@@ -243,10 +243,10 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
 
         private static async Task<ResultSet> GetResultSet(DbColumn[] columns, object[] row)
         {
-            object[][] rows = {row};
+            object[][] rows = { row };
             var testResultSet = new TestResultSet(columns, rows);
-            var testReader = new TestDbDataReader(new [] {testResultSet}, false);
-            var resultSet = new ResultSet(0,0, MemoryFileSystem.GetFileStreamFactory());
+            var testReader = new TestDbDataReader(new[] { testResultSet }, false);
+            var resultSet = new ResultSet(0, 0, MemoryFileSystem.GetFileStreamFactory());
             await resultSet.ReadResultToEnd(testReader, CancellationToken.None);
             return resultSet;
         }
@@ -269,7 +269,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 // Then:
                 // ... There should only be one component
                 Assert.AreEqual(1, wc.ClauseComponents.Count);
-                
+
                 Assert.That(wc.Parameters, Is.Empty, "Parameterization should be empty");
 
                 // ... The component should contain the name of the column and be null

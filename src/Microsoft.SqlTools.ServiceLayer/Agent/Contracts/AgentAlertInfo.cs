@@ -47,7 +47,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public int? MessageId { get; set; }
         public string NotificationMessage { get; set; }
         public int OccurrenceCount { get; set; }
-        public string PerformanceCondition { get; set; }        
+        public string PerformanceCondition { get; set; }
         public int? Severity { get; set; }
         public string DatabaseName { get; set; }
         public string CountResetDate { get; set; }

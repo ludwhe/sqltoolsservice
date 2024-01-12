@@ -26,7 +26,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
         {
             // Setup: Mock file stream factory, mock db reader
             var mockFileStreamFactory = new Mock<IFileStreamFactory>();
-            
+
             // If: I setup a single resultset and then dispose it
             ResultSet rs = new ResultSet(Common.Ordinal, Common.Ordinal, mockFileStreamFactory.Object);
             rs.Dispose();
@@ -42,14 +42,14 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // ... I request a query (doesn't matter what kind)
             var workspaceService = Common.GetPrimedWorkspaceService(Constants.StandardQuery);
             var queryService = Common.GetPrimedExecutionService(null, true, false, false, workspaceService);
-            var executeParams = new ExecuteDocumentSelectionParams {QuerySelection = null, OwnerUri = Constants.OwnerUri};
+            var executeParams = new ExecuteDocumentSelectionParams { QuerySelection = null, OwnerUri = Constants.OwnerUri };
             var executeRequest = RequestContextMocks.Create<ExecuteRequestResult>(null);
             await queryService.HandleExecuteRequest(executeParams, executeRequest.Object);
             await queryService.WorkTask;
             await queryService.ActiveQueries[Constants.OwnerUri].ExecutionTask;
 
             // ... And then I dispose of the query
-            var disposeParams = new QueryDisposeParams {OwnerUri = Constants.OwnerUri};
+            var disposeParams = new QueryDisposeParams { OwnerUri = Constants.OwnerUri };
             var disposeRequest = new EventFlowValidator<QueryDisposeResult>()
                 .AddStandardQueryDisposeValidator()
                 .Complete();
@@ -68,7 +68,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // ... I attempt to dispose a query that doesn't exist
             var workspaceService = new Mock<WorkspaceService<SqlToolsSettings>>();
             var queryService = Common.GetPrimedExecutionService(null, false, false, false, workspaceService.Object);
-            var disposeParams = new QueryDisposeParams {OwnerUri = Constants.OwnerUri};
+            var disposeParams = new QueryDisposeParams { OwnerUri = Constants.OwnerUri };
 
             var disposeRequest = new EventFlowValidator<QueryDisposeResult>()
                 .AddStandardErrorValidation()

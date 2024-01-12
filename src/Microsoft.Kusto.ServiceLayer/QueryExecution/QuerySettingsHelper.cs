@@ -123,7 +123,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
         {
             get
             {
-                
+
                 bool isDeadlockPriorityLow = string.Compare(this.settings.DeadlockPriority, "low", StringComparison.OrdinalIgnoreCase) == 0;
                 return string.Format(System.Globalization.CultureInfo.InvariantCulture, s_SetDeadlockPriority, (isDeadlockPriorityLow ? s_Low : s_Normal));
             }
@@ -208,7 +208,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
         public string GetSetParseOnlyString(bool? on)
         {
             on = on ?? this.settings.ParseOnly;
-            return string.Format(System.Globalization.CultureInfo.InvariantCulture, s_SetParseOnly, (on.Value ? s_On : s_Off));            
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture, s_SetParseOnly, (on.Value ? s_On : s_Off));
         }
     }
 }

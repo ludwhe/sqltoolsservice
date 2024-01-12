@@ -6,8 +6,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml.Serialization;
 using System.Reflection;
+using System.Xml.Serialization;
 
 namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 {

@@ -84,14 +84,14 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 return ConvertIntToDateTime(source);
             }
             catch (ArgumentException)
-            {}
+            { }
 
             // If there is an exception, can only AFTER DateTime.MaxDate.
             // This is because some calendars have a lower MaxDate.
             return JobScheduleData.MaxAgentDateValue;
 
         }
-        
+
         /// <summary>
         /// Convert SqlAgent date format to Urt DateTime struct
         /// </summary>
@@ -192,7 +192,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             schedule.Description = schedule.ComputeDescription();
             return schedule;
         }
-        
+
         #endregion
 
         #region public properties for use by ExpandFormatString
@@ -262,19 +262,19 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 // {
                 //     case FrequencyRelativeIntervals.First:
                 //         return SR.First;
-                        
+
                 //     case FrequencyRelativeIntervals.Second:
                 //         return SR.Second;
-                        
+
                 //     case FrequencyRelativeIntervals.Third:
                 //         return SR.Third;
-                        
+
                 //     case FrequencyRelativeIntervals.Fourth:
                 //         return SR.Fourth;
-                        
+
                 //     case FrequencyRelativeIntervals.Last:
                 //         return SR.Last;
-                        
+
                 //     default:
                 //         Debug.Assert(false, "Unknown FrequencyRelativeIntervals");
                 //         throw new InvalidOperationException();
@@ -282,7 +282,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 return "First";
             }
         }
-        
+
         /// Called indirectly by ExpandFormatString through a TypeDescriptor lookup
         public string DayOfWeekList
         {
@@ -448,30 +448,30 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         public string DayOfWeek
         {
             get
-            {            
-                var relativeDays = (MonthlyRelativeWeekDays) this.FrequencyInterval;
-                
+            {
+                var relativeDays = (MonthlyRelativeWeekDays)this.FrequencyInterval;
+
                 switch (relativeDays)
                 {
-                    case MonthlyRelativeWeekDays.Sunday:    return "SR.Sunday";
-                    case MonthlyRelativeWeekDays.Monday:    return "SR.Monday";
-                    case MonthlyRelativeWeekDays.Tuesday:   return "SR.Tuesday";
+                    case MonthlyRelativeWeekDays.Sunday: return "SR.Sunday";
+                    case MonthlyRelativeWeekDays.Monday: return "SR.Monday";
+                    case MonthlyRelativeWeekDays.Tuesday: return "SR.Tuesday";
                     case MonthlyRelativeWeekDays.Wednesday: return "SR.Wednesday";
-                    case MonthlyRelativeWeekDays.Thursday:  return "SR.Thursday";
-                    case MonthlyRelativeWeekDays.Friday:    return "SR.Friday";
-                    case MonthlyRelativeWeekDays.Saturday:  return "SR.Saturday";
-                    case MonthlyRelativeWeekDays.EveryDay:  return "SR.Day";
-                    case MonthlyRelativeWeekDays.WeekDays:  return "SR.Weekday";
-                    case MonthlyRelativeWeekDays.WeekEnds:  return "SR.Weekend";
+                    case MonthlyRelativeWeekDays.Thursday: return "SR.Thursday";
+                    case MonthlyRelativeWeekDays.Friday: return "SR.Friday";
+                    case MonthlyRelativeWeekDays.Saturday: return "SR.Saturday";
+                    case MonthlyRelativeWeekDays.EveryDay: return "SR.Day";
+                    case MonthlyRelativeWeekDays.WeekDays: return "SR.Weekday";
+                    case MonthlyRelativeWeekDays.WeekEnds: return "SR.Weekend";
                     default:
                         Debug.Assert(false, "Unknown category of day");
                         throw new InvalidOperationException();
                 }
             }
         }
-        
+
         #endregion
-        
+
         #region public convert ToString()
         /// <summary>
         /// returns a localized string description (without needing to instantiate UI for that)
@@ -612,7 +612,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         }
 
         #endregion
-        
+
 
         #region private implementation - compute description
         /// <summary>
@@ -683,7 +683,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 foreach (Match match in matches.Cast<Match>())
                 {
                     string propertyName = match.Groups["property"].Value;
-                    PropertyDescriptor property = properties[propertyName];                 
+                    PropertyDescriptor property = properties[propertyName];
                     if (property != null)
                     {
                         object propertyValue = property.GetValue(this);

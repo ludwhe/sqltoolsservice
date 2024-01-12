@@ -26,8 +26,8 @@
 using System;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Diagnostics.Contracts;
+using Microsoft.Data.SqlClient;
 
 namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
 {

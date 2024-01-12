@@ -74,6 +74,6 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
                 return noNewLinesProcessor();
             }
         }
-        
+
     }
 }

@@ -69,7 +69,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
                 Assert.AreEqual(Microsoft.SqlTools.ResourceProvider.Core.SR.FirewallRuleUnsupportedConnectionType, response.ErrorMessage);
             });
         }
-        
+
         [Test]
         public async Task TestHandleFirewallRuleSupportsMssqlProvider()
         {
@@ -90,7 +90,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
                 Assert.Null(response.ErrorMessage);
             });
         }
-        
+
         [Test]
         public async Task TestHandleFirewallRuleIgnoresNonFirewallErrors()
         {
@@ -140,8 +140,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             string serverName = "myserver.database.windows.net";
             var sub1Mock = new Mock<IAzureUserAccountSubscriptionContext>();
             var sub2Mock = new Mock<IAzureUserAccountSubscriptionContext>();
-            var server = new SqlAzureResource(new Azure.Management.Sql.Models.Server("Somewhere", 
-                "1234", "myserver", "SQLServer", 
+            var server = new SqlAzureResource(new Azure.Management.Sql.Models.Server("Somewhere",
+                "1234", "myserver", "SQLServer",
                 null, null, null, null, null, null, null,
                 fullyQualifiedDomainName: serverName));
             var subsToServers = new List<Tuple<IAzureUserAccountSubscriptionContext, IEnumerable<IAzureSqlServerResource>>>()
@@ -215,7 +215,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         {
             SetupCreateSession();
             SetupReturnsSubscriptions(subsToServers.Select(s => s.Item1));
-            foreach(var s in subsToServers)
+            foreach (var s in subsToServers)
             {
                 SetupAzureServers(s.Item1, s.Item2);
             }

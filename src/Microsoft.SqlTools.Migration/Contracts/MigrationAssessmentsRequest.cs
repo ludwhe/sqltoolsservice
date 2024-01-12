@@ -5,12 +5,12 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 using Microsoft.SqlServer.Migration.Assessment.Common.Contracts.Models;
+using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.SqlTools.Migration.Contracts
 {
-    public class MigrationAssessmentsParams 
+    public class MigrationAssessmentsParams
     {
         /// <summary>
         /// Owner URI

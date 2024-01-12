@@ -23,7 +23,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility
     /// </remarks>
     /// <typeparam name="T">Type of the values to store</typeparam>
     public class LongList<T> : IEnumerable<T>
-    {        
+    {
         #region Member Variables
 
         private List<List<T>> expandedList;
@@ -89,7 +89,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility
             {
                 // very inefficient so delay as much as possible
                 // immediately add 0th array
-                expandedList ??= new List<List<T>> {shortList};
+                expandedList ??= new List<List<T>> { shortList };
 
                 int arrayIndex = (int)(Count / this.ExpandListSize); // 0 based
 
@@ -125,12 +125,12 @@ namespace Microsoft.Kusto.ServiceLayer.Utility
             }
             else
             {
-                int iArray32Index = (int) (index / this.ExpandListSize);
+                int iArray32Index = (int)(index / this.ExpandListSize);
                 if (expandedList.Count > iArray32Index)
                 {
                     List<T> arr = expandedList[iArray32Index];
 
-                    int i32Index = (int) (index % this.ExpandListSize);
+                    int i32Index = (int)(index % this.ExpandListSize);
                     if (arr.Count > i32Index)
                     {
                         val = arr[i32Index];
@@ -150,7 +150,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility
             Validate.IsWithinRange(nameof(start), start, 0, Count - 1);
 
             // Generate an enumerator over this list and jump ahead to the position we want
-            LongListEnumerator<T> longEnumerator = new LongListEnumerator<T>(this) {Index = start - 1};
+            LongListEnumerator<T> longEnumerator = new LongListEnumerator<T>(this) { Index = start - 1 };
 
             // While there are results to get, yield return them
             while (longEnumerator.MoveNext())
@@ -175,7 +175,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility
             }
             else
             {
-                int iArray32Index = (int) (index / this.ExpandListSize);
+                int iArray32Index = (int)(index / this.ExpandListSize);
                 List<T> arr = expandedList[iArray32Index];
 
                 int i32Index = (int)(index % this.ExpandListSize);
@@ -200,11 +200,11 @@ namespace Microsoft.Kusto.ServiceLayer.Utility
             else // handle the case of multiple arrays
             {
                 // find out which array it is in
-                int arrayIndex = (int) (index / this.ExpandListSize);
+                int arrayIndex = (int)(index / this.ExpandListSize);
                 List<T> arr = expandedList[arrayIndex];
 
                 // find out index into this array
-                int iArray32MemberIndex = (int) (index % this.ExpandListSize);
+                int iArray32MemberIndex = (int)(index % this.ExpandListSize);
                 arr.RemoveAt(iArray32MemberIndex);
 
                 // now shift members of the array back one

@@ -106,7 +106,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace.Contracts
         }
 
         #endregion
-   
+
     }
 }
 

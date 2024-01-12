@@ -13,18 +13,18 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
     /// </summary>
     public class BatchParserExecutionStartEventArgs : EventArgs
     {
-        
+
         private readonly Batch batch = null;
         private readonly TextSpan textSpan;
 
-        private BatchParserExecutionStartEventArgs() 
+        private BatchParserExecutionStartEventArgs()
         {
         }
 
         /// <summary>
         /// Contructor method for the class
         /// </summary>
-        public BatchParserExecutionStartEventArgs(TextSpan textSpan, Batch batch)            
+        public BatchParserExecutionStartEventArgs(TextSpan textSpan, Batch batch)
         {
             this.batch = batch;
             this.textSpan = textSpan;

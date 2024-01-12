@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace Microsoft.Kusto.ServiceLayer.Connection
 {
-    public class DatabaseLocksManager: IDisposable
+    public class DatabaseLocksManager : IDisposable
     {
         private static readonly DatabaseLocksManager _instance = new DatabaseLocksManager();
 

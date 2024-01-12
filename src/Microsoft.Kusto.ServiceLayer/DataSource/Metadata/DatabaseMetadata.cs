@@ -11,7 +11,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Metadata
     public class DatabaseMetadata : DataSourceObjectMetadata
     {
         public string ClusterName { get; set; }
-        
+
         public string SizeInMB { get; set; }
     }
 }

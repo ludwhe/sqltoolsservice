@@ -195,7 +195,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlAssessment
                     Type = ConnectionType.Default
                 };
 
-                if(!connInfo.TryGetConnection(ConnectionType.Default, out var connection))
+                if (!connInfo.TryGetConnection(ConnectionType.Default, out var connection))
                 {
                     await requestContext.SendError(SR.SqlAssessmentConnectingError);
                 }
@@ -330,7 +330,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlAssessment
         {
             var resultsList = await Engine.GetAssessmentResultsList(target);
             Logger.Verbose($"SQL Assessment: got {resultsList.Count} results.");
-            
+
             return resultsList.Select(TranslateAssessmentResult).ToList();
         }
 
@@ -358,18 +358,18 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlAssessment
                                      : target.Name;
 
                 var item = new CheckInfo()
-                               {
-                                   CheckId = r.Id,
-                                   Description = r.Description,
-                                   DisplayName = r.DisplayName,
-                                   HelpLink = r.HelpLink,
-                                   Level = r.Level.ToString(),
-                                   TargetName = targetName,
-                                   Tags = r.Tags.ToArray(),
-                                   TargetType = target.Type,
-                                   RulesetName = Engine.Configuration.DefaultRuleset.Name,
-                                   RulesetVersion = Engine.Configuration.DefaultRuleset.Version.ToString()
-                               };
+                {
+                    CheckId = r.Id,
+                    Description = r.Description,
+                    DisplayName = r.DisplayName,
+                    HelpLink = r.HelpLink,
+                    Level = r.Level.ToString(),
+                    TargetName = targetName,
+                    Tags = r.Tags.ToArray(),
+                    TargetType = target.Type,
+                    RulesetName = Engine.Configuration.DefaultRuleset.Name,
+                    RulesetVersion = Engine.Configuration.DefaultRuleset.Version.ToString()
+                };
 
                 result.Add(item);
             }
@@ -380,20 +380,20 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlAssessment
         private AssessmentResultItem TranslateAssessmentResult(IAssessmentResult r)
         {
             var item = new AssessmentResultItem
-                           {
-                               CheckId = r.Check?.Id ?? string.Empty,
-                               Description = r.Check?.Description ?? string.Empty,
-                               DisplayName = r.Check?.DisplayName ?? string.Empty,
-                               HelpLink = r.Check?.HelpLink ?? string.Empty,
-                               Level = r.Check?.Level.ToString() ?? string.Empty,
-                               Message = r.Message,
-                               TargetName = r.TargetPath,
-                               Tags = r.Check?.Tags.ToArray() ?? Array.Empty<string>(),
-                               TargetType = r.TargetType,
-                               RulesetVersion = Engine.Configuration.DefaultRuleset.Version.ToString(),
-                               RulesetName = Engine.Configuration.DefaultRuleset.Name,
-                               Timestamp = r.Timestamp
-                           };
+            {
+                CheckId = r.Check?.Id ?? string.Empty,
+                Description = r.Check?.Description ?? string.Empty,
+                DisplayName = r.Check?.DisplayName ?? string.Empty,
+                HelpLink = r.Check?.HelpLink ?? string.Empty,
+                Level = r.Check?.Level.ToString() ?? string.Empty,
+                Message = r.Message,
+                TargetName = r.TargetPath,
+                Tags = r.Check?.Tags.ToArray() ?? Array.Empty<string>(),
+                TargetType = r.TargetType,
+                RulesetVersion = Engine.Configuration.DefaultRuleset.Version.ToString(),
+                RulesetName = Engine.Configuration.DefaultRuleset.Name,
+                Timestamp = r.Timestamp
+            };
 
             if (r is IAssessmentNote)
             {
@@ -448,17 +448,17 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlAssessment
         {
             switch (representation)
             {
-                    case 1: return SqlEngineEdition.PersonalOrDesktopEngine;
-                    case 2: return SqlEngineEdition.Standard;
-                    case 3: return SqlEngineEdition.Enterprise;
-                    case 4: return SqlEngineEdition.Express;
-                    case 5: return SqlEngineEdition.AzureDatabase;
-                    case 6: return SqlEngineEdition.DataWarehouse;
-                    case 7: return SqlEngineEdition.StretchDatabase;
-                    case 8: return SqlEngineEdition.ManagedInstance;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(representation),
-                            SR.SqlAssessmentUnsuppoertedEdition(representation));
+                case 1: return SqlEngineEdition.PersonalOrDesktopEngine;
+                case 2: return SqlEngineEdition.Standard;
+                case 3: return SqlEngineEdition.Enterprise;
+                case 4: return SqlEngineEdition.Express;
+                case 5: return SqlEngineEdition.AzureDatabase;
+                case 6: return SqlEngineEdition.DataWarehouse;
+                case 7: return SqlEngineEdition.StretchDatabase;
+                case 8: return SqlEngineEdition.ManagedInstance;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(representation),
+                        SR.SqlAssessmentUnsuppoertedEdition(representation));
             }
         }
 

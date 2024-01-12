@@ -9,10 +9,10 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Data;
-using System.Text;
 using System.Globalization;
-using Microsoft.SqlServer.Management.Smo;
+using System.Text;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 {
@@ -26,45 +26,45 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 #endif
     enum SearchableObjectType
     {
-        AggregateFunction           = 0,
-        ApplicationRole             = 1,
-        Assembly                    = 2,
-        Database                    = 3,
-        DatabaseRole                = 4,
-        Endpoint                    = 5,
-        ExtendedStoredProcedure     = 6,
-        FunctionInline              = 7,
-        FunctionScalar              = 8,
-        FunctionTable               = 9,
-        Login                       = 10,
-        Schema                      = 11,
-        Server                      = 12,
-        ServerRole                  = 13,
-        StoredProcedure             = 14,
-        Synonym                     = 15,
-        Table                       = 16,
+        AggregateFunction = 0,
+        ApplicationRole = 1,
+        Assembly = 2,
+        Database = 3,
+        DatabaseRole = 4,
+        Endpoint = 5,
+        ExtendedStoredProcedure = 6,
+        FunctionInline = 7,
+        FunctionScalar = 8,
+        FunctionTable = 9,
+        Login = 10,
+        Schema = 11,
+        Server = 12,
+        ServerRole = 13,
+        StoredProcedure = 14,
+        Synonym = 15,
+        Table = 16,
         //Trigger                       = 17,
-        User                        = 17,
-        View                        = 18,
-        XmlSchemaCollection         = 19,
-        Rule                        = 20,
-        Default                     = 21,
-        AgentJob                    = 22,
-        Credential                  = 23,
-        SymmetricKey                = 24,
-        AsymmetricKey               = 25,
-        Certificate                 = 26,
-        UserDefinedDataType         = 27, 
-        FullTextCatalog             = 28,
-        LoginOnly                   = 29,
-        UserDefinedTableType        = 30,
-        ServiceQueue                = 31,
-        Sequence                    = 32,
-        AvailabilityGroup           = 33,
-        SecurityPolicy              = 34,
-        ExternalDataSource          = 35,
-        ExternalFileFormat          = 36,
-        LastType                    = 37    // do not add object types after LastType - insert ahead of LastType instead
+        User = 17,
+        View = 18,
+        XmlSchemaCollection = 19,
+        Rule = 20,
+        Default = 21,
+        AgentJob = 22,
+        Credential = 23,
+        SymmetricKey = 24,
+        AsymmetricKey = 25,
+        Certificate = 26,
+        UserDefinedDataType = 27,
+        FullTextCatalog = 28,
+        LoginOnly = 29,
+        UserDefinedTableType = 30,
+        ServiceQueue = 31,
+        Sequence = 32,
+        AvailabilityGroup = 33,
+        SecurityPolicy = 34,
+        ExternalDataSource = 35,
+        ExternalFileFormat = 36,
+        LastType = 37    // do not add object types after LastType - insert ahead of LastType instead
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Constructor
         /// </summary>
-        public SearchableObjectTypeCollection() {}
+        public SearchableObjectTypeCollection() { }
 
         /// <summary>
         /// Indexer
@@ -105,7 +105,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         {
             get
             {
-                return ((SearchableObjectType) this.List[index]);
+                return ((SearchableObjectType)this.List[index]);
             }
         }
 #pragma warning restore IDE0026 // Use expression body for indexer
@@ -115,7 +115,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="type">The type to add</param>
         /// <returns>The index of the type in the collection</returns>
-        public int                  Add(SearchableObjectType type)
+        public int Add(SearchableObjectType type)
         {
             return this.List.Add(type);
         }
@@ -125,7 +125,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="type">The type to find</param>
         /// <returns>The type's index</returns>
-        public int                  IndexOf(SearchableObjectType type)
+        public int IndexOf(SearchableObjectType type)
         {
             return this.List.IndexOf(type);
         }
@@ -135,7 +135,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="index">The index to insert the type</param>
         /// <param name="type">The type to insert</param>
-        public void                 Insert(int index, SearchableObjectType type)
+        public void Insert(int index, SearchableObjectType type)
         {
             this.List.Insert(index, type);
         }
@@ -145,12 +145,12 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="type">The type to check for</param>
         /// <returns>True if the type is in the collection, false otherwise</returns>
-        public bool                 Contains(SearchableObjectType type)
+        public bool Contains(SearchableObjectType type)
         {
             return this.List.Contains(type);
         }
 
-        protected override void OnInsert(int index, Object value)  
+        protected override void OnInsert(int index, Object value)
         {
             if (value.GetType() != typeof(SearchableObjectType))
             {
@@ -159,7 +159,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             }
         }
 
-        protected override void OnRemove(int index, Object value)  
+        protected override void OnRemove(int index, Object value)
         {
             if (value.GetType() != typeof(SearchableObjectType))
             {
@@ -168,7 +168,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             }
         }
 
-        protected override void OnSet(int index, Object oldValue, Object newValue)  
+        protected override void OnSet(int index, Object oldValue, Object newValue)
         {
             if (newValue.GetType() != typeof(SearchableObjectType))
             {
@@ -177,7 +177,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             }
         }
 
-        protected override void OnValidate(Object value)  
+        protected override void OnValidate(Object value)
         {
             if (value.GetType() != typeof(SearchableObjectType))
             {
@@ -201,13 +201,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
     class SearchableObjectTypeDescription
     {
         // private Image   image;
-        private string  typeNameSingular;
-        private string  typeNamePlural;
-        private string  urnObjectType;
-        private string  specialRestrictions;
-        private string  disallowSystemObjectsRestriction;
-        private bool    isDatabaseObject;
-        private bool    isSchemaObject;
+        private string typeNameSingular;
+        private string typeNamePlural;
+        private string urnObjectType;
+        private string specialRestrictions;
+        private string disallowSystemObjectsRestriction;
+        private bool isDatabaseObject;
+        private bool isSchemaObject;
         private const int YUKON = 9;
 
         /// <summary>
@@ -288,28 +288,28 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="isSchemaObject">Whether the object is contained byt a schema</param>
         private SearchableObjectTypeDescription(
             // Image           image, 
-            string          typeNameKey, 
-            string          urnObjectType, 
-            string          specialRestrictions, 
-            string          disallowSystemObjectsRestriction,
-            bool            isDatabaseObject,
-            bool            isSchemaObject)
+            string typeNameKey,
+            string urnObjectType,
+            string specialRestrictions,
+            string disallowSystemObjectsRestriction,
+            bool isDatabaseObject,
+            bool isSchemaObject)
         {
             // STrace.Assert(image != null, "image is null");
             // STrace.Assert((typeNameKey != null) && (typeNameKey.Length != 0), "typeNameKey is null or empty");
             // STrace.Assert(specialRestrictions != null, "specialRestrictions is null");
             // STrace.Assert(disallowSystemObjectsRestriction != null, "disallowSystemObjectsRestriction is null");
             // STrace.Assert(resourceManager != null, "resourceManager is null");
-            
+
             // this.image                              = image;
-            this.urnObjectType                      = urnObjectType;
-            this.specialRestrictions                = specialRestrictions;
-            this.disallowSystemObjectsRestriction   = disallowSystemObjectsRestriction;
-            this.isDatabaseObject                   = isDatabaseObject;
-            this.isSchemaObject                     = isSchemaObject;
-            this.typeNamePlural         = SR.Keys.GetString(string.Format("{0}_plural", typeNameKey));
-            this.typeNameSingular       = SR.Keys.GetString(string.Format("{0}_singular", typeNameKey));
-        
+            this.urnObjectType = urnObjectType;
+            this.specialRestrictions = specialRestrictions;
+            this.disallowSystemObjectsRestriction = disallowSystemObjectsRestriction;
+            this.isDatabaseObject = isDatabaseObject;
+            this.isSchemaObject = isSchemaObject;
+            this.typeNamePlural = SR.Keys.GetString(string.Format("{0}_plural", typeNameKey));
+            this.typeNameSingular = SR.Keys.GetString(string.Format("{0}_singular", typeNameKey));
+
             // STrace.Assert((this.typeNamePlural != null) && (this.typeNamePlural.Length != 0), "could not get plural type name");
             // STrace.Assert((this.typeNameSingular != null) && (this.typeNameSingular.Length != 0), "could not get singular type name");
         }
@@ -324,24 +324,24 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="isSchemaObject">Whether the object is contained byt a schema</param>
         private SearchableObjectTypeDescription(
             // Image           image, 
-            string          typeNameKey, 
-            string          urnObjectType, 
-            bool            isDatabaseObject,
-            bool            isSchemaObject)
+            string typeNameKey,
+            string urnObjectType,
+            bool isDatabaseObject,
+            bool isSchemaObject)
         {
             // STrace.Assert(image != null, "image is null");
             // STrace.Assert((typeNameKey != null) && (typeNameKey.Length != 0), "typeNameKey is null or empty");
             // STrace.Assert(resourceManager != null, "resourceManager is null");
 
             // this.image = image;
-            this.urnObjectType                      = urnObjectType;
-            this.specialRestrictions                = String.Empty;
-            this.disallowSystemObjectsRestriction   = String.Empty;
-            this.isDatabaseObject                   = isDatabaseObject;
-            this.isSchemaObject                     = isSchemaObject;
+            this.urnObjectType = urnObjectType;
+            this.specialRestrictions = String.Empty;
+            this.disallowSystemObjectsRestriction = String.Empty;
+            this.isDatabaseObject = isDatabaseObject;
+            this.isSchemaObject = isSchemaObject;
 
-            this.typeNamePlural         = SR.Keys.GetString(string.Format("{0}_plural", typeNameKey));
-            this.typeNameSingular       = SR.Keys.GetString(string.Format("{0}_singular", typeNameKey));
+            this.typeNamePlural = SR.Keys.GetString(string.Format("{0}_plural", typeNameKey));
+            this.typeNameSingular = SR.Keys.GetString(string.Format("{0}_singular", typeNameKey));
 
             // STrace.Assert((this.typeNamePlural != null) && (this.typeNamePlural.Length != 0), "could not get plural type name");
             // STrace.Assert((this.typeNameSingular != null) && (this.typeNameSingular.Length != 0), "could not get singular type name");
@@ -355,7 +355,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </remarks>
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the results</param>
         /// <returns>The URN string to enumerate the type</returns>
-        internal string     GetSearchUrn(bool includeSystemObjects)
+        internal string GetSearchUrn(bool includeSystemObjects)
         {
             // STrace.Assert(!this.isDatabaseObject, "wrong overload for enumerating database objects");
 
@@ -386,7 +386,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="databaseName">The name of the database containing the objects that are to be enumerated</param>
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the results</param>
         /// <returns>The URN string to enumerate the type</returns>
-        internal string     GetSearchUrn(string databaseName, bool includeSystemObjects)
+        internal string GetSearchUrn(string databaseName, bool includeSystemObjects)
         {
             // STrace.Assert(this.isDatabaseObject, "wrong overload for enumerating server objects");
             // STrace.Assert(databaseName.Length != 0, "database name is empty");
@@ -422,7 +422,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="exactName">True if the name is complete, false if it is a fragment the name should contain</param>
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the results</param>
         /// <returns>The URN string to enumerate the type</returns>
-        internal string     GetSearchUrn(string name, bool exactName, bool includeSystemObjects)
+        internal string GetSearchUrn(string name, bool exactName, bool includeSystemObjects)
         {
             // STrace.Assert(!this.isDatabaseObject, "wrong overload for enumerating database objects");
             // STrace.Assert(name.Length != 0, "name is empty");
@@ -457,7 +457,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="exactName">True if the name is complete, false if it is a fragment the name should contain</param>
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the results</param>
         /// <returns>The URN string to enumerate the type</returns>
-        internal string     GetSearchUrn(string databaseName, string name, bool exactName, bool includeSystemObjects)
+        internal string GetSearchUrn(string databaseName, string name, bool exactName, bool includeSystemObjects)
         {
             // STrace.Assert(this.isDatabaseObject, "wrong overload for enumerating database objects");
             // STrace.Assert(databaseName.Length != 0, "database name is empty");
@@ -491,13 +491,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="exactSchema">True if the schema name is complete, false if it is a fragment that the schema name should contain</param>
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the results</param>
         /// <returns>The URN string to enumerate the type</returns>
-        internal string     GetSearchUrn(
-            string  databaseName, 
-            string  name, 
-            bool    exactName, 
-            string  schema, 
-            bool    exactSchema,
-            bool    includeSystemObjects)
+        internal string GetSearchUrn(
+            string databaseName,
+            string name,
+            bool exactName,
+            string schema,
+            bool exactSchema,
+            bool includeSystemObjects)
         {
             // STrace.Assert(this.isDatabaseObject, "wrong overload for enumerating server objects");
             // STrace.Assert(databaseName.Length != 0, "database name is empty");
@@ -526,24 +526,24 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="schema">The schema of the object to enumerate</param>
         /// <param name="exactSchema">True if the schema name is complete, false if it is a fragment that the schema name should contain</param>
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the results</param>
-        private void        AppendRestrictions(
-            StringBuilder   builder,
-            string          name, 
-            bool            exactName, 
-            string          schema, 
-            bool            exactSchema, 
-            bool            includeSystemObjects)
+        private void AppendRestrictions(
+            StringBuilder builder,
+            string name,
+            bool exactName,
+            string schema,
+            bool exactSchema,
+            bool includeSystemObjects)
         {
-            bool    hasNameRestriction          = (name.Length != 0);
-            bool    hasSchemaRestriction        = (schema.Length != 0);
-            bool    hasSpecialRestriction       = (0 != this.specialRestrictions.Length);
-            bool    hasSystemObjectRestriction  = (!includeSystemObjects && (this.disallowSystemObjectsRestriction.Length != 0));
+            bool hasNameRestriction = (name.Length != 0);
+            bool hasSchemaRestriction = (schema.Length != 0);
+            bool hasSpecialRestriction = (0 != this.specialRestrictions.Length);
+            bool hasSystemObjectRestriction = (!includeSystemObjects && (this.disallowSystemObjectsRestriction.Length != 0));
 
             if (hasNameRestriction || hasSchemaRestriction || hasSpecialRestriction || hasSystemObjectRestriction)
             {
                 bool restrictionApplied = false;
                 builder.Append("[");
-    
+
                 if (hasNameRestriction)
                 {
                     if (exactName)
@@ -553,7 +553,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                     else
                     {
                         builder.AppendFormat("contains(@Name, '{0}')", Urn.EscapeString(name));
-                    }  
+                    }
 
                     restrictionApplied = true;
                 }
@@ -564,7 +564,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                     {
                         builder.Append(" and ");
                     }
-                    
+
                     if (exactSchema)
                     {
                         builder.AppendFormat("@Schema='{0}'", Urn.EscapeString(schema));
@@ -572,11 +572,11 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                     else
                     {
                         builder.AppendFormat("contains(@Schema, '{0}')", Urn.EscapeString(schema));
-                    }  
+                    }
 
                     restrictionApplied = true;
                 }
-    
+
                 if (hasSpecialRestriction)
                 {
                     if (restrictionApplied)
@@ -597,14 +597,14 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                     {
                         builder.Append(" and ");
                     }
-                    
+
                     builder.Append(this.disallowSystemObjectsRestriction);
                 }
-    
+
                 builder.Append("]");
             }
         }
-        
+
 
         private static HybridDictionary typeToDescription;
         private static bool firstVersionSpecificTypeInfoUpdate = true;
@@ -970,13 +970,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="objectType">The searchable object type</param>
         /// <returns>The type description</returns>
-        public static SearchableObjectTypeDescription   GetDescription(SearchableObjectType objectType)
+        public static SearchableObjectTypeDescription GetDescription(SearchableObjectType objectType)
         {
             // STrace.Assert(
-                // SearchableObjectTypeDescription.typeToDescription.Contains(objectType), 
-                // "unexpected object type - did you add the object type description?");
-            
-            return (SearchableObjectTypeDescription) SearchableObjectTypeDescription.typeToDescription[objectType];
+            // SearchableObjectTypeDescription.typeToDescription.Contains(objectType), 
+            // "unexpected object type - did you add the object type description?");
+
+            return (SearchableObjectTypeDescription)SearchableObjectTypeDescription.typeToDescription[objectType];
         }
 
         /// <summary>
@@ -988,8 +988,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         public static SearchableObjectTypeDescription GetDescription(object connectionInfo, SearchableObjectType objectType)
         {
             // STrace.Assert(
-                // SearchableObjectTypeDescription.typeToDescription.Contains(objectType),
-                // "unexpected object type - did you add the object type description?");
+            // SearchableObjectTypeDescription.typeToDescription.Contains(objectType),
+            // "unexpected object type - did you add the object type description?");
 
             SearchableObjectTypeDescription.UpdateVersionSpecificTypeDescription(PermissionsData.Securable.GetServerVersion(connectionInfo));
             return (SearchableObjectTypeDescription)SearchableObjectTypeDescription.typeToDescription[objectType];
@@ -1006,8 +1006,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 #endif
     class SearchableObjectTypeSelection
     {
-        private SearchableObjectType    objectType;
-        private bool                    isSelected;
+        private SearchableObjectType objectType;
+        private bool isSelected;
 
         /// <summary>
         /// The object type
@@ -1023,7 +1023,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Whether the object type has been selected
         /// </summary>
-        public bool                 IsSelected
+        public bool IsSelected
         {
             get
             {
@@ -1059,8 +1059,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 #endif
     class SearchableObject : IComparable
     {
-        private SearchableObjectType                objectType;
-        private Urn                                 urn;
+        private SearchableObjectType objectType;
+        private Urn urn;
         private System.Globalization.CompareOptions compareOptions;
 
         /// <summary>
@@ -1077,7 +1077,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// The display text for the type of the object
         /// </summary>
-        public string               TypeName
+        public string TypeName
         {
             get
             {
@@ -1087,7 +1087,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// The name of the object
         /// </summary>
-        public string               Name
+        public string Name
         {
             get
             {
@@ -1098,12 +1098,12 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// The schema of the object
         /// </summary>
-        public string               Schema
+        public string Schema
         {
             get
             {
                 string result = String.Empty;
-                
+
                 if (SearchableObjectTypeDescription.GetDescription(this.objectType).IsSchemaObject)
                 {
                     result = this.urn.GetAttribute("Schema");
@@ -1117,7 +1117,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// The name of the database containing the object, or an empty string
         /// if database doesn't apply
         /// </summary>
-        public string               DatabaseName
+        public string DatabaseName
         {
             get
             {
@@ -1128,19 +1128,19 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                     Urn currentUrn = this.urn;
 
                     while (
-                        (currentUrn != null) && 
+                        (currentUrn != null) &&
                         (0 != String.Compare(currentUrn.Type, "Database", StringComparison.OrdinalIgnoreCase)))
                     {
                         currentUrn = currentUrn.Parent;
 
                         // STrace.Assert(currentUrn != null, "ran off the top of the xpath");
                     }
-                    
+
                     if (currentUrn != null)
                     {
                         // STrace.Assert(
-                            // (0 == String.Compare(currentUrn.Type, "Database", StringComparison.OrdinalIgnoreCase)),
-                            // "currentUrn is not a database!");
+                        // (0 == String.Compare(currentUrn.Type, "Database", StringComparison.OrdinalIgnoreCase)),
+                        // "currentUrn is not a database!");
 
                         result = currentUrn.GetAttribute("Name");
                     }
@@ -1153,7 +1153,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// The URN for the object
         /// </summary>
-        public Urn                  Urn
+        public Urn Urn
         {
             get
             {
@@ -1192,7 +1192,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         public SearchableObject(SearchableObjectType objectType, string urn, string sqlCollation)
         {
             this.objectType = objectType;
-            this.urn        = new Urn(urn);
+            this.urn = new Urn(urn);
             this.compareOptions = SqlSupport.GetCompareOptionsFromCollation(sqlCollation);
         }
 
@@ -1204,8 +1204,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="compareOptions">The CompareOptions used to compare object names</param>
         public SearchableObject(SearchableObjectType objectType, string urn, System.Globalization.CompareOptions compareOptions)
         {
-            this.objectType     = objectType;
-            this.urn            = urn;
+            this.objectType = objectType;
+            this.urn = urn;
             this.compareOptions = compareOptions;
         }
 
@@ -1217,14 +1217,14 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         public int CompareTo(object obj)
         {
             int result = 0;
-            
+
             if (obj.GetType() == this.GetType())
             {
-                SearchableObject                    other       = (SearchableObject) obj;
-                SqlCollationSensitiveStringComparer comparer    = new SqlCollationSensitiveStringComparer(this.compareOptions);
+                SearchableObject other = (SearchableObject)obj;
+                SqlCollationSensitiveStringComparer comparer = new SqlCollationSensitiveStringComparer(this.compareOptions);
 
-                string thisSchema   = this.Schema;
-                string otherSchema  = other.Schema;
+                string thisSchema = this.Schema;
+                string otherSchema = other.Schema;
 
                 if ((thisSchema.Length != 0) && (otherSchema.Length != 0))
                 {
@@ -1234,7 +1234,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 {
                     result = 0;
                 }
-                else if (thisSchema.Length == 0) 
+                else if (thisSchema.Length == 0)
                 {
                     result = 1;
                 }
@@ -1250,7 +1250,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 
                 if (0 == result)
                 {
-                    result = this.objectType.CompareTo(((SearchableObject) obj).objectType);
+                    result = this.objectType.CompareTo(((SearchableObject)obj).objectType);
                 }
             }
             else
@@ -1268,7 +1268,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <returns>The formatted multi-part name</returns>
         public override string ToString()
         {
-            return (new ObjectName(this)).ToString();   
+            return (new ObjectName(this)).ToString();
         }
 
         /// <summary>
@@ -1283,10 +1283,10 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the search results</param>
         /// <returns>True if any objects were found, false otherwise</returns>
         public static bool Search(
-            SearchableObjectCollection  collection, 
-            SearchableObjectType        type, 
-            object                      connectionInfo,
-            bool                        includeSystemObjects)
+            SearchableObjectCollection collection,
+            SearchableObjectType type,
+            object connectionInfo,
+            bool includeSystemObjects)
         {
             string urn = SearchableObjectTypeDescription.GetDescription(connectionInfo, type).GetSearchUrn(includeSystemObjects);
             return SearchImpl(collection, type, connectionInfo, urn, String.Empty);
@@ -1305,11 +1305,11 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the search results</param>
         /// <returns>True if any objects were found, false otherwise</returns>
         public static bool Search(
-            SearchableObjectCollection  collection, 
-            SearchableObjectType        type, 
-            object                      connectionInfo, 
-            string                      databaseName,
-            bool                        includeSystemObjects)
+            SearchableObjectCollection collection,
+            SearchableObjectType type,
+            object connectionInfo,
+            string databaseName,
+            bool includeSystemObjects)
         {
             string urn = SearchableObjectTypeDescription.GetDescription(connectionInfo, type).GetSearchUrn(databaseName, includeSystemObjects);
             return SearchImpl(collection, type, connectionInfo, urn, databaseName);
@@ -1333,16 +1333,16 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the search results</param>
         /// <returns>True if any objects were found, false otherwise</returns>
         public static bool Search(
-            SearchableObjectCollection  collection, 
-            SearchableObjectType        type, 
-            object                      connectionInfo, 
-            string                      objectName, 
-            bool                        exactNameMatch,
-            bool                        includeSystemObjects)
+            SearchableObjectCollection collection,
+            SearchableObjectType type,
+            object connectionInfo,
+            string objectName,
+            bool exactNameMatch,
+            bool includeSystemObjects)
         {
             string urn = SearchableObjectTypeDescription.GetDescription(connectionInfo, type).GetSearchUrn(
-                objectName, 
-                exactNameMatch, 
+                objectName,
+                exactNameMatch,
                 includeSystemObjects);
 
             return SearchImpl(collection, type, connectionInfo, urn, String.Empty);
@@ -1367,18 +1367,18 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the search results</param>
         /// <returns>True if any objects were found, false otherwise</returns>
         public static bool Search(
-            SearchableObjectCollection  collection, 
-            SearchableObjectType        type, 
-            object                      connectionInfo, 
-            string                      databaseName,
-            string                      objectName, 
-            bool                        exactNameMatch,
-            bool                        includeSystemObjects)
+            SearchableObjectCollection collection,
+            SearchableObjectType type,
+            object connectionInfo,
+            string databaseName,
+            string objectName,
+            bool exactNameMatch,
+            bool includeSystemObjects)
         {
             string urn = SearchableObjectTypeDescription.GetDescription(connectionInfo, type).GetSearchUrn(
-                databaseName, 
-                objectName, 
-                exactNameMatch, 
+                databaseName,
+                objectName,
+                exactNameMatch,
                 includeSystemObjects);
 
             return SearchImpl(collection, type, connectionInfo, urn, databaseName);
@@ -1408,22 +1408,22 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="includeSystemObjects">Whether system or built-in objects should be included in the search results</param>
         /// <returns>True if any objects were found, false otherwise</returns>
         public static bool Search(
-            SearchableObjectCollection  collection, 
-            SearchableObjectType        type, 
-            object                      connectionInfo, 
-            string                      databaseName,
-            string                      objectName, 
-            bool                        exactNameMatch,
-            string                      schemaName,
-            bool                        exactSchemaMatch,
-            bool                        includeSystemObjects)
+            SearchableObjectCollection collection,
+            SearchableObjectType type,
+            object connectionInfo,
+            string databaseName,
+            string objectName,
+            bool exactNameMatch,
+            string schemaName,
+            bool exactSchemaMatch,
+            bool includeSystemObjects)
         {
             string urn = SearchableObjectTypeDescription.GetDescription(connectionInfo, type).GetSearchUrn(
-                databaseName, 
-                objectName, 
+                databaseName,
+                objectName,
                 exactNameMatch,
                 schemaName,
-                exactSchemaMatch, 
+                exactSchemaMatch,
                 includeSystemObjects);
 
             return SearchImpl(collection, type, connectionInfo, urn, databaseName);
@@ -1439,14 +1439,14 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="fullObjectName">The fully-qualified name of the object (e.g. [Sales].[SalesSchemaCollection])</param>
         /// <returns>The SearchableObject if such an object exists on the server; otherwise null</returns>
         public static SearchableObject GetSearchableObject(
-            SearchableObjectType    type,
-            object                  connectionInfo,
-            string                  databaseName,
-            string                  fullObjectName)
+            SearchableObjectType type,
+            object connectionInfo,
+            string databaseName,
+            string fullObjectName)
         {
-            SearchableObjectCollection  results     = new SearchableObjectCollection();
-            ObjectName                  objectName  = null;
-            int                         startIndex  = 0;
+            SearchableObjectCollection results = new SearchableObjectCollection();
+            ObjectName objectName = null;
+            int startIndex = 0;
 
             if ((fullObjectName != null) && (fullObjectName.Length != 0) &&
                 SearchableObject.GetNextName(fullObjectName, ref startIndex, CompareOptions.Ordinal, out objectName))
@@ -1456,8 +1456,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 if (typeDescription.IsDatabaseObject)
                 {
                     // STrace.Assert(
-                        // ((databaseName != null) && (databaseName.Length != 0)),
-                        // "database name not provided for database object");
+                    // ((databaseName != null) && (databaseName.Length != 0)),
+                    // "database name not provided for database object");
 
                     if (typeDescription.IsSchemaObject)
                     {
@@ -1536,9 +1536,9 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <returns>The name of the database or server collation</returns>
         public static string GetSqlCollation(object connectionInfo, string databaseName)
         {
-            string      result      = String.Empty;
-            Enumerator  enumerator  = new Enumerator();
-            Request     request     = new Request();
+            string result = String.Empty;
+            Enumerator enumerator = new Enumerator();
+            Request request = new Request();
 
             if (databaseName != null && databaseName.Length != 0)
             {
@@ -1562,7 +1562,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             }
 
             return result;
-       }
+        }
 
         /// <summary>
         /// Search for object instances and add them to the collection
@@ -1573,22 +1573,22 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name"urn">the urn describing the objects to enumerate</param>
         /// <returns>True if any objects were found, false otherwise</returns>
         private static bool SearchImpl(
-            SearchableObjectCollection  collection, 
-            SearchableObjectType        type, 
-            object                      connectionInfo, 
-            string                      urn,
-            string                      databaseName)
+            SearchableObjectCollection collection,
+            SearchableObjectType type,
+            object connectionInfo,
+            string urn,
+            string databaseName)
         {
-            string          sqlCollation    = GetSqlCollation(connectionInfo, databaseName);
-            CompareOptions  compareOptions  = SqlSupport.GetCompareOptionsFromCollation(sqlCollation);
-            Enumerator      enumerator      = new Enumerator();
-            Request         request         = new Request();
+            string sqlCollation = GetSqlCollation(connectionInfo, databaseName);
+            CompareOptions compareOptions = SqlSupport.GetCompareOptionsFromCollation(sqlCollation);
+            Enumerator enumerator = new Enumerator();
+            Request request = new Request();
 
-            request.Fields  = new string[] { "Urn" };
-            request.Urn     = new Urn(urn);
+            request.Fields = new string[] { "Urn" };
+            request.Urn = new Urn(urn);
 
-            DataTable   enumeratedUrns  = enumerator.Process(connectionInfo, request);
-            bool        foundObjects    = (0 < enumeratedUrns.Rows.Count);
+            DataTable enumeratedUrns = enumerator.Process(connectionInfo, request);
+            bool foundObjects = (0 < enumeratedUrns.Rows.Count);
 
             for (int i = 0; i < enumeratedUrns.Rows.Count; ++i)
             {
@@ -1599,7 +1599,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 // STrace.Assert(!collection.Contains(enumeratedObject), "enumerated object is already in the result");
                 collection.Add(enumeratedObject);
             }
-            
+
             return foundObjects;
         }
 
@@ -1612,10 +1612,10 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="objectName">The multi-part identifier that was peeled</param>
         /// <returns>True if there was a next identifier, false otherwise</returns>
         internal static bool GetNextName(
-            string          names, 
-            ref int         startIndex, 
-            CompareOptions  compareOptions, 
-            out ObjectName  objectName)
+            string names,
+            ref int startIndex,
+            CompareOptions compareOptions,
+            out ObjectName objectName)
         {
             objectName = new ObjectName(compareOptions);
 
@@ -1752,10 +1752,10 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="ignoreDoubledCharacters">If true, characters that are escaped (e.g. "]]") are skipped in the search</param>
         /// <returns>The index at which the next occurance of character occurs in the string, or -1 if there is no such occurance</returns>
         private static int GetNextIndex(
-            string  source,
-            int     startIndex,
-            char    character,
-            bool    ignoreDoubledCharacters)
+            string source,
+            int startIndex,
+            char character,
+            bool ignoreDoubledCharacters)
         {
             int index = startIndex;
 
@@ -1765,13 +1765,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 {
                     // if we aren't ignoring escaped (doubled) characters or if we've
                     // reached the end of the string, return the index
-                    if (!ignoreDoubledCharacters || 
-                        (index == (source.Length - 1)) || 
-                        (character != source[index + 1])) 
+                    if (!ignoreDoubledCharacters ||
+                        (index == (source.Length - 1)) ||
+                        (character != source[index + 1]))
                     {
                         return index;
                     }
-                    
+
                     if (((index + 1) < source.Length) && (character == source[index + 1]))
                     {
                         // skip the doubled character
@@ -1801,20 +1801,20 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Constructor
         /// </summary>
-        public              SearchableObjectCollection()
+        public SearchableObjectCollection()
         {
             data = new SortedList();
         }
-        
+
         /// <summary>
         /// Indexer
         /// </summary>
 #pragma warning disable IDE0026 // Use expression body for indexer
-        public  SearchableObject    this[int index]
+        public SearchableObject this[int index]
         {
             get
             {
-                return ((SearchableObject) this.data.GetByIndex(index));
+                return ((SearchableObject)this.data.GetByIndex(index));
             }
         }
 #pragma warning restore IDE0026 // Use expression body for indexer
@@ -1823,7 +1823,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// Add an object to the collection
         /// </summary>
         /// <param name="value">the object to add</param>
-        public  void        Add(SearchableObject value)
+        public void Add(SearchableObject value)
         {
             if (!this.data.Contains(value))
             {
@@ -1837,7 +1837,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="value">The object for which to find the index</param>
         /// <returns>The object's index</returns>
-        public  int         IndexOf(SearchableObject value)
+        public int IndexOf(SearchableObject value)
         {
             return this.data.IndexOfKey(value);
         }
@@ -1846,7 +1846,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// Remove an object from the collection
         /// </summary>
         /// <param name="value">The object to remove</param>
-        public  void        Remove(SearchableObject value)
+        public void Remove(SearchableObject value)
         {
             if (this.data.Contains(value))
             {
@@ -1861,14 +1861,14 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="value">The object for which to check</param>
         /// <returns>true if the object is in the collection, false otherwise</returns>
-        public  bool        Contains(SearchableObject value)
+        public bool Contains(SearchableObject value)
         {
             return this.data.Contains(value);
         }
         /// <summary>
         /// Notify iterators that the collection has changed
         /// </summary>
-        private void        NotifyObservers()
+        private void NotifyObservers()
         {
             if (null != this.OnInvalidateEnumerator)
             {
@@ -1876,16 +1876,16 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             }
         }
 
-        
+
         /// <summary>
         /// Delegate declaration for delegates that will be called when the collection changes
         /// </summary>
-        internal delegate   void                    InvalidateEnumerator();
-        
+        internal delegate void InvalidateEnumerator();
+
         /// <summary>
         /// Event that is fired when the collection changes
         /// </summary>
-        internal event      InvalidateEnumerator    OnInvalidateEnumerator;
+        internal event InvalidateEnumerator OnInvalidateEnumerator;
 
         #region ICollection Members
 
@@ -1963,10 +1963,10 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 #endif
     class SearchableObjectCollectionEnumerator : IEnumerator
     {
-        private SearchableObjectCollection  collection;
-        private int                         currentIndex;
-        private SearchableObject            currentObject;
-        private bool                        isValid;
+        private SearchableObjectCollection collection;
+        private int currentIndex;
+        private SearchableObject currentObject;
+        private bool isValid;
 
         /// <summary>
         /// Constructor
@@ -1974,15 +1974,15 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="collection">The collection to enumerate</param>
         internal SearchableObjectCollectionEnumerator(SearchableObjectCollection collection)
         {
-            this.collection     = collection;
-            this.currentIndex   = -1;
-            this.currentObject  = null;
-            this.isValid        = true;
+            this.collection = collection;
+            this.currentIndex = -1;
+            this.currentObject = null;
+            this.isValid = true;
 
             this.collection.OnInvalidateEnumerator += new SearchableObjectCollection.InvalidateEnumerator(this.Invalidate);
         }
 
-        
+
         /// <summary>
         /// The method the collection should call when the collection's state changes
         /// </summary>
@@ -1990,7 +1990,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         {
             this.isValid = false;
         }
-        
+
 
         #region IEnumerator Members
 
@@ -2004,9 +2004,9 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 // STrace.Assert(false, "The enumerator has been invalidated.");
                 throw new InvalidOperationException();
             }
-            
-            this.currentIndex   = -1;
-            this.currentObject  = null;
+
+            this.currentIndex = -1;
+            this.currentObject = null;
         }
 
         /// <summary>
@@ -2028,7 +2028,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                     throw new InvalidOperationException();
                 }
 
-                return this.currentObject;  
+                return this.currentObject;
             }
         }
 
@@ -2043,14 +2043,14 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 // STrace.Assert(false, "The enumerator has been invalidated.");
                 throw new InvalidOperationException();
             }
-                   
+
             bool result = false;
-            
+
             if (this.currentIndex < (this.collection.Count - 1))
             {
                 ++(this.currentIndex);
-                this.currentObject  = this.collection[this.currentIndex];
-                result              = true;
+                this.currentObject = this.collection[this.currentIndex];
+                result = true;
             }
 
             return result;
@@ -2075,13 +2075,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 #endif
     class ObjectName
     {
-        private ArrayList                           parts;
+        private ArrayList parts;
         private SqlCollationSensitiveStringComparer nameComparer;
 
         /// <summary>
         /// The name portion of the multi-part name
         /// </summary>
-        public string   Name
+        public string Name
         {
             get
             {
@@ -2090,7 +2090,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 if (this.parts.Count != 0)
                 {
                     int namePartIndex = this.parts.Count - 1;
-                    result = (string) this.parts[namePartIndex];
+                    result = (string)this.parts[namePartIndex];
                 }
 
                 return result;
@@ -2113,7 +2113,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// The schema portion of the multi-part name
         /// </summary>
-        public string   Schema
+        public string Schema
         {
             get
             {
@@ -2122,7 +2122,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 if (1 < this.parts.Count)
                 {
                     int schemaPartIndex = this.parts.Count - 2;
-                    result = (string) this.parts[schemaPartIndex];
+                    result = (string)this.parts[schemaPartIndex];
                 }
 
                 return result;
@@ -2146,11 +2146,11 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 }
             }
         }
-                
+
         /// <summary>
         /// The number of parts in the name
         /// </summary>
-        public int      PartCount
+        public int PartCount
         {
             get
             {
@@ -2164,8 +2164,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="compareOptions">CompareOptions to use when comparing ObjectName objects</param>
         public ObjectName(CompareOptions compareOptions)
         {
-            this.parts          = new ArrayList();
-            this.nameComparer   = new SqlCollationSensitiveStringComparer(compareOptions);
+            this.parts = new ArrayList();
+            this.nameComparer = new SqlCollationSensitiveStringComparer(compareOptions);
         }
 
         /// <summary>
@@ -2176,8 +2176,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="compareOptions">CompareOptions to use when comparing ObjectName objects</param>
         public ObjectName(string schema, string name, CompareOptions compareOptions)
         {
-            this.parts          = new ArrayList();
-            this.nameComparer   = new SqlCollationSensitiveStringComparer(compareOptions);
+            this.parts = new ArrayList();
+            this.nameComparer = new SqlCollationSensitiveStringComparer(compareOptions);
 
             this.parts.Add(schema);
             this.parts.Add(name);
@@ -2189,8 +2189,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="searchableObject">The seachable object to get the name from</param>
         public ObjectName(SearchableObject searchableObject)
         {
-            this.parts          = new ArrayList();
-            this.nameComparer   = new SqlCollationSensitiveStringComparer(searchableObject.CompareOptions);
+            this.parts = new ArrayList();
+            this.nameComparer = new SqlCollationSensitiveStringComparer(searchableObject.CompareOptions);
 
             if (searchableObject.Schema.Length != 0)
             {
@@ -2204,7 +2204,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// Add a name part to the multi-part name
         /// </summary>
         /// <param name="namePart">The name-part to add</param>
-        public void             Add(string namePart)
+        public void Add(string namePart)
         {
             this.parts.Add(namePart);
         }
@@ -2213,11 +2213,11 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// Get a display string for the multi-part name
         /// </summary>
         /// <returns>The string</returns>
-        public override string  ToString()
+        public override string ToString()
         {
-            StringBuilder   result      = new StringBuilder();
-            bool            isFirstPart = true;
-            
+            StringBuilder result = new StringBuilder();
+            bool isFirstPart = true;
+
             foreach (string part in this.parts)
             {
                 if (isFirstPart)
@@ -2240,7 +2240,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="other">The name to compare to</param>
         /// <returns>True if the name values are the same; otherwise false</returns>
-        public bool             IsSameAs(ObjectName other)
+        public bool IsSameAs(ObjectName other)
         {
             bool result = true;
 
@@ -2268,13 +2268,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="unquotedString">The name part to quote</param>
         /// <returns>The quoted name part</returns>
-        private string          Quote(string unquotedString)
+        private string Quote(string unquotedString)
         {
             string escaped = unquotedString.Replace("]", "]]");
             return String.Format(System.Globalization.CultureInfo.InvariantCulture, "[{0}]", escaped);
         }
 
     }
-    
+
 
 }

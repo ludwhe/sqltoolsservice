@@ -140,7 +140,7 @@ namespace Microsoft.SqlTools.ServiceLayer.PerfTests
                     await VerifyBindingLoadScenario(testService, serverType, Scripts.TestDbSimpleSelectQuery, false, timer);
                 }
             });
-            
+
         }
 
         [Fact]
@@ -240,9 +240,9 @@ namespace Microsoft.SqlTools.ServiceLayer.PerfTests
         #region Private Helper Methods
 
         private async Task VerifyBindingLoadScenario(
-            TestServiceDriverProvider testService, 
-            TestServerType serverType, 
-            string query, 
+            TestServiceDriverProvider testService,
+            TestServerType serverType,
+            string query,
             bool preLoad,
             TestTimer timer,
             [CallerMemberName] string testName = "")
@@ -250,11 +250,11 @@ namespace Microsoft.SqlTools.ServiceLayer.PerfTests
             string databaseName = Common.PerfTestDatabaseName;
             if (preLoad)
             {
-                await VerifyCompletationLoaded(testService, serverType, Scripts.TestDbSimpleSelectQuery, 
+                await VerifyCompletationLoaded(testService, serverType, Scripts.TestDbSimpleSelectQuery,
                     databaseName, null, testName: testName);
                 Console.WriteLine("Intellisense cache loaded.");
             }
-            await VerifyCompletationLoaded(testService, serverType, query, databaseName, 
+            await VerifyCompletationLoaded(testService, serverType, query, databaseName,
                 timer, testName: testName);
         }
 
@@ -278,9 +278,9 @@ namespace Microsoft.SqlTools.ServiceLayer.PerfTests
         }
 
         private static async Task ValidateCompletionResponse(
-            TestServiceDriverProvider testService, 
-            string ownerUri, 
-            string databaseName, 
+            TestServiceDriverProvider testService,
+            string ownerUri,
+            string databaseName,
             bool waitForIntelliSense,
             TestTimer timer = null,
             [CallerMemberName] string testName = "")
@@ -293,8 +293,8 @@ namespace Microsoft.SqlTools.ServiceLayer.PerfTests
                 {
                     string query = Scripts.SelectQuery;
                     CompletionItem[] completions = await testService.RequestCompletion(ownerUri, query, 0, query.Length + 1);
-                    return completions != null && 
-                    (completions.Any(x => string.Compare(x.Label, databaseName, StringComparison.OrdinalIgnoreCase) == 0 || 
+                    return completions != null &&
+                    (completions.Any(x => string.Compare(x.Label, databaseName, StringComparison.OrdinalIgnoreCase) == 0 ||
                     string.Compare(x.Label, $"[{databaseName}]", StringComparison.OrdinalIgnoreCase) == 0 ||
                     string.Compare(x.Label, $"\"{databaseName}\"", StringComparison.OrdinalIgnoreCase) == 0));
                 }
@@ -309,7 +309,7 @@ namespace Microsoft.SqlTools.ServiceLayer.PerfTests
                     return false;
                 }
             }, testName: testName);
-         }
+        }
 
         #endregion
     }

@@ -13,7 +13,7 @@ namespace Microsoft.SqlTools.Authentication.Utility
         /// <summary>
         /// Application Client ID to be used.
         /// </summary>
-        public string AppClientId { get; set; } 
+        public string AppClientId { get; set; }
 
         /// <summary>
         /// Application name used for public client application instantiation.
@@ -41,7 +41,8 @@ namespace Microsoft.SqlTools.Authentication.Utility
         /// </summary>
         public bool HttpProxyStrictSSL { get; set; }
 
-        public AuthenticatorConfiguration(string appClientId, string appName, string cacheFolderPath, string cacheFileName, string? httpProxyUrl = null, bool httpProxyStrictSSL = true) {
+        public AuthenticatorConfiguration(string appClientId, string appName, string cacheFolderPath, string cacheFileName, string? httpProxyUrl = null, bool httpProxyStrictSSL = true)
+        {
             AppClientId = appClientId;
             AppName = appName;
             CacheFolderPath = cacheFolderPath;

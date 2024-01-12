@@ -27,7 +27,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
             // Given:
             // ... A workspace that has a single file open
             var workspace = new ServiceLayer.Workspace.Workspace();
-            var workspaceService = new WorkspaceService<SqlToolsSettings> {Workspace = workspace};
+            var workspaceService = new WorkspaceService<SqlToolsSettings> { Workspace = workspace };
             var openedFile = workspace.GetFileBuffer(TestObjects.ScriptUri, string.Empty);
             Assert.NotNull(openedFile);
             Assert.That(workspace.GetOpenedFiles(), Is.Not.Empty);
@@ -47,7 +47,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
             var eventContext = new Mock<EventContext>().Object;
             var requestParams = new DidCloseTextDocumentParams
             {
-                TextDocument = new TextDocumentItem {Uri = TestObjects.ScriptUri}
+                TextDocument = new TextDocumentItem { Uri = TestObjects.ScriptUri }
             };
             await workspaceService.HandleDidCloseTextDocumentNotification(requestParams, eventContext);
 
@@ -68,7 +68,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
             // Given:
             // ... A workspace that has no files open
             var workspace = new ServiceLayer.Workspace.Workspace();
-            var workspaceService = new WorkspaceService<SqlToolsSettings> {Workspace = workspace};
+            var workspaceService = new WorkspaceService<SqlToolsSettings> { Workspace = workspace };
             Assert.That(workspace.GetOpenedFiles(), Is.Empty);
 
             // ... And there is a callback registered for the file closed event
@@ -84,7 +84,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
             var eventContext = new Mock<EventContext>().Object;
             var requestParams = new DidCloseTextDocumentParams
             {
-                TextDocument = new TextDocumentItem {Uri = TestObjects.ScriptUri}
+                TextDocument = new TextDocumentItem { Uri = TestObjects.ScriptUri }
             };
             // Then:
             await workspaceService.HandleDidCloseTextDocumentNotification(requestParams, eventContext);
@@ -98,13 +98,13 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
         [Test]
         public void BufferRangeNoneNotNull()
         {
-            Assert.NotNull(BufferRange.None); 
+            Assert.NotNull(BufferRange.None);
         }
 
         [Test]
         public void BufferRangeStartGreaterThanEnd()
         {
-            Assert.Throws<ArgumentException>(() => 
+            Assert.Throws<ArgumentException>(() =>
                 new BufferRange(new BufferPosition(2, 2), new BufferPosition(1, 1)));
         }
 
@@ -126,8 +126,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
         [Test]
         public void GetBaseFilePath()
         {
-            RunIfWrapper.RunIfWindows(() => 
-            {  
+            RunIfWrapper.RunIfWindows(() =>
+            {
                 using (var workspace = new ServiceLayer.Workspace.Workspace())
                 {
                     Assert.Throws<InvalidOperationException>(() => workspace.GetBaseFilePath("path"));
@@ -140,8 +140,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
         [Test]
         public void ResolveRelativeScriptPath()
         {
-            RunIfWrapper.RunIfWindows(() => 
-            { 
+            RunIfWrapper.RunIfWindows(() =>
+            {
                 var workspace = new ServiceLayer.Workspace.Workspace();
                 Assert.NotNull(workspace.ResolveRelativeScriptPath(null, @"c:\path\file.sql"));
                 Assert.NotNull(workspace.ResolveRelativeScriptPath(@"c:\path\", "file.sql"));
@@ -162,9 +162,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
 
         private async Task VerifyFileIsNotAddedOnDocOpened(string filePath)
         {
-             // setup test workspace
+            // setup test workspace
             var workspace = new ServiceLayer.Workspace.Workspace();
-            var workspaceService = new WorkspaceService<SqlToolsSettings> {Workspace = workspace};
+            var workspaceService = new WorkspaceService<SqlToolsSettings> { Workspace = workspace };
 
             // send a document open event with git:/ prefix URI
             var openParams = new DidOpenTextDocumentNotification
@@ -195,7 +195,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
         {
             // when I ask for a non-file object in the workspace, it should return null
             var workspace = new ServiceLayer.Workspace.Workspace();
-            ScriptFile file = workspace.GetFile("perforce:myfile.sql");            
+            ScriptFile file = workspace.GetFile("perforce:myfile.sql");
             Assert.Null(file);
         }
 
@@ -209,7 +209,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
         public async Task WorkspaceContainsFile(string uri)
         {
             var workspace = new ServiceLayer.Workspace.Workspace();
-            var workspaceService = new WorkspaceService<SqlToolsSettings> {Workspace = workspace};
+            var workspaceService = new WorkspaceService<SqlToolsSettings> { Workspace = workspace };
             workspace.GetFileBuffer(uri, string.Empty);
 
             // send a document open event            
@@ -229,7 +229,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
         {
             // when I ask for a non-file object in the workspace, it should return null
             var workspace = new ServiceLayer.Workspace.Workspace();
-            ScriptFile file = workspace.GetFile("objectexplorer://server;database=database;user=user");            
+            ScriptFile file = workspace.GetFile("objectexplorer://server;database=database;user=user");
             Assert.Null(file);
 
             // when I ask for a file, it should return the file
@@ -247,7 +247,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Workspace
             file = workspace.GetFile("file://" + tempFile);
             Assert.AreEqual(fileContents, file.Contents);
 
-            file = workspace.GetFileBuffer("untitled://"+ tempFile, fileContents);
+            file = workspace.GetFileBuffer("untitled://" + tempFile, fileContents);
             Assert.AreEqual(fileContents, file.Contents);
 
             // For windows files, just check scheme is null since it's hard to mock file contents in these

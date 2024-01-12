@@ -5,13 +5,12 @@
 
 #nullable disable
 
-using Microsoft.Kusto.ServiceLayer.Scripting.Contracts;
-using Microsoft.Kusto.ServiceLayer.DataSource;
-using Microsoft.SqlTools.Utility;
 using System;
 using System.IO;
 using System.Reflection;
-using static Microsoft.SqlServer.Management.SqlScriptPublish.SqlScriptOptions;
+using Microsoft.Kusto.ServiceLayer.DataSource;
+using Microsoft.Kusto.ServiceLayer.Scripting.Contracts;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.Kusto.ServiceLayer.Scripting
 {

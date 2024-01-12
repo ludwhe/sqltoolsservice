@@ -87,7 +87,7 @@ namespace Microsoft.SqlTools.Utility
                         return;
                     }
                 }
-                               
+
                 // No more requests waiting, queue the item for a later request
                 this.itemQueue.Enqueue(item);
                 this.IsEmpty = false;

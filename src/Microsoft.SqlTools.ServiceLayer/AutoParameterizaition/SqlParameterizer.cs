@@ -31,7 +31,7 @@ namespace Microsoft.SqlTools.ServiceLayer.AutoParameterizaition
         /// </summary>
         /// <param name="commandToParameterize">Command that will need to be parameterized</param>
         public static void Parameterize(this DbCommand commandToParameterize)
-        {         
+        {
             TSqlFragment rootFragment = GetAbstractSyntaxTree(commandToParameterize);
             TsqlMultiVisitor multiVisitor = new TsqlMultiVisitor(isCodeSenseRequest: false); // Use the vistor pattern to examine the parse tree
             rootFragment.AcceptChildren(multiVisitor); // Now walk the tree

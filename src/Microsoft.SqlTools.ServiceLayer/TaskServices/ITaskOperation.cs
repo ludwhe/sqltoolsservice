@@ -37,7 +37,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices
     /// <summary>
     /// Defines interface for scriptable task operations
     /// </summary>
-    public interface IScriptableTaskOperation: ITaskOperation
+    public interface IScriptableTaskOperation : ITaskOperation
     {
         /// <summary>
         /// Script for the task operation

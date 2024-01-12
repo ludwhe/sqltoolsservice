@@ -97,7 +97,7 @@ namespace Microsoft.SqlTools.ServiceLayer.EditData
 
             // Filter out dropped ledger columns from the list of columns to be returned
             // and grab the specific column properties checked below
-            smoResult.Columns.ClearAndInitialize("[(@IsDroppedLedgerColumn=0)]", new [] { nameof(Column.DataType), nameof(Column.DefaultConstraintName) });
+            smoResult.Columns.ClearAndInitialize("[(@IsDroppedLedgerColumn=0)]", new[] { nameof(Column.DataType), nameof(Column.DefaultConstraintName) });
 
             // Generate the edit column metadata
             List<EditColumnMetadata> editColumns = new List<EditColumnMetadata>();

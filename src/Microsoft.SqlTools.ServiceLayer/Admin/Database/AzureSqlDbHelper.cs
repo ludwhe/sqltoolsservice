@@ -214,7 +214,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                         new DbSize(1024, SizeUnits.GB), //Following portal to display this as GB instead of 1TB
                         new DbSize(1536, SizeUnits.GB),
                         new DbSize(3072, SizeUnits.GB),
-                        new DbSize(4096, SizeUnits.GB), 
+                        new DbSize(4096, SizeUnits.GB),
                     })
             },
             {
@@ -281,7 +281,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                 // Reference:https://docs.microsoft.com/en-us/azure/sql-database/sql-database-vcore-resource-limits-single-databases
                 AzureEdition.GeneralPurpose,
                 new KeyValuePair<int, string[]>(6 /* Default = GP_Gen5_2 */,
-                    new[] 
+                    new[]
                     {
                         "GP_Gen4_1", "GP_Gen4_2", "GP_Gen4_4", "GP_Gen4_8", "GP_Gen4_16","GP_Gen4_24",
                         "GP_Gen5_2","GP_Gen5_4","GP_Gen5_8","GP_Gen5_16","GP_Gen5_24","GP_Gen5_32","GP_Gen5_40","GP_Gen5_80"
@@ -293,7 +293,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                 // Reference:https://docs.microsoft.com/en-us/azure/sql-database/sql-database-vcore-resource-limits-single-databases
                 AzureEdition.BusinessCritical,
                 new KeyValuePair<int, string[]>(6 /* Default = BC_Gen5_2 */,
-                    new[] 
+                    new[]
                     {   "BC_Gen4_1", "BC_Gen4_2", "BC_Gen4_4", "BC_Gen4_8", "BC_Gen4_16","BC_Gen4_24",
                         "BC_Gen5_2","BC_Gen5_4","BC_Gen5_8","BC_Gen5_16","BC_Gen5_24", "BC_Gen5_32", "BC_Gen5_40","BC_Gen5_80"
                     })
@@ -301,7 +301,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
             {
                 // HS_Gen5_2 is the default since, as of 2/25/2020, customers, unless on an allowed list, are already prevented from choosing Gen4.
                 AzureEdition.Hyperscale,
-                new KeyValuePair<int, string[]>(11, new[] { 
+                new KeyValuePair<int, string[]>(11, new[] {
                     "HS_Gen4_1",  "HS_Gen4_2", "HS_Gen4_3", "HS_Gen4_4", "HS_Gen4_5", "HS_Gen4_6", "HS_Gen4_7", "HS_Gen4_8", "HS_Gen4_9", "HS_Gen4_10",
                     "HS_Gen4_24", "HS_Gen5_2", "HS_Gen5_4", "HS_Gen5_6", "HS_Gen5_8", "HS_Gen5_10", "HS_Gen5_14", "HS_Gen5_16", "HS_Gen5_18", "HS_Gen5_20",
                     "HS_Gen5_24", "HS_Gen5_32", "HS_Gen5_40", "HS_Gen5_80"
@@ -351,7 +351,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                 },
                 {
                     AzureEdition.BusinessCritical, keyValuePair
-                },    
+                },
                 {
                     AzureEdition.Hyperscale, keyValuePair
                 }

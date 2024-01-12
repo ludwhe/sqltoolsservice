@@ -32,7 +32,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         }
 
         public SqlServerError(string message, string document, int line, int column, ErrorSeverity severity)
-            : this(message, null, document, line, column, Constants.UndefinedErrorCode, severity) 
+            : this(message, null, document, line, column, Constants.UndefinedErrorCode, severity)
         {
         }
 

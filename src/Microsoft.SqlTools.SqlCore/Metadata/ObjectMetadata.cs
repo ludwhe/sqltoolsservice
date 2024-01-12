@@ -21,10 +21,10 @@ namespace Microsoft.SqlTools.SqlCore.Metadata
     /// <summary>
     /// Object metadata information
     /// </summary>
-    public class ObjectMetadata 
+    public class ObjectMetadata
     {
         public MetadataType MetadataType { get; set; }
-    
+
         public string MetadataTypeName { get; set; }
 
         public string Schema { get; set; }
@@ -34,7 +34,7 @@ namespace Microsoft.SqlTools.SqlCore.Metadata
         public string ParentName { get; set; }
 
         public string ParentTypeName { get; set; }
-        
+
         public string Urn { get; set; }
     }
 }

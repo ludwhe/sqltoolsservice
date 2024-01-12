@@ -179,7 +179,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             public const int InvalidPartitionFunctionDataType = InterpretationBaseCode + 121;
             public const int RequiredExternalTableLocationPropertyMissing = InterpretationBaseCode + 122;
             public const int UnsupportedRejectSampleValueProperty = InterpretationBaseCode + 123;
-            public const int RequiredExternalDataSourceDatabasePropertyMissing = InterpretationBaseCode + 124;            
+            public const int RequiredExternalDataSourceDatabasePropertyMissing = InterpretationBaseCode + 124;
             public const int RequiredExternalDataSourceShardMapNamePropertyMissing = InterpretationBaseCode + 125;
             public const int InvalidPropertyForExternalDataSourceType = InterpretationBaseCode + 126;
             public const int UnsupportedExternalDataSourceTypeInCurrentPlatform = InterpretationBaseCode + 127;
@@ -225,7 +225,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             public const int ForeignKeyColumnTypeNumberMustMatch_NumberOfColumns = ValidationBaseCode + 14;
             public const int ForeignKeyColumnTypeNumberMustMatch_TypeMismatch = ValidationBaseCode + 15;
             public const int ForeignKeyReferencePKUnique = ValidationBaseCode + 16;
-            public const int FullTextIndexColumn =  ValidationBaseCode + 17;
+            public const int FullTextIndexColumn = ValidationBaseCode + 17;
             public const int IdentityColumnValidation_InvalidType = ValidationBaseCode + 18;
             public const int IdentityColumnValidation_MoreThanOneIdentity = ValidationBaseCode + 19;
             public const int InsertIntoIdentityColumn = ValidationBaseCode + 20;
@@ -404,23 +404,23 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             public const int DeployAnalysisStart = ServiceActionsBaseCode + 0x11;
             public const int DeployAnalysisSuccess = ServiceActionsBaseCode + 0x12;
             public const int DeployAnalysisFailure = ServiceActionsBaseCode + 0x14;
-            
+
             public const int DeployExecuteScriptStart = ServiceActionsBaseCode + 0x21;
             public const int DeployExecuteScriptSuccess = ServiceActionsBaseCode + 0x22;
             public const int DeployExecuteScriptFailure = ServiceActionsBaseCode + 0x24;
-            
+
             public const int DataImportStart = ServiceActionsBaseCode + 0x41;
             public const int DataImportSuccess = ServiceActionsBaseCode + 0x42;
             public const int DataImportFailure = ServiceActionsBaseCode + 0x44;
-            
+
             public const int ExtractSchemaStart = ServiceActionsBaseCode + 0x61;
             public const int ExtractSchemaSuccess = ServiceActionsBaseCode + 0x62;
             public const int ExtractSchemaFailure = ServiceActionsBaseCode + 0x64;
-            
+
             public const int ExportVerifyStart = ServiceActionsBaseCode + 0x71;
             public const int ExportVerifySuccess = ServiceActionsBaseCode + 0x72;
             public const int ExportVerifyFailure = ServiceActionsBaseCode + 0x74;
-            
+
             public const int ExportDataStart = ServiceActionsBaseCode + 0x81;
             public const int ExportDataSuccess = ServiceActionsBaseCode + 0x82;
             public const int ExportDataFailure = ServiceActionsBaseCode + 0x84;
@@ -440,11 +440,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             public const int DisableIndexDataStart = ServiceActionsBaseCode + 0xe1;
             public const int DisableIndexDataSuccess = ServiceActionsBaseCode + 0xe2;
             public const int DisableIndexDataFailure = ServiceActionsBaseCode + 0xe4;
-            
+
             public const int ColumnEncryptionDataMigrationStart = ServiceActionsBaseCode + 0xf1;
             public const int ColumnEncryptionDataMigrationSuccess = ServiceActionsBaseCode + 0xf2;
             public const int ColumnEncryptionDataMigrationFailure = ServiceActionsBaseCode + 0xf4;
-            
+
             // These codes do not set the lower 3 bits
             public const int ConnectionRetry = ServiceActionsBaseCode + 0x90;
             public const int CommandRetry = ServiceActionsBaseCode + 0x91;

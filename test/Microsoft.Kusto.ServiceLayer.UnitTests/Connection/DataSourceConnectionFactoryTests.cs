@@ -18,10 +18,10 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.Connection
         [Test]
         public void CreateDataSourceConnection_Returns_Connection()
         {
-            var dataSourceFactoryMock = new Mock<IDataSourceFactory>(); 
+            var dataSourceFactoryMock = new Mock<IDataSourceFactory>();
             var connectionFactory = new DataSourceConnectionFactory(dataSourceFactoryMock.Object);
             var connection = connectionFactory.CreateDataSourceConnection(new ConnectionDetails(), "");
-            
+
             Assert.IsNotNull(connection);
         }
     }

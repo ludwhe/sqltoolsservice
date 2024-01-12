@@ -392,7 +392,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 this.pageLevel = value;
             }
         }
-        
+
         public CompletionAction EventLogLevel
         {
             get
@@ -655,13 +655,13 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 // set defaults that do not involve going to the server to retrieve
                 SetDefaults();
             }
-            
+
             // load AgentJobInfo data
             if (jobInfo != null)
             {
                 this.currentName = jobInfo.Name;
                 this.Owner = jobInfo.Owner;
-                this.Description = jobInfo.Description;                
+                this.Description = jobInfo.Description;
                 this.Enabled = jobInfo.Enabled;
                 this.startStepID = jobInfo.StartStepId;
                 this.Category = ConvertStringToCategory(jobInfo.Category);
@@ -689,7 +689,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                     // or use urn path to query job 
                     job = this.context.Server.GetSmoObject(this.urn) as Job;
                 }
-             
+
                 return job;
             }
         }
@@ -936,8 +936,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             List<LocalizableCategory> displayableCategories = new List<LocalizableCategory>();
 
             bool targetsLocalServer = this.targetLocalServer || this.JobCategoryIsLocal;
-            
-	    
+
+
             // get all applicable categories
             for (int i = 0; i < allCategories.Length; ++i)
             {
@@ -1115,7 +1115,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             bool scripting = this.context.Server.ConnectionContext.SqlExecutionModes == SqlExecutionModes.CaptureSql;
             bool targetServerSelected = false;
 
-            this.mode = creating ? ActionMode.Create : ActionMode.Edit; 
+            this.mode = creating ? ActionMode.Create : ActionMode.Edit;
 
             // Before any job posting if donem make sure that if this is an MSX job that the user has selected at
             // least one Target Server.
@@ -1281,7 +1281,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             }
 
             // check the name if we are not creating
-            if (!creating && this.Name != job.Name )
+            if (!creating && this.Name != job.Name)
             {
                 // new name = rename
                 job.Rename(this.Name);
@@ -1323,7 +1323,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             {
                 job.OperatorToEmail = this.operatorToEmail;
             }
-            
+
             if (this.pageLevel == CompletionAction.Never)
             {
                 this.pageLevel = CompletionAction.OnFailure;

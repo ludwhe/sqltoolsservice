@@ -19,7 +19,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                 {
                     case "RelOpType":
                         return RelOpTypeParser.Instance;
-                    
+
                     case "BaseStmtInfoType":
                         return StatementParser.Instance;
 

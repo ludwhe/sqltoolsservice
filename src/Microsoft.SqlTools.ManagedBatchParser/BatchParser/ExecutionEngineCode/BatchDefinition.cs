@@ -25,7 +25,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
             BatchExecutionCount = executionCount > 0 ? executionCount : 1;
             SqlCmdCommand = command;
         }
-        
+
         /// <summary>
         /// Get starting line of the BatchDefinition
         /// </summary>

@@ -45,7 +45,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices.Completion
                 return Stopwatch.ElapsedMilliseconds;
             }
         }
-        
+
         /// <summary>
         /// Completion list
         /// </summary>

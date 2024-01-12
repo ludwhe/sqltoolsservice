@@ -3,8 +3,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-using Newtonsoft.Json;
-
 namespace Microsoft.Kusto.ServiceLayer.SqlContext
 {
     /// <summary>
@@ -12,17 +10,17 @@ namespace Microsoft.Kusto.ServiceLayer.SqlContext
     /// </summary>
     public class SqlToolsSettings
     {
-        private ISqlToolsSettingsValues sqlTools = null; 
-        private SqlToolsSettingsValues mssqlTools = null; 
-        private SqlToolsSettingsValues allSqlTools = null; 
+        private ISqlToolsSettingsValues sqlTools = null;
+        private SqlToolsSettingsValues mssqlTools = null;
+        private SqlToolsSettingsValues allSqlTools = null;
 
-        public ISqlToolsSettingsValues SqlTools 
-        { 
+        public ISqlToolsSettingsValues SqlTools
+        {
             get
             {
                 this.sqlTools ??= new CompoundToolsSettingsValues(MssqlTools, AllSqlTools);
                 return this.sqlTools;
-            } 
+            }
             set
             {
                 this.sqlTools = value;
@@ -33,13 +31,13 @@ namespace Microsoft.Kusto.ServiceLayer.SqlContext
         /// Gets or sets the underlying settings value object
         /// </summary>
         [JsonProperty("mssql")]
-        public SqlToolsSettingsValues MssqlTools 
-        { 
+        public SqlToolsSettingsValues MssqlTools
+        {
             get
             {
                 this.mssqlTools ??= new SqlToolsSettingsValues(false);
                 return this.mssqlTools;
-            } 
+            }
             set
             {
                 this.mssqlTools = value;
@@ -50,13 +48,13 @@ namespace Microsoft.Kusto.ServiceLayer.SqlContext
         /// Gets or sets the underlying settings value object
         /// </summary>
         [JsonProperty("sql")]
-        public SqlToolsSettingsValues AllSqlTools 
-        { 
+        public SqlToolsSettingsValues AllSqlTools
+        {
             get
             {
                 this.allSqlTools ??= new SqlToolsSettingsValues(false);
                 return this.allSqlTools;
-            } 
+            }
             set
             {
                 this.sqlTools = value;
@@ -66,9 +64,9 @@ namespace Microsoft.Kusto.ServiceLayer.SqlContext
         /// <summary>
         /// Query execution settings forwarding property
         /// </summary>
-        public QueryExecutionSettings QueryExecutionSettings 
-        { 
-            get { return this.SqlTools.QueryExecutionSettings; } 
+        public QueryExecutionSettings QueryExecutionSettings
+        {
+            get { return this.SqlTools.QueryExecutionSettings; }
         }
 
         /// <summary>

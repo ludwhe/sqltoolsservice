@@ -39,7 +39,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
             {
                 yield break;
             }
-            foreach(Object obj in collection)
+            foreach (Object obj in collection)
             {
                 yield return (T)obj;
             }

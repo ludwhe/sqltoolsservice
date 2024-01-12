@@ -10,8 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.Kusto.ServiceLayer.Workspace.Contracts;
+using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Utility;
 using Range = Microsoft.Kusto.ServiceLayer.Workspace.Contracts.Range;
 
@@ -116,7 +116,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace
         /// List of callbacks to call when a text document is closed
         /// </summary>
         private List<TextDocCloseCallback> TextDocCloseCallbacks { get; set; }
- 
+
 
         #endregion
 
@@ -132,7 +132,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace
             serviceHost.SetEventHandler(DidOpenTextDocumentNotification.Type, HandleDidOpenTextDocumentNotification);
             serviceHost.SetEventHandler(DidCloseTextDocumentNotification.Type, HandleDidCloseTextDocumentNotification);
             serviceHost.SetEventHandler(DidChangeConfigurationNotification<TConfig>.Type, HandleDidChangeConfigurationNotification);
-            
+
             // Register an initialization handler that sets the workspace path
             serviceHost.RegisterInitializeTask(async (parameters, contect) =>
             {
@@ -216,7 +216,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace
                 // A text change notification can batch multiple change requests
                 foreach (var textChange in textChangeParams.ContentChanges)
                 {
-                    string fileUri = textChangeParams.TextDocument.Uri ?? textChangeParams.TextDocument.Uri; 
+                    string fileUri = textChangeParams.TextDocument.Uri ?? textChangeParams.TextDocument.Uri;
                     msg.AppendLine(string.Format("  File: {0}", fileUri));
 
                     ScriptFile changedFile = Workspace.GetFile(fileUri);
@@ -287,7 +287,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace
             {
                 Logger.Verbose("HandleDidCloseTextDocumentNotification");
 
-                if (IsScmEvent(closeParams.TextDocument.Uri)) 
+                if (IsScmEvent(closeParams.TextDocument.Uri))
                 {
                     return;
                 }
@@ -338,7 +338,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace
                 // TODO: this probably means the ScriptFile model is in a bad state or out of sync with the actual file; we should recover here
                 return;
             }
-        }  
+        }
 
         #endregion
 
@@ -361,7 +361,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace
                 EndOffset = changeRange.End.Character + 1
             };
         }
-        
+
         internal static bool IsScmEvent(string filePath)
         {
             // if the URI is prefixed with git: then we want to skip processing that file

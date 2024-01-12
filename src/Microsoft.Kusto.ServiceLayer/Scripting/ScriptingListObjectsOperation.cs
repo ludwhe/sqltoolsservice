@@ -7,10 +7,9 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.SqlServer.Management.SqlScriptPublish;
+using Microsoft.Kusto.ServiceLayer.DataSource;
 using Microsoft.Kusto.ServiceLayer.Scripting.Contracts;
 using Microsoft.SqlTools.Utility;
-using Microsoft.Kusto.ServiceLayer.DataSource;
 
 namespace Microsoft.Kusto.ServiceLayer.Scripting
 {

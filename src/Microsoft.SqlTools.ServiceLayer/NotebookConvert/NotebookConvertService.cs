@@ -7,17 +7,17 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Microsoft.SqlServer.TransactSql.ScriptDom;
 using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.ServiceLayer.Hosting;
 using Microsoft.SqlTools.ServiceLayer.NotebookConvert.Contracts;
 using Microsoft.SqlTools.ServiceLayer.SqlContext;
 using Microsoft.SqlTools.ServiceLayer.Workspace;
 using Newtonsoft.Json;
-using Microsoft.SqlServer.TransactSql.ScriptDom;
-using System.IO;
-using System.Runtime.InteropServices;
 
 namespace Microsoft.SqlTools.ServiceLayer.NotebookConvert
 {

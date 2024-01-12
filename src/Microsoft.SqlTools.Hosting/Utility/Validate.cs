@@ -138,7 +138,7 @@ namespace Microsoft.SqlTools.Utility
                     parameterName);
             }
         }
-        
+
         /// <summary>
         /// Throws ArgumentException if the value is null, an empty string,
         /// or a string containing only whitespace.

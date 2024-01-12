@@ -10,12 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Kusto.Language;
-using Kusto.Language.Editor;
-using Microsoft.Azure.OperationalInsights;
-using Microsoft.Azure.OperationalInsights.Models;
 using Microsoft.Kusto.ServiceLayer.DataSource.Monitor.Responses;
-using Microsoft.Rest;
 
 namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
 {
@@ -68,7 +63,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
                 builder.AppendLine($"Error Message: {errorMessage?.Error?.Message}");
                 throw new Exception(builder.ToString());
             }
-            
+
             return _metadata;
         }
 

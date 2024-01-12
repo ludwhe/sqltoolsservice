@@ -6,15 +6,9 @@
 #nullable disable
 
 using System;
-using Microsoft.Data.SqlClient;
 using System.IO;
-using Microsoft.SqlTools.ServiceLayer.Admin;
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.DisasterRecovery;
-using Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts;
-using Microsoft.SqlTools.ServiceLayer.FileBrowser;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.Management;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.DisasterRecovery
@@ -63,7 +57,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.DisasterRecovery
         {
             var liveConnection = LiveConnectionHelper.InitLiveConnectionInfo("master");
             DatabaseTaskHelper helper = AdminService.CreateDatabaseTaskHelper(liveConnection.ConnectionInfo, databaseExists: true);
-    
+
             string message;
             bool result = DisasterRecoveryFileValidator.ValidatePaths(new FileBrowserValidateEventArgs
             {

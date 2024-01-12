@@ -60,7 +60,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts
         private string GetLocalizedPropertyValue()
         {
             string displayName = string.Empty;
-            if(PropertyValue is DateTime)
+            if (PropertyValue is DateTime)
             {
                 displayName = ((DateTime)PropertyValue) != DateTime.MinValue ? Convert.ToString(PropertyValue, CultureInfo.CurrentCulture) : string.Empty;
             }

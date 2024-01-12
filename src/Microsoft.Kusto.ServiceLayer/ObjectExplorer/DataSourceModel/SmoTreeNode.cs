@@ -5,9 +5,9 @@
 
 #nullable disable
 
-using Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes;
 using Microsoft.Kusto.ServiceLayer.DataSource;
 using Microsoft.Kusto.ServiceLayer.DataSource.Metadata;
+using Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes;
 
 namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
 {
@@ -21,7 +21,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
 
         protected QueryContext context;
 
-        public DataSourceTreeNode(IDataSource dataSource, DataSourceObjectMetadata objectMetadata) 
+        public DataSourceTreeNode(IDataSource dataSource, DataSourceObjectMetadata objectMetadata)
             : base(dataSource, objectMetadata)
         {
         }
@@ -43,7 +43,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
             base.ObjectMetadata = objectMetadata;
             NodeValue = objectMetadata.Name;
         }
-        
+
         public virtual DataSourceObjectMetadata GetParentObjectMetadata()
         {
             if (ObjectMetadata != null)

@@ -79,7 +79,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectExplorer.Contracts
         /// Filterable properties that this node supports
         /// </summary>
         public NodeFilterProperty[] FilterableProperties { get; set; }
-        
+
         public NodeInfo()
         {
         }
@@ -165,7 +165,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectExplorer.Contracts
         /// The applied values of the filter property
         /// </summary>
         public JToken Value { get; set; }
-        
+
 
         public INodeFilter ToINodeFilter(NodeFilterProperty filterProperty)
         {

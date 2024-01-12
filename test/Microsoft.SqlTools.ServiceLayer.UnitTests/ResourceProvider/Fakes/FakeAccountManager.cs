@@ -15,7 +15,7 @@ using Microsoft.SqlTools.ResourceProvider.Core.Extensibility;
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
 {
     [Exportable(ServerTypes.SqlServer, Categories.Azure,
-        typeof(IAccountManager), 
+        typeof(IAccountManager),
         "Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes.FakeAccountManager", 1)]
     public class FakeAccountManager : IAccountManager
     {

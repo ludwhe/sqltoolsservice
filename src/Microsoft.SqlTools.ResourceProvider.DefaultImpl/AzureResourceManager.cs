@@ -6,22 +6,16 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Azure.Management.ResourceManager;
-using Microsoft.Azure.Management.ResourceManager.Models;
-using Microsoft.Azure.Management.Sql;
-using Microsoft.Azure.Management.Sql.Models;
-using RestFirewallRule = Microsoft.Azure.Management.Sql.Models.FirewallRule;
-using Microsoft.SqlTools.ResourceProvider.Core.Authentication;
-using Microsoft.SqlTools.ResourceProvider.Core.Firewall;
-using Microsoft.SqlTools.ResourceProvider.Core.Extensibility;
-using Microsoft.SqlTools.Utility;
-using Microsoft.Rest;
 using System.Globalization;
-using Microsoft.Rest.Azure;
-using Microsoft.SqlTools.ResourceProvider.Core;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.SqlTools.ResourceProvider.Core;
+using Microsoft.SqlTools.ResourceProvider.Core.Authentication;
+using Microsoft.SqlTools.ResourceProvider.Core.Extensibility;
+using Microsoft.SqlTools.ResourceProvider.Core.Firewall;
+using Microsoft.SqlTools.Utility;
+using RestFirewallRule = Microsoft.Azure.Management.Sql.Models.FirewallRule;
 
 namespace Microsoft.SqlTools.ResourceProvider.DefaultImpl
 {

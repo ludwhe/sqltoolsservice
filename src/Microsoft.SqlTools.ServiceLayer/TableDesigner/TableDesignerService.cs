@@ -7,18 +7,18 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.Hosting;
 using Microsoft.Data.Tools.Sql.DesignServices;
+using Microsoft.SqlTools.Hosting.Protocol;
+using Microsoft.SqlTools.ServiceLayer.Connection;
+using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
+using Microsoft.SqlTools.ServiceLayer.Hosting;
+using Microsoft.SqlTools.ServiceLayer.SqlContext;
 using Microsoft.SqlTools.ServiceLayer.TableDesigner.Contracts;
 using Dac = Microsoft.Data.Tools.Sql.DesignServices.TableDesigner;
 using STSHost = Microsoft.SqlTools.ServiceLayer.Hosting.ServiceHost;
-using Microsoft.SqlTools.ServiceLayer.SqlContext;
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
 
 namespace Microsoft.SqlTools.ServiceLayer.TableDesigner
 {
@@ -1847,7 +1847,8 @@ namespace Microsoft.SqlTools.ServiceLayer.TableDesigner
             var td = GetTableDesigner(tableInfo);
             tableInfo.Title = td.TableViewModel.FullName;
             var tooltipName = string.Format("{0} - {1}", tableInfo.Server, tableInfo.Database);
-            if(!tableInfo.Tooltip.StartsWith(tooltipName)) {
+            if (!tableInfo.Tooltip.StartsWith(tooltipName))
+            {
                 tooltipName = tableInfo.Tooltip.Substring(0, tableInfo.Tooltip.LastIndexOf('-') - 1);
             }
             var tableParent = tableInfo.Server == null ? tableInfo.ProjectFilePath : tooltipName;

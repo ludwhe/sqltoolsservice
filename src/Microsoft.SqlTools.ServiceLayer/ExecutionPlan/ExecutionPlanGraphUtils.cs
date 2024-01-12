@@ -9,9 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Microsoft.SqlTools.ServiceLayer.ExecutionPlan.Contracts;
 using Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan;
 using Microsoft.SqlTools.Utility;
-using Microsoft.SqlTools.ServiceLayer.ExecutionPlan.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan
 {
@@ -442,7 +442,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan
 
         private static List<ExecutionPlanRecommendation> ParseRecommendations(ShowPlanGraph g, string fileName)
         {
-            var recommendations =  g.Description.MissingIndices.Select(mi => new ExecutionPlanRecommendation
+            var recommendations = g.Description.MissingIndices.Select(mi => new ExecutionPlanRecommendation
             {
                 DisplayString = mi.MissingIndexCaption,
                 Query = mi.MissingIndexQueryText,

@@ -16,12 +16,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         /// Approved list of transient errors that require additional time to wait before connecting again.
         /// </summary>
         private static readonly HashSet<int> _retryableServerlessConnectivityError;
-        
+
         /// <summary>
         /// Max intervals between retries in seconds to wake up serverless instances.
         /// </summary>
         private const int _serverlessMaxIntervalTime = 30;
-        
+
         /// <summary>
         /// Maximum number of retries to wake up serverless instances.
         /// </summary>
@@ -34,7 +34,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
                 //// SQL Error Code: 40613
                 //// Database XXXX on server YYYY is not currently available. Please retry the connection later. If the problem persists, contact customer 
                 //// support, and provide them the session tracing ID of ZZZZZ.
-                40613, 
+                40613,
             };
         }
 

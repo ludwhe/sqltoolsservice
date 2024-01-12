@@ -111,9 +111,9 @@ namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare
             else
             {
                 bool isProjectEndpoint = endpoint is SchemaCompareProjectEndpoint;
-                IEnumerable<XElement> result = isProjectEndpoint ? this.scmpInfo.Descendants("ProjectBasedModelProvider"): this.scmpInfo.Descendants("ConnectionBasedModelProvider");
+                IEnumerable<XElement> result = isProjectEndpoint ? this.scmpInfo.Descendants("ProjectBasedModelProvider") : this.scmpInfo.Descendants("ConnectionBasedModelProvider");
                 string searchingFor = source ? "Source" : "Target";
-                
+
                 // need to parse xml
                 try
                 {
@@ -123,7 +123,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare
                         {
                             if (node.Parent.Name.ToString().Contains(searchingFor))
                             {
-                                if(isProjectEndpoint)
+                                if (isProjectEndpoint)
                                 {
                                     SetProjectEndpointInfoFromXML(result, endpointInfo, ((SchemaCompareProjectEndpoint)endpoint).ProjectFilePath);
                                     break;
@@ -172,17 +172,19 @@ namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare
             if (fs != null)
             {
                 DacExtractTarget extractTarget;
-                if(fs.FirstOrDefault() != null)     // it is possible that this value is not set
+                if (fs.FirstOrDefault() != null)     // it is possible that this value is not set
                 {
                     if (Enum.TryParse<DacExtractTarget>(fs.FirstOrDefault().Value, out extractTarget))
                     {
                         endpointInfo.ExtractTarget = extractTarget;
-                    } else
+                    }
+                    else
                     {
                         endpointInfo.ExtractTarget = DacExtractTarget.SchemaObjectType;     // set default but log an error
                         Logger.Error(string.Format("Schema compare open scmp operation failed during xml parsing with unknown ExtractTarget"));
                     }
-                } else
+                }
+                else
                 {
                     endpointInfo.ExtractTarget = DacExtractTarget.SchemaObjectType;     // set the default if this value doesn't already exist in the scmp file
                 }

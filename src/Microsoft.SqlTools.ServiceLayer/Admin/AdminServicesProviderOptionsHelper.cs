@@ -186,7 +186,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                     },
                     new ServiceOption
                     {
-                        Name = AdminServicesProviderOptionsHelper.DatabaseContainmentType, 
+                        Name = AdminServicesProviderOptionsHelper.DatabaseContainmentType,
                         DisplayName = "DatabaseContainmentType",
                         Description = "Database containment type",
                         ValueType = ServiceOption.ValueTypeString,
@@ -316,7 +316,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                         ValueType = ServiceOption.ValueTypeString,
                         IsRequired = true,
                         GroupName = "General"
-                    }              
+                    }
                 },
 
 

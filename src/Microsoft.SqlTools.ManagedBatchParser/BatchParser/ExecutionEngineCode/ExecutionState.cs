@@ -7,10 +7,10 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
 {
     internal enum ExecutionState
     {
-        Initial, 
-        Executing, 
-        ExecutingBatch, 
-        Cancelling, 
+        Initial,
+        Executing,
+        ExecutingBatch,
+        Cancelling,
         Discarded
     }
 }

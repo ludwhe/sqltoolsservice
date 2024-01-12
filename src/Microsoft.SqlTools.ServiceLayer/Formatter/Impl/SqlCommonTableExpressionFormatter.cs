@@ -20,7 +20,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
     }
 
     internal class SqlCommonTableExpressionFormatter : SysCommentsFormatterBase<SqlCommonTableExpression>
-    {        
+    {
 
         public SqlCommonTableExpressionFormatter(FormatterVisitor visitor, SqlCommonTableExpression codeObject)
             : base(visitor, codeObject)
@@ -52,7 +52,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
 
             // TODO: should we indent the AS statement and then decrement indent at the end?
             nextToken = ProcessAsToken(nextToken, indentAfterAs: false);
-            
+
             nextToken = ProcessQueryExpression(nextToken);
 
         }
@@ -63,10 +63,10 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             nextToken = ProcessSectionInsideParentheses(nextToken,
                 normalizer: FormatterUtilities.NormalizeNewLinesEnsureOneNewLineMinimum,
                 isNewlineRequired: true,
-                processSection: (n) => ProcessQuerySection(n, CodeObject.QueryExpression));            
+                processSection: (n) => ProcessQuerySection(n, CodeObject.QueryExpression));
             return nextToken;
         }
-        
+
         private int ProcessColumns(int nextToken)
         {
             if (CodeObject.ColumnList != null && CodeObject.ColumnList.Count > 0)
@@ -76,9 +76,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
                     isNewlineRequired: FormatOptions.PlaceEachReferenceOnNewLineInQueryStatements,
                     processSection: (n) => ProcessColumnList(n, CodeObject.ColumnList, normalizer));
             }
-            return nextToken;            
+            return nextToken;
         }
-                
+
         private NormalizeWhitespace GetColumnWhitespaceNormalizer()
         {
             if (FormatOptions.PlaceEachReferenceOnNewLineInQueryStatements)
@@ -95,9 +95,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             {
                 ProcessTokenEnsuringOneNewLineMinimum(i);
             }
-            
+
             ProcessTokenRange(name.Position.startTokenNumber, name.Position.endTokenNumber);
-            
+
             nextToken = name.Position.endTokenNumber;
 
             return nextToken;

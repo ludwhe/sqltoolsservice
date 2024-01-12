@@ -10,16 +10,14 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlServer.Management.Common;
 using Microsoft.Kusto.ServiceLayer.Connection.Contracts;
-using Microsoft.Kusto.ServiceLayer.LanguageServices;
-using Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts;
-using Microsoft.SqlTools.Utility;
 using Microsoft.Kusto.ServiceLayer.DataSource;
 using Microsoft.Kusto.ServiceLayer.DataSource.Metadata;
+using Microsoft.Kusto.ServiceLayer.LanguageServices;
+using Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts;
+using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
+using Microsoft.SqlTools.Utility;
 using static Microsoft.SqlTools.Utility.SqlConstants;
 
 namespace Microsoft.Kusto.ServiceLayer.Connection
@@ -333,7 +331,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection
                 {
                     // If the connection was set up with a connection string, use the connection string to get the details
                     var connectionStringBuilder = DataSourceFactory.CreateConnectionStringBuilder(DataSourceType.Kusto, connection.ConnectionString);
-                    
+
                     response.ConnectionSummary = new ConnectionSummary
                     {
                         ServerName = connectionStringBuilder.DataSource,
@@ -491,7 +489,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection
             {
                 throw new InvalidOperationException(SR.ConnectionServiceDbErrorDefaultNotConnected(ownerUri));
             }
-            
+
             // Try to get the ReliableDataSourceClient and create if it doesn't already exist
             if (!connectionInfo.TryGetConnection(connectionType, out connection) && ConnectionType.Default != connectionType)
             {
@@ -724,7 +722,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection
             return dataSource.GetDatabases(info.ConnectionDetails.ServerName, listDatabasesParams.IncludeDetails.HasTrue());
         }
 
-        public void InitializeService(IProtocolEndpoint serviceHost, IDataSourceConnectionFactory dataSourceConnectionFactory, 
+        public void InitializeService(IProtocolEndpoint serviceHost, IDataSourceConnectionFactory dataSourceConnectionFactory,
             IConnectedBindingQueue connectedBindingQueue, IConnectionManager connectionManager)
         {
             _serviceHost = serviceHost;
@@ -945,7 +943,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection
             {
                 return false;
             }
-            
+
             try
             {
                 info.ConnectionDetails.DatabaseName = newDatabaseName;

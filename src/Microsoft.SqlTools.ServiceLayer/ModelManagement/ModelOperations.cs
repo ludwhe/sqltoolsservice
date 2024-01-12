@@ -5,274 +5,274 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.ServiceLayer.ModelManagement.Contracts;
-using Microsoft.SqlTools.SqlCore.Utility;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using Microsoft.SqlTools.ServiceLayer.ModelManagement.Contracts;
+using Microsoft.SqlTools.SqlCore.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.ModelManagement
 {
-	public class ModelOperations
-	{
-		/// <summary>
-		/// Returns models from given table 
-		/// </summary>
-		/// <param name="connection">Db connection</param>
-		/// <param name="request">model request</param>
-		/// <returns>Models</returns>
-		public virtual List<ModelMetadata> GetModels(IDbConnection connection, ModelRequestBase request)
-		{
-			List<ModelMetadata> models = new List<ModelMetadata>();
-			using (IDbCommand command = connection.CreateCommand())
-			{
-				command.CommandText = GetSelectModelsQuery(request.DatabaseName, request.TableName, request.SchemaName);
+    public class ModelOperations
+    {
+        /// <summary>
+        /// Returns models from given table 
+        /// </summary>
+        /// <param name="connection">Db connection</param>
+        /// <param name="request">model request</param>
+        /// <returns>Models</returns>
+        public virtual List<ModelMetadata> GetModels(IDbConnection connection, ModelRequestBase request)
+        {
+            List<ModelMetadata> models = new List<ModelMetadata>();
+            using (IDbCommand command = connection.CreateCommand())
+            {
+                command.CommandText = GetSelectModelsQuery(request.DatabaseName, request.TableName, request.SchemaName);
 
-				using (IDataReader reader = command.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						models.Add(LoadModelMetadata(reader));
-					}
-				}
-			}
+                using (IDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        models.Add(LoadModelMetadata(reader));
+                    }
+                }
+            }
 
-			return models;
-		}
+            return models;
+        }
 
-		/// <summary>
-		/// Downlaods model content into a temp file and returns the file path
-		/// </summary>
-		/// <param name="connection">Db connection</param>
-		/// <param name="request">model request</param>
-		/// <returns>Model file path</returns>
-		public virtual string DownloadModel(IDbConnection connection, DownloadModelRequestParams request)
-		{
-			string fileName = Path.GetTempFileName();
-			using (IDbCommand command = connection.CreateCommand())
-			{
-				Dictionary<string, object> parameters = new Dictionary<string, object>();
-				command.CommandText = GetSelectModelContentQuery(request.DatabaseName, request.TableName, request.SchemaName, request.ModelId, parameters);
+        /// <summary>
+        /// Downlaods model content into a temp file and returns the file path
+        /// </summary>
+        /// <param name="connection">Db connection</param>
+        /// <param name="request">model request</param>
+        /// <returns>Model file path</returns>
+        public virtual string DownloadModel(IDbConnection connection, DownloadModelRequestParams request)
+        {
+            string fileName = Path.GetTempFileName();
+            using (IDbCommand command = connection.CreateCommand())
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                command.CommandText = GetSelectModelContentQuery(request.DatabaseName, request.TableName, request.SchemaName, request.ModelId, parameters);
 
-				foreach (var item in parameters)
-				{
-					var parameter = command.CreateParameter();
-					parameter.ParameterName = item.Key;
-					parameter.Value = item.Value;
-					command.Parameters.Add(parameter);
-				}
-				using (IDataReader reader = command.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						File.WriteAllBytes(fileName, (byte[])reader[0]);
-					}
-				}
-			}
+                foreach (var item in parameters)
+                {
+                    var parameter = command.CreateParameter();
+                    parameter.ParameterName = item.Key;
+                    parameter.Value = item.Value;
+                    command.Parameters.Add(parameter);
+                }
+                using (IDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        File.WriteAllBytes(fileName, (byte[])reader[0]);
+                    }
+                }
+            }
 
-			return fileName;
-		}
+            return fileName;
+        }
 
-		/// <summary>
-		/// Import model to given table 
-		/// </summary>
-		/// <param name="connection">Db connection</param>
-		/// <param name="request">model request</param>
-		public virtual void ImportModel(IDbConnection connection, ImportModelRequestParams request)
-		{
-			WithDbChange(connection, request, (request) =>
-			{
-				Dictionary<string, object> parameters = new Dictionary<string, object>();
+        /// <summary>
+        /// Import model to given table 
+        /// </summary>
+        /// <param name="connection">Db connection</param>
+        /// <param name="request">model request</param>
+        public virtual void ImportModel(IDbConnection connection, ImportModelRequestParams request)
+        {
+            WithDbChange(connection, request, (request) =>
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
 
-				using (IDbCommand command = connection.CreateCommand())
-				{
-					command.CommandText = GetInsertModelQuery(request.TableName, request.SchemaName, request.Model, parameters);
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = GetInsertModelQuery(request.TableName, request.SchemaName, request.Model, parameters);
 
-					foreach (var item in parameters)
-					{
-						var parameter = command.CreateParameter();
-						parameter.ParameterName = item.Key;
-						parameter.Value = item.Value;
-						command.Parameters.Add(parameter);
-					}
-					command.ExecuteNonQuery();
-					return true;
-				}
-			});
-		}
+                    foreach (var item in parameters)
+                    {
+                        var parameter = command.CreateParameter();
+                        parameter.ParameterName = item.Key;
+                        parameter.Value = item.Value;
+                        command.Parameters.Add(parameter);
+                    }
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+            });
+        }
 
-		/// <summary>
-		/// Updates model 
-		/// </summary>
-		/// <param name="connection">Db connection</param>
-		/// <param name="request">model request</param>
-		public virtual void UpdateModel(IDbConnection connection, UpdateModelRequestParams request)
-		{
-			WithDbChange(connection, request, (request) =>
-			{
-				Dictionary<string, object> parameters = new Dictionary<string, object>();
-				using (IDbCommand command = connection.CreateCommand())
-				{
-					command.CommandText = GetUpdateModelQuery(request.TableName, request.SchemaName, request.Model, parameters);
+        /// <summary>
+        /// Updates model 
+        /// </summary>
+        /// <param name="connection">Db connection</param>
+        /// <param name="request">model request</param>
+        public virtual void UpdateModel(IDbConnection connection, UpdateModelRequestParams request)
+        {
+            WithDbChange(connection, request, (request) =>
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = GetUpdateModelQuery(request.TableName, request.SchemaName, request.Model, parameters);
 
-					foreach (var item in parameters)
-					{
-						var parameter = command.CreateParameter();
-						parameter.ParameterName = item.Key;
-						parameter.Value = item.Value;
-						command.Parameters.Add(parameter);
-					}
-					command.ExecuteNonQuery();
-					return true;
-				}
-			});
-		}
+                    foreach (var item in parameters)
+                    {
+                        var parameter = command.CreateParameter();
+                        parameter.ParameterName = item.Key;
+                        parameter.Value = item.Value;
+                        command.Parameters.Add(parameter);
+                    }
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+            });
+        }
 
-		/// <summary>
-		/// Deletes a model from the given table 
-		/// </summary>
-		/// <param name="connection">Db connection</param>
-		/// <param name="request">model request</param>
-		public virtual void DeleteModel(IDbConnection connection, DeleteModelRequestParams request)
-		{
-			WithDbChange(connection, request, (request) =>
-			{
-				Dictionary<string, object> parameters = new Dictionary<string, object>();
-				using (IDbCommand command = connection.CreateCommand())
-				{
-					command.CommandText = GetDeleteModelQuery(request.TableName, request.SchemaName, request.ModelId, parameters);
+        /// <summary>
+        /// Deletes a model from the given table 
+        /// </summary>
+        /// <param name="connection">Db connection</param>
+        /// <param name="request">model request</param>
+        public virtual void DeleteModel(IDbConnection connection, DeleteModelRequestParams request)
+        {
+            WithDbChange(connection, request, (request) =>
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = GetDeleteModelQuery(request.TableName, request.SchemaName, request.ModelId, parameters);
 
-					foreach (var item in parameters)
-					{
-						var parameter = command.CreateParameter();
-						parameter.ParameterName = item.Key;
-						parameter.Value = item.Value;
-						command.Parameters.Add(parameter);
-					}
-					command.ExecuteNonQuery();
-					return true;
-				}
-			});
-		}
+                    foreach (var item in parameters)
+                    {
+                        var parameter = command.CreateParameter();
+                        parameter.ParameterName = item.Key;
+                        parameter.Value = item.Value;
+                        command.Parameters.Add(parameter);
+                    }
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+            });
+        }
 
-		/// <summary>
-		/// Configures model table
-		/// </summary>
-		/// <param name="connection">Db connection</param>
-		/// <param name="request">model request</param>
-		public virtual void ConfigureImportTable(IDbConnection connection, ModelRequestBase request)
-		{
-			WithDbChange(connection, request, (request) =>
-			{
-				Dictionary<string, object> parameters = new Dictionary<string, object>();
-				using (IDbCommand command = connection.CreateCommand())
-				{
-					command.CommandText = GetCreateModelTableQuery(request.TableName, request.SchemaName);
+        /// <summary>
+        /// Configures model table
+        /// </summary>
+        /// <param name="connection">Db connection</param>
+        /// <param name="request">model request</param>
+        public virtual void ConfigureImportTable(IDbConnection connection, ModelRequestBase request)
+        {
+            WithDbChange(connection, request, (request) =>
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = GetCreateModelTableQuery(request.TableName, request.SchemaName);
 
-					foreach (var item in parameters)
-					{
-						var parameter = command.CreateParameter();
-						parameter.ParameterName = item.Key;
-						parameter.Value = item.Value;
-						command.Parameters.Add(parameter);
-					}
-					command.ExecuteNonQuery();
-					return true;
-				}
-			});
-		}
+                    foreach (var item in parameters)
+                    {
+                        var parameter = command.CreateParameter();
+                        parameter.ParameterName = item.Key;
+                        parameter.Value = item.Value;
+                        command.Parameters.Add(parameter);
+                    }
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+            });
+        }
 
-		/// <summary>
-		/// Verifies model table 
-		/// </summary>
-		/// <param name="connection">Db connection</param>
-		/// <param name="request">model request</param>
-		public virtual bool VerifyImportTable(IDbConnection connection, ModelRequestBase request)
-		{
-			int result = WithDbChange(connection, request, (request) =>
-			{
-				Dictionary<string, object> parameters = new Dictionary<string, object>();
-				using (IDbCommand command = connection.CreateCommand())
-				{
-					command.CommandText = GetConfigTableVerificationQuery(request.DatabaseName, request.TableName, request.SchemaName);
+        /// <summary>
+        /// Verifies model table 
+        /// </summary>
+        /// <param name="connection">Db connection</param>
+        /// <param name="request">model request</param>
+        public virtual bool VerifyImportTable(IDbConnection connection, ModelRequestBase request)
+        {
+            int result = WithDbChange(connection, request, (request) =>
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = GetConfigTableVerificationQuery(request.DatabaseName, request.TableName, request.SchemaName);
 
-					command.ExecuteNonQuery();
-					using (IDataReader reader = command.ExecuteReader())
-					{
-						while (reader.Read())
-						{
-							return reader.GetInt32(0);
-						}
-					}
-					return 0;
-				}
-			});
+                    command.ExecuteNonQuery();
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            return reader.GetInt32(0);
+                        }
+                    }
+                    return 0;
+                }
+            });
 
-			return result == 1;
-		}
+            return result == 1;
+        }
 
-		private TResult WithDbChange<T, TResult>(IDbConnection connection, T request, Func<T, TResult> operation) where T : ModelRequestBase
-		{
-			string currentDb = connection.Database;
-			if (connection.Database != request.DatabaseName)
-			{
-				connection.ChangeDatabase(request.DatabaseName);
-			}
-			TResult result = operation(request);
+        private TResult WithDbChange<T, TResult>(IDbConnection connection, T request, Func<T, TResult> operation) where T : ModelRequestBase
+        {
+            string currentDb = connection.Database;
+            if (connection.Database != request.DatabaseName)
+            {
+                connection.ChangeDatabase(request.DatabaseName);
+            }
+            TResult result = operation(request);
 
-			if (connection.Database != currentDb)
-			{
-				connection.ChangeDatabase(currentDb);
-			}
-			return result;
-		}
+            if (connection.Database != currentDb)
+            {
+                connection.ChangeDatabase(currentDb);
+            }
+            return result;
+        }
 
-		private ModelMetadata LoadModelMetadata(IDataReader reader)
-		{
-			return new ModelMetadata
-			{
-				Id = reader.GetInt32(0),
-				ModelName = reader.GetString(1),
-				Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
-				Version = reader.IsDBNull(3) ? string.Empty : reader.GetString(3),
-				Created = reader.IsDBNull(4) ? string.Empty : reader.GetDateTime(4).ToString(),
-				Framework = reader.IsDBNull(5) ? string.Empty : reader.GetString(5),
-				FrameworkVersion = reader.IsDBNull(6) ? string.Empty : reader.GetString(6),
-				DeploymentTime = reader.IsDBNull(7) ? string.Empty : reader.GetDateTime(7).ToString(),
-				DeployedBy = reader.IsDBNull(8) ? string.Empty : reader.GetString(8),
-				RunId = reader.IsDBNull(9) ? string.Empty : reader.GetString(9),
-				ContentLength = reader.GetInt64(10),
-			};
-		}
+        private ModelMetadata LoadModelMetadata(IDataReader reader)
+        {
+            return new ModelMetadata
+            {
+                Id = reader.GetInt32(0),
+                ModelName = reader.GetString(1),
+                Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
+                Version = reader.IsDBNull(3) ? string.Empty : reader.GetString(3),
+                Created = reader.IsDBNull(4) ? string.Empty : reader.GetDateTime(4).ToString(),
+                Framework = reader.IsDBNull(5) ? string.Empty : reader.GetString(5),
+                FrameworkVersion = reader.IsDBNull(6) ? string.Empty : reader.GetString(6),
+                DeploymentTime = reader.IsDBNull(7) ? string.Empty : reader.GetDateTime(7).ToString(),
+                DeployedBy = reader.IsDBNull(8) ? string.Empty : reader.GetString(8),
+                RunId = reader.IsDBNull(9) ? string.Empty : reader.GetString(9),
+                ContentLength = reader.GetInt64(10),
+            };
+        }
 
-		private const string ModelSelectColumns = @"
+        private const string ModelSelectColumns = @"
         SELECT model_id, model_name, model_description, model_version, model_creation_time, model_framework, model_framework_version, model_deployment_time, User_Name(deployed_by), run_id, 
         len(model)";
 
-		private static string GetThreePartsTableName(string dbName, string tableName, string schemaName)
-		{
-			return $"[{StringUtils.EscapeStringCBracket(dbName)}].[{StringUtils.EscapeStringCBracket(schemaName)}].[{StringUtils.EscapeStringCBracket(tableName)}]";
-		}
+        private static string GetThreePartsTableName(string dbName, string tableName, string schemaName)
+        {
+            return $"[{StringUtils.EscapeStringCBracket(dbName)}].[{StringUtils.EscapeStringCBracket(schemaName)}].[{StringUtils.EscapeStringCBracket(tableName)}]";
+        }
 
-		private static string GetTwoPartsTableName(string tableName, string schemaName)
-		{
-			return $"[{StringUtils.EscapeStringCBracket(schemaName)}].[{StringUtils.EscapeStringCBracket(tableName)}]";
-		}
+        private static string GetTwoPartsTableName(string tableName, string schemaName)
+        {
+            return $"[{StringUtils.EscapeStringCBracket(schemaName)}].[{StringUtils.EscapeStringCBracket(tableName)}]";
+        }
 
-		private static string GetSelectModelsQuery(string dbName, string tableName, string schemaName)
-		{
-			return $@"
+        private static string GetSelectModelsQuery(string dbName, string tableName, string schemaName)
+        {
+            return $@"
         {ModelSelectColumns}
         FROM {GetThreePartsTableName(dbName, tableName, schemaName)}
 		WHERE model_name not like 'MLmodel' and model_name not like 'conda.yaml'
 		ORDER BY model_id";
-		}
+        }
 
-		private static string GetConfigTableVerificationQuery(string dbName, string tableName, string schemaName)
-		{
-			string twoPartsTableName = GetTwoPartsTableName(StringUtils.EscapeStringSQuote(tableName), StringUtils.EscapeStringSQuote(schemaName));
-			return $@"
+        private static string GetConfigTableVerificationQuery(string dbName, string tableName, string schemaName)
+        {
+            string twoPartsTableName = GetTwoPartsTableName(StringUtils.EscapeStringSQuote(tableName), StringUtils.EscapeStringSQuote(schemaName));
+            return $@"
 		IF NOT EXISTS (
 			SELECT name
 				FROM sys.databases
@@ -313,12 +313,12 @@ namespace Microsoft.SqlTools.ServiceLayer.ModelManagement
 			ELSE
 				SELECT 1
 		END";
-		}
+        }
 
 
-		private static string GetCreateModelTableQuery(string tableName, string schemaName)
-		{
-			return $@"
+        private static string GetCreateModelTableQuery(string tableName, string schemaName)
+        {
+            return $@"
 		IF NOT EXISTS
 			(  SELECT t.name, s.name
 				FROM sys.tables t join sys.schemas s on t.schema_id=t.schema_id
@@ -346,13 +346,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ModelManagement
 		ALTER TABLE {GetTwoPartsTableName(tableName, schemaName)} ADD  CONSTRAINT [{StringUtils.EscapeStringCBracket(tableName)}_deployment_time]  DEFAULT (getdate()) FOR [model_deployment_time]
 		END
 ";
-		}
+        }
 
-		private static string GetInsertModelQuery(string tableName, string schemaName, ModelMetadata model, Dictionary<string, object> parameters)
-		{
-			string twoPartsTableName = GetTwoPartsTableName(tableName, schemaName);
+        private static string GetInsertModelQuery(string tableName, string schemaName, ModelMetadata model, Dictionary<string, object> parameters)
+        {
+            string twoPartsTableName = GetTwoPartsTableName(tableName, schemaName);
 
-			return $@"
+            return $@"
 		INSERT INTO {twoPartsTableName}
 		(model_name, model, model_version, model_description, model_creation_time, model_framework, model_framework_version, run_id, deployed_by)
 		VALUES (
@@ -367,14 +367,14 @@ namespace Microsoft.SqlTools.ServiceLayer.ModelManagement
 			USER_ID (Current_User)
 		)
 ";
-		}
+        }
 
-		private static string GetUpdateModelQuery(string tableName, string schemaName, ModelMetadata model, Dictionary<string, object> parameters)
-		{
-			string twoPartsTableName = GetTwoPartsTableName(tableName, schemaName);
-			parameters.Add(ModelIdParameterName, model.Id);
+        private static string GetUpdateModelQuery(string tableName, string schemaName, ModelMetadata model, Dictionary<string, object> parameters)
+        {
+            string twoPartsTableName = GetTwoPartsTableName(tableName, schemaName);
+            parameters.Add(ModelIdParameterName, model.Id);
 
-			return $@"
+            return $@"
 		UPDATE {twoPartsTableName}
 		SET
 			{Utility.DatabaseUtils.AddStringParameterForUpdate("model_name", model.ModelName ?? "")},
@@ -387,31 +387,31 @@ namespace Microsoft.SqlTools.ServiceLayer.ModelManagement
 		WHERE model_id = @{ModelIdParameterName}
 
 ";
-		}
+        }
 
-		private static string GetDeleteModelQuery(string tableName, string schemaName, int modelId, Dictionary<string, object> parameters)
-		{
-			string twoPartsTableName = GetTwoPartsTableName(tableName, schemaName);
-			parameters.Add(ModelIdParameterName, modelId);
+        private static string GetDeleteModelQuery(string tableName, string schemaName, int modelId, Dictionary<string, object> parameters)
+        {
+            string twoPartsTableName = GetTwoPartsTableName(tableName, schemaName);
+            parameters.Add(ModelIdParameterName, modelId);
 
-			return $@"
+            return $@"
 		DELETE FROM {twoPartsTableName}
 		WHERE model_id = @{ModelIdParameterName}
 ";
-		}
+        }
 
-		private static string GetSelectModelContentQuery(string dbName, string tableName, string schemaName, int modelId, Dictionary<string, object> parameters)
-		{
-			string threePartsTableName = GetThreePartsTableName(dbName, tableName, schemaName);
-			parameters.Add(ModelIdParameterName, modelId);
+        private static string GetSelectModelContentQuery(string dbName, string tableName, string schemaName, int modelId, Dictionary<string, object> parameters)
+        {
+            string threePartsTableName = GetThreePartsTableName(dbName, tableName, schemaName);
+            parameters.Add(ModelIdParameterName, modelId);
 
-			return $@"
+            return $@"
 			SELECT model 
 			FROM {threePartsTableName}
 			WHERE model_id = @{ModelIdParameterName}
 ";
-		}
+        }
 
-		private const string ModelIdParameterName = "ModelId";
-	}
+        private const string ModelIdParameterName = "ModelId";
+    }
 }

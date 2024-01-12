@@ -98,7 +98,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
             // ... I create a new resultset with a valid db data reader that has data
             // ... and I read it to the end
             DbDataReader mockReader = GetReader(testDataSet, false, Constants.StandardQuery);
-            var fileStreamFactory = MemoryFileSystem.GetFileStreamFactory(testDataSet[0].Rows.Count/Common.StandardRows + 1);
+            var fileStreamFactory = MemoryFileSystem.GetFileStreamFactory(testDataSet[0].Rows.Count / Common.StandardRows + 1);
             ResultSet resultSet = new ResultSet(Common.Ordinal, Common.Ordinal, fileStreamFactory);
             resultSet.ResultAvailable += AvailableCallback;
             resultSet.ResultUpdated += UpdatedCallback;
@@ -168,12 +168,12 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
         {
             get
             {
-                yield return new object[] {new Action<ResultSet>(rs => rs.GetSubset(0, 0).Wait())};
-                yield return new object[] {new Action<ResultSet>(rs => rs.UpdateRow(0, null))};
-                yield return new object[] {new Action<ResultSet>(rs => rs.AddRow(null))};
-                yield return new object[] {new Action<ResultSet>(rs => rs.RemoveRow(0))};
-                yield return new object[] {new Action<ResultSet>(rs => rs.GetRow(0))};
-                yield return new object[] {new Action<ResultSet>(rs => rs.GetExecutionPlan().Wait())};
+                yield return new object[] { new Action<ResultSet>(rs => rs.GetSubset(0, 0).Wait()) };
+                yield return new object[] { new Action<ResultSet>(rs => rs.UpdateRow(0, null)) };
+                yield return new object[] { new Action<ResultSet>(rs => rs.AddRow(null)) };
+                yield return new object[] { new Action<ResultSet>(rs => rs.RemoveRow(0)) };
+                yield return new object[] { new Action<ResultSet>(rs => rs.GetRow(0)) };
+                yield return new object[] { new Action<ResultSet>(rs => rs.GetExecutionPlan().Wait()) };
             }
         }
 
@@ -206,8 +206,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
             //
             Assert.True(resultSummaryFromCompleteCallback.RowCount == resultSummariesFromUpdatedCallback.Last().RowCount,
                  $"The row counts of the complete Result Set and Final update result set do not match"
-                +$"\r\n\t\tcompleteResultSet: {resultSummaryFromCompleteCallback}"
-                +$"\r\n\t\tupdateResultSets: {string.Join("\r\n\t\t\t", resultSummariesFromUpdatedCallback)}"
+                + $"\r\n\t\tcompleteResultSet: {resultSummaryFromCompleteCallback}"
+                + $"\r\n\t\tupdateResultSets: {string.Join("\r\n\t\t\t", resultSummariesFromUpdatedCallback)}"
             );
 
             // ... RowCount should be in increasing order in updateResultSet callbacks
@@ -243,9 +243,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
             // Setup:
             // ... Build a FOR XML or FOR JSON data set
             //
-            DbColumn[] columns = {new TestDbColumn(string.Format("{0}_F52E2B61-18A1-11d1-B105-00805F49916B", forType))};
-            object[][] rows = Enumerable.Repeat(new object[] {"test data"}, Common.StandardRows).ToArray();
-            TestResultSet[] dataSets = {new TestResultSet(columns, rows) };
+            DbColumn[] columns = { new TestDbColumn(string.Format("{0}_F52E2B61-18A1-11d1-B105-00805F49916B", forType)) };
+            object[][] rows = Enumerable.Repeat(new object[] { "test data" }, Common.StandardRows).ToArray();
+            TestResultSet[] dataSets = { new TestResultSet(columns, rows) };
 
             // Setup: Create a results Available callback for result set
             //
@@ -322,8 +322,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
         }
 
         [Test, Sequential]
-        public async Task GetSubsetInvalidParameters([Values(-1,20,0)] int startRow,
-                                                     [Values(0,0,-1)] int rowCount)
+        public async Task GetSubsetInvalidParameters([Values(-1, 20, 0)] int startRow,
+                                                     [Values(0, 0, -1)] int rowCount)
         {
             // If:
             // ... I create a new result set with a valid db data reader
@@ -340,8 +340,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
         }
 
         [Test]
-        public async Task GetSubsetSuccess([Values(0,1)]int startRow,
-                                           [Values(3,20)] int rowCount)
+        public async Task GetSubsetSuccess([Values(0, 1)] int startRow,
+                                           [Values(3, 20)] int rowCount)
         {
             // If:
             // ... I create a new result set with a valid db data reader
@@ -387,8 +387,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
             {
                 foreach (var method in RowInvalidParameterMethods)
                 {
-                    yield return new object[] {new Action<ResultSet>(rs => method(rs, -1))};
-                    yield return new object[] {new Action<ResultSet>(rs => method(rs, 100))};
+                    yield return new object[] { new Action<ResultSet>(rs => method(rs, -1)) };
+                    yield return new object[] { new Action<ResultSet>(rs => method(rs, 100)) };
                 }
             }
         }
@@ -433,7 +433,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
             await resultSet.ReadResultToEnd(mockReader, CancellationToken.None);
 
             // ... Create a mock reader that has no rows
-            var emptyReader = GetReader(new[] {new TestResultSet(5, 0)}, false, Constants.StandardQuery);
+            var emptyReader = GetReader(new[] { new TestResultSet(5, 0) }, false, Constants.StandardQuery);
 
             // If: I add a row with a reader that has no rows
             // Then:
@@ -455,7 +455,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
             await resultSet.ReadResultToEnd(mockReader, CancellationToken.None);
 
             // ... Create a mock reader that will throw on read
-            var throwingReader = GetReader(new[] {new TestResultSet(5, 0)}, true, Constants.StandardQuery);
+            var throwingReader = GetReader(new[] { new TestResultSet(5, 0) }, true, Constants.StandardQuery);
 
             Assert.Throws<TestDbException>(() => resultSet.AddRow(throwingReader), "I add a row with a reader that throws on read. I should get an exception");
 
@@ -475,8 +475,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
 
             // ... Create a mock reader that has one row
             object[] row = Enumerable.Range(0, Common.StandardColumns).Select(i => "QQQ").ToArray();
-            IEnumerable<object[]> rows = new List<object[]>{ row };
-            TestResultSet[] results = {new TestResultSet(TestResultSet.GetStandardColumns(Common.StandardColumns), rows)};
+            IEnumerable<object[]> rows = new List<object[]> { row };
+            TestResultSet[] results = { new TestResultSet(TestResultSet.GetStandardColumns(Common.StandardColumns), rows) };
             var newRowReader = GetReader(results, false, Constants.StandardQuery);
 
             // If: I add a new row to the result set

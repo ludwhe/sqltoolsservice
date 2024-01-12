@@ -11,7 +11,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
 {
     internal static class FileUtilities
     {
-        internal static string PeekDefinitionTempFolder = Path.GetTempPath() + "mssql_definition"; 
+        internal static string PeekDefinitionTempFolder = Path.GetTempPath() + "mssql_definition";
         internal static string AgentNotebookTempFolder = Path.GetTempPath() + "mssql_notebooks";
         internal static bool PeekDefinitionTempFolderCreated = false;
 
@@ -19,7 +19,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
         {
             string tempPath;
             if (!PeekDefinitionTempFolderCreated)
-            {               
+            {
                 try
                 {
                     // create new temp folder
@@ -154,7 +154,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
             {
                 return new ResolvedFile(Path.GetFullPath(filePath), clientUri, true);
             }
-            catch(NotSupportedException)
+            catch (NotSupportedException)
             {
                 // This is not a standard path. 
                 return new ResolvedFile(filePath, clientUri, false);

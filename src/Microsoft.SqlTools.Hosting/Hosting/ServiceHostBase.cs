@@ -14,7 +14,7 @@ namespace Microsoft.SqlTools.Hosting
     {
         private TaskCompletionSource<bool> serverExitedTask;
 
-        protected ServiceHostBase(ChannelBase serverChannel) : 
+        protected ServiceHostBase(ChannelBase serverChannel) :
             base(serverChannel, MessageProtocolType.LanguageServer)
         {
         }
@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.Hosting
         protected override Task OnStart()
         {
             // Register handlers for server lifetime messages
-            
+
             this.SetEventHandler(ExitNotification.Type, this.HandleExitNotification);
             this.serverExitedTask = new TaskCompletionSource<bool>();
 

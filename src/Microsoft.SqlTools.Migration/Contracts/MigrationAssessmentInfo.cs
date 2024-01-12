@@ -83,7 +83,7 @@ namespace Microsoft.SqlTools.Migration.Contracts
         public string IssueCategory { get; set; }
 
         public ImpactedObjectInfo[] ImpactedObjects { get; set; }
-        
+
         /// <summary>
         /// This flag is set if the assessment result is a blocker for migration to Target Platform.
         /// </summary>

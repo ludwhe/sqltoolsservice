@@ -5,16 +5,11 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
-using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.ServerConfigurations;
-using Microsoft.SqlTools.ServiceLayer.ServerConfigurations.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.SqlTools.ServiceLayer.Test.Common.RequestContextMocking;
-using Moq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
+using Moq;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.MachineLearningServices
@@ -98,7 +93,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.MachineLearningServic
             }
         }
 
-       
+
         [Test]
         public async Task VerifyConfigViewRequestSendErrorGivenInvalidConnection()
         {

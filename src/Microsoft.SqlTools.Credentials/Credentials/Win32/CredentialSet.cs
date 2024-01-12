@@ -12,7 +12,7 @@ using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.Credentials.Win32
 {
-    public class CredentialSet: List<Win32Credential>, IDisposable
+    public class CredentialSet : List<Win32Credential>, IDisposable
     {
         bool _disposed;
 
@@ -81,7 +81,7 @@ namespace Microsoft.SqlTools.Credentials.Win32
             IntPtr[] ptrCredList = new IntPtr[count];
             for (int i = 0; i < count; i++)
             {
-                ptrCredList[i] = Marshal.ReadIntPtr(pCredentials, IntPtr.Size*i);
+                ptrCredList[i] = Marshal.ReadIntPtr(pCredentials, IntPtr.Size * i);
             }
 
             // Now let's go through all of the pointers in the list

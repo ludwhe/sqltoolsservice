@@ -22,8 +22,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
         private sealed class TestColumn : DbColumn
         {
             public TestColumn(
-                string dataTypeName = null, 
-                int? columnSize = null, 
+                string dataTypeName = null,
+                int? columnSize = null,
                 string columnName = null,
                 string udtAssemblyQualifiedName = null)
             {
@@ -59,7 +59,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
         /// </summary>
         [Test]
         public void DataTypeAndPropertiesTest()
-        {          
+        {
             // check default constructor doesn't throw
             Assert.NotNull(new DbColumnWrapper());
 

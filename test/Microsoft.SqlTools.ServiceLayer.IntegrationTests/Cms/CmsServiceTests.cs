@@ -4,16 +4,10 @@
 //
 
 #nullable disable
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.Cms;
-using Microsoft.SqlTools.ServiceLayer.Cms.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
-using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Moq;
 using System;
 using System.Threading.Tasks;
+using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
+using Moq;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Cms
@@ -80,7 +74,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Cms
                 RegisteredServerName = name,
                 RegisteredServerDescription = "My Registered Test Server",
                 ParentOwnerUri = connectParams.OwnerUri,
-                RegisteredServerConnectionDetails = new ConnectionDetails { ServerName = name},
+                RegisteredServerConnectionDetails = new ConnectionDetails { ServerName = name },
                 RelativePath = "RegisteredServersStore/ServerGroup[@Name='DatabaseEngineServerGroup']" //Top level
             };
 
@@ -97,7 +91,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Cms
             // Prepare for remove Server
             var requestContext3 = new Mock<RequestContext<bool>>();
             requestContext1.Setup((RequestContext<bool> x) => x.SendResult(It.Is<bool>((result) => result == true))).Returns(Task.FromResult(new object()));
-            
+
             RemoveRegisteredServerParams removeRegServerParams = new RemoveRegisteredServerParams
             {
                 ParentOwnerUri = connectParams.OwnerUri,
@@ -159,7 +153,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Cms
                 GroupName = name,
                 RelativePath = null
             };
-            
+
             // Actual test start here
             CmsService cmsService = CmsService.Instance;
 
@@ -227,7 +221,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Cms
             // prepare for multi level server group remove at level 3  and then at level 1
             var requestContextRemove = new Mock<RequestContext<bool>>();
             requestContextRemove.Setup((RequestContext<bool> x) => x.SendResult(It.Is<bool>((result) => result == true))).Returns(Task.FromResult(new object()));
-            
+
             RemoveServerGroupParams removeRegServerParams = new RemoveServerGroupParams
             {
                 ParentOwnerUri = connectParams.OwnerUri,

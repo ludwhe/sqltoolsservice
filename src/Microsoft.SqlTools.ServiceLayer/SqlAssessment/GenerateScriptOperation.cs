@@ -113,8 +113,8 @@ INSERT INTO [dbo].[AssessmentResult] ([CheckName],[CheckId],[RulesetName],[Rules
     SELECT rpt.[CheckName],rpt.[CheckId],rpt.[RulesetName],rpt.[RulesetVersion],rpt.[Severity],rpt.[Message],rpt.[TargetPath],rpt.[TargetType],rpt.[HelpLink],rpt.[Timestamp]
     FROM (VALUES ";
 
-        const string scriptEpilogue = 
-        @"
+            const string scriptEpilogue =
+            @"
     ) rpt([CheckName],[CheckId],[RulesetName],[RulesetVersion],[Severity],[Message],[TargetPath],[TargetType],[HelpLink],[Timestamp])";
 
             var sb = new StringBuilder();

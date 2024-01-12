@@ -6,12 +6,12 @@
 #nullable disable
 
 using System;
+using Azure.Storage.Blobs;
+using Azure.Storage.Sas;
+using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlTools.ServiceLayer.AzureBlob;
 using Moq;
 using NUnit.Framework;
-using Azure.Storage.Blobs;
-using Microsoft.SqlTools.ServiceLayer.AzureBlob;
-using Microsoft.SqlServer.Management.Smo;
-using Azure.Storage.Sas;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
 {

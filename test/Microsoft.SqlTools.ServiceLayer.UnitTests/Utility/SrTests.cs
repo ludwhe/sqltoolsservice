@@ -63,7 +63,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
             Assert.NotNull(ServiceLayerSr.QueryServiceDataReaderByteCountInvalid);
             Assert.NotNull(ServiceLayerSr.QueryServiceDataReaderCharCountInvalid);
             Assert.NotNull(ServiceLayerSr.QueryServiceDataReaderXmlCountInvalid);
-            Assert.NotNull(ServiceLayerSr.QueryServiceErrorFormat(0,0,0,0,"",""));
+            Assert.NotNull(ServiceLayerSr.QueryServiceErrorFormat(0, 0, 0, 0, "", ""));
             Assert.NotNull(ServiceLayerSr.QueryServiceExecutionPlanNotFound);
             Assert.NotNull(ServiceLayerSr.QueryServiceFileWrapperNotInitialized);
             Assert.NotNull(ServiceLayerSr.QueryServiceFileWrapperReadOnly);
@@ -78,7 +78,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
             Assert.NotNull(ServiceLayerSr.QueryServiceResultSetNotRead);
             Assert.NotNull(ServiceLayerSr.QueryServiceResultSetRowCountOutOfRange);
             Assert.NotNull(ServiceLayerSr.QueryServiceResultSetStartRowOutOfRange);
-            Assert.NotNull(ServiceLayerSr.QueryServiceSaveAsFail("",""));
+            Assert.NotNull(ServiceLayerSr.QueryServiceSaveAsFail("", ""));
             Assert.NotNull(ServiceLayerSr.QueryServiceSaveAsInProgress);
             Assert.NotNull(ServiceLayerSr.QueryServiceSaveAsMiscStartingError);
             Assert.NotNull(ServiceLayerSr.QueryServiceSaveAsResultSetNotComplete);
@@ -86,7 +86,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
             Assert.NotNull(ServiceLayerSr.QueryServiceSubsetBatchOutOfRange);
             Assert.NotNull(ServiceLayerSr.QueryServiceSubsetResultSetOutOfRange);
             Assert.NotNull(ServiceLayerSr.TestLocalizationConstant);
-            Assert.NotNull(ServiceLayerSr.WorkspaceServiceBufferPositionOutOfOrder(0,0,0,0));
+            Assert.NotNull(ServiceLayerSr.WorkspaceServiceBufferPositionOutOfOrder(0, 0, 0, 0));
             Assert.NotNull(ServiceLayerSr.WorkspaceServicePositionColumnOutOfRange(0));
             Assert.NotNull(ServiceLayerSr.WorkspaceServicePositionLineOutOfRange);
         }

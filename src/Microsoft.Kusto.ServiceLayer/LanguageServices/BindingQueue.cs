@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
@@ -17,7 +16,7 @@ using Microsoft.SqlTools.Utility;
 
 
 namespace Microsoft.Kusto.ServiceLayer.LanguageServices
-{    
+{
     /// <summary>
     /// Main class for the Binding Queue
     /// </summary>
@@ -31,7 +30,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
 
         private readonly LinkedList<QueueItem> _bindingQueue;
 
-        private readonly object _bindingContextLock ;
+        private readonly object _bindingContextLock;
 
         private Task _queueProcessorTask;
 
@@ -139,7 +138,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                     return context.IsConnected;
                 }
                 return false;
-            } 
+            }
         }
 
         /// <summary>
@@ -153,7 +152,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
             {
                 key = "disconnected_binding_context";
             }
-                        
+
             lock (this._bindingContextLock)
             {
                 if (!this.BindingContextMap.ContainsKey(key))
@@ -164,7 +163,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                 }
 
                 return this.BindingContextMap[key];
-            }      
+            }
         }
 
         protected IEnumerable<IBindingContext> GetBindingContexts(string keyPrefix)
@@ -267,7 +266,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                 this._itemQueuedEvent,
                 token.WaitHandle
             };
-    
+
             while (true)
             {
                 // wait for with an item to be queued or the a cancellation request
@@ -281,7 +280,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                 {
                     // dispatch all pending queue items
                     while (this.HasPendingQueueItems)
-                    {                    
+                    {
                         QueueItem queueItem = GetNextQueueItem();
                         if (queueItem == null)
                         {
@@ -289,7 +288,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                         }
 
                         IBindingContext bindingContext = GetOrCreateBindingContext(queueItem.Key);
-                        if (bindingContext == null)                        
+                        if (bindingContext == null)
                         {
                             queueItem.ItemProcessed.Set();
                             continue;
@@ -302,7 +301,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                         {
                             bool lockTaken = false;
                             try
-                            {                                                    
+                            {
                                 // prefer the queue item binding item, otherwise use the context default timeout
                                 int bindTimeout = queueItem.BindingTimeout ?? bindingContext.BindingTimeout;
 
@@ -328,14 +327,14 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                                     return;
                                 }
 
-                                bindingContext.BindingLock.Reset();  
+                                bindingContext.BindingLock.Reset();
 
                                 lockTaken = true;
 
                                 // execute the binding operation
                                 object result = null;
                                 CancellationTokenSource cancelToken = new CancellationTokenSource();
-                        
+
                                 // run the operation in a separate thread
                                 var bindTask = Task.Run(() =>
                                 {
@@ -368,11 +367,11 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                                             }
 
                                             RemoveBindingContext(queueItem.Key);
-                                        }    
+                                        }
                                     }
                                 });
 
-                                Task.Run(() => 
+                                Task.Run(() =>
                                 {
                                     try
                                     {
@@ -388,7 +387,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                                             // if the task didn't complete then call the timeout callback
                                             if (queueItem.TimeoutOperation != null)
                                             {
-                                                queueItem.Result = queueItem.TimeoutOperation(bindingContext);                              
+                                                queueItem.Result = queueItem.TimeoutOperation(bindingContext);
                                             }
 
                                             bindTask.ContinueWithOnFaulted(t => Logger.Error("Binding queue threw exception " + t.Exception.ToString()));
@@ -399,7 +398,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                                     }
                                     catch (Exception ex)
                                     {
-                                        Logger.Error("Binding queue task completion threw exception " + ex.ToString());  
+                                        Logger.Error("Binding queue task completion threw exception " + ex.ToString());
                                     }
                                     finally
                                     {
@@ -422,7 +421,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                                 {
                                     bindingContext.BindingLock.Set();
                                 }
-                                queueItem.ItemProcessed.Set();                          
+                                queueItem.ItemProcessed.Set();
                             }
                         }, TaskContinuationOptions.None);
 
@@ -431,7 +430,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                         {
                             break;
                         }
-                    } 
+                    }
                 }
                 finally
                 {
@@ -474,7 +473,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                 _itemQueuedEvent.Dispose();
             }
         }
-        
+
         private bool IsExceptionOfType(Exception ex, Type t)
         {
             return ex.GetType() == t || (ex.InnerException != null && ex.InnerException.GetType() == t);

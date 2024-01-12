@@ -54,7 +54,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         static AmbientSettings()
         {
             _defaultSettings = new AmbientData();
-        }       
+        }
 
         /// <summary>
         /// Access to the default ambient settings.  Access to these settings is made available

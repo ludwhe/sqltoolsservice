@@ -40,7 +40,7 @@ namespace Microsoft.SqlTools.Hosting.Contracts
         /// Gets or sets a boolean indicating whether the client should retry
         /// sending the Initialize request after showing the error to the user.
         /// </summary>
-        public bool Retry { get; set;}
+        public bool Retry { get; set; }
     }
 }
 

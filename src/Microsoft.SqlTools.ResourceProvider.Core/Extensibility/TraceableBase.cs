@@ -78,7 +78,7 @@ namespace Microsoft.SqlTools.ResourceProvider.Core.Extensibility
         /// <returns>True if event was successfully written or the condition was true</returns>
         public bool AssertTraceException(bool condition, TraceEventType eventType, TraceId traceId, Exception exception, string message)
         {
-            return AssertTraceException(condition, eventType, (int) traceId, exception, message);
+            return AssertTraceException(condition, eventType, (int)traceId, exception, message);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Microsoft.SqlTools.ResourceProvider.Core.Extensibility
         {
             if (!condition)
             {
-                return DebugTraceException2(eventType, (int) traceId, exception, message, lineNumber, fileName, memberName);
+                return DebugTraceException2(eventType, (int)traceId, exception, message, lineNumber, fileName, memberName);
             }
             return true;
         }

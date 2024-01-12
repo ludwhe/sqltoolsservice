@@ -24,10 +24,10 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
     {
         // Root element name for the output XML
         private const string RootElementTag = "data";
-        
+
         // Item element name which will be used for every row
         private const string ItemElementTag = "row";
-        
+
         #region Member Variables
 
         private readonly XmlTextWriter xmlTextWriter;
@@ -72,7 +72,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
             {
                 // Write the column name as item tag
                 xmlTextWriter.WriteStartElement(columns[i].ColumnName);
-                
+
                 if (row[i].RawObject != null)
                 {
                     xmlTextWriter.WriteString(row[i].DisplayValue);

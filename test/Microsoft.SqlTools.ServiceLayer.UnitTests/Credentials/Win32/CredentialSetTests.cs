@@ -48,12 +48,12 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Credentials.Win32
             RunIfWrapper.RunIfWindows(() =>
             {
                 Win32Credential credential = new Win32Credential
-                                            {
-                                                Username = "username",
-                                                Password = "password",
-                                                Target = "target",
-                                                Type = CredentialType.Generic
-                                            };
+                {
+                    Username = "username",
+                    Password = "password",
+                    Target = "target",
+                    Type = CredentialType.Generic
+                };
                 credential.Save();
 
                 CredentialSet set = new CredentialSet();
@@ -85,11 +85,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Credentials.Win32
             RunIfWrapper.RunIfWindows(() =>
             {
                 Win32Credential credential = new Win32Credential
-                                            {
-                                                Username = "filteruser",
-                                                Password = Guid.NewGuid().ToString(),
-                                                Target = "filtertarget"
-                                            };
+                {
+                    Username = "filteruser",
+                    Password = Guid.NewGuid().ToString(),
+                    Target = "filtertarget"
+                };
                 credential.Save();
 
                 CredentialSet set = new CredentialSet("filtertarget");

@@ -5,9 +5,9 @@
 
 #nullable disable
 
-using NUnit.Framework;
 using Microsoft.SqlTools.ServiceLayer.NotebookConvert;
 using Newtonsoft.Json;
+using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.NotebookConvert
 {

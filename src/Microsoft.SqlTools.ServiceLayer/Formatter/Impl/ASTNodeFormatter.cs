@@ -16,7 +16,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         /// Formats the text for a specific node.
         /// </summary>
         public abstract void Format();
-        
+
         internal static LexLocation GetLexLocationForNode(SqlCodeObject obj)
         {
             return obj.Position;

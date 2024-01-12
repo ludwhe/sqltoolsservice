@@ -84,7 +84,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
         #region Batch Class Tests
 
         [Test]
-        public void BatchSubsetValidTest([Values(2,20)] int rowCount)
+        public void BatchSubsetValidTest([Values(2, 20)] int rowCount)
         {
             // If I have an executed batch
             Batch b = Common.GetBasicExecutedBatch();
@@ -101,7 +101,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
         }
 
         [Test]
-        public void BatchSubsetInvalidParamsTest([Values(-1,2)] int resultSetIndex)
+        public void BatchSubsetInvalidParamsTest([Values(-1, 2)] int resultSetIndex)
         {
             // If I have an executed batch
             Batch b = Common.GetBasicExecutedBatch();
@@ -117,7 +117,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
         #region Query Class Tests
 
         [Test]
-        public void QuerySubsetInvalidParamsTest([Values(-1,2)] int batchIndex)
+        public void QuerySubsetInvalidParamsTest([Values(-1, 2)] int batchIndex)
         {
             // If I have an executed query
             Query q = Common.GetBasicExecutedQuery();
@@ -139,7 +139,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // ... I have a query that has results (doesn't matter what)
             var workspaceService = Common.GetPrimedWorkspaceService(Constants.StandardQuery);
             var queryService = Common.GetPrimedExecutionService(Common.ExecutionPlanTestDataSet, true, false, false, workspaceService);
-            var executeParams = new ExecuteDocumentSelectionParams {QuerySelection = null, OwnerUri = Constants.OwnerUri};
+            var executeParams = new ExecuteDocumentSelectionParams { QuerySelection = null, OwnerUri = Constants.OwnerUri };
             var executeRequest = RequestContextMocks.Create<ExecuteRequestResult>(null);
             await queryService.HandleExecuteRequest(executeParams, executeRequest.Object);
             await queryService.WorkTask;

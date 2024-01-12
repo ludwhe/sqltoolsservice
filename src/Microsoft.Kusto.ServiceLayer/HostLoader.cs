@@ -7,18 +7,18 @@
 
 using System;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Credentials;
-using Microsoft.SqlTools.Extensibility;
-using Microsoft.SqlTools.Hosting;
-using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.Kusto.ServiceLayer.Admin;
-using Microsoft.Kusto.ServiceLayer.Metadata;
 using Microsoft.Kusto.ServiceLayer.Connection;
 using Microsoft.Kusto.ServiceLayer.LanguageServices;
+using Microsoft.Kusto.ServiceLayer.Metadata;
 using Microsoft.Kusto.ServiceLayer.QueryExecution;
 using Microsoft.Kusto.ServiceLayer.Scripting;
 using Microsoft.Kusto.ServiceLayer.SqlContext;
 using Microsoft.Kusto.ServiceLayer.Workspace;
+using Microsoft.SqlTools.Credentials;
+using Microsoft.SqlTools.Extensibility;
+using Microsoft.SqlTools.Hosting;
+using Microsoft.SqlTools.Hosting.Protocol;
 using SqlToolsContext = Microsoft.SqlTools.ServiceLayer.SqlContext.SqlToolsContext;
 
 namespace Microsoft.Kusto.ServiceLayer
@@ -100,7 +100,7 @@ namespace Microsoft.Kusto.ServiceLayer
 
             MetadataService.Instance.InitializeService(serviceHost, connectionManager);
             serviceProvider.RegisterSingleService(MetadataService.Instance);
-            
+
             InitializeHostedServices(serviceProvider, serviceHost);
             serviceHost.ServiceProvider = serviceProvider;
 

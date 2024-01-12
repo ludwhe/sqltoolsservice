@@ -395,7 +395,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx
         {
             get
             {
-               return SqlTaskManager.Instance;
+                return SqlTaskManager.Instance;
             }
         }
 

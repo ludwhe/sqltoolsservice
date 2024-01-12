@@ -23,7 +23,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
     {
         #region struct NameValuePair
 
-        [DebuggerDisplay("{Name}:{Value}")]        
+        [DebuggerDisplay("{Name}:{Value}")]
         internal struct NameValuePair
         {
             private string name;
@@ -241,7 +241,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
                 Set(index, value);
             }
         }
-        
+
         /// <summary>
         /// Gets the value of the specified entry from the NameObjectCollection instance. C# indexer
         /// </summary>
@@ -256,7 +256,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
                 Set(name, value);
             }
         }
-        
+
         /// <summary>
         /// Gets the value of the specified entry from the NameObjectCollection instance.
         /// </summary>
@@ -266,7 +266,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
         {
             return this.pairs[index].Value;
         }
-        
+
         /// <summary>
         /// Gets the value of the first entry with the specified key from the NameObjectCollection instance.
         /// </summary>
@@ -277,7 +277,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
             int index = IndexOf(name);
             return index >= 0 ? this.pairs[index].Value : null;
         }
-        
+
         /// <summary>
         /// Returns a String array that contains all the keys in the NameObjectCollection instance.
         /// </summary>
@@ -293,7 +293,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
 
             return keys;
         }
-        
+
         /// <summary>
         /// Returns an array that contains all the values in the NameObjectCollection instance.
         /// </summary>
@@ -319,7 +319,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
         {
             return this.pairs[index].Name;
         }
-        
+
         /// <summary>
         /// Gets a value indicating whether the NameObjectCollection instance contains entries whose keys are not null.
         /// </summary>
@@ -328,7 +328,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
         {
             return this.pairs.Count > 0;
         }
-        
+
         /// <summary>
         /// Removes the entries with the specified key from the NameObjectCollection instance.
         /// </summary>
@@ -337,7 +337,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
         {
             RemoveAt(IndexOf(name));
         }
-        
+
         /// <summary>
         /// Removes the entry at the specified index of the NameObjectCollection instance.
         /// </summary>
@@ -346,7 +346,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
         {
             this.pairs.RemoveAt(index);
         }
-        
+
         /// <summary>
         /// Sets the value of the entry at the specified index of the NameObjectCollection instance.
         /// </summary>
@@ -358,7 +358,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
             pair.Value = value;
             this.pairs[index] = pair;
         }
-        
+
         /// <summary>
         /// Sets the value of the first entry with the specified key in the NameObjectCollection instance, if found; otherwise, adds an entry with the specified key and value into the NameObjectCollection instance.
         /// </summary>
@@ -376,7 +376,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
                 Add(name, value);
             }
         }
-        
+
         /// <summary>
         /// Copies elements of this collection to an Array starting at a particular array index
         /// </summary>

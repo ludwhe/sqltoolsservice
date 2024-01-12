@@ -52,7 +52,7 @@ namespace Microsoft.SqlTools.ServiceLayer.EditData.Contracts
 
     public class EditInitializeRequest
     {
-        public static readonly 
+        public static readonly
             RequestType<EditInitializeParams, EditInitializeResult> Type =
             RequestType<EditInitializeParams, EditInitializeResult>.Create("edit/initialize");
     }

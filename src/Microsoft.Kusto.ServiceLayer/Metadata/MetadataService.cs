@@ -6,11 +6,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.Kusto.ServiceLayer.Connection;
-using Microsoft.Kusto.ServiceLayer.Metadata.Contracts;
 using Microsoft.Kusto.ServiceLayer.DataSource;
 using Microsoft.Kusto.ServiceLayer.DataSource.Metadata;
+using Microsoft.Kusto.ServiceLayer.Metadata.Contracts;
+using Microsoft.SqlTools.Hosting.Protocol;
 
 namespace Microsoft.Kusto.ServiceLayer.Metadata
 {
@@ -42,12 +42,12 @@ namespace Microsoft.Kusto.ServiceLayer.Metadata
             try
             {
                 List<ObjectMetadata> metadata = await Task.Run(() => LoadMetadata(metadataParams));
-                
+
                 await requestContext.SendResult(new MetadataQueryResult
                 {
                     Metadata = metadata.ToArray()
                 });
-                
+
             }
             catch (Exception ex)
             {
@@ -66,11 +66,11 @@ namespace Microsoft.Kusto.ServiceLayer.Metadata
 
             connInfo.TryGetConnection(ConnectionType.Default, out ReliableDataSourceConnection connection);
             IDataSource dataSource = connection.GetUnderlyingConnection();
-            
+
             var clusterMetadata = MetadataFactory.CreateClusterMetadata(connInfo.ConnectionDetails.ServerName);
             var databaseMetadata = MetadataFactory.CreateDatabaseMetadata(clusterMetadata, connInfo.ConnectionDetails.DatabaseName);
-            var parentMetadata = dataSource.DataSourceType == DataSourceType.LogAnalytics ? clusterMetadata : databaseMetadata; 
-            
+            var parentMetadata = dataSource.DataSourceType == DataSourceType.LogAnalytics ? clusterMetadata : databaseMetadata;
+
             var databaseChildMetadataInfo = dataSource.GetChildObjects(parentMetadata, true);
             return MetadataFactory.ConvertToObjectMetadata(databaseChildMetadataInfo);
         }

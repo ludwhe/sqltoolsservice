@@ -26,7 +26,7 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution.DataStorage
 
         // Pixel width of auto-filter button
         private const float AutoFilterPixelWidth = 17F;
-        
+
         #region Member Variables
 
         private readonly SaveResultsAsExcelRequestParams saveParams;
@@ -163,7 +163,7 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution.DataStorage
                 sheet = helper.AddSheet(null, columns.Count);
 
                 // The XLSX format has strict ordering requirements so these must be done in the proper order
-                
+
                 // First freeze the header row if the caller has requested header rows and that the header should be frozen
                 if (saveParams.IncludeHeaders && saveParams.FreezeHeaderRow)
                 {

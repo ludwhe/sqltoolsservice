@@ -12,7 +12,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
 {
     // Any new SqlCodeObject types should have a Visit method added, and this class should then be updated with a matching
     // Visit implementation that routes to the Format method.
-    [SuppressMessage("Microsoft.Maintainability","CA1506:AvoidExcessiveClassCoupling")]
+    [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     partial class FormatterVisitor : SqlCodeObjectVisitor
     {
         public override void Visit(SqlAggregateFunctionCallExpression codeObject) { Format(codeObject); }
@@ -174,7 +174,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         public override void Visit(SqlMaxDegreeOfParallelismIndexOption codeObject) { Format(codeObject); }
         public override void Visit(SqlMergeActionClause codeObject) { Format(codeObject); }
         public override void Visit(SqlMergeSpecification codeObject) { Format(codeObject); }
-        public override void Visit(SqlMergeStatement codeObject) { Format(codeObject); }        
+        public override void Visit(SqlMergeStatement codeObject) { Format(codeObject); }
         public override void Visit(SqlModuleCalledOnNullInputOption codeObject) { Format(codeObject); }
         public override void Visit(SqlModuleEncryptionOption codeObject) { Format(codeObject); }
         public override void Visit(SqlModuleExecuteAsOption codeObject) { Format(codeObject); }

@@ -25,7 +25,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         {
             return
                 type.GetType().GetField(type.ToString())
-                    .GetCustomAttributes(typeof (SchemaScopedSecurableAttribute), true)
+                    .GetCustomAttributes(typeof(SchemaScopedSecurableAttribute), true)
                     .Cast<SchemaScopedSecurableAttribute>()
                     .Any(attr => attr.IsValid(serverVersion, databaseEngineType, databaseEngineEdition));
         }
@@ -41,7 +41,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         {
             SchemaScopedSecurableAttribute attr =
                 type.GetType().GetField(type.ToString())
-                    .GetCustomAttributes(typeof (SchemaScopedSecurableAttribute), true)
+                    .GetCustomAttributes(typeof(SchemaScopedSecurableAttribute), true)
                     .Cast<SchemaScopedSecurableAttribute>()
                     .FirstOrDefault() ?? throw new InvalidOperationException("Type {0} did not define a SchemaScopedSecurableUrn attribute");
             return attr.GetUrn(schema, databaseName);

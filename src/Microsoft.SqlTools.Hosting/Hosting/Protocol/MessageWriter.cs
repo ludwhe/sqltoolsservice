@@ -23,7 +23,7 @@ namespace Microsoft.SqlTools.Hosting.Protocol
         private IMessageSerializer messageSerializer;
         private AsyncLock writeLock = new AsyncLock();
 
-        private JsonSerializer contentSerializer = 
+        private JsonSerializer contentSerializer =
             JsonSerializer.Create(
                 Constants.JsonSerializerSettings);
 
@@ -68,7 +68,7 @@ namespace Microsoft.SqlTools.Hosting.Protocol
                     Constants.JsonSerializerSettings);
 
             byte[] messageBytes = Encoding.UTF8.GetBytes(serializedMessage);
-            byte[] headerBytes = 
+            byte[] headerBytes =
                 Encoding.ASCII.GetBytes(
                     string.Format(
                         Constants.ContentLengthFormatString,
@@ -87,7 +87,7 @@ namespace Microsoft.SqlTools.Hosting.Protocol
         }
 
         public async Task WriteRequest<TParams, TResult>(
-            RequestType<TParams, TResult> requestType, 
+            RequestType<TParams, TResult> requestType,
             TParams requestParams,
             int requestId)
         {
@@ -99,7 +99,7 @@ namespace Microsoft.SqlTools.Hosting.Protocol
 
             await this.WriteMessage(
                 Message.Request(
-                    requestId.ToString(), 
+                    requestId.ToString(),
                     requestType.MethodName,
                     contentObject));
         }
@@ -138,7 +138,7 @@ namespace Microsoft.SqlTools.Hosting.Protocol
             JToken contentObject = JToken.FromObject(error, contentSerializer);
             await this.WriteMessage(Message.ResponseError(requestId, method, contentObject));
         }
-        
+
         #endregion
     }
 }

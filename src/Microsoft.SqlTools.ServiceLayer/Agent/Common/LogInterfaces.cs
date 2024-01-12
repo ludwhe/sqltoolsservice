@@ -9,12 +9,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 {
     public class GridColumnType
     {
-        public const int 
-            Text = 1, 
-            Button = 2, 
+        public const int
+            Text = 1,
+            Button = 2,
             Bitmap = 3,
             Checkbox = 4,
-			Hyperlink = 5,
+            Hyperlink = 5,
             FirstCustomColumnType = 0x400;
     };
 
@@ -24,7 +24,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     /// </summary>
     internal interface ILogSourceTypeFactory
     {
-        ILogSourceType[] SourceTypes {get;}
+        ILogSourceType[] SourceTypes { get; }
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     /// </summary>
     internal interface ILogSourceType
     {
-        string Name { get;}
-        ILogSource[] Sources { get;}
+        string Name { get; }
+        ILogSource[] Sources { get; }
 
         void Refresh();
     }
@@ -45,20 +45,20 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     /// </summary>
     public interface ILogSource
     {
-        string          Name    {get;}
+        string Name { get; }
         /// <summary>
         /// We allow only one initialization for the source. This is because upon aggregation we create a new LogSourceAggregation that
         /// contains the seperate sources and initialize it. So if a source is already initialized from previous collection we shouldn't
         /// initialize it again because we will have duplicate data.
         /// </summary>
-        void            Initialize();
-        ILogSource[]    SubSources {get;}
-        ILogEntry CurrentEntry { get;}
-        string[]        FieldNames {get;}
-        ILogSource      GetRefreshedClone();
-        bool            ReadEntry();
-        void            CloseReader();
-        bool            OrderedByDateDescending {get;}
+        void Initialize();
+        ILogSource[] SubSources { get; }
+        ILogEntry CurrentEntry { get; }
+        string[] FieldNames { get; }
+        ILogSource GetRefreshedClone();
+        bool ReadEntry();
+        void CloseReader();
+        bool OrderedByDateDescending { get; }
     }
 
     /// <summary>
@@ -67,9 +67,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     /// </summary>
     internal interface ILogAggregator
     {
-        ILogSource                  PrepareAggregation  (string outputLogSourceName, ILogSource[] sources, ILogConstraints filter);
-        void                        CancelAsyncWork(); //CancelAsyncWork stops the current aggregation and at the end closes all the open readers for the sources
-        void                        StopAsyncWork(); // StopAsyncWork does the same thing as CancelAsyncWork but instead it leaves the readers open because this is used in incremental aggregation so we will resume the collection by adding the new source selected
+        ILogSource PrepareAggregation(string outputLogSourceName, ILogSource[] sources, ILogConstraints filter);
+        void CancelAsyncWork(); //CancelAsyncWork stops the current aggregation and at the end closes all the open readers for the sources
+        void StopAsyncWork(); // StopAsyncWork does the same thing as CancelAsyncWork but instead it leaves the readers open because this is used in incremental aggregation so we will resume the collection by adding the new source selected
 
     }
 
@@ -78,8 +78,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     /// </summary>
     internal interface ILogConstraints
     {
-        bool                        MatchLogEntry(ILogEntry entry);
-        bool                        IsEntryWithinFilterTimeWindow(ILogEntry entry);
+        bool MatchLogEntry(ILogEntry entry);
+        bool IsEntryWithinFilterTimeWindow(ILogEntry entry);
     }
 
     internal interface ITypedColumns

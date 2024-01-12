@@ -5,19 +5,19 @@
 
 #nullable disable
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Microsoft.Data.SqlClient;
+using System.Data;
 using System.Globalization;
 using System.Linq;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Management;
-using AzureEdition = Microsoft.SqlTools.ServiceLayer.Admin.AzureSqlDbHelper.AzureEdition;
-using System;
-using System.Data;
-using Microsoft.SqlTools.Utility;
 using Microsoft.SqlTools.SqlCore.Utility;
+using Microsoft.SqlTools.Utility;
+using AzureEdition = Microsoft.SqlTools.ServiceLayer.Admin.AzureSqlDbHelper.AzureEdition;
 
 namespace Microsoft.SqlTools.ServiceLayer.Admin
 {
@@ -45,7 +45,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
         }
 
         #region Properties
-       
+
         public string MaxSize
         {
             get
@@ -127,7 +127,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                         return;
                     }
 
-                    this.currentState.azureEdition = edition;                        
+                    this.currentState.azureEdition = edition;
                     this.EditionToCreate = MapAzureEditionToDbEngineEdition(edition);
                     this.CurrentServiceLevelObjective = AzureSqlDbHelper.GetDefaultServiceObjective(edition);
                     this.BackupStorageRedundancy = AzureSqlDbHelper.GetDefaultBackupStorageRedundancy(edition);
@@ -180,7 +180,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
         {
             get { return this.ServerVersion.Major > 11 && this.AzureEdition != AzureEdition.DataWarehouse; }
         }
-        
+
         public string BackupStorageRedundancy
         {
             get

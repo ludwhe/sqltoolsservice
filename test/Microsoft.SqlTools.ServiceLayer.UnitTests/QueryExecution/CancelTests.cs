@@ -37,7 +37,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             queryService.ActiveQueries[Constants.OwnerUri].HasExecuted = false;    // Fake that it hasn't completed execution
 
             // ... And then I request to cancel the query
-            var cancelParams = new QueryCancelParams {OwnerUri = Constants.OwnerUri};
+            var cancelParams = new QueryCancelParams { OwnerUri = Constants.OwnerUri };
             var cancelRequest = new EventFlowValidator<QueryCancelResult>()
                 .AddResultValidation(r =>
                 {
@@ -59,7 +59,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // ... I request a query (doesn't matter what kind) and wait for execution
             var workspaceService = Common.GetPrimedWorkspaceService(Constants.StandardQuery);
             var queryService = Common.GetPrimedExecutionService(null, true, false, false, workspaceService);
-            var executeParams = new ExecuteDocumentSelectionParams {QuerySelection = Common.WholeDocument, OwnerUri = Constants.OwnerUri};
+            var executeParams = new ExecuteDocumentSelectionParams { QuerySelection = Common.WholeDocument, OwnerUri = Constants.OwnerUri };
             var executeRequest = RequestContextMocks.Create<ExecuteRequestResult>(null);
 
             await queryService.HandleExecuteRequest(executeParams, executeRequest.Object);
@@ -67,7 +67,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             await queryService.ActiveQueries[Constants.OwnerUri].ExecutionTask;
 
             // ... And then I request to cancel the query
-            var cancelParams = new QueryCancelParams {OwnerUri = Constants.OwnerUri};
+            var cancelParams = new QueryCancelParams { OwnerUri = Constants.OwnerUri };
             var cancelRequest = new EventFlowValidator<QueryCancelResult>()
                 .AddResultValidation(r =>
                 {
@@ -120,7 +120,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             Query query = new Query(Constants.StandardQuery, ci, querySettings, MemoryFileSystem.GetFileStreamFactory());
 
             string errorMessage = null;
-            Query.QueryAsyncErrorEventHandler failureCallback = (q, e) => {
+            Query.QueryAsyncErrorEventHandler failureCallback = (q, e) =>
+            {
                 errorMessage = "Error Occured";
                 return Task.CompletedTask;
             };

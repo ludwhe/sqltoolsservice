@@ -4,7 +4,7 @@
 //
 
 namespace Microsoft.Kusto.ServiceLayer.Connection.Contracts
-{   
+{
     /// <summary>
     /// Extension methods to ConnectionSummary
     /// </summary>

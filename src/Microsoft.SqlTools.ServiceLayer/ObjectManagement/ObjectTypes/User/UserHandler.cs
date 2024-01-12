@@ -180,8 +180,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             string[] logins = DatabaseUtils.LoadSqlLogins(dataContainer.ServerConnection);
 
             // If we couldn't load logins on current connection and this is a SQL DB connection 
-			// not to master then try to connect to master.  The "sys.sql_logins" DMV is not visible to user databases.  
-            if (logins.Length == 0 && isSqlAzure 
+            // not to master then try to connect to master.  The "sys.sql_logins" DMV is not visible to user databases.  
+            if (logins.Length == 0 && isSqlAzure
                 && string.Compare(parameters.Database, "master", true) != 0)
             {
                 ServerConnection masterServerConnection = null;

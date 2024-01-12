@@ -46,7 +46,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// </summary>
         /// <param name="context"></param>
         public ManageSchedulesControl(CDataContainer context, string jobName)
-        {        
+        {
             m_jobName = jobName;
             DataContainer = context;
         }
@@ -56,8 +56,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// </summary>
         protected override void Dispose(bool disposing)
         {
-            if(disposing)
-            {               
+            if (disposing)
+            {
             }
             base.Dispose(disposing);
         }
@@ -67,8 +67,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// Get the list of any schedules that should not be shown in the UI.
         /// </summary>
         private void InitializeExcludedSchedules()
-        {        
-            if(DataContainer == null)
+        {
+            if (DataContainer == null)
             {
                 throw new InvalidOperationException();
             }
@@ -92,15 +92,15 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         {
             List<int> idList = new List<int>();
 
-            if(list != null && list.Length > 0)
+            if (list != null && list.Length > 0)
             {
 
                 string[] splidId = list.Split(',');
 
                 int id;
-                for(int i = 0; i < splidId.Length; ++i)
+                for (int i = 0; i < splidId.Length; ++i)
                 {
-                    if(int.TryParse(splidId[i].Trim(), out id))
+                    if (int.TryParse(splidId[i].Trim(), out id))
                     {
                         idList.Add(id);
                     }
@@ -108,7 +108,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 idList.Sort();
             }
             return idList;
-        }        
+        }
 
         /// <summary>
         /// applies changes to server
@@ -199,7 +199,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             SendDataToServer();
         }
 
-       
+
 
         #region Helpers - Get Shared Schedule Description, some extra Initialization
         private string GetScheduleDescription(JobSchedule schedule)

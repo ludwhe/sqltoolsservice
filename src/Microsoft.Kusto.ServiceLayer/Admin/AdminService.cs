@@ -7,10 +7,10 @@
 
 using System;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.Kusto.ServiceLayer.Admin.Contracts;
 using Microsoft.Kusto.ServiceLayer.Connection;
 using Microsoft.Kusto.ServiceLayer.DataSource;
+using Microsoft.SqlTools.Hosting.Protocol;
 
 namespace Microsoft.Kusto.ServiceLayer.Admin
 {
@@ -52,9 +52,9 @@ namespace Microsoft.Kusto.ServiceLayer.Admin
                         info = GetDatabaseInfo(connInfo);
                     }
 
-                    return new GetDatabaseInfoResponse {DatabaseInfo = info};
+                    return new GetDatabaseInfoResponse { DatabaseInfo = info };
                 });
-                
+
                 await requestContext.SendResult(infoResponse);
             }
             catch (Exception ex)
@@ -74,7 +74,7 @@ namespace Microsoft.Kusto.ServiceLayer.Admin
             {
                 return null;
             }
-            
+
             connInfo.TryGetConnection(ConnectionType.Default, out ReliableDataSourceConnection connection);
             IDataSource dataSource = connection.GetUnderlyingConnection();
             return dataSource.GetDatabaseInfo(connInfo.ConnectionDetails.ServerName, connInfo.ConnectionDetails.DatabaseName);

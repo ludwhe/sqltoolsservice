@@ -15,7 +15,7 @@ namespace Microsoft.SqlTools.ServiceLayer.AzureBlob.Contracts
          * and to the list of blobs in the container.
          */
         public const string BLOB_CONTAINER = "c";
-        
+
         /*
          * Specify "b" if the shared resource is a blob. 
          * This grants access to the content and metadata of the blob.

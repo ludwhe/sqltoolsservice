@@ -6,8 +6,8 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Kusto.ServiceLayer.DataSource.Metadata;
 
 namespace Microsoft.Kusto.ServiceLayer.DataSource
@@ -25,29 +25,29 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
         public static string EscapeName(string name, bool alwaysEscape = false)
         {
             if (name.StartsWith("[@") || name == "*") // Field already escaped. No escaping required for '*' operand
-            { 
+            {
                 return name;
-            } 
+            }
 
             string result = name;
-            string [] kustoKeywordList = {"and", "anomalychart", "areachart", "asc", "barchart", "between", "bool", "boolean", "by",
+            string[] kustoKeywordList = {"and", "anomalychart", "areachart", "asc", "barchart", "between", "bool", "boolean", "by",
                 "columnchart", "consume", "contains", "containscs", "count", "date", "datetime", "default", "desc", "distinct",
                 "double", "dynamic", "endswith", "evaluate", "extend", "false", "filter", "find", "first", "flags", "float",
                 "getschema", "has", "hasprefix", "hassuffix", "in", "int", "join", "journal", "kind", "ladderchart", "last",
                 "like", "limit", "linechart", "long", "materialize", "mvexpand", "notcontains", "notlike", "of", "or", "order",
                 "parse", "piechart", "pivotchart", "print", "project", "queries", "real", "regex", "sample", "scatterchart",
                 "search", "set", "sort", "stacked", "stacked100", "stackedareachart", "startswith", "string", "summarize",
-                "take", "time", "timechart", "timeline", "timepivot", "timespan", "to", "top", "toscalar", "true", "union", 
+                "take", "time", "timechart", "timeline", "timepivot", "timespan", "to", "top", "toscalar", "true", "union",
                 "unstacked", "viewers", "where", "withsource"}; // add more keywords here
 
             var escapeName = GetNameRegex().IsMatch(name) || kustoKeywordList.Any(name.Contains) || alwaysEscape;
-            if (escapeName) 
+            if (escapeName)
             {
-                if (name.IndexOf('"') > -1) 
+                if (name.IndexOf('"') > -1)
                 {
                     result = "[@'" + name + "']";
                 }
-                else 
+                else
                 {
                     result = "[@\"" + name + "\"]";
                 }
@@ -56,17 +56,17 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
             return result;
         }
 
-        
-        public static bool  IsClusterLevelQuery(string query) 
+
+        public static bool IsClusterLevelQuery(string query)
         {
-            string [] clusterLevelQueryPrefixes = {
+            string[] clusterLevelQueryPrefixes = {
                 ".show databases",
                 ".show schema"
             };
 
             return clusterLevelQueryPrefixes.Any(query.StartsWith);
         }
-        
+
         /// <summary>
         /// Adds an object of type DataSourceObjectMetadata to a dictionary<string, Dictionary<string, T>>. If the key exists then the item is added
         /// to the list. If not then the key is created and then added.
@@ -89,7 +89,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
             }
             else
             {
-                dictionary[key] = new Dictionary<string, T> {{metadata.Name, metadata}};
+                dictionary[key] = new Dictionary<string, T> { { metadata.Name, metadata } };
             }
         }
 
@@ -107,10 +107,10 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
             }
             else
             {
-                dictionary[key] = new SortedDictionary<string, DataSourceObjectMetadata> {{node.PrettyName, node}};
+                dictionary[key] = new SortedDictionary<string, DataSourceObjectMetadata> { { node.PrettyName, node } };
             }
         }
-        
+
         /// <summary>
         /// Add a range to a dictionary of ConcurrentDictionary. Adds range to existing IEnumerable within dictionary
         /// at the same key.
@@ -126,14 +126,14 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
             {
                 metadatas.AddRange(value);
             }
-            
+
             dictionary[key] = metadatas.OrderBy(x => x.PrettyName, StringComparer.OrdinalIgnoreCase).ToList();
         }
 
         public static string ParseDatabaseName(string databaseName)
         {
             var regex = GetDatabaseNameRegex();
-            
+
             return regex.IsMatch(databaseName)
                 ? regex.Match(databaseName).Value
                 : databaseName;

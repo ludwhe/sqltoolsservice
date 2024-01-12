@@ -10,11 +10,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 using Microsoft.SqlTools.ServiceLayer.LanguageServices;
 using Microsoft.SqlTools.ServiceLayer.Workspace.Contracts;
-using Microsoft.Data.SqlClient;
 using Moq;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
@@ -282,7 +282,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         public override void Open()
         {
             // No Op, unless credentials are bad
-            if(ConnectionString.Contains("invalidUsername"))
+            if (ConnectionString.Contains("invalidUsername"))
             {
                 throw new Exception("Invalid credentials provided");
             }

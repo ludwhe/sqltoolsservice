@@ -11,7 +11,7 @@ using Microsoft.SqlServer.Management.SqlParser.SqlCodeDom;
 
 namespace Microsoft.SqlTools.ServiceLayer.Formatter
 {
-    
+
     [Export(typeof(ASTNodeFormatterFactory))]
     internal class SqlInsertStatementFormatterFactory : ASTNodeFormatterFactoryT<SqlInsertStatement>
     {

@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler.Contracts
         public ProfilerSessionTemplate Template { get; set; }
     }
 
-    public class CreateXEventSessionResult{}
+    public class CreateXEventSessionResult { }
 
     /// <summary>
     /// Start Profile request type

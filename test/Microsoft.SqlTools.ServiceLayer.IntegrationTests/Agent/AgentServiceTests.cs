@@ -6,12 +6,7 @@
 #nullable disable
 
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.Agent;
-using Microsoft.SqlTools.ServiceLayer.Agent.Contracts;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.SqlTools.ServiceLayer.Utility;
 using Moq;
 using NUnit.Framework;
 
@@ -47,7 +42,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Agent
         /// </summary>
         [Test]
         [Ignore("Skipping test since it doesn't work - there's no jobs so it just immediately throws.")]
-        public async Task TestHandleJobHistoryRequests() 
+        public async Task TestHandleJobHistoryRequests()
         {
             using (SelfCleaningTempFile queryTempFile = new SelfCleaningTempFile())
             {
@@ -64,7 +59,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Agent
                 AgentService service = new AgentService();
                 await service.HandleJobHistoryRequest(requestParams, requestContext.Object);
                 requestContext.VerifyAll();
-            }       
+            }
         }
 
         [Test]
@@ -85,7 +80,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Agent
                 AgentService service = new AgentService();
                 await service.HandleJobActionRequest(requestParams, requestContext.Object);
                 requestContext.VerifyAll();
-            }     
+            }
         }
     }
 }

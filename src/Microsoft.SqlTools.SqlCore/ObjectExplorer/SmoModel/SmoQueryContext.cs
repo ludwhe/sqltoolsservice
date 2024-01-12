@@ -37,7 +37,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
             ServiceProvider = serviceProvider;
             this.smoWrapper = serverManager ?? new SmoWrapper();
             this.GroupBySchemaFlag = groupBySchemaFlag ?? new Func<bool>(() => false);
-            if(token != null && !string.IsNullOrEmpty(token.Token))
+            if (token != null && !string.IsNullOrEmpty(token.Token))
             {
                 UpdateAccessToken(token.Token);
             }
@@ -94,7 +94,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
         /// </summary>
         /// <value></value>
         public Func<bool> GroupBySchemaFlag { get; set; }
-        
+
         /// <summary>
         /// Returns group by schema flag value.
         /// </summary>

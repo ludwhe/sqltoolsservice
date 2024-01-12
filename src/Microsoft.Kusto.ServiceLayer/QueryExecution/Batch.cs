@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +17,6 @@ using Microsoft.Kusto.ServiceLayer.Connection;
 using Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts;
 using Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage;
 using Microsoft.SqlTools.Utility;
-using System.Globalization;
 
 namespace Microsoft.Kusto.ServiceLayer.QueryExecution
 {
@@ -242,7 +241,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
         #endregion
 
         #region Public Methods
-        
+
         /// <summary>
         /// Executes this batch and captures any server messages that are returned.
         /// </summary>
@@ -307,7 +306,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
                 {
                     await ExecuteOnce(conn, cancellationToken);
                 }
-                
+
                 catch (DbException dbe)
                 {
                     HasError = true;
@@ -605,7 +604,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
         /// </summary>
         private SpecialAction ProcessResultSetSpecialActions()
         {
-            foreach (ResultSet resultSet in resultSets) 
+            foreach (ResultSet resultSet in resultSets)
             {
                 specialAction.CombineSpecialAction(resultSet.Summary.SpecialAction);
             }

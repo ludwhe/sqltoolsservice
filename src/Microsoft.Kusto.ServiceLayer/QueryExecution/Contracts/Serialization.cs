@@ -17,7 +17,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
         /// </summary>
         public string Name { get; set; }
 
-        public string DataTypeName { get; set; } 
+        public string DataTypeName { get; set; }
 
         public ColumnInfo()
         {
@@ -32,7 +32,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
 
     public interface ISerializationParams
     {
-        
+
         /// <summary>
         /// Path to file that the serialized results will be stored in
         /// </summary>
@@ -103,9 +103,9 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
         /// <summary>
         /// Constructor
         /// </summary>
-        public SerializeDataStartRequestParams(string saveFormat, 
-            string savePath, 
-            DbCellValue[][] rows, 
+        public SerializeDataStartRequestParams(string saveFormat,
+            string savePath,
+            DbCellValue[][] rows,
             bool isLast)
         {
             this.SaveFormat = saveFormat;

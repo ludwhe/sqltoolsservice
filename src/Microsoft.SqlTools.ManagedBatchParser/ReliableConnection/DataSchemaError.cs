@@ -34,7 +34,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             : this(message, innerException, string.Empty, 0, severity)
         {
         }
-        
+
         public DataSchemaError(string message, string document, ErrorSeverity severity)
             : this(message, document, 0, 0, DefaultPrefix, UndefinedErrorCode, severity)
         {
@@ -46,12 +46,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         }
 
         public DataSchemaError(string message, string document, int line, int column, ErrorSeverity severity)
-             : this(message, document,line, column, DefaultPrefix, UndefinedErrorCode, severity) 
+             : this(message, document, line, column, DefaultPrefix, UndefinedErrorCode, severity)
         {
         }
 
         public DataSchemaError(DataSchemaError source, ErrorSeverity severity)
-            : this(source.Message, source.Document, source.Line, source.Column, source.Prefix, source.ErrorCode, severity) 
+            : this(source.Message, source.Document, source.Line, source.Column, source.Prefix, source.ErrorCode, severity)
         {
         }
 

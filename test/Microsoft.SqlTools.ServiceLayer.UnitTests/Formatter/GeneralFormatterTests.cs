@@ -21,24 +21,25 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         [Test]
         public void GoNewLineShouldBePreserved()
         {
-            LoadAndFormatAndCompare("GoNewLineShouldBePreserved", 
+            LoadAndFormatAndCompare("GoNewLineShouldBePreserved",
                 GetInputFile("Go.sql"),
-                GetBaselineFile("Go_NewlineHandling.sql"), 
-                new FormatOptions() { 
+                GetBaselineFile("Go_NewlineHandling.sql"),
+                new FormatOptions()
+                {
                     KeywordCasing = CasingOptions.Lowercase,
                     DatatypeCasing = CasingOptions.Uppercase,
                     PlaceEachReferenceOnNewLineInQueryStatements = true
-                }, 
+                },
                 verifyFormat: true);
         }
 
         [Test]
         public void KeywordCaseConversionUppercase()
         {
-            LoadAndFormatAndCompare("KeywordCaseConversion", 
+            LoadAndFormatAndCompare("KeywordCaseConversion",
                 GetInputFile("KeywordCaseConversion.sql"),
-                GetBaselineFile("KeywordCaseConversion_Uppercase.sql"), 
-                new FormatOptions() { KeywordCasing = CasingOptions.Uppercase }, 
+                GetBaselineFile("KeywordCaseConversion_Uppercase.sql"),
+                new FormatOptions() { KeywordCasing = CasingOptions.Uppercase },
                 verifyFormat: true);
         }
 

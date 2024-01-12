@@ -24,8 +24,8 @@ namespace Microsoft.SqlTools.Credentials
             {
                 internal IntPtr Name;           // char*
                 internal IntPtr Password;       // char*
-                internal uint  UserId;
-                internal uint  GroupId;
+                internal uint UserId;
+                internal uint GroupId;
                 internal IntPtr UserInfo;       // char*
                 internal IntPtr HomeDirectory;  // char*
                 internal IntPtr Shell;          // char*

@@ -25,7 +25,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // Then: The default values should be as expected
             Assert.AreEqual("GO", sqlToolsSettings.QueryExecutionSettings.BatchSeparator);
             Assert.AreEqual(ushort.MaxValue, sqlToolsSettings.QueryExecutionSettings.MaxCharsToStore);
-            Assert.AreEqual(2*1024*1024, sqlToolsSettings.QueryExecutionSettings.MaxXmlCharsToStore);
+            Assert.AreEqual(2 * 1024 * 1024, sqlToolsSettings.QueryExecutionSettings.MaxXmlCharsToStore);
             Assert.False(sqlToolsSettings.QueryExecutionSettings.ExecutionPlanOptions.IncludeActualExecutionPlanXml);
             Assert.False(sqlToolsSettings.QueryExecutionSettings.ExecutionPlanOptions.IncludeEstimatedExecutionPlanXml);
             Assert.True(sqlToolsSettings.QueryExecutionSettings.DisplayBitAsNumber);
@@ -43,7 +43,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // NOTE: Only testing displayBitAsNumber for now because it is the only one piped through
             string settingsJson = @"{"
                                         + @"""params"": {"
-                                        + @""""+settingsPropertyName+@""": {"
+                                        + @"""" + settingsPropertyName + @""": {"
                                         + @"""query"": {"
                                         + @"displayBitAsNumber: false"
                                         + @"}"
@@ -104,7 +104,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
                         },
                         BatchSeparator = "YO"
                     }
-                }    
+                }
             };
             qes.UpdateSettings(settings, null, new EventContext());
 

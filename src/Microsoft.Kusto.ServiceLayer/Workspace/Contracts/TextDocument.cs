@@ -19,7 +19,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace.Contracts
         /// text document.
         /// </summary>
         public string Uri { get; set; }
-    }   
+    }
 
     /// <summary>
     /// Defines a position in a text document.
@@ -105,7 +105,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace.Contracts
         /// <summary>
         /// Gets or sets the changed document.
         /// </summary>
-        public VersionedTextDocumentIdentifier TextDocument { get; set; } 
+        public VersionedTextDocumentIdentifier TextDocument { get; set; }
 
         /// <summary>
         /// Gets or sets the list of changes to the document content.
@@ -117,7 +117,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace.Contracts
     /// Define a specific version of a text document
     /// </summary>
     public class VersionedTextDocumentIdentifier : TextDocumentIdentifier
-    {        
+    {
         /// <summary>
         /// Gets or sets the Version of the changed text document 
         /// </summary>
@@ -165,11 +165,11 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace.Contracts
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (obj == null ||  (obj as Position == null))
+            if (obj == null || (obj as Position == null))
             {
                 return false;
             }
-            Position p = (Position) obj;
+            Position p = (Position)obj;
             bool result = (Line == p.Line) && (Character == p.Character);
             return result;
         }
@@ -208,13 +208,13 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace.Contracts
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-           
+
 
             if (obj == null || !(obj is Range))
             {
                 return false;
             }
-            Range range = (Range) obj;
+            Range range = (Range)obj;
             bool sameStart = range.Start.Equals(Start);
             bool sameEnd = range.End.Equals(End);
             return (sameStart && sameEnd);

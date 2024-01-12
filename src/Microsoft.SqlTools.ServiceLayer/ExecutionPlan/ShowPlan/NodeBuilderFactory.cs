@@ -15,7 +15,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
     /// Class that creates concrete INodeBuilder instances.
     /// </summary>
     public static class NodeBuilderFactory
-	{
+    {
         /// <summary>
         /// Instantiates a concrete node builder based on dataSource type
         /// </summary>

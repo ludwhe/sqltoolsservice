@@ -31,7 +31,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts
         public string ErrorMessage { get; set; }
     }
 
-   
+
 
     public class RestoreRequest
     {
@@ -40,5 +40,5 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts
                 RequestType<RestoreParams, RestoreResponse>.Create("restore/restore");
     }
 
-   
+
 }

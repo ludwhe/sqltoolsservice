@@ -16,7 +16,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
     /// </summary>
     public class FirewallErrorParserTest
     {
-        private const int SqlAzureFirewallBlockedErrorNumber = 40615; 
+        private const int SqlAzureFirewallBlockedErrorNumber = 40615;
         private const int SqlAzureLoginFailedErrorNumber = 18456;
         private string _errorMessage = "error Message with 1.2.3.4 as IP address";
         private FirewallErrorParser _firewallErrorParser = new FirewallErrorParser();

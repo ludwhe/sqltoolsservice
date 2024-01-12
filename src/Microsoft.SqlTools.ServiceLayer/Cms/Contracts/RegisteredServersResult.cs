@@ -4,8 +4,8 @@
 //
 
 #nullable disable
-using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 using System.Collections.Generic;
+using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.Cms.Contracts
 {

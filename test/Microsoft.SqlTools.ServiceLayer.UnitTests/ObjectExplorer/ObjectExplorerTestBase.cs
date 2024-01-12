@@ -16,7 +16,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ObjectExplorer
     // Base class providing common test functionality for OE tests
     public abstract class ObjectExplorerTestBase : ServiceTestBase
     {
-      
+
         protected override RegisteredServiceProvider CreateServiceProviderWithMinServices()
         {
             return CreateProvider()

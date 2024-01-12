@@ -10,11 +10,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Xml;
-using System.Text;
-using System.Xml.Serialization;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 {
@@ -399,7 +399,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                 bool memoryOptimzed = false;
                 XmlNode scan = rootNode.SelectSingleNode("descendant::shp:IndexScan", nsMgr);
                 scan ??= rootNode.SelectSingleNode("descendant::shp:TableScan", nsMgr);
-                
+
                 if (scan != null && scan.Attributes["Storage"] != null)
                 {
                     if (0 == string.Compare(scan.Attributes["Storage"].Value, "MemoryOptimized", StringComparison.Ordinal))

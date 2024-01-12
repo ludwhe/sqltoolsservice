@@ -7,10 +7,8 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using System.Threading;
-using Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode;
-using Microsoft.SqlTools.Utility;
+using Microsoft.Data.SqlClient;
 
 namespace Microsoft.SqlTools.ManagedBatchParser.IntegrationTests.TSQLExecutionEngine
 {
@@ -344,7 +342,7 @@ namespace Microsoft.SqlTools.ManagedBatchParser.IntegrationTests.TSQLExecutionEn
             Console.WriteLine("ON_BATCH_PARSER_EXECUTION_ERROR : {0} found... at line {1}: {2}", e.MessageType.ToString(), e.Line.ToString(), e.Message);
             Console.WriteLine("\t Error Description: " + e.Description);
             parserExecutionError = true;
-            errorMessage.Add(e.Description);            
+            errorMessage.Add(e.Description);
         }
 
         /// <summary>

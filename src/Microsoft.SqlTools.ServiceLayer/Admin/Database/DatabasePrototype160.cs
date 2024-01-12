@@ -3,9 +3,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
+using System.ComponentModel;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Management;
-using System.ComponentModel;
 
 namespace Microsoft.SqlTools.ServiceLayer.Admin
 {
@@ -26,7 +26,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
         DisplayNameAttribute("Property_IsLedgerDatabase")]
         public bool IsLedger
         {
-            get {
+            get
+            {
                 return this.currentState.isLedger;
             }
             set

@@ -21,13 +21,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 {
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlDatabaseQuerier: SmoQuerier
+    internal partial class SqlDatabaseQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Database) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Database");
             Server parentServer = context.Parent as Server;
@@ -48,13 +48,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlLinkedServerLoginQuerier: SmoQuerier
+    internal partial class SqlLinkedServerLoginQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(LinkedServer) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query LinkedServer");
             Server parentServer = context.Parent as Server;
@@ -75,13 +75,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlLoginQuerier: SmoQuerier
+    internal partial class SqlLoginQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Login) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Login");
             Server parentServer = context.Parent as Server;
@@ -102,13 +102,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlServerRoleQuerier: SmoQuerier
+    internal partial class SqlServerRoleQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ServerRole) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ServerRole");
             Server parentServer = context.Parent as Server;
@@ -129,13 +129,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlCredentialQuerier: SmoQuerier
+    internal partial class SqlCredentialQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Credential) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Credential");
             Server parentServer = context.Parent as Server;
@@ -156,13 +156,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlCryptographicProviderQuerier: SmoQuerier
+    internal partial class SqlCryptographicProviderQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(CryptographicProvider) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query CryptographicProvider");
             Server parentServer = context.Parent as Server;
@@ -183,13 +183,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlServerAuditQuerier: SmoQuerier
+    internal partial class SqlServerAuditQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Audit) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Audit");
             Server parentServer = context.Parent as Server;
@@ -210,13 +210,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlServerAuditSpecificationQuerier: SmoQuerier
+    internal partial class SqlServerAuditSpecificationQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ServerAuditSpecification) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ServerAuditSpecification");
             Server parentServer = context.Parent as Server;
@@ -237,13 +237,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlEndpointQuerier: SmoQuerier
+    internal partial class SqlEndpointQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Endpoint) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Endpoint");
             Server parentServer = context.Parent as Server;
@@ -264,13 +264,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlLinkedServerQuerier: SmoQuerier
+    internal partial class SqlLinkedServerQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(LinkedServer) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query LinkedServer");
             Server parentServer = context.Parent as Server;
@@ -291,7 +291,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlServerDdlTriggerQuerier: SmoQuerier
+    internal partial class SqlServerDdlTriggerQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ServerDdlTrigger) };
 
@@ -300,7 +300,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ServerDdlTrigger");
             Server parentServer = context.Parent as Server;
@@ -321,13 +321,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlErrorMessageQuerier: SmoQuerier
+    internal partial class SqlErrorMessageQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(UserDefinedMessage) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query UserDefinedMessage");
             Server parentServer = context.Parent as Server;
@@ -348,13 +348,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlTableQuerier: SmoQuerier
+    internal partial class SqlTableQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Table) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Table");
             Database parentDatabase = context.Parent as Database;
@@ -380,7 +380,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.Tables;
@@ -397,13 +397,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlHistoryTableQuerier: SmoQuerier
+    internal partial class SqlHistoryTableQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Table) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Table");
             Table parentTable = context.Parent as Table;
@@ -424,13 +424,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlViewQuerier: SmoQuerier
+    internal partial class SqlViewQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(View) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query View");
             Database parentDatabase = context.Parent as Database;
@@ -456,7 +456,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.Views;
@@ -473,7 +473,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlSynonymQuerier: SmoQuerier
+    internal partial class SqlSynonymQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Synonym) };
 
@@ -482,7 +482,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Synonym");
             Database parentDatabase = context.Parent as Database;
@@ -508,7 +508,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.Synonyms;
@@ -525,13 +525,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlColumnQuerier: SmoQuerier
+    internal partial class SqlColumnQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Column) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Column");
             TableViewTableTypeBase parentTableViewTableTypeBase = context.Parent as TableViewTableTypeBase;
@@ -552,13 +552,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlIndexQuerier: SmoQuerier
+    internal partial class SqlIndexQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Index) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Index");
             TableViewTableTypeBase parentTableViewTableTypeBase = context.Parent as TableViewTableTypeBase;
@@ -579,13 +579,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlCheckQuerier: SmoQuerier
+    internal partial class SqlCheckQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Check) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Check");
             Table parentTable = context.Parent as Table;
@@ -606,13 +606,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlForeignKeyConstraintQuerier: SmoQuerier
+    internal partial class SqlForeignKeyConstraintQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ForeignKey) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ForeignKey");
             Table parentTable = context.Parent as Table;
@@ -633,13 +633,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlDefaultConstraintQuerier: SmoQuerier
+    internal partial class SqlDefaultConstraintQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(DefaultConstraint) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query DefaultConstraint");
             Table parentTable = context.Parent as Table;
@@ -651,7 +651,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                 {
                     retValue.ClearAndInitialize(filter, extraProperties);
                     List<DefaultConstraint> subFieldResult = new List<DefaultConstraint>();
-                    foreach(Column field in retValue)
+                    foreach (Column field in retValue)
                     {
                         DefaultConstraint subField = field.DefaultConstraint;
                         if (subField != null)
@@ -673,7 +673,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                 {
                     retValue.ClearAndInitialize(filter, extraProperties);
                     List<DefaultConstraint> subFieldResult = new List<DefaultConstraint>();
-                    foreach(Column field in retValue)
+                    foreach (Column field in retValue)
                     {
                         DefaultConstraint subField = field.DefaultConstraint;
                         if (subField != null)
@@ -691,7 +691,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlDmlTriggerQuerier: SmoQuerier
+    internal partial class SqlDmlTriggerQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Trigger) };
 
@@ -700,7 +700,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Trigger");
             Table parentTable = context.Parent as Table;
@@ -734,7 +734,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlFullTextIndexQuerier: SmoQuerier
+    internal partial class SqlFullTextIndexQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(FullTextIndex) };
 
@@ -743,7 +743,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query FullTextIndex");
             Table parentTable = context.Parent as Table;
@@ -765,13 +765,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlStatisticQuerier: SmoQuerier
+    internal partial class SqlStatisticQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Statistic) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Statistic");
             TableViewBase parentTableViewBase = context.Parent as TableViewBase;
@@ -792,7 +792,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlDatabaseDdlTriggerQuerier: SmoQuerier
+    internal partial class SqlDatabaseDdlTriggerQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(DatabaseDdlTrigger) };
 
@@ -801,7 +801,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query DatabaseDdlTrigger");
             Database parentDatabase = context.Parent as Database;
@@ -822,13 +822,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlAssemblyQuerier: SmoQuerier
+    internal partial class SqlAssemblyQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(SqlAssembly) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query SqlAssembly");
             Database parentDatabase = context.Parent as Database;
@@ -849,13 +849,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlSequenceQuerier: SmoQuerier
+    internal partial class SqlSequenceQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Sequence) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Sequence");
             Database parentDatabase = context.Parent as Database;
@@ -881,7 +881,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.Sequences;
@@ -898,7 +898,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlUserDefinedDataTypeQuerier: SmoQuerier
+    internal partial class SqlUserDefinedDataTypeQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(UserDefinedDataType) };
 
@@ -907,7 +907,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query UserDefinedDataType");
             Database parentDatabase = context.Parent as Database;
@@ -933,7 +933,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.UserDefinedDataTypes;
@@ -950,13 +950,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlUserDefinedTableTypeQuerier: SmoQuerier
+    internal partial class SqlUserDefinedTableTypeQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(UserDefinedTableType) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query UserDefinedTableType");
             Database parentDatabase = context.Parent as Database;
@@ -982,7 +982,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.UserDefinedTableTypes;
@@ -999,13 +999,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlXmlSchemaCollectionQuerier: SmoQuerier
+    internal partial class SqlXmlSchemaCollectionQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(XmlSchemaCollection) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query XmlSchemaCollection");
             Database parentDatabase = context.Parent as Database;
@@ -1031,7 +1031,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.XmlSchemaCollections;
@@ -1048,13 +1048,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlUserDefinedTypeQuerier: SmoQuerier
+    internal partial class SqlUserDefinedTypeQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(UserDefinedType) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query UserDefinedType");
             Database parentDatabase = context.Parent as Database;
@@ -1080,7 +1080,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.UserDefinedTypes;
@@ -1097,13 +1097,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlUserDefinedFunctionQuerier: SmoQuerier
+    internal partial class SqlUserDefinedFunctionQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(UserDefinedFunction) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query UserDefinedFunction");
             Database parentDatabase = context.Parent as Database;
@@ -1129,7 +1129,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.UserDefinedFunctions;
@@ -1146,13 +1146,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlUserDefinedAggregateQuerier: SmoQuerier
+    internal partial class SqlUserDefinedAggregateQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(UserDefinedAggregate) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query UserDefinedAggregate");
             Database parentDatabase = context.Parent as Database;
@@ -1178,7 +1178,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.UserDefinedAggregates;
@@ -1195,13 +1195,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlFileGroupQuerier: SmoQuerier
+    internal partial class SqlFileGroupQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(FileGroup) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query FileGroup");
             Database parentDatabase = context.Parent as Database;
@@ -1222,13 +1222,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlFileQuerier: SmoQuerier
+    internal partial class SqlFileQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(DataFile) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query DataFile");
             FileGroup parentFileGroup = context.Parent as FileGroup;
@@ -1249,13 +1249,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlFullTextCatalogQuerier: SmoQuerier
+    internal partial class SqlFullTextCatalogQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(FullTextCatalog) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query FullTextCatalog");
             Database parentDatabase = context.Parent as Database;
@@ -1276,13 +1276,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlFullTextStopListQuerier: SmoQuerier
+    internal partial class SqlFullTextStopListQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(FullTextStopList) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query FullTextStopList");
             Database parentDatabase = context.Parent as Database;
@@ -1303,13 +1303,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlPartitionFunctionQuerier: SmoQuerier
+    internal partial class SqlPartitionFunctionQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(PartitionFunction) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query PartitionFunction");
             Database parentDatabase = context.Parent as Database;
@@ -1330,13 +1330,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlPartitionSchemeQuerier: SmoQuerier
+    internal partial class SqlPartitionSchemeQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(PartitionScheme) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query PartitionScheme");
             Database parentDatabase = context.Parent as Database;
@@ -1357,13 +1357,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlSearchPropertyListQuerier: SmoQuerier
+    internal partial class SqlSearchPropertyListQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(SearchPropertyList) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query SearchPropertyList");
             Database parentDatabase = context.Parent as Database;
@@ -1384,13 +1384,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlUserQuerier: SmoQuerier
+    internal partial class SqlUserQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(User) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query User");
             Database parentDatabase = context.Parent as Database;
@@ -1411,13 +1411,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlSchemaQuerier: SmoQuerier
+    internal partial class SqlSchemaQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Schema) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Schema");
             Database parentDatabase = context.Parent as Database;
@@ -1438,13 +1438,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlAsymmetricKeyQuerier: SmoQuerier
+    internal partial class SqlAsymmetricKeyQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(AsymmetricKey) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query AsymmetricKey");
             Database parentDatabase = context.Parent as Database;
@@ -1465,13 +1465,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlCertificateQuerier: SmoQuerier
+    internal partial class SqlCertificateQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Certificate) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Certificate");
             Database parentDatabase = context.Parent as Database;
@@ -1492,13 +1492,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlSymmetricKeyQuerier: SmoQuerier
+    internal partial class SqlSymmetricKeyQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(SymmetricKey) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query SymmetricKey");
             Database parentDatabase = context.Parent as Database;
@@ -1519,13 +1519,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlDatabaseEncryptionKeyQuerier: SmoQuerier
+    internal partial class SqlDatabaseEncryptionKeyQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(DatabaseEncryptionKey) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query DatabaseEncryptionKey");
             Database parentDatabase = context.Parent as Database;
@@ -1547,13 +1547,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlMasterKeyQuerier: SmoQuerier
+    internal partial class SqlMasterKeyQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(MasterKey) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query MasterKey");
             Database parentDatabase = context.Parent as Database;
@@ -1575,13 +1575,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlDatabaseAuditSpecificationQuerier: SmoQuerier
+    internal partial class SqlDatabaseAuditSpecificationQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(DatabaseAuditSpecification) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query DatabaseAuditSpecification");
             Database parentDatabase = context.Parent as Database;
@@ -1602,13 +1602,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlSecurityPolicyQuerier: SmoQuerier
+    internal partial class SqlSecurityPolicyQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(SecurityPolicy) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query SecurityPolicy");
             Database parentDatabase = context.Parent as Database;
@@ -1629,13 +1629,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlDatabaseCredentialQuerier: SmoQuerier
+    internal partial class SqlDatabaseCredentialQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(DatabaseScopedCredential) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query DatabaseScopedCredential");
             Database parentDatabase = context.Parent as Database;
@@ -1656,13 +1656,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlRoleQuerier: SmoQuerier
+    internal partial class SqlRoleQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(DatabaseRole) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query DatabaseRole");
             Database parentDatabase = context.Parent as Database;
@@ -1683,13 +1683,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlApplicationRoleQuerier: SmoQuerier
+    internal partial class SqlApplicationRoleQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ApplicationRole) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ApplicationRole");
             Database parentDatabase = context.Parent as Database;
@@ -1710,13 +1710,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlColumnMasterKeyQuerier: SmoQuerier
+    internal partial class SqlColumnMasterKeyQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ColumnMasterKey) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ColumnMasterKey");
             Database parentDatabase = context.Parent as Database;
@@ -1737,13 +1737,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlColumnEncryptionKeyQuerier: SmoQuerier
+    internal partial class SqlColumnEncryptionKeyQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ColumnEncryptionKey) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ColumnEncryptionKey");
             Database parentDatabase = context.Parent as Database;
@@ -1764,13 +1764,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlServiceBrokerQuerier: SmoQuerier
+    internal partial class SqlServiceBrokerQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ServiceBroker) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ServiceBroker");
             Database parentDatabase = context.Parent as Database;
@@ -1792,13 +1792,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlServiceQuerier: SmoQuerier
+    internal partial class SqlServiceQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(BrokerService) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query BrokerService");
             ServiceBroker parentServiceBroker = context.Parent as ServiceBroker;
@@ -1819,13 +1819,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlContractQuerier: SmoQuerier
+    internal partial class SqlContractQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ServiceContract) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ServiceContract");
             ServiceBroker parentServiceBroker = context.Parent as ServiceBroker;
@@ -1846,13 +1846,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlQueueQuerier: SmoQuerier
+    internal partial class SqlQueueQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ServiceQueue) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ServiceQueue");
             ServiceBroker parentServiceBroker = context.Parent as ServiceBroker;
@@ -1873,13 +1873,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlRemoteServiceBindingQuerier: SmoQuerier
+    internal partial class SqlRemoteServiceBindingQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(RemoteServiceBinding) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query RemoteServiceBinding");
             ServiceBroker parentServiceBroker = context.Parent as ServiceBroker;
@@ -1900,13 +1900,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlBrokerPriorityQuerier: SmoQuerier
+    internal partial class SqlBrokerPriorityQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(BrokerPriority) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query BrokerPriority");
             ServiceBroker parentServiceBroker = context.Parent as ServiceBroker;
@@ -1927,13 +1927,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlMessageTypeQuerier: SmoQuerier
+    internal partial class SqlMessageTypeQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(MessageType) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query MessageType");
             ServiceBroker parentServiceBroker = context.Parent as ServiceBroker;
@@ -1954,13 +1954,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlExternalDataSourceQuerier: SmoQuerier
+    internal partial class SqlExternalDataSourceQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ExternalDataSource) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ExternalDataSource");
             Database parentDatabase = context.Parent as Database;
@@ -1981,13 +1981,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlExternalFileFormatQuerier: SmoQuerier
+    internal partial class SqlExternalFileFormatQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ExternalFileFormat) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ExternalFileFormat");
             Database parentDatabase = context.Parent as Database;
@@ -2008,13 +2008,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlProcedureQuerier: SmoQuerier
+    internal partial class SqlProcedureQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(StoredProcedure) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query StoredProcedure");
             Database parentDatabase = context.Parent as Database;
@@ -2040,7 +2040,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     Property = nameof(Schema),
                     Type = typeof(string),
                     Values = new List<object> { parentSchema.Name },
-                    ValidFor = ValidForFlag.All 
+                    ValidFor = ValidForFlag.All
                 });
                 filter = INodeFilter.AddPropertyFilterToFilterString(filter, filters, this.GetType(), context.ValidFor);
                 var retValue = parentSchema.Parent.StoredProcedures;
@@ -2057,13 +2057,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlExtendedStoredProcedureQuerier: SmoQuerier
+    internal partial class SqlExtendedStoredProcedureQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(ExtendedStoredProcedure) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query ExtendedStoredProcedure");
             Database parentDatabase = context.Parent as Database;
@@ -2084,13 +2084,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlSubroutineParameterQuerier: SmoQuerier
+    internal partial class SqlSubroutineParameterQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(Parameter) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query Parameter");
             StoredProcedure parentStoredProcedure = context.Parent as StoredProcedure;
@@ -2137,13 +2137,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlPartitionFunctionParameterQuerier: SmoQuerier
+    internal partial class SqlPartitionFunctionParameterQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(PartitionFunctionParameter) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query PartitionFunctionParameter");
             PartitionFunction parentPartitionFunction = context.Parent as PartitionFunction;
@@ -2164,13 +2164,13 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     }
 
     [Export(typeof(SmoQuerier))]
-    internal partial class SqlBuiltInTypeQuerier: SmoQuerier
+    internal partial class SqlBuiltInTypeQuerier : SmoQuerier
     {
         Type[] supportedTypes = new Type[] { typeof(SystemDataType) };
 
         public override Type[] SupportedObjectTypes { get { return supportedTypes; } }
 
-        public override  IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
+        public override IEnumerable<SqlSmoObject> Query(SmoQueryContext context, string filter, bool refresh, IEnumerable<string> extraProperties)
         {
             Logger.Verbose("Begin query SystemDataType");
             Database parentDatabase = context.Parent as Database;

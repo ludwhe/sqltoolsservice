@@ -6,8 +6,8 @@
 #nullable disable
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Data.Tools.Sql.DesignServices.TableDesigner;
 
 namespace Microsoft.SqlTools.ServiceLayer.TableDesigner

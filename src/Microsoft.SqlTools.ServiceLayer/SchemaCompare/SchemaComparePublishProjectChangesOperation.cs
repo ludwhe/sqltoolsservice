@@ -18,7 +18,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare
     /// <summary>
     /// Class to represent an in-progress schema compare publish project changes operation
     /// </summary>
-    class SchemaComparePublishProjectChangesOperation: SchemaComparePublishChangesOperation
+    class SchemaComparePublishProjectChangesOperation : SchemaComparePublishChangesOperation
     {
         public SchemaComparePublishProjectChangesParams Parameters { get; }
 
@@ -40,7 +40,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare
             try
             {
                 PublishResult = ComparisonResult.PublishChangesToProject(Parameters.TargetProjectPath, Parameters.TargetFolderStructure);
-                
+
                 if (!PublishResult.Success)
                 {
                     ErrorMessage = PublishResult.ErrorMessage;

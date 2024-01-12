@@ -10,8 +10,8 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
     /// <summary>
     /// Class that parses queries into batches
     /// </summary>
-    public class BatchParser : 
-        ICommandHandler, 
+    public class BatchParser :
+        ICommandHandler,
         IVariableResolver
     {
         #region Private fields
@@ -21,14 +21,14 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
         protected HaltParserDelegate haltParserDelegate;
         private int startingLine = 0;
         protected bool variableSubstitutionDisabled = false;
-        
+
         #endregion
 
         #region Public delegates
-        public  delegate void HaltParserDelegate();
+        public delegate void HaltParserDelegate();
         public delegate void ScriptMessageDelegate(string message);
         public delegate void ScriptErrorDelegate(string message, ScriptMessageType messageType);
-        public delegate bool ExecuteDelegate(string batchScript, int num, int lineNumber, SqlCmdCommand command);        
+        public delegate bool ExecuteDelegate(string batchScript, int num, int lineNumber, SqlCmdCommand command);
         #endregion
 
         #region Constructors / Destructor
@@ -49,7 +49,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
             get { return scriptErrorDelegate; }
             set { scriptErrorDelegate = value; }
         }
-        
+
         public ExecuteDelegate Execute
         {
             get { return executeDelegate; }

@@ -46,8 +46,8 @@ namespace Microsoft.SqlTools.Extensibility
         /// <returns></returns>
         IEnumerable<T> GetServices<T>(Predicate<T> filter);
     }
-    
-    
+
+
     public abstract class ServiceProviderBase : IMultiServiceProvider
     {
 
@@ -91,7 +91,7 @@ namespace Microsoft.SqlTools.Extensibility
                 c.SetServiceProvider(this);
             }
         }
-        
+
         /// <summary>
         /// Gets all services using the build in implementation
         /// </summary>

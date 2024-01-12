@@ -71,5 +71,5 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public string LastRunNotebookError { get; set; }
         public string ExecuteDatabase { get; set; }
     }
-    
+
 }

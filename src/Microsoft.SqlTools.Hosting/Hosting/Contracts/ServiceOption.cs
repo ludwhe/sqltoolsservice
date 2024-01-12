@@ -1,4 +1,4 @@
-    //
+//
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
@@ -19,9 +19,9 @@ namespace Microsoft.SqlTools.Hosting.Contracts
 
         public string DisplayName { get; set; }
 
-        public string Description {get; set; }
+        public string Description { get; set; }
 
-         public string GroupName {get; set; }
+        public string GroupName { get; set; }
 
         /// <summary>
         /// Type of the parameter.  Can be either string, number, or category.

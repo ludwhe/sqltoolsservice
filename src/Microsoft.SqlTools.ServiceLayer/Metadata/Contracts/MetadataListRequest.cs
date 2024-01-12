@@ -10,9 +10,9 @@ using Microsoft.SqlTools.SqlCore.Metadata;
 
 namespace Microsoft.SqlTools.ServiceLayer.Metadata.Contracts
 {
-    public class MetadataQueryParams 
+    public class MetadataQueryParams
     {
-        public string OwnerUri { get; set; }        
+        public string OwnerUri { get; set; }
     }
 
     public class MetadataQueryResult

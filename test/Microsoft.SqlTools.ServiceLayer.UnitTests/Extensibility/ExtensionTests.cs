@@ -29,7 +29,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Extensibility
             // But for a different type, expect throw as the store only contains MyExportType
             Assert.Throws<InvalidCastException>(() => store.GetExports<MyOtherType>().Count());
         }
-        
+
         [Test]
         public void CreateDefaultLoaderShouldFindTypesOnlyInMainAssembly()
         {
@@ -40,7 +40,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Extensibility
 
             // And should not find exports that are defined in the ServiceLayer assembly
             store = ExtensionStore.CreateDefaultLoader<ASTNodeFormatterFactory>();
-            Assert.That(store.GetExports<ASTNodeFormatterFactory>(), Is.Empty);            
+            Assert.That(store.GetExports<ASTNodeFormatterFactory>(), Is.Empty);
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Extensibility
             // Then exports for all assemblies should be found
             Assert.AreEqual(2, myStore.GetExports<MyExportType>().Count());
             Assert.That(querierStore.GetExports<ASTNodeFormatterFactory>(), Is.Not.Empty);
-        }        
+        }
     }
 
     // Note: in order for the MEF lookup to succeed, one class must have 
@@ -75,7 +75,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Extensibility
     {
 
     }
-    
+
     public class MyExportSubType : MyExportType
     {
 

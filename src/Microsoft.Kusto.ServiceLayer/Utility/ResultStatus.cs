@@ -5,7 +5,7 @@
 
 namespace Microsoft.Kusto.ServiceLayer.Utility
 {
-    public class ResultStatus 
+    public class ResultStatus
     {
         public bool Success { get; set; }
 

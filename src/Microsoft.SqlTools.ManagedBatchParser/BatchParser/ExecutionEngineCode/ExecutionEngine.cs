@@ -6,15 +6,15 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using Microsoft.Data.SqlClient;
+using Microsoft.SqlTools.BatchParser.Utility;
 using Microsoft.SqlTools.ManagedBatchParser;
 using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
-using Microsoft.SqlTools.BatchParser.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
 {
@@ -193,7 +193,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
             commandParser.SetRecognizeSqlCmdSyntax(sqlCmdMode);
             commandParser.SetBatchDelimiter(BatchSeparator);
             commandParser.ThrowOnUnresolvedVariable = true;
-            
+
             batchParser.Execute = new BatchParser.ExecuteDelegate(ExecuteBatchInternal);
             batchParser.ErrorMessage = new BatchParser.ScriptErrorDelegate(RaiseScriptError);
             batchParser.Message = new BatchParser.ScriptMessageDelegate(RaiseBatchMessage);
@@ -237,7 +237,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
         {
             try
             {
-                DisconnectSqlCmdInternal();                
+                DisconnectSqlCmdInternal();
 
                 ConfigureBatchEventHandlers(currentBatch, batchEventHandlers, false);
 
@@ -325,7 +325,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
                 batchEventHandlers.OnBatchMessage(this, args);
             }
         }
-        
+
         /// <summary>
         /// Executes a given batch given the number of times
         /// </summary>
@@ -334,8 +334,8 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
         /// <param name="lineNumber"></param>
         /// <returns>True if we should continue processing, false otherwise</returns>
         private bool ExecuteBatchInternal(
-            string batchScript, 
-            int num, 
+            string batchScript,
+            int num,
             int lineNumber,
             SqlCmdCommand sqlCmdCommand)
         {
@@ -393,7 +393,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
                 currentBatch.TextSpan = textSpan;
                 currentBatch.BatchIndex = currentBatchIndex;
                 currentBatch.ExpectedExecutionCount = numBatchExecutionTimes;
-                
+
                 currentBatchIndex++;
 
                 if (conditions != null)
@@ -1023,7 +1023,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
         #endregion
 
         #region Public members
-        
+
         /// <summary>
         /// Executes the script
         /// </summary>

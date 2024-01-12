@@ -51,7 +51,8 @@ namespace Microsoft.SqlTools.ServiceLayer.TableDesigner
             else if (editType == DesignerEditType.Remove)
             {
                 validLengthList = new int[] { 2, 4 };
-            } else
+            }
+            else
             {
                 validLengthList = new int[] { 2, 4 };
             }

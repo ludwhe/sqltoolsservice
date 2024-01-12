@@ -5,12 +5,12 @@
 
 #nullable disable
 
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Resources;
-using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
-using System.Collections.Generic;
+using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Management;
 
 namespace Microsoft.SqlTools.ServiceLayer.Admin

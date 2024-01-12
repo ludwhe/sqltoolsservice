@@ -15,7 +15,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// indicates that the operation failed
         /// </summary>
         Failure = 0,
-        
+
         /// <summary>
         /// indicates that the operation succeded
         /// </summary>

@@ -243,7 +243,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
     public class UpdateAgentNotebookRunPinParams : TaskRequestDetails
     {
         public string OwnerUri { get; set; }
-        public AgentNotebookHistoryInfo agentNotebookHistory{ get; set; }
+        public AgentNotebookHistoryInfo agentNotebookHistory { get; set; }
         public bool MaterializedNotebookPin { get; set; }
         public string TargetDatabase { get; set; }
 
@@ -259,7 +259,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
             RequestType<UpdateAgentNotebookRunPinParams, ResultStatus>.Create("agent/updatenotebookpin");
     }
 
-     /// <summary>
+    /// <summary>
     /// SQL Agent Notebook pin params
     /// </summary>
     public class DeleteMaterializedNotebookParams : TaskRequestDetails

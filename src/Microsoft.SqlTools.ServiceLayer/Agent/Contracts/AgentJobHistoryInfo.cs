@@ -46,7 +46,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         Unknown = 5
     }
 
-    public  class AgentJobStep 
+    public class AgentJobStep
     {
         public string jobId;
         public string stepId;
@@ -55,7 +55,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public string runDate;
         public CompletionResult runStatus;
         public AgentJobStepInfo stepDetails;
-	}
+    }
 
     /// <summary>
     /// a class for storing various properties of a agent notebook history

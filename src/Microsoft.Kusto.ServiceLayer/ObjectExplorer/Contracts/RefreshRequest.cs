@@ -10,7 +10,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.Contracts
     /// <summary>
     /// Parameters to the <see cref="ExpandRequest"/>.
     /// </summary>
-    public class RefreshParams: ExpandParams
+    public class RefreshParams : ExpandParams
     {
     }
 

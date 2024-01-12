@@ -68,7 +68,7 @@ namespace Microsoft.SqlTools.ServiceLayer.PerfTests
 
                     Assert.NotNull(result);
                     Assert.NotNull(result.Script);
-                   
+
                     Assert.False(string.IsNullOrEmpty(result.Script), "Script result is invalid");
 
                     await testService.Disconnect(queryTempFile.FilePath);

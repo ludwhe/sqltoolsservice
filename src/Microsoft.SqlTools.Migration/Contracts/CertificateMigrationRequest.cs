@@ -58,8 +58,8 @@ namespace Microsoft.SqlTools.Migration.Contracts
         /// <summary>
         /// Password for the credentials able to read from the shared path
         /// </summary>
-        public string NetworkSharePassword { get; set; } 
-        
+        public string NetworkSharePassword { get; set; }
+
         /// <summary>
         /// Access token for the ARM client
         /// </summary>

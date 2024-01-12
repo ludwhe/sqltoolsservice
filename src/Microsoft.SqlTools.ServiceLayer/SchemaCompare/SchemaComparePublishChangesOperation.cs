@@ -30,7 +30,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare
             Validate.IsNotNull(nameof(comparisonResult), comparisonResult);
             ComparisonResult = comparisonResult;
         }
-        
+
         public abstract void Execute(TaskExecutionMode mode);
 
         public void Cancel()

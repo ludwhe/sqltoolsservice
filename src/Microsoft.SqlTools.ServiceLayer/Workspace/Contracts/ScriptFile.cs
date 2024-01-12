@@ -59,7 +59,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace.Contracts
         /// Gets or sets a string containing the full contents of the file.
         /// Setter for testing purposes only
         /// </summary>
-        public virtual string Contents 
+        public virtual string Contents
         {
             get
             {
@@ -260,21 +260,21 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace.Contracts
             string[] changeLines = fileChange.InsertString.Split('\n');
 
             // Get the first fragment of the first line
-            string firstLineFragment = 
+            string firstLineFragment =
                 FileLines[fileChange.Line - 1]
                     .Substring(0, fileChange.Offset - 1);
 
             // Get the last fragment of the last line
             string endLine = FileLines[fileChange.EndLine - 1];
-            string lastLineFragment = 
+            string lastLineFragment =
                 endLine.Substring(
-                    fileChange.EndOffset - 1, 
+                    fileChange.EndOffset - 1,
                     (FileLines[fileChange.EndLine - 1].Length - fileChange.EndOffset) + 1);
 
             // Remove the old lines
             for (int i = 0; i <= fileChange.EndLine - fileChange.Line; i++)
             {
-                FileLines.RemoveAt(fileChange.Line - 1); 
+                FileLines.RemoveAt(fileChange.Line - 1);
             }
 
             // Build and insert the new lines
@@ -316,12 +316,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace.Contracts
 
             int offset = 0;
 
-            for(int i = 0; i < lineNumber; i++)
+            for (int i = 0; i < lineNumber; i++)
             {
                 if (i == lineNumber - 1)
                 {
                     // Subtract 1 to account for 1-based column numbering
-                    offset += columnNumber - 1; 
+                    offset += columnNumber - 1;
                 }
                 else
                 {
@@ -365,7 +365,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace.Contracts
         /// <returns>A new BufferPosition containing the position of the offset.</returns>
         public BufferPosition GetPositionAtOffset(int bufferOffset)
         {
-            BufferRange bufferRange = 
+            BufferRange bufferRange =
                 GetRangeBetweenOffsets(
                     bufferOffset, bufferOffset);
 

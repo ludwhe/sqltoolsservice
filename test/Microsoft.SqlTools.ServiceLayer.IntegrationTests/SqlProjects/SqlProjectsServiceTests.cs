@@ -10,11 +10,6 @@ using System.Threading.Tasks;
 using Microsoft.Data.Tools.Schema.SchemaModel;
 using Microsoft.SqlServer.Dac.Projects;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.SqlProjects;
-using Microsoft.SqlTools.ServiceLayer.SqlProjects.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.SqlTools.ServiceLayer.Test.Common.RequestContextMocking;
-using Microsoft.SqlTools.ServiceLayer.Utility;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.SqlProjects
@@ -206,11 +201,11 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.SqlProjects
             MockRequest<ResultStatus> requestMock = new();
             string relativePath = "NoneIncludeFile.json";
             string absolutePath = Path.Join(Path.GetDirectoryName(projectUri), relativePath);
-            
-            #pragma warning disable JSON002 // Probable JSON string detected
+
+#pragma warning disable JSON002 // Probable JSON string detected
             await File.WriteAllTextAsync(absolutePath, @"{""included"" : false }");
-            #pragma warning restore JSON002 // Probable JSON string detected
-            
+#pragma warning restore JSON002 // Probable JSON string detected
+
             Assert.IsTrue(File.Exists(absolutePath), $"{absolutePath} expected to be on disk");
 
             await service.HandleAddNoneItemRequest(new SqlProjectScriptParams()
@@ -751,7 +746,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.SqlProjects
             Assert.IsNull(nupkgRef.DatabaseVariable, nameof(nupkgRef.DatabaseVariable));
 
             // Validate adding a nupkg reference via SQLCMD variable
-            mockPackageName =  "OtherDatabaseSqlCmd";
+            mockPackageName = "OtherDatabaseSqlCmd";
 
             requestMock = new();
             await service.HandleAddNugetPackageReferenceRequest(new AddNugetPackageReferenceParams()

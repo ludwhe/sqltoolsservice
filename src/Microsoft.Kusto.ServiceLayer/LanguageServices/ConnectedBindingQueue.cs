@@ -4,7 +4,6 @@
 //
 
 using System;
-using System.Composition;
 using Microsoft.Kusto.ServiceLayer.Connection;
 using Microsoft.Kusto.ServiceLayer.Connection.Contracts;
 using Microsoft.Kusto.ServiceLayer.DataSource;
@@ -31,7 +30,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
         /// </summary>
         /// <param name="details"></param>
         internal static string GetConnectionContextKey(ConnectionDetails details)
-        {            
+        {
             string key = string.Format("{0}_{1}_{2}_{3}",
                 details.ServerName ?? "NULL",
                 details.DatabaseName ?? "NULL",
@@ -103,11 +102,11 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                 catch (Exception)
                 {
                     bindingContext.IsConnected = false;
-                }       
+                }
                 finally
                 {
                     bindingContext.BindingLock.Set();
-                }         
+                }
             }
 
             return connectionKey;

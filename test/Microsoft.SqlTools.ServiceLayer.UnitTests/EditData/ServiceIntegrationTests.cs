@@ -35,7 +35,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             var eds = new EditDataService(null, null, null);
 
             // ... Create a session params that returns the provided session ID
-            var mockParams = new EditCreateRowParams {OwnerUri = sessionId};
+            var mockParams = new EditCreateRowParams { OwnerUri = sessionId };
             var contextMock = RequestContextMocks.Create<EditDisposeResult>(null);
             // If: I ask to perform an action that requires a session
             // Then: I should get an error from it
@@ -65,7 +65,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         #region Dispose Tests
 
         [Test]
-        public void DisposeNullOrMissingSessionId([Values(null, "", " \t\n\r", "Does not exist")]  string sessionId)
+        public void DisposeNullOrMissingSessionId([Values(null, "", " \t\n\r", "Does not exist")] string sessionId)
         {
             // Setup: Create a edit data service
             var eds = new EditDataService(null, null, null);
@@ -82,12 +82,12 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // Setup: Create an edit data service with a session
             var eds = new EditDataService(null, null, null);
             eds.ActiveSessions[Common.OwnerUri] = await GetDefaultSession();
-            
+
             // If: I ask to dispose of an existing session
             var efv = new EventFlowValidator<EditDisposeResult>()
                 .AddResultValidation(Assert.NotNull)
                 .Complete();
-            await eds.HandleDisposeRequest(new EditDisposeParams {OwnerUri = Common.OwnerUri}, efv.Object);
+            await eds.HandleDisposeRequest(new EditDisposeParams { OwnerUri = Common.OwnerUri }, efv.Object);
 
             // Then:
             // ... It should have completed successfully
@@ -109,7 +109,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             var efv = new EventFlowValidator<EditDeleteRowResult>()
                 .AddResultValidation(Assert.NotNull)
                 .Complete();
-            await eds.HandleDeleteRowRequest(new EditDeleteRowParams {OwnerUri = Constants.OwnerUri, RowId = 0}, efv.Object);
+            await eds.HandleDeleteRowRequest(new EditDeleteRowParams { OwnerUri = Constants.OwnerUri, RowId = 0 }, efv.Object);
 
             // Then: 
             // ... It should be successful
@@ -150,7 +150,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             var eds = new EditDataService(null, null, null);
             var session = await GetDefaultSession();
             eds.ActiveSessions[Constants.OwnerUri] = session;
-            
+
             // ... Make sure that the edit has revert capabilities
             var mockEdit = new Mock<RowEditBase>();
             mockEdit.Setup(edit => edit.RevertCell(It.IsAny<int>()))
@@ -168,16 +168,16 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 RowId = 0
             };
             await eds.HandleRevertCellRequest(param, efv.Object);
-            
+
             // Then:
             // ... It should have succeeded
             efv.Validate();
-            
+
             // ... The edit cache should be empty again
             EditSession s = eds.ActiveSessions[Constants.OwnerUri];
             Assert.That(s.EditCache, Is.Empty);
         }
-        
+
         [Test]
         public async Task RevertRowSucceeds()
         {
@@ -191,7 +191,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             var efv = new EventFlowValidator<EditRevertRowResult>()
                 .AddResultValidation(Assert.NotNull)
                 .Complete();
-            await eds.HandleRevertRowRequest(new EditRevertRowParams { OwnerUri = Constants.OwnerUri, RowId = 0}, efv.Object);
+            await eds.HandleRevertRowRequest(new EditRevertRowParams { OwnerUri = Constants.OwnerUri, RowId = 0 }, efv.Object);
 
             // Then: 
             // ... It should have succeeded
@@ -226,7 +226,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                     Assert.True(eucr.IsRowDirty);
                 })
                 .Complete();
-            await eds.HandleUpdateCellRequest(new EditUpdateCellParams { OwnerUri = Constants.OwnerUri, RowId = 0}, efv.Object);
+            await eds.HandleUpdateCellRequest(new EditUpdateCellParams { OwnerUri = Constants.OwnerUri, RowId = 0 }, efv.Object);
 
             // Then: 
             // ... It should be successful
@@ -269,8 +269,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         #region Initialize Tests
         [Test]
         [Sequential]
-        public void InitializeNullParams([Values(null, Common.OwnerUri, Common.OwnerUri)] string ownerUri, 
-                                               [Values("table", null, "table")] string objName, 
+        public void InitializeNullParams([Values(null, Common.OwnerUri, Common.OwnerUri)] string ownerUri,
+                                               [Values("table", null, "table")] string objName,
                                                [Values("table", "table", null)] string objType)
         {
             // Setup: Create an edit data service without a session
@@ -301,7 +301,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             var eds = new EditDataService(null, null, null);
             var session = await GetDefaultSession();
             eds.ActiveSessions[Constants.OwnerUri] = session;
-            
+
             // If: I request to init a session for an owner URI that already exists
             var initParams = new EditInitializeParams
             {
@@ -329,21 +329,21 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // .. Create a mock query
             var mockQueryResults = QueryExecution.Common.StandardTestDataSet;
             var cols = mockQueryResults[0].Columns;
-            
+
             // ... Create a metadata factory that will return some generic column information
             var etm = Common.GetCustomEditTableMetadata(cols.ToArray());
             Mock<IEditMetadataFactory> emf = new Mock<IEditMetadataFactory>();
             emf.Setup(f => f.GetObjectMetadata(It.IsAny<DbConnection>(), It.IsAny<string[]>(), It.IsAny<string>()))
                 .Returns(etm);
-            
+
             // ... Create a query execution service that will return a successful query
             var qes = QueryExecution.Common.GetPrimedExecutionService(mockQueryResults, true, false, false, null);
-            
+
             // ... Create a connection service that doesn't throw when asked for a connection
             var cs = new Mock<ConnectionService>();
             cs.Setup(s => s.GetOrOpenConnection(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>()))
                 .Returns(Task.FromResult<DbConnection>(null));
-            
+
             // ... Create an edit data service that has mock providers
             var eds = new EditDataService(qes, cs.Object, emf.Object);
 
@@ -372,11 +372,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 .Complete();
             await eds.HandleInitializeRequest(initParams, efv.Object);
             await eds.ActiveSessions[Constants.OwnerUri].InitializeTask;
-            
+
             // Then:
             // ... The event should have been received successfully
             efv.Validate();
-            
+
             // ... The session should have been created
             Assert.AreEqual(1, eds.ActiveSessions.Count);
             Assert.True(eds.ActiveSessions.Keys.Contains(Constants.OwnerUri));
@@ -391,7 +391,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             new object[] {"schema.table", null, new[] { "schema", "table" } },                   // Split object name into schema
         };
 
-        [Test, TestCaseSource(nameof(schemaNameParameters))]        
+        [Test, TestCaseSource(nameof(schemaNameParameters))]
         public void ShouldUseSchemaNameIfDefined(string objName, string schemaName, string[] expectedNameParts)
         {
             // Setup: Create an edit data service without a session

@@ -10,26 +10,26 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
-using Microsoft.Data.SqlClient.AlwaysEncrypted.AzureKeyVaultProvider;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
+using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlClient.AlwaysEncrypted.AzureKeyVaultProvider;
 using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlTools.Authentication;
+using Microsoft.SqlTools.Authentication.Sql;
+using Microsoft.SqlTools.Hosting.Protocol;
+using Microsoft.SqlTools.Hosting.Utility;
 using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
 using Microsoft.SqlTools.ServiceLayer.LanguageServices;
 using Microsoft.SqlTools.ServiceLayer.LanguageServices.Contracts;
 using Microsoft.SqlTools.ServiceLayer.Utility;
+using Microsoft.SqlTools.SqlCore.Connection;
 using Microsoft.SqlTools.Utility;
 using static Microsoft.SqlTools.Utility.SqlConstants;
-using Microsoft.SqlTools.Authentication.Sql;
-using Microsoft.SqlTools.Authentication;
-using System.IO;
-using Microsoft.SqlTools.Hosting.Utility;
 using Constants = Microsoft.SqlTools.Hosting.Protocol.Constants;
-using Microsoft.SqlTools.SqlCore.Connection;
 
 namespace Microsoft.SqlTools.ServiceLayer.Connection
 {
@@ -577,9 +577,10 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection
                 DbConnection underlyingConnection = reliableConnection != null
                     ? reliableConnection.GetUnderlyingConnection()
                     : connection;
-                
+
                 var serverConnId = (underlyingConnection as SqlConnection).ServerProcessId;
-                if (serverConnId != 0) {
+                if (serverConnId != 0)
+                {
                     // If 0, that would mean the connection is inactive, so there's no 
                     // need to return the connection id.
                     response.ServerConnectionId = serverConnId.ToString();
@@ -650,14 +651,15 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection
             return serverEdition;
         }
 
-        internal static ConnectionDetails FillInDefaultDetailsForConnections(ConnectionDetails inputConnectionDetails, string featureName) { 
+        internal static ConnectionDetails FillInDefaultDetailsForConnections(ConnectionDetails inputConnectionDetails, string featureName)
+        {
             ConnectionDetails newConnectionDetails = inputConnectionDetails;
 
-            if(string.IsNullOrWhiteSpace(newConnectionDetails.ApplicationName)) 
+            if (string.IsNullOrWhiteSpace(newConnectionDetails.ApplicationName))
             {
                 newConnectionDetails.ApplicationName = ApplicationName;
             }
-            else 
+            else
             {
                 newConnectionDetails.ApplicationName = GetApplicationNameWithFeature(newConnectionDetails.ApplicationName, featureName);
             }
@@ -927,7 +929,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection
         public bool ReplaceUri(string originalOwnerUri, string newOwnerUri)
         {
             // Lookup the ConnectionInfo owned by the URI
-            if(OwnerToConnectionMap.TryRemove(originalOwnerUri, out ConnectionInfo info))
+            if (OwnerToConnectionMap.TryRemove(originalOwnerUri, out ConnectionInfo info))
             {
                 info.OwnerUri = newOwnerUri;
                 return OwnerToConnectionMap.TryAdd(newOwnerUri, info);
@@ -1710,7 +1712,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection
         {
             Logger.Verbose("ClearPooledConnectionsRequest");
             // Run a detached task to clear pools in backend.
-            await Task.Factory.StartNew(() => Task.Run(async () => {
+            await Task.Factory.StartNew(() => Task.Run(async () =>
+            {
 
                 SqlConnection.ClearAllPools();
 

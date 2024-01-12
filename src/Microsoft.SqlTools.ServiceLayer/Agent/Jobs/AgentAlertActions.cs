@@ -34,7 +34,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// </summary>
         /// <param name="dataContainer"></param>
         public AgentAlertActions(
-            CDataContainer dataContainer, string originalAlertName, 
+            CDataContainer dataContainer, string originalAlertName,
             AgentAlertInfo alertInfo, ConfigAction configAction,
             JobData jobData = null)
         {
@@ -81,10 +81,10 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
             // regular execution always takes place
             return true;
-        }   
+        }
 
         public bool Drop()
-        {     
+        {
             // fail if the user is not in the sysadmin role
             if (!this.DataContainer.Server.ConnectionContext.IsInFixedServerRole(FixedServerRoles.SysAdmin))
             {
@@ -113,8 +113,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         }
 
         public bool CreateOrUpdate()
-        {          
-            Alert alert = null;            
+        {
+            Alert alert = null;
             string alertName = GetAlertName(this.DataContainer);
             bool createNewAlert = true;
 
@@ -159,7 +159,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                     }
                     alert.Alter();
 
-                    if (!string.IsNullOrWhiteSpace(this.alertInfo.Name) && !string.Equals(alert.Name, this.alertInfo.Name)) 
+                    if (!string.IsNullOrWhiteSpace(this.alertInfo.Name) && !string.Equals(alert.Name, this.alertInfo.Name))
                     {
                         alert.Rename(this.alertInfo.Name);
                     }
@@ -194,7 +194,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             }
 
             alert.DatabaseName = !string.IsNullOrWhiteSpace(this.alertInfo.DatabaseName)
-                ? this.alertInfo.DatabaseName :  string.Empty;
+                ? this.alertInfo.DatabaseName : string.Empty;
 
             if (!string.IsNullOrWhiteSpace(this.alertInfo.CategoryName))
             {
@@ -202,7 +202,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             }
 
             alert.IsEnabled = this.alertInfo.IsEnabled;
-            
+
             if (alertInfo.AlertType == Contracts.AlertType.SqlServerEvent)
             {
                 if (this.alertInfo.MessageId.HasValue && this.alertInfo.MessageId > 0)
@@ -222,7 +222,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 }
 
                 // clear out other alert type fields
-                alert.PerformanceCondition	= string.Empty;
+                alert.PerformanceCondition = string.Empty;
                 alert.WmiEventNamespace = string.Empty;
                 alert.WmiEventQuery = string.Empty;
             }

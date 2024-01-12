@@ -74,24 +74,24 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Metadata
             }
 
             var databaseDetails = new List<DatabaseInfo>();
-            
+
             foreach (var dataSourceObjectMetadata in clusterDbDetails)
             {
-                var dbDetail = (DatabaseMetadata) dataSourceObjectMetadata;
+                var dbDetail = (DatabaseMetadata)dataSourceObjectMetadata;
                 long.TryParse(dbDetail.SizeInMB, out long sizeInMb);
 
                 var databaseInfo = new DatabaseInfo
                 {
                     Options =
                     {
-                        ["name"] = dbDetail.Name, 
+                        ["name"] = dbDetail.Name,
                         ["sizeInMB"] = (sizeInMb / (1024 * 1024)).ToString()
                     }
                 };
-                
+
                 databaseDetails.Add(databaseInfo);
             }
-            
+
             return databaseDetails;
         }
 

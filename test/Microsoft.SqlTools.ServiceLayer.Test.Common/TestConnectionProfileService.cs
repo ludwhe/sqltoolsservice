@@ -189,7 +189,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
             {
                 connectParams.Connection.HostNameInCertificate = connectionProfile.HostNameInCertificate;
             }
-            
+
             if (!string.IsNullOrEmpty(databaseName))
             {
                 connectParams.Connection.DatabaseName = databaseName;

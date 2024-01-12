@@ -169,7 +169,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.UtilityTests
             Assert.True(TimeSpan.TryParse(GetDateTimeRegex().Match(output).Groups[1].Value, out outputDateTime));
         }
 
-        private static readonly object[] stringFormats = 
+        private static readonly object[] stringFormats =
         {
             new object[] {"", "N''"}, // Make sure empty string works
             new object[] {" \t\r\n", "N' \t\r\n'"}, // Test for whitespace
@@ -193,7 +193,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.UtilityTests
         }
 
         [Test]
-        
+
         public void StringTypeTest([Values(
             "CHAR",
             "NCHAR",
@@ -247,7 +247,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.UtilityTests
         }
 
         #endregion
-        
+
         #region Format Identifier Tests
 
         [Test]
@@ -266,7 +266,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.UtilityTests
             new object[] {"test]", "[test]]]" },       // Escape character at end
             new object[] {"t]]est", "[t]]]]est]" },    // Multiple escape characters
         };
-        
+
         [Test, TestCaseSource(nameof(bracketEscapes))]
         public void FormatIdentifierTest(string value, string expectedOutput)
         {
@@ -299,13 +299,13 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.UtilityTests
         {
             get
             {
-                yield return new object[] {"[test]", new[] {"test"}};                                   // No splits, no escape characters
-                yield return new object[] {"[test].[test]", new[] {"test", "test"}};                    // One split, no escape characters
-                yield return new object[] {"[test].[te]]st]", new[] {"test", "te]st"}};                 // One split, one escape character
-                yield return new object[] {"[test].[test].[test]", new[] {"test", "test", "test"}};     // Two splits, no escape characters
+                yield return new object[] { "[test]", new[] { "test" } };                                   // No splits, no escape characters
+                yield return new object[] { "[test].[test]", new[] { "test", "test" } };                    // One split, no escape characters
+                yield return new object[] { "[test].[te]]st]", new[] { "test", "te]st" } };                 // One split, one escape character
+                yield return new object[] { "[test].[test].[test]", new[] { "test", "test", "test" } };     // Two splits, no escape characters
             }
         }
-        
+
         [Test]
         [TestCaseSource(nameof(GetMultipartIdentifierArrays))]
         public void FormatMultipartIdentifierArrayTest(string expectedOutput, string[] splits)
@@ -325,68 +325,68 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.UtilityTests
         {
             get
             {
-                yield return new object[] {false, new FormatterTestDbColumn("biGint"), "BIGINT"};
-                yield return new object[] {false, new FormatterTestDbColumn("biT"), "BIT"};
-                yield return new object[] {false, new FormatterTestDbColumn("deCimal", precision: 18, scale: 0), "DECIMAL(18, 0)"};
-                yield return new object[] {false, new FormatterTestDbColumn("deCimal", precision: 22, scale: 2), "DECIMAL(22, 2)"};
-                yield return new object[] {false, new FormatterTestDbColumn("inT"), "INT"};
-                yield return new object[] {false, new FormatterTestDbColumn("moNey"), "MONEY"};
-                yield return new object[] {false, new FormatterTestDbColumn("nuMeric", precision: 18, scale: 0), "NUMERIC(18, 0)"};
-                yield return new object[] {false, new FormatterTestDbColumn("nuMeric", precision: 22, scale: 2), "NUMERIC(22, 2)"};
-                yield return new object[] {false, new FormatterTestDbColumn("smAllint"), "SMALLINT"};
-                yield return new object[] {false, new FormatterTestDbColumn("smAllmoney"), "SMALLMONEY"};
-                yield return new object[] {false, new FormatterTestDbColumn("tiNyint"), "TINYINT"};
-                yield return new object[] {false, new FormatterTestDbColumn("biNary", size: 255), "BINARY(255)"};
-                yield return new object[] {false, new FormatterTestDbColumn("biNary", size: 10), "BINARY(10)"};
-                yield return new object[] {false, new FormatterTestDbColumn("vaRbinary", size: 255), "VARBINARY(255)"};
-                yield return new object[] {false, new FormatterTestDbColumn("vaRbinary", size: 10), "VARBINARY(10)"};
-                yield return new object[] {false, new FormatterTestDbColumn("vaRbinary", size: int.MaxValue), "VARBINARY(MAX)"};
-                yield return new object[] {false, new FormatterTestDbColumn("imAge"), "IMAGE"};
-                yield return new object[] {false, new FormatterTestDbColumn("smAlldatetime"), "SMALLDATETIME"};
-                yield return new object[] {false, new FormatterTestDbColumn("daTetime"), "DATETIME"};
-                yield return new object[] {false, new FormatterTestDbColumn("daTetime2", scale: 7), "DATETIME2(7)"};
-                yield return new object[] {false, new FormatterTestDbColumn("daTetime2", scale: 0), "DATETIME2(0)"};
-                yield return new object[] {false, new FormatterTestDbColumn("daTetimeoffset", scale: 7), "DATETIMEOFFSET(7)"};
-                yield return new object[] {false, new FormatterTestDbColumn("daTetimeoffset", scale: 0), "DATETIMEOFFSET(0)"};
-                yield return new object[] {false, new FormatterTestDbColumn("tiMe", scale: 7), "TIME(7)"};
-                yield return new object[] {false, new FormatterTestDbColumn("flOat"), "FLOAT"};
-                yield return new object[] {false, new FormatterTestDbColumn("reAl"), "REAL"};
-                yield return new object[] {false, new FormatterTestDbColumn("chAr", size: 1), "CHAR(1)"};
-                yield return new object[] {false, new FormatterTestDbColumn("chAr", size: 255), "CHAR(255)"};
-                yield return new object[] {false, new FormatterTestDbColumn("ncHar", size: 1), "NCHAR(1)"};
-                yield return new object[] {false, new FormatterTestDbColumn("ncHar", size: 255), "NCHAR(255)"};
-                yield return new object[] {false, new FormatterTestDbColumn("vaRchar", size: 1), "VARCHAR(1)"};
-                yield return new object[] {false, new FormatterTestDbColumn("vaRchar", size: 255), "VARCHAR(255)"};
-                yield return new object[] {false, new FormatterTestDbColumn("vaRchar", size: int.MaxValue), "VARCHAR(MAX)"};
-                yield return new object[] {false, new FormatterTestDbColumn("nvArchar", size: 1), "NVARCHAR(1)"};
-                yield return new object[] {false, new FormatterTestDbColumn("nvArchar", size: 255), "NVARCHAR(255)"};
-                yield return new object[] {false, new FormatterTestDbColumn("nvArchar", size: int.MaxValue), "NVARCHAR(MAX)"};
-                yield return new object[] {false, new FormatterTestDbColumn("teXt"), "TEXT"};
-                yield return new object[] {false, new FormatterTestDbColumn("nteXt"), "NTEXT"};
-                yield return new object[] {false, new FormatterTestDbColumn("unIqueidentifier"), "UNIQUEIDENTIFIER"};
-                yield return new object[] {false, new FormatterTestDbColumn("sqL_variant"), "SQL_VARIANT"};
-                yield return new object[] {false, new FormatterTestDbColumn("somEthing.sys.hierarchyid"), "HIERARCHYID"};
-                yield return new object[] {false, new FormatterTestDbColumn("table.geOgraphy"), "GEOGRAPHY"};
-                yield return new object[] {false, new FormatterTestDbColumn("table.geOmetry"), "GEOMETRY"};
-                yield return new object[] {false, new FormatterTestDbColumn("sySname"), "SYSNAME"};
-                yield return new object[] {false, new FormatterTestDbColumn("tiMestamp"), "TIMESTAMP"};
-                yield return new object[] {true, new FormatterTestDbColumn("tiMestamp"), "VARBINARY(8)"};
+                yield return new object[] { false, new FormatterTestDbColumn("biGint"), "BIGINT" };
+                yield return new object[] { false, new FormatterTestDbColumn("biT"), "BIT" };
+                yield return new object[] { false, new FormatterTestDbColumn("deCimal", precision: 18, scale: 0), "DECIMAL(18, 0)" };
+                yield return new object[] { false, new FormatterTestDbColumn("deCimal", precision: 22, scale: 2), "DECIMAL(22, 2)" };
+                yield return new object[] { false, new FormatterTestDbColumn("inT"), "INT" };
+                yield return new object[] { false, new FormatterTestDbColumn("moNey"), "MONEY" };
+                yield return new object[] { false, new FormatterTestDbColumn("nuMeric", precision: 18, scale: 0), "NUMERIC(18, 0)" };
+                yield return new object[] { false, new FormatterTestDbColumn("nuMeric", precision: 22, scale: 2), "NUMERIC(22, 2)" };
+                yield return new object[] { false, new FormatterTestDbColumn("smAllint"), "SMALLINT" };
+                yield return new object[] { false, new FormatterTestDbColumn("smAllmoney"), "SMALLMONEY" };
+                yield return new object[] { false, new FormatterTestDbColumn("tiNyint"), "TINYINT" };
+                yield return new object[] { false, new FormatterTestDbColumn("biNary", size: 255), "BINARY(255)" };
+                yield return new object[] { false, new FormatterTestDbColumn("biNary", size: 10), "BINARY(10)" };
+                yield return new object[] { false, new FormatterTestDbColumn("vaRbinary", size: 255), "VARBINARY(255)" };
+                yield return new object[] { false, new FormatterTestDbColumn("vaRbinary", size: 10), "VARBINARY(10)" };
+                yield return new object[] { false, new FormatterTestDbColumn("vaRbinary", size: int.MaxValue), "VARBINARY(MAX)" };
+                yield return new object[] { false, new FormatterTestDbColumn("imAge"), "IMAGE" };
+                yield return new object[] { false, new FormatterTestDbColumn("smAlldatetime"), "SMALLDATETIME" };
+                yield return new object[] { false, new FormatterTestDbColumn("daTetime"), "DATETIME" };
+                yield return new object[] { false, new FormatterTestDbColumn("daTetime2", scale: 7), "DATETIME2(7)" };
+                yield return new object[] { false, new FormatterTestDbColumn("daTetime2", scale: 0), "DATETIME2(0)" };
+                yield return new object[] { false, new FormatterTestDbColumn("daTetimeoffset", scale: 7), "DATETIMEOFFSET(7)" };
+                yield return new object[] { false, new FormatterTestDbColumn("daTetimeoffset", scale: 0), "DATETIMEOFFSET(0)" };
+                yield return new object[] { false, new FormatterTestDbColumn("tiMe", scale: 7), "TIME(7)" };
+                yield return new object[] { false, new FormatterTestDbColumn("flOat"), "FLOAT" };
+                yield return new object[] { false, new FormatterTestDbColumn("reAl"), "REAL" };
+                yield return new object[] { false, new FormatterTestDbColumn("chAr", size: 1), "CHAR(1)" };
+                yield return new object[] { false, new FormatterTestDbColumn("chAr", size: 255), "CHAR(255)" };
+                yield return new object[] { false, new FormatterTestDbColumn("ncHar", size: 1), "NCHAR(1)" };
+                yield return new object[] { false, new FormatterTestDbColumn("ncHar", size: 255), "NCHAR(255)" };
+                yield return new object[] { false, new FormatterTestDbColumn("vaRchar", size: 1), "VARCHAR(1)" };
+                yield return new object[] { false, new FormatterTestDbColumn("vaRchar", size: 255), "VARCHAR(255)" };
+                yield return new object[] { false, new FormatterTestDbColumn("vaRchar", size: int.MaxValue), "VARCHAR(MAX)" };
+                yield return new object[] { false, new FormatterTestDbColumn("nvArchar", size: 1), "NVARCHAR(1)" };
+                yield return new object[] { false, new FormatterTestDbColumn("nvArchar", size: 255), "NVARCHAR(255)" };
+                yield return new object[] { false, new FormatterTestDbColumn("nvArchar", size: int.MaxValue), "NVARCHAR(MAX)" };
+                yield return new object[] { false, new FormatterTestDbColumn("teXt"), "TEXT" };
+                yield return new object[] { false, new FormatterTestDbColumn("nteXt"), "NTEXT" };
+                yield return new object[] { false, new FormatterTestDbColumn("unIqueidentifier"), "UNIQUEIDENTIFIER" };
+                yield return new object[] { false, new FormatterTestDbColumn("sqL_variant"), "SQL_VARIANT" };
+                yield return new object[] { false, new FormatterTestDbColumn("somEthing.sys.hierarchyid"), "HIERARCHYID" };
+                yield return new object[] { false, new FormatterTestDbColumn("table.geOgraphy"), "GEOGRAPHY" };
+                yield return new object[] { false, new FormatterTestDbColumn("table.geOmetry"), "GEOMETRY" };
+                yield return new object[] { false, new FormatterTestDbColumn("sySname"), "SYSNAME" };
+                yield return new object[] { false, new FormatterTestDbColumn("tiMestamp"), "TIMESTAMP" };
+                yield return new object[] { true, new FormatterTestDbColumn("tiMestamp"), "VARBINARY(8)" };
             }
         }
-        
+
         [Test]
         [TestCaseSource(nameof(FormatColumnTypeData))]
         public void FormatColumnType(bool useSemanticEquivalent, DbColumn input, string expectedOutput)
         {
             // If: I supply the input columns 
             string output = ToSqlScript.FormatColumnType(input, useSemanticEquivalent);
-            
+
             // Then: The output should match the expected output
             Assert.AreEqual(expectedOutput, output);
         }
 
         #endregion
-        
+
         private sealed class FormatterTestDbColumn : DbColumn
         {
             public FormatterTestDbColumn(string dataType, int? precision = null, int? scale = null, int? size = null)

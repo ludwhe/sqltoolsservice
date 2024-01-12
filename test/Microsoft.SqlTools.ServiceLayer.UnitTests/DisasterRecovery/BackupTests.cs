@@ -5,10 +5,10 @@
 
 #nullable disable
 
+using System.Threading.Tasks;
 using Microsoft.SqlTools.ServiceLayer.DisasterRecovery;
 using Microsoft.SqlTools.ServiceLayer.TaskServices;
 using Moq;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
@@ -193,7 +193,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
                 });
 
                 manager.CancelTask(sqlTask.TaskId);
-                await Task.WhenAll(taskToVerify, taskToVerify2); 
+                await Task.WhenAll(taskToVerify, taskToVerify2);
             }
         }
 

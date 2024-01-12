@@ -36,7 +36,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.LanguageServer
             List<Declaration> declarations = new List<Declaration>();
 
             var sqlParserWrapper = new Mock<ISqlParserWrapper>();
-            sqlParserWrapper.Setup(x => x.FindCompletions(docInfo.ScriptParseInfo.ParseResult, docInfo.ParserLine, docInfo.ParserColumn, 
+            sqlParserWrapper.Setup(x => x.FindCompletions(docInfo.ScriptParseInfo.ParseResult, docInfo.ParserLine, docInfo.ParserColumn,
                 It.IsAny<IMetadataDisplayInfoProvider>())).Returns(declarations);
             completionService.SqlParserWrapper = sqlParserWrapper.Object;
 

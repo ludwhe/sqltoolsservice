@@ -15,7 +15,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting.Contracts
     /// </summary>
     public class ScriptingCompleteEvent
     {
-        public static readonly EventType<ScriptingCompleteParams> Type = 
+        public static readonly EventType<ScriptingCompleteParams> Type =
             EventType<ScriptingCompleteParams>.Create("scripting/scriptComplete");
     }
 }

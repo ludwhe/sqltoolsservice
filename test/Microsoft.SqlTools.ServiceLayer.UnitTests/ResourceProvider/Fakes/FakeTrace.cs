@@ -17,7 +17,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
 ]
     public class FakeTrace : ITrace
     {
-        private readonly List<string> _traces = new List<string>(); 
+        private readonly List<string> _traces = new List<string>();
         public bool TraceEvent(TraceEventType eventType, int traceId, string message, params object[] args)
         {
             _traces.Add(message);

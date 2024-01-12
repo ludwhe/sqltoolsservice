@@ -25,7 +25,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting.Contracts
     /// </summary>
     public class ScriptingCancelRequest
     {
-        public static readonly RequestType<ScriptingCancelParams, ScriptingCancelResult> Type = 
+        public static readonly RequestType<ScriptingCancelParams, ScriptingCancelResult> Type =
             RequestType<ScriptingCancelParams, ScriptingCancelResult>.Create("scripting/scriptCancel");
     }
 }

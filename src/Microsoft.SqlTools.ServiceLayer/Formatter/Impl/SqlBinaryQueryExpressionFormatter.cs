@@ -87,13 +87,13 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             for (int i = previousChild.Position.endTokenNumber; !foundOperator && i < nextChild.Position.startTokenNumber; i++)
             {
                 TokenData td = GetTokenData(i);
-                if ( td.TokenId == FormatterTokens.TOKEN_UNION ||
+                if (td.TokenId == FormatterTokens.TOKEN_UNION ||
                      td.TokenId == FormatterTokens.TOKEN_INTERSECT ||
-                     td.TokenId == FormatterTokens.TOKEN_EXCEPT )
+                     td.TokenId == FormatterTokens.TOKEN_EXCEPT)
                 {
-                        foundOperator = true;
-                        binaryOperatorTokenID = td.TokenId;
-                        operatorTokenNumber = i;
+                    foundOperator = true;
+                    binaryOperatorTokenID = td.TokenId;
+                    operatorTokenNumber = i;
                 }
             }
 
@@ -139,7 +139,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
                     AddIndentedNewLineReplacement(td.StartIndex);
                 }
             }
-            
+
             #endregion // BeforeOperator
 
             // process the operator:

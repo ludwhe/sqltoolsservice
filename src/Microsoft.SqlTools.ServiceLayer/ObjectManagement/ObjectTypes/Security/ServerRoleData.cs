@@ -6,10 +6,10 @@
 #nullable disable
 
 using System;
-using Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlTools.ServiceLayer.Management;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlTools.ServiceLayer.Management;
 using Microsoft.SqlTools.ServiceLayer.ObjectManagement.PermissionsData;
 
 namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement

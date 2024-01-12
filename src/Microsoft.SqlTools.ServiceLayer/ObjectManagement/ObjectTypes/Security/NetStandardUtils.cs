@@ -7,8 +7,8 @@
 
 using System;
 using System.Globalization;
-using SMO = Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
+using SMO = Microsoft.SqlServer.Management.Smo;
 
 namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 {
@@ -96,7 +96,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </remarks>
         public static bool IsSql15OCU4OrLater(Version version)
         {
-            return(version >= new Version(15, 0, 4028));
+            return (version >= new Version(15, 0, 4028));
         }
 
         /// <summary>

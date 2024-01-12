@@ -38,7 +38,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlContext
         /// Do not return any execution plan by default
         /// </summary>
         private static ExecutionPlanOptions DefaultExecutionPlanOptions = new ExecutionPlanOptions
-        { 
+        {
             IncludeActualExecutionPlanXml = false,
             IncludeEstimatedExecutionPlanXml = false
         };
@@ -103,7 +103,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlContext
         /// default transaction abort ON
         /// </summary>
         private const bool DefaultXactAbortOn = false;
-    
+
         /// <summary>
         /// default ANSI padding
         /// </summary>
@@ -148,7 +148,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlContext
         /// default transaction isolation level
         /// </summary>
         private const string DefaultTransactionIsolationLevel = "READ UNCOMMITTED";
-        
+
         /// <summary>
         /// default deadlock priority
         /// </summary>
@@ -158,7 +158,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlContext
         /// default lock timeout
         /// </summary>
         private const int DefaultLockTimeout = -1;
-        
+
         /// <summary>
         /// default query governor cost limit
         /// </summary>
@@ -437,7 +437,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlContext
                     || string.Equals("READ COMMITTED", value, StringComparison.OrdinalIgnoreCase)
                     || string.Equals("REPEATABLE READ", value, StringComparison.OrdinalIgnoreCase)
                     || string.Equals("SNAPSHOT", value, StringComparison.OrdinalIgnoreCase)
-                    || string.Equals("SERIALIZABLE", value, StringComparison.OrdinalIgnoreCase)) 
+                    || string.Equals("SERIALIZABLE", value, StringComparison.OrdinalIgnoreCase))
                 {
                     SetOptionValue("transactionIsolationLevel", value);
                 }
@@ -455,9 +455,9 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlContext
             }
             set
             {
-                 if (string.Equals("LOW", value, StringComparison.OrdinalIgnoreCase)
-                    || string.Equals("NORMAL", value, StringComparison.OrdinalIgnoreCase)
-                    || string.Equals("HIGH", value, StringComparison.OrdinalIgnoreCase))
+                if (string.Equals("LOW", value, StringComparison.OrdinalIgnoreCase)
+                   || string.Equals("NORMAL", value, StringComparison.OrdinalIgnoreCase)
+                   || string.Equals("HIGH", value, StringComparison.OrdinalIgnoreCase))
                 {
                     SetOptionValue("deadlockPriority", value);
                 }

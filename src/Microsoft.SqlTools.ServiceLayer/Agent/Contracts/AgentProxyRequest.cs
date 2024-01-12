@@ -50,7 +50,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
     public class AgentProxyResult : ResultStatus
     {
         public AgentProxyInfo Proxy { get; set; }
-    }    
+    }
 
     /// <summary>
     /// SQL Agent create Proxy Account params
@@ -98,7 +98,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public static readonly
             RequestType<UpdateAgentProxyParams, AgentProxyResult> Type =
             RequestType<UpdateAgentProxyParams, AgentProxyResult>.Create("agent/updateproxy");
-    }    
+    }
 
     /// <summary>
     /// SQL Agent delete Proxy params
@@ -121,5 +121,5 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public static readonly
             RequestType<DeleteAgentProxyParams, ResultStatus> Type =
             RequestType<DeleteAgentProxyParams, ResultStatus>.Create("agent/deleteproxy");
-    }    
+    }
 }

@@ -14,20 +14,20 @@ namespace Microsoft.Kusto.ServiceLayer.Metadata.Contracts
         Schema = 4,
         Database = 5
     }
-    
+
     /// <summary>
     /// Object metadata information
     /// </summary>
-    public class ObjectMetadata 
-    {    
+    public class ObjectMetadata
+    {
         public MetadataType MetadataType { get; set; }
-    
+
         public string MetadataTypeName { get; set; }
 
         public string Schema { get; set; }
 
         public string Name { get; set; }
-        
+
         public string Urn { get; set; }
     }
 }

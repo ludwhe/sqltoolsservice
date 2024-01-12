@@ -32,7 +32,7 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution.Contracts.ExecuteReques
 
     public class QueryCompleteEvent
     {
-        public static readonly 
+        public static readonly
             EventType<QueryCompleteParams> Type =
             EventType<QueryCompleteParams>.Create("query/complete");
     }

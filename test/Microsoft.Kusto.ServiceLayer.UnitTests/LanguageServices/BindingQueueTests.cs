@@ -32,15 +32,15 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
             Func<Exception, object> errorHandler = exception => new Exception();
             var bindingTimeout = 30;
             var waitForLockTimeout = 45;
-            
+
             var bindingQueue = new BindingQueue<ConnectedBindingContext>();
-            var queueItem = bindingQueue.QueueBindingOperation(key, 
+            var queueItem = bindingQueue.QueueBindingOperation(key,
                 bindOperation,
                 timeoutOperation,
-                errorHandler, 
+                errorHandler,
                 bindingTimeout,
                 waitForLockTimeout);
-            
+
             Assert.AreEqual(key, queueItem.Key);
             Assert.AreEqual(bindOperation, queueItem.BindOperation);
             Assert.AreEqual(timeoutOperation, queueItem.TimeoutOperation);

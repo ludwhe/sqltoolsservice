@@ -12,7 +12,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
 {
     public class TestUtilities
     {
-        
+
         public static void CompareTestFiles(FileInfo baselinePath, FileInfo outputPath, int maxDiffLines = -1 /* unlimited */)
         {
             if (!baselinePath.Exists)
@@ -38,7 +38,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
                 string diffCmdMessage =
                     "code --diff \"" + baselinePath.FullName + "\" \"" + outputPath.FullName + "\"" +
                     "\r\n\r\n";
-                
+
                 string diffContents = FindFirstDifference(baseline, actual);
                 throw new ComparisonFailureException(header + diffCmdMessage + editAndCopyMessage + diffContents, editAndCopyMessage);
             }
@@ -49,7 +49,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
         {
             int index = 0;
             int minEnd = Math.Min(baseline.Length, actual.Length);
-            while (index < minEnd && baseline[index] == actual[index]) 
+            while (index < minEnd && baseline[index] == actual[index])
                 index++;
 
             int firstDiffIndex = (index == minEnd && baseline.Length == actual.Length) ? -1 : index;
@@ -60,7 +60,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
 
             string baselineDiff = ShowWhitespace(baseline.Substring(startRange, length));
             string actualDiff = ShowWhitespace(actual.Substring(startRange, length));
-            return "\r\nFirst Diff:\r\n===== Baseline =====\r\n" 
+            return "\r\nFirst Diff:\r\n===== Baseline =====\r\n"
                 + baselineDiff
                 + "\r\n===== Actual =====\r\n"
                 + actualDiff;
@@ -88,6 +88,6 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
             string noCrs = text.Replace("\r", "");
             return noCrs.Replace("\n", Environment.NewLine);
         }
-        
+
     }
 }

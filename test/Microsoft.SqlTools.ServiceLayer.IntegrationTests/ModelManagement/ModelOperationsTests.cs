@@ -5,17 +5,13 @@
 
 #nullable disable
 
-using Microsoft.Data.SqlClient;
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.ModelManagement;
-using Microsoft.SqlTools.ServiceLayer.ModelManagement.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using NUnit.Framework;
 using System;
 using System.Data;
 using System.IO;
 using System.Linq;
+using Microsoft.Data.SqlClient;
+using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
+using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ModelManagement
 {
@@ -25,7 +21,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ModelManagement
         public void VerifyImportTableShouldReturnTrueGivenNoTable()
         {
             bool expected = true;
-            bool actual = VerifyModelOperation((dbConnection, databaseName , tableName) =>
+            bool actual = VerifyModelOperation((dbConnection, databaseName, tableName) =>
             {
                 ModelOperations modelOperations = new ModelOperations();
                 ModelRequestBase request = new ModelRequestBase
@@ -56,10 +52,10 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ModelManagement
                 Framework = "ONNX",
                 FrameworkVersion = "1.3",
             };
-            ModelMetadata actual = VerifyModelOperation((dbConnection, databaseName , tableName) =>
+            ModelMetadata actual = VerifyModelOperation((dbConnection, databaseName, tableName) =>
             {
                 ModelOperations modelOperations = new ModelOperations();
-                
+
                 ImportModelRequestParams request = new ImportModelRequestParams
                 {
                     DatabaseName = databaseName,
@@ -101,7 +97,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ModelManagement
                 Framework = "ONNX",
                 FrameworkVersion = "1.3",
             };
-            string actual = VerifyModelOperation((dbConnection, databaseName , tableName) =>
+            string actual = VerifyModelOperation((dbConnection, databaseName, tableName) =>
             {
                 ModelOperations modelOperations = new ModelOperations();
                 ImportModelRequestParams request = new ImportModelRequestParams
@@ -150,7 +146,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ModelManagement
             };
             ModelMetadata expected = model;
 
-            ModelMetadata actual = VerifyModelOperation((dbConnection, databaseName , tableName) =>
+            ModelMetadata actual = VerifyModelOperation((dbConnection, databaseName, tableName) =>
             {
                 ModelOperations modelOperations = new ModelOperations();
                 ImportModelRequestParams request = new ImportModelRequestParams
@@ -216,7 +212,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ModelManagement
             };
             ModelMetadata expected = model;
 
-            ModelMetadata actual = VerifyModelOperation((dbConnection, databaseName , tableName) =>
+            ModelMetadata actual = VerifyModelOperation((dbConnection, databaseName, tableName) =>
             {
                 ModelOperations modelOperations = new ModelOperations();
                 ImportModelRequestParams request = new ImportModelRequestParams
@@ -252,7 +248,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ModelManagement
         public void VerifyImportTableShouldReturnTrueGivenTableCreatdByTheService()
         {
             bool expected = true;
-            bool actual = VerifyModelOperation((dbConnection, databaseName , tableName) =>
+            bool actual = VerifyModelOperation((dbConnection, databaseName, tableName) =>
             {
                 ModelOperations modelOperations = new ModelOperations();
                 ModelRequestBase request = new ModelRequestBase
@@ -272,7 +268,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ModelManagement
         public void VerifyImportTableShouldReturnTrueGivenTableNameThatNeedsEscaping()
         {
             bool expected = true;
-            bool actual = VerifyModelOperation((dbConnection, databaseName , tableName) =>
+            bool actual = VerifyModelOperation((dbConnection, databaseName, tableName) =>
             {
                 ModelOperations modelOperations = new ModelOperations();
                 ModelRequestBase request = new ModelRequestBase
@@ -291,7 +287,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ModelManagement
         [Test]
         public void VerifyImportTableShouldReturnFalseGivenInvalidDbName()
         {
-            Assert.Throws(typeof(SqlException), () =>  VerifyModelOperation((dbConnection, databaseName , tableName) =>
+            Assert.Throws(typeof(SqlException), () => VerifyModelOperation((dbConnection, databaseName, tableName) =>
             {
                 ModelOperations modelOperations = new ModelOperations();
                 ModelRequestBase request = new ModelRequestBase
@@ -309,7 +305,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ModelManagement
         public void VerifyImportTableShouldReturnFalseGivenInvalidTable()
         {
             bool expected = false;
-            bool actual = VerifyModelOperation((dbConnection, databaseName , tableName) =>
+            bool actual = VerifyModelOperation((dbConnection, databaseName, tableName) =>
             {
                 dbConnection.ChangeDatabase(databaseName);
                 using (IDbCommand command = dbConnection.CreateCommand())

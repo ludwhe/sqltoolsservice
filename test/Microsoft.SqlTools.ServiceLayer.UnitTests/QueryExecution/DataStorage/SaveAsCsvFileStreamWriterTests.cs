@@ -396,7 +396,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
             var columns = new DbColumnWrapper[columnCount];
             for (int i = 0; i < columnCount; i++)
             {
-                data[i] = new DbCellValue { DisplayValue = $"item{i}"};
+                data[i] = new DbCellValue { DisplayValue = $"item{i}" };
                 columns[i] = new DbColumnWrapper(new TestDbColumn($"column{i}"));
             }
             return (columns, data);

@@ -77,7 +77,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common.Baselined
         /// This method gives you an opportunity to handle one specific file
         /// </summary>
         /// <param name="filePath">Path to the current file</param>
-        public abstract void ProcessFile(string filePath); 
+        public abstract void ProcessFile(string filePath);
 
         /// <summary>
         /// This method gives you an opportunity to perform any actions after files are processed
@@ -89,7 +89,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common.Baselined
         /// <summary>
         /// This method will be called when all files have been processed; add verification logic here
         /// </summary>
-        public abstract void Verify(); 
+        public abstract void Verify();
 
     }
 }

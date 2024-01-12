@@ -90,7 +90,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         {
             return ProcessCompoundStatementStart(ref nextToken, openParenIndex, isNewlineRequired);
         }
-        
+
         protected int ProcessWithStatementStart(int nextToken, int withTokenIndex)
         {
             return ProcessCompoundStatementStart(ref nextToken, withTokenIndex, true);
@@ -115,7 +115,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             // Move our pointer past the start of the compount statement
             nextToken = compoundStartIndex + 1;
             TokenData nextTokenData = GetTokenData(nextToken);
-            
+
             // Ensure a newline after the open parenthesis
             if (isNewlineRequired
                 && !IsTokenWhitespace(nextTokenData))

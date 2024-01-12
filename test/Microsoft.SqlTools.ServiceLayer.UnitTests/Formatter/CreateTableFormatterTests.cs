@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
 {
-    
+
     public class CreateTableFormatterTests : FormatterUnitTestsBase
     {
         [SetUp]

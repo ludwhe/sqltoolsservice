@@ -6,12 +6,12 @@
 #nullable disable
 
 using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.SqlTools.ServiceLayer.Hosting;
 using Microsoft.SqlTools.ServiceLayer.SqlContext;
 using Microsoft.SqlTools.ServiceLayer.Utility;
 using Microsoft.SqlTools.Utility;
-using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace Microsoft.SqlTools.ServiceLayer
 {

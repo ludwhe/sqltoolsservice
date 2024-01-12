@@ -10,11 +10,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security;
 using Microsoft.SqlServer.Management.Common;
-using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
+using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Management;
-using Microsoft.SqlTools.ServiceLayer.Utility;
 using Microsoft.SqlTools.ServiceLayer.ObjectManagement.PermissionsData;
+using Microsoft.SqlTools.ServiceLayer.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 {
@@ -90,7 +90,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         public string mappedLoginName = string.Empty;
         public string certificateName = string.Empty;
         public string asymmetricKeyName = string.Empty;
-        public string defaultSchemaName = string.Empty;        
+        public string defaultSchemaName = string.Empty;
         public string defaultLanguageAlias = string.Empty;
         public SecureString password = new SecureString();
         public SecureString passwordConfirm = new SecureString();
@@ -117,7 +117,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             {
                 this.LoadUserData(context);
             }
-     
+
             // apply user properties provided by client
             if (userInfo != null)
             {
@@ -125,7 +125,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 this.mappedLoginName = userInfo.LoginName;
                 this.defaultSchemaName = userInfo.DefaultSchema;
                 if (!string.IsNullOrEmpty(userInfo.Password))
-                {                    
+                {
                     this.password = DatabaseUtils.GetReadOnlySecureString(userInfo.Password);
                 }
 
@@ -134,7 +134,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                     ? LanguageUtils.GetLanguageAliasFromDisplayText(userInfo.DefaultLanguage) : string.Empty;
 
                 this.userType = UserPrototypeData.GetUserTypeFromUserInfo(userInfo);
-            }     
+            }
 
             this.LoadRoleMembership(context, userInfo);
 
@@ -181,7 +181,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 
             foreach (string key in this.isSchemaOwned?.Keys ?? Enumerable.Empty<string>())
             {
-                 result.isSchemaOwned[key] = this.isSchemaOwned[key];
+                result.isSchemaOwned[key] = this.isSchemaOwned[key];
             }
 
             return result;
@@ -230,8 +230,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                         break;
                     }
                 }
-            }     
-            
+            }
+
             return result;
         }
 
@@ -297,7 +297,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 {
                     if (userInfo != null && userInfo.DatabaseRoles != null)
                     {
-                        this.isMember[dbRole.Name]  = userInfo.DatabaseRoles.Contains(dbRole.Name);
+                        this.isMember[dbRole.Name] = userInfo.DatabaseRoles.Contains(dbRole.Name);
                     }
                     else if (existingUser != null)
                     {
@@ -316,7 +316,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="context"></param>
         private void LoadSchemaData(CDataContainer context, UserInfo? userInfo)
-        {            
+        {
             Database? parentDb = context.Server.GetSmoObject(context.ParentUrn) as Database;
             if (parentDb == null)
             {
@@ -333,13 +333,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 || parentDb.CompatibilityLevel <= CompatibilityLevel.Version80)
             {
                 return;
-            }          
+            }
 
             foreach (Schema sch in parentDb.Schemas)
             {
                 if (userInfo != null && userInfo.OwnedSchemas != null)
                 {
-                    this.isSchemaOwned[sch.Name]  = userInfo.OwnedSchemas.Contains(sch.Name);
+                    this.isSchemaOwned[sch.Name] = userInfo.OwnedSchemas.Contains(sch.Name);
                 }
                 else if (existingUser != null)
                 {
@@ -349,7 +349,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 else
                 {
                     this.isSchemaOwned[sch.Name] = false;
-                }                
+                }
             }
         }
     }
@@ -467,7 +467,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         {
             bool isSchemaOwner = false;
             this.currentState.isSchemaOwned.TryGetValue(schemaName, out isSchemaOwner);
-            
+
             return isSchemaOwner;
         }
 
@@ -480,7 +480,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         {
             bool isRoleMember = false;
             this.currentState.isMember.TryGetValue(roleName, out isRoleMember);
-            
+
             return isRoleMember;
         }
 
@@ -507,10 +507,10 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 		/// Constructor
 		/// </summary>
 		/// <param name="context">The context for the dialog</param>
-		public UserPrototype(CDataContainer context, 
+		public UserPrototype(CDataContainer context,
                                 UserPrototypeData current,
                                 UserPrototypeData original)
-		{
+        {
             this.currentState = current;
             this.originalState = original;
             this.exists = !context.IsNewObject;
@@ -584,7 +584,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             {
                 this.SaveProperties(user);
                 this.CreateOrAlterUser(user);
-                
+
                 //Extended Properties page also executes Alter() method on the same user object
                 //in order to add extended properties. If at that time any property is dirty, 
                 //it will again generate the script corresponding to that.
@@ -679,7 +679,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             }
 
             if ((this.currentState.userType == UserType.Certificate)
-                &&(!this.Exists || (user.Certificate != this.currentState.certificateName)))
+                && (!this.Exists || (user.Certificate != this.currentState.certificateName)))
             {
                 user.Certificate = this.currentState.certificateName;
             }
@@ -757,7 +757,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             get
             {
                 //Default Schema was not supported in Shiloh.
-                return this.context.Server.ConnectionContext.ServerVersion.Major > 8 ;
+                return this.context.Server.ConnectionContext.ServerVersion.Major > 8;
             }
         }
 
@@ -844,7 +844,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
     }
 
     internal class UserPrototypeForWindowsUser : UserPrototypeForSqlUserWithLogin,
-                                                    IUserPrototypeWithDefaultLanguage                                                    
+                                                    IUserPrototypeWithDefaultLanguage
     {
         private CDataContainer context;
 
@@ -922,7 +922,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                         user.DefaultLanguage.Name = this.currentState.defaultLanguageAlias;
                     }
                 }
-            }            
+            }
         }
     }
 
@@ -990,7 +990,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             {
                 return this.currentState.isOldPasswordRequired;
             }
-            set 
+            set
             {
                 this.currentState.isOldPasswordRequired = value;
             }
@@ -1036,7 +1036,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         {
             if (!this.Exists) //New User
             {
-                user.Create(this.currentState.password);                
+                user.Create(this.currentState.password);
             }
             else //Existing User
             {
@@ -1063,7 +1063,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
     internal static class UserPrototypeFactory
     {
         public static UserPrototype GetUserPrototype(
-            CDataContainer context, UserInfo? user, 
+            CDataContainer context, UserInfo? user,
             UserPrototypeData? originalData, ExhaustiveUserTypes userType, bool isNewObject)
         {
             UserPrototype currentPrototype = null;
@@ -1073,7 +1073,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             {
                 case ExhaustiveUserTypes.AsymmetricKeyMappedUser:
                     currentPrototype ??= new UserPrototype(context, currentData, originalData);
-                    break;                    
+                    break;
 
                 case ExhaustiveUserTypes.CertificateMappedUser:
                     currentPrototype ??= new UserPrototype(context, currentData, originalData);
@@ -1095,7 +1095,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 case ExhaustiveUserTypes.WindowsUser:
                     currentPrototype ??= new UserPrototypeForWindowsUser(context, currentData, originalData);
                     break;
-                
+
                 default:
                     System.Diagnostics.Debug.Assert(false, "Unknown UserType provided.");
                     currentPrototype = null;

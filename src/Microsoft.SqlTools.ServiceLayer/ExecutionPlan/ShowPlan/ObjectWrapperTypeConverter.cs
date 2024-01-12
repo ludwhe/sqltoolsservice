@@ -189,9 +189,9 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         /// <returns>Wrapper object.</returns>
         public static ExpandableObjectWrapper Convert(RollupLevelType item)
         {
-            return new ExpandableObjectWrapper(item,SR.Level,item.Level.ToString());
+            return new ExpandableObjectWrapper(item, SR.Level, item.Level.ToString());
         }
-        
+
         /// <summary>
         /// Converts WarningsType to a wrapper object.
         /// </summary>
@@ -371,14 +371,14 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             }
         }
 
-	private static void ProcessFullUpdateForOnlineIndexBuild(ExpandableObjectWrapper wrapper, ref string displayName)
-	{
+        private static void ProcessFullUpdateForOnlineIndexBuild(ExpandableObjectWrapper wrapper, ref string displayName)
+        {
             if (wrapper["FullUpdateForOnlineIndexBuild"] != null)
             {
                 displayName = MergeString(CultureInfo.CurrentCulture.TextInfo.ListSeparator + " ",
                     displayName, SR.FullUpdateForOnlineIndexBuild);
-      	    }
-	}
+            }
+        }
 
 
         private static void ProcessPlanAffectingConvert(ExpandableObjectWrapper wrapper, ref string displayName)
@@ -425,7 +425,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                 }
             }
         }
-        
+
         private static List<ExpandableObjectWrapper> GetPropertyList(ExpandableObjectWrapper wrapper, string propertyName)
         {
             List<ExpandableObjectWrapper> propList = new List<ExpandableObjectWrapper>();
@@ -473,7 +473,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 
                 stringBuilder.Append("(");
 
-                for (int j = 0; j < items[i].Length; j++ )
+                for (int j = 0; j < items[i].Length; j++)
                 {
                     if (j != 0)
                     {
@@ -527,7 +527,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         public static ExpandableObjectWrapper Convert(CompareType item)
         {
             ExpandableObjectWrapper wrapper = new ExpandableObjectWrapper(item);
-            
+
             object scalarOperator = wrapper["ScalarOperator"];
             if (scalarOperator != null)
             {
@@ -699,7 +699,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                         CultureInfo.CurrentCulture,
                         "{0}[{1}]: {2}",
                         SR.SeekKeys,
-                        i+1,
+                        i + 1,
                         properties[i].GetValue(wrapper).ToString()));
             }
 
@@ -707,7 +707,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             return wrapper;
         }
 
-		/// <summary>
+        /// <summary>
         /// Converts SeekPredicatePartType to a wrapper object.
         /// </summary>
         /// <param name="items">Objects to convert.</param>
@@ -738,7 +738,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             }
             return wrapper;
         }
-		
+
         /// <summary>
         /// Converts MergeColumns to a wrapper object.
         /// </summary>
@@ -747,7 +747,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         public static ExpandableObjectWrapper Convert(MergeColumns item)
         {
             ExpandableObjectWrapper wrapper = new ExpandableObjectWrapper(item);
-            
+
             object innerSideJoinColumns = wrapper["InnerSideJoinColumns"];
             object outerSideJoinColumns = wrapper["OuterSideJoinColumns"];
 
@@ -925,7 +925,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                     null,
                     BindingFlags.Public | BindingFlags.Static,
                     null,
-                    new object[]{ value },
+                    new object[] { value },
                     CultureInfo.CurrentCulture);
             }
             else
@@ -983,7 +983,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                 }
                 else
                 {
-                        return new ExpandableArrayWrapper(collection);
+                    return new ExpandableArrayWrapper(collection);
                 }
             }
             else

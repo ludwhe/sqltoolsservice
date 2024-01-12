@@ -6,11 +6,11 @@
 #nullable disable
 
 using System;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 using Microsoft.SqlTools.Extensibility;
 using Microsoft.SqlTools.Utility;
-using System.Threading.Tasks;
 
 namespace Microsoft.SqlTools.Migration
 {
@@ -39,7 +39,7 @@ namespace Microsoft.SqlTools.Migration
                 }
 
                 Logger.Initialize(SourceLevels.Verbose, piiEnabled: commandOptions.PiiLogging, logFilePath, "Migration", commandOptions.AutoFlushLog);
-                
+
                 Logger.Verbose("Starting SqlTools Migration Server...");
 
                 ExtensionServiceHost serviceHost = new ExtensionServiceHost(

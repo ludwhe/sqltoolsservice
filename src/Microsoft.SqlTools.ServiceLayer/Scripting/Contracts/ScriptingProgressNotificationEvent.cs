@@ -15,7 +15,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting.Contracts
     /// </summary>
     public class ScriptingProgressNotificationEvent
     {
-        public static readonly EventType<ScriptingProgressNotificationParams> Type = 
+        public static readonly EventType<ScriptingProgressNotificationParams> Type =
             EventType<ScriptingProgressNotificationParams>.Create("scripting/scriptProgressNotification");
     }
 }

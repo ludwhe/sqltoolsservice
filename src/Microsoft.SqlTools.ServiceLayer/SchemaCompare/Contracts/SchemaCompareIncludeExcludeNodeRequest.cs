@@ -5,10 +5,10 @@
 
 #nullable disable
 
+using System.Collections.Generic;
 using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 using Microsoft.SqlTools.ServiceLayer.TaskServices;
 using Microsoft.SqlTools.ServiceLayer.Utility;
-using System.Collections.Generic;
 
 namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare.Contracts
 {
@@ -25,8 +25,8 @@ namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare.Contracts
         /// <summary>
         /// Difference to Include or exclude
         /// </summary>
-        public DiffEntry DiffEntry { get; set; }  
-        
+        public DiffEntry DiffEntry { get; set; }
+
         /// <summary>
         /// Indicator for include or exclude request
         /// </summary>

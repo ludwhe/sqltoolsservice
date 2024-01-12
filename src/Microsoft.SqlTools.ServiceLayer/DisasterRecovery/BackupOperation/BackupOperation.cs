@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery
     /// <summary>
     /// This class implements backup operations
     /// </summary>
-    public class BackupOperation :  SmoScriptableTaskOperation, IBackupOperation
+    public class BackupOperation : SmoScriptableTaskOperation, IBackupOperation
     {
         private CDataContainer dataContainer;
         private ServerConnection serverConnection;
@@ -43,7 +43,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery
         private BackupComponent backupComponent;
         private BackupType backupType;
         private BackupDeviceType backupDeviceType;
-        
+
         private BackupActionType backupActionType = BackupActionType.Database;
         private bool isBackupIncremental = false;
         private bool isLocalPrimaryReplica;
@@ -91,14 +91,14 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery
                 }
             }
         };
-        
+
         #region ctors
-        
+
         /// <summary>
         /// Ctor
         /// </summary>
         public BackupOperation()
-        {               
+        {
         }
 
         #endregion
@@ -317,7 +317,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery
                     }
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw;
             }
@@ -327,7 +327,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery
                 {
                     this.serverConnection.Disconnect();
                 }
-                if(this.dataContainer != null)
+                if (this.dataContainer != null)
                 {
                     this.dataContainer.Dispose();
                 }
@@ -346,7 +346,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery
         }
 
         #region Methods for UI logic
-        
+
         /// <summary>
         /// Return recovery model of the database
         /// </summary>
@@ -434,7 +434,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery
                     break;
             }
         }
-        
+
         private int GetDeviceType(string deviceName)
         {
             Enumerator enumerator = new Enumerator();

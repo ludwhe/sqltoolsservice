@@ -23,7 +23,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                 {
                     return (parentTable.HistoryTableID == historyTable.ID);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     //TODO: have a better filtering here. HistoryTable is not available for SQL 2014.
                     //and the property throws exception here

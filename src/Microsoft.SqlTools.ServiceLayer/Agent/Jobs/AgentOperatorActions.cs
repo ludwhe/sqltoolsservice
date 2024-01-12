@@ -24,7 +24,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// Constructor
         /// </summary>
         public AgentOperatorActions(
-            CDataContainer dataContainer, 
+            CDataContainer dataContainer,
             AgentOperatorInfo operatorInfo,
             ConfigAction configAction)
         {
@@ -49,8 +49,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             if (parameters.GetParam("operator", ref agentOperatorName))
             {
                 this.operatorsData = new AgentOperatorsData(
-                    dataContainer, 
-                    agentOperatorName, 
+                    dataContainer,
+                    agentOperatorName,
                     createMode: configAction == ConfigAction.Create);
             }
             else
@@ -64,8 +64,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// </summary>
         protected override void Dispose(bool disposing)
         {
-            if(disposing)
-            {    
+            if (disposing)
+            {
             }
             base.Dispose(disposing);
         }

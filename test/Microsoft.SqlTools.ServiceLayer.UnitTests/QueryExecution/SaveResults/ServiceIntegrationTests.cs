@@ -105,7 +105,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
             QueryExecutionService qes = Common.GetPrimedExecutionService(Common.ExecutionPlanTestDataSet, true, false, false, ws, out storage);
 
             // ... The query execution service has executed a query with results
-            var executeParams = new ExecuteDocumentSelectionParams {QuerySelection = null, OwnerUri = Constants.OwnerUri};
+            var executeParams = new ExecuteDocumentSelectionParams { QuerySelection = null, OwnerUri = Constants.OwnerUri };
             var executeRequest = RequestContextMocks.Create<ExecuteRequestResult>(null);
             await qes.HandleExecuteRequest(executeParams, executeRequest.Object);
             await qes.WorkTask;
@@ -407,7 +407,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
             QueryExecutionService qes = Common.GetPrimedExecutionService(Common.StandardTestDataSet, true, false, false, ws, out storage);
 
             // ... The query execution service has executed a query with results
-            var executeParams = new ExecuteDocumentSelectionParams {QuerySelection = null, OwnerUri = Constants.OwnerUri};
+            var executeParams = new ExecuteDocumentSelectionParams { QuerySelection = null, OwnerUri = Constants.OwnerUri };
             var executeRequest = RequestContextMocks.Create<ExecuteRequestResult>(null);
             await qes.HandleExecuteRequest(executeParams, executeRequest.Object);
             await qes.WorkTask;
@@ -451,7 +451,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
             QueryExecutionService qes = Common.GetPrimedExecutionService(Common.StandardTestDataSet, true, false, false, ws, out storage);
 
             // ... The query execution service has executed a query with results
-            var executeParams = new ExecuteDocumentSelectionParams {QuerySelection = null, OwnerUri = Constants.OwnerUri};
+            var executeParams = new ExecuteDocumentSelectionParams { QuerySelection = null, OwnerUri = Constants.OwnerUri };
             var executeRequest = RequestContextMocks.Create<ExecuteRequestResult>(null);
             await qes.HandleExecuteRequest(executeParams, executeRequest.Object);
             await qes.WorkTask;

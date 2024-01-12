@@ -5,13 +5,13 @@
 
 using System;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.BatchParser.Utility;
 using Microsoft.SqlTools.ManagedBatchParser;
+using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
 
 namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
 {
@@ -721,7 +721,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
             }
             finally
             {
-               
+
                 if (messageHandler == null)
                 {
                     Logger.Error("Expected handler to be declared");
@@ -764,7 +764,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
             }
 
             return this.ExecuteUnTrackedCommand();
-            
+
         }
 
         private ScriptExecutionResult ExecuteUnTrackedCommand()

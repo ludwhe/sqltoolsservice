@@ -19,9 +19,9 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
     /// </summary>
     public abstract class SmoQuerier : IComposableService
     {
-        public abstract Type[] SupportedObjectTypes { get;  }
+        public abstract Type[] SupportedObjectTypes { get; }
         private static object lockObject = new object();
-        
+
         /// <summary>
         /// Queries SMO for a collection of objects using the <see cref="SmoQueryContext"/> 
         /// </summary>
@@ -48,14 +48,14 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
             IDataReader reader = null;
             if (data is IDataReader)
             {
-               
+
                 reader = data as IDataReader;
             }
-            else if(data is DataTable)
+            else if (data is DataTable)
             {
                 reader = ((DataTable)data).CreateDataReader();
             }
-           
+
             else if (data is DataSet)
             {
                 reader = ((DataSet)data).Tables[0].CreateDataReader();
@@ -74,14 +74,14 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
         /// </summary>
         /// <param name="serverValidFor"></param>
         /// <returns></returns>
-        public bool IsValidFor(ValidForFlag serverValidFor) => ServerVersionHelper.IsValidFor(serverValidFor,  ValidFor);
+        public bool IsValidFor(ValidForFlag serverValidFor) => ServerVersionHelper.IsValidFor(serverValidFor, ValidFor);
 
         /// <summary>
         /// Indicates which platforms the querier is valid for
         /// </summary>
         public virtual ValidForFlag ValidFor
         {
-            get =>  ValidForFlag.All;
+            get => ValidForFlag.All;
         }
     }
 }

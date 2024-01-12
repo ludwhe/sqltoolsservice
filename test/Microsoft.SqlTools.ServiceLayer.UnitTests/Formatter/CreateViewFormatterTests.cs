@@ -11,7 +11,7 @@ using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
 {
-    
+
     public class CreateViewFormatterTests : FormatterUnitTestsBase
     {
         [SetUp]
@@ -23,7 +23,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         [Test]
         public void CreateView_Full()
         {
-            LoadAndFormatAndCompare("CreateView_Full", GetInputFile("CreateView_Full.sql"), 
+            LoadAndFormatAndCompare("CreateView_Full", GetInputFile("CreateView_Full.sql"),
                 GetBaselineFile("CreateView_Full.sql"), new FormatOptions(), true);
         }
 
@@ -36,42 +36,42 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         [Test]
         public void CreateView_MultipleColumns()
         {
-            LoadAndFormatAndCompare("CreateView_MultipleColumns", GetInputFile("CreateView_MultipleColumns.sql"), 
+            LoadAndFormatAndCompare("CreateView_MultipleColumns", GetInputFile("CreateView_MultipleColumns.sql"),
                 GetBaselineFile("CreateView_MultipleColumns.sql"), new FormatOptions(), true);
         }
 
         [Test]
         public void CreateView_MultipleOptions()
         {
-            LoadAndFormatAndCompare("CreateView_MultipleOptions", GetInputFile("CreateView_MultipleOptions.sql"), 
+            LoadAndFormatAndCompare("CreateView_MultipleOptions", GetInputFile("CreateView_MultipleOptions.sql"),
                 GetBaselineFile("CreateView_MultipleOptions.sql"), new FormatOptions(), true);
         }
 
         [Test]
         public void CreateView_OneColumn()
         {
-            LoadAndFormatAndCompare("CreateView_OneColumn", GetInputFile("CreateView_OneColumn.sql"), 
+            LoadAndFormatAndCompare("CreateView_OneColumn", GetInputFile("CreateView_OneColumn.sql"),
                 GetBaselineFile("CreateView_OneColumn.sql"), new FormatOptions(), true);
         }
 
         [Test]
         public void CreateView_OneColumnOneOption()
         {
-            LoadAndFormatAndCompare("CreateView_OneColumnOneOption", GetInputFile("CreateView_OneColumnOneOption.sql"), 
+            LoadAndFormatAndCompare("CreateView_OneColumnOneOption", GetInputFile("CreateView_OneColumnOneOption.sql"),
                 GetBaselineFile("CreateView_OneColumnOneOption.sql"), new FormatOptions(), true);
         }
 
         [Test]
         public void CreateView_OneOption()
         {
-            LoadAndFormatAndCompare("CreateView_OneOption", GetInputFile("CreateView_OneOption.sql"), 
+            LoadAndFormatAndCompare("CreateView_OneOption", GetInputFile("CreateView_OneOption.sql"),
                 GetBaselineFile("CreateView_OneOption.sql"), new FormatOptions(), true);
         }
 
         [Test]
         public void CreateView_Simple()
         {
-            LoadAndFormatAndCompare("CreateView_Simple", GetInputFile("CreateView_Simple.sql"), 
+            LoadAndFormatAndCompare("CreateView_Simple", GetInputFile("CreateView_Simple.sql"),
                 GetBaselineFile("CreateView_Simple.sql"), new FormatOptions(), true);
         }
     }

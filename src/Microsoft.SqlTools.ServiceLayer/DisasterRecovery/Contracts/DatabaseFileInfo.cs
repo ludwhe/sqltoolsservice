@@ -26,7 +26,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts
             Validate.IsNotNull("properties", properties);
 
             this.Properties = properties;
-            if (this.Properties != null )
+            if (this.Properties != null)
             {
                 var idProperty = this.Properties.FirstOrDefault(x => x.PropertyName == IdPropertyName);
                 Id = idProperty == null || idProperty.PropertyValue == null ? string.Empty : idProperty.PropertyValue.ToString();

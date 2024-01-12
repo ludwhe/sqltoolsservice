@@ -61,14 +61,14 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Extensibility
             provider.RegisterSingleService(service);
 
             var returnedService = provider.GetService<MyProviderService>();
-            Assert.AreEqual(service, returnedService);            
+            Assert.AreEqual(service, returnedService);
         }
 
         [Test]
         public void GetServicesShouldReturnRegisteredServiceWhenMultipleServicesRegistered()
         {
             MyProviderService service = new MyProviderService();
-            provider.RegisterSingleService(service);          
+            provider.RegisterSingleService(service);
 
             var returnedServices = provider.GetServices<MyProviderService>();
             Assert.AreEqual(service, returnedServices.Single());
@@ -88,7 +88,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Extensibility
 
             Assert.Throws<InvalidOperationException>(() => provider.RegisterSingleService(service));
         }
-        
+
         [Test]
         public void RegisterShouldThrowIfServiceAlreadyRegistered()
         {
@@ -101,7 +101,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Extensibility
         [Test]
         public void RegisterShouldThrowIfServicesAlreadyRegistered()
         {
-            provider.Register<MyProviderService>(() => new [] { new MyProviderService(), new MyProviderService() });
+            provider.Register<MyProviderService>(() => new[] { new MyProviderService(), new MyProviderService() });
             Assert.Throws<InvalidOperationException>(() => provider.Register(() => new MyProviderService().SingleItemAsEnumerable()));
         }
     }

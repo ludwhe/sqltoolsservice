@@ -6,16 +6,16 @@
 #nullable disable
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Linq;
-using Microsoft.SqlTools.Utility;
-using Microsoft.SqlTools.ServiceLayer.Workspace.Contracts;
-using System.Runtime.InteropServices;
 using Microsoft.SqlTools.ServiceLayer.Utility;
-using System.Collections.Concurrent;
+using Microsoft.SqlTools.ServiceLayer.Workspace.Contracts;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.Workspace
 {
@@ -28,7 +28,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace
         #region Private Fields
 
         private const string UntitledScheme = "untitled";
-        private static readonly HashSet<string> fileUriSchemes = new HashSet<string>(StringComparer.OrdinalIgnoreCase) 
+        private static readonly HashSet<string> fileUriSchemes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             "file",
             UntitledScheme,
@@ -98,7 +98,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace
             {
                 return null;
             }
-            
+
             // Resolve the full file path 
             ResolvedFile resolvedFile = this.ResolveFilePath(filePath);
             string keyName = resolvedFile.LowercaseClientUri;
@@ -120,7 +120,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace
                 using (var fileStream = new FileStream(resolvedFile.FilePath, FileMode.Open, FileAccess.Read))
                 using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
                 {
-                    scriptFile = new ScriptFile(resolvedFile.FilePath, resolvedFile.ClientUri,streamReader);
+                    scriptFile = new ScriptFile(resolvedFile.FilePath, resolvedFile.ClientUri, streamReader);
 
                     this.workspaceFiles.TryAdd(keyName, scriptFile);
                 }
@@ -130,7 +130,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace
 
             return scriptFile;
         }
-        
+
         /// <summary>
         /// Resolves a URI identifier into an actual file on disk if it exists. 
         /// </summary>
@@ -152,7 +152,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace
                     // any extraneous slashes
                     var fileUri = new Uri(clientUri);
                     filePath = fileUri.LocalPath;
-                    if (filePath.StartsWith("//") || filePath.StartsWith("\\\\") || filePath.StartsWith("/")) 
+                    if (filePath.StartsWith("//") || filePath.StartsWith("\\\\") || filePath.StartsWith("/"))
                     {
                         filePath = filePath.Substring(1);
                     }
@@ -194,7 +194,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace
 
             return new ResolvedFile(filePath, clientUri, canReadFromDisk);
         }
-        
+
         /// <summary>
         /// Unescapes any escaped [, ] or space characters. Typically use this before calling a
         /// .NET API that doesn't understand PowerShell escaped chars.
@@ -211,7 +211,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace
             return GetEscapeRegex().Replace(path, "");
         }
 
-         /// <summary>
+        /// <summary>
         /// Gets a new ScriptFile instance which is identified by the given file
         /// path and initially contains the given buffer contents.
         /// </summary>
@@ -277,12 +277,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace
                 // TODO: Assert instead?
                 throw new InvalidOperationException(
                     string.Format(
-                        "Must provide a full path for originalScriptPath: {0}", 
+                        "Must provide a full path for originalScriptPath: {0}",
                         filePath));
             }
 
             // Get the directory of the file path
-            return Path.GetDirectoryName(filePath); 
+            return Path.GetDirectoryName(filePath);
         }
 
         internal string ResolveRelativeScriptPath(string baseFilePath, string relativePath)
@@ -340,7 +340,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Workspace
             }
             return false;
         }
-        
+
         private bool IsUntitled(string path)
         {
             string scheme = GetScheme(path);

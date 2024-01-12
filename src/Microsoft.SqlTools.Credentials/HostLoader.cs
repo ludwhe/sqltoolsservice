@@ -8,7 +8,7 @@ using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.ServiceLayer.SqlContext;
 using Microsoft.SqlTools.Utility;
 
-namespace  Microsoft.SqlTools.Credentials.Utility
+namespace Microsoft.SqlTools.Credentials.Utility
 {
     /// <summary>
     /// Provides support for starting up a service host. This is a common responsibility

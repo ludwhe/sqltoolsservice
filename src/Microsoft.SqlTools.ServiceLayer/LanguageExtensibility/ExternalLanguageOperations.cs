@@ -5,14 +5,14 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.ServiceLayer.LanguageExtensibility.Contracts;
-using Microsoft.SqlTools.SqlCore.Utility;
-using Microsoft.SqlTools.Utility;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using Microsoft.SqlTools.ServiceLayer.LanguageExtensibility.Contracts;
+using Microsoft.SqlTools.SqlCore.Utility;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.LanguageExtensibility
 {

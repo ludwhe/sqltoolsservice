@@ -13,9 +13,9 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
     public interface IKustoClient
     {
         string ClusterName { get; }
-        
+
         string DatabaseName { get; }
-        
+
         IDataReader ExecuteQuery(string query, CancellationToken cancellationToken, string databaseName = null, int retryCount = 1);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
         void ExecuteControlCommand(string command, int retryCount = 1);
 
         void UpdateDatabase(string databaseName);
-        
+
         void Dispose();
     }
 }

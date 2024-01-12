@@ -33,7 +33,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="smoType">The SMO Type this Securable is mapped to</param>
         /// <param name="additionalParamName">(Optional) The name of an additional param</param>
         /// <param name="additionalParamValue">(Optional) The value of an additional param</param>
-        public SchemaScopedSecurableAttribute(Type smoType, string additionalParamName = "", object additionalParamValue = null )
+        public SchemaScopedSecurableAttribute(Type smoType, string additionalParamName = "", object additionalParamValue = null)
         {
             _smoType = smoType;
             //The additional param is optional - just ignore if we don't have a valid name

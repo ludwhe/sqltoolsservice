@@ -19,9 +19,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.SqlAssessment
 {
     public class GenerateScriptOperationTests
     {
-            private static readonly GenerateScriptParams SampleParams = new GenerateScriptParams
-            {
-                Items = new List<AssessmentResultItem>
+        private static readonly GenerateScriptParams SampleParams = new GenerateScriptParams
+        {
+            Items = new List<AssessmentResultItem>
                 {
                     new AssessmentResultItem
                     {
@@ -99,10 +99,10 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.SqlAssessment
                         RulesetVersion = "1.3"
                     }
                 }
-            };
-            
-            private const string SampleScript =
-                @"IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'AssessmentResult'))
+        };
+
+        private const string SampleScript =
+            @"IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'AssessmentResult'))
 BEGIN
     CREATE TABLE [dbo].[AssessmentResult](
     [CheckName] [nvarchar](max),
@@ -154,7 +154,7 @@ INSERT INTO [dbo].[AssessmentResult] ([CheckName],[CheckId],[RulesetName],[Rules
 
         private static Task<TaskResult> DummyOpFunction(SqlTask _)
         {
-            return Task.FromResult(new TaskResult() {TaskStatus = SqlTaskStatus.Succeeded});
+            return Task.FromResult(new TaskResult() { TaskStatus = SqlTaskStatus.Succeeded });
         }
     }
 }

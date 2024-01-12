@@ -47,8 +47,8 @@ namespace Microsoft.SqlTools.ResourceProvider.DefaultImpl
         public bool Equals(IAzureUserAccountDisplayInfo other)
         {
             return other != null &&
-                ((other.AccountDisplayName == null && AccountDisplayName == null ) || (other.AccountDisplayName != null && other.AccountDisplayName.Equals(AccountDisplayName))) &&
-                ((other.UserName == null && UserName == null ) || (other.UserName != null && other.UserName.Equals(UserName)));
+                ((other.AccountDisplayName == null && AccountDisplayName == null) || (other.AccountDisplayName != null && other.AccountDisplayName.Equals(AccountDisplayName))) &&
+                ((other.UserName == null && UserName == null) || (other.UserName != null && other.UserName.Equals(UserName)));
         }
 
         /// <summary>

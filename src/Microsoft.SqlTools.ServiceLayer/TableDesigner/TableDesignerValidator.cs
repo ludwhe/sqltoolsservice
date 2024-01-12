@@ -6,10 +6,10 @@
 #nullable disable
 
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Data.Tools.Sql.DesignServices.TableDesigner;
 using Dac = Microsoft.Data.Tools.Sql.DesignServices.TableDesigner;
 using TableDesignerIssue = Microsoft.SqlTools.ServiceLayer.TableDesigner.Contracts.TableDesignerIssue;
-using System.Linq;
 namespace Microsoft.SqlTools.ServiceLayer.TableDesigner
 {
     public static class TableDesignerValidator

@@ -23,7 +23,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery
         public static string Database = "Database";
         public static string FileFilegroups = "File and Filegroups";
         public static string Filegroup = "Filegroup";
-        public static string File = "File";        
+        public static string File = "File";
     }
 
     public static class RestoreConstants

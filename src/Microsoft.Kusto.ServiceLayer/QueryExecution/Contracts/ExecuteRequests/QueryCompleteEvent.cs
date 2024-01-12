@@ -25,7 +25,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts.ExecuteRequests
 
     public class QueryCompleteEvent
     {
-        public static readonly 
+        public static readonly
             EventType<QueryCompleteParams> Type =
             EventType<QueryCompleteParams>.Create("query/complete");
     }

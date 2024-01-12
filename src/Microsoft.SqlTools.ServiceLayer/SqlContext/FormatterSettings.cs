@@ -85,6 +85,6 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlContext
         {
             get;
             set;
-        }        
+        }
     }
 }

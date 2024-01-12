@@ -6,9 +6,9 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts;
 using Microsoft.Kusto.ServiceLayer.Workspace.Contracts;
+using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Utility;
 using Range = Microsoft.Kusto.ServiceLayer.Workspace.Contracts.Range;
 

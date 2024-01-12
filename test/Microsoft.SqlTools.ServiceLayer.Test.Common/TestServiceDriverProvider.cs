@@ -442,7 +442,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
                 {
                     await testToRun(timer);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine("Iteration Failed: " + ex.Message);
                 }
@@ -550,7 +550,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
             var result = await Driver.SendRequest(SaveResultsAsXmlRequest.Type, saveParams);
             return result;
         }
-        
+
         /// <summary>
         /// Request a subset of results from a query
         /// </summary>

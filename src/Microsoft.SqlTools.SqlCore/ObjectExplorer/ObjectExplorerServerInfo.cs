@@ -39,4 +39,3 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer
 }
 
 
-    

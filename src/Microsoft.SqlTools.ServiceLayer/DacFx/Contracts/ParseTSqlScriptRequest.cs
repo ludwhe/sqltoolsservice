@@ -21,7 +21,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx.Contracts
         /// <summary>
         /// Gets or sets the DSP.
         /// </summary>
-        public string DatabaseSchemaProvider { get; set;}
+        public string DatabaseSchemaProvider { get; set; }
     }
 
     /// <summary>

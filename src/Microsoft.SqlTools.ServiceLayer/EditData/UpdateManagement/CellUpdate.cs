@@ -258,7 +258,7 @@ namespace Microsoft.SqlTools.ServiceLayer.EditData.UpdateManagement
             // Special case for strings because the string value should stay the same as provided
             // If user typed 'NULL' they mean NULL as text
             Value = valueAsString == TextNullString ? NullString : valueAsString;
-            
+
             // Make sure that the value fits inside the size of the column
             if (Column.ColumnSize.HasValue && valueAsString.Length > Column.ColumnSize)
             {
@@ -266,7 +266,7 @@ namespace Microsoft.SqlTools.ServiceLayer.EditData.UpdateManagement
                 string columnTypeString = Column.DataTypeName.ToUpperInvariant() + columnSizeString;
                 throw new InvalidOperationException(SR.EditDataValueTooLarge(valueAsString, columnTypeString));
             }
-            
+
             ValueAsString = valueAsString;
         }
 

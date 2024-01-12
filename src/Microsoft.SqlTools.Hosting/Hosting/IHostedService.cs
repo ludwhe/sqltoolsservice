@@ -16,7 +16,7 @@ namespace Microsoft.SqlTools.Hosting
     /// messages passed over the <see cref="ServiceHost"/>. The service defines
     /// a standard initialization method where it can hook up to the host.
     /// </summary>
-    public interface IHostedService 
+    public interface IHostedService
     {
         /// <summary>
         /// Callback to initialize this service

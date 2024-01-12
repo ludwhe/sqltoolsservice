@@ -148,7 +148,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public AgentJobHistoryInfo[] Histories { get; set; }
         public AgentJobStepInfo[] Steps { get; set; }
         public AgentScheduleInfo[] Schedules { get; set; }
-        public AgentAlertInfo[] Alerts { get; set ;}
+        public AgentAlertInfo[] Alerts { get; set; }
     }
 
     /// <summary>
@@ -210,7 +210,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
     /// <summary>
     /// SQL Agent Login
     /// </summary>
-    public class AgentJobLogin 
+    public class AgentJobLogin
     {
         public int Id { get; set; }
         public string Name { get; set; }

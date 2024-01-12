@@ -220,7 +220,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
             restoreParams.Options[RestoreOptionsHelper.SourceDatabaseName] = currentDbName;
 
             IRestoreDatabaseTaskDataObject restoreDatabaseTaskDataObject = CreateRestoreDatabaseTaskDataObject(restoreParams);
-            
+
             RestoreOptionFactory.Instance.SetAndValidate(RestoreOptionsHelper.SourceDatabaseName, restoreDatabaseTaskDataObject);
 
             string actual = restoreDatabaseTaskDataObject.SourceDatabaseName;
@@ -390,7 +390,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
 
             planDetailInfo = optionInResponse[RestoreOptionsHelper.KeepReplication];
             Assert.AreEqual(planDetailInfo.Name, RestoreOptionsHelper.KeepReplication);
-            Assert.AreEqual(planDetailInfo.IsReadOnly,  optionValues.GetOptionValue<DatabaseRecoveryState>(RestoreOptionsHelper.RecoveryState) == DatabaseRecoveryState.WithNoRecovery);
+            Assert.AreEqual(planDetailInfo.IsReadOnly, optionValues.GetOptionValue<DatabaseRecoveryState>(RestoreOptionsHelper.RecoveryState) == DatabaseRecoveryState.WithNoRecovery);
             Assert.AreEqual(planDetailInfo.CurrentValue, optionValues.GetOptionValue<bool>(RestoreOptionsHelper.KeepReplication));
             Assert.AreEqual(false, planDetailInfo.DefaultValue);
             Assert.AreEqual(true, planDetailInfo.IsVisiable);
@@ -433,7 +433,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
 
             planDetailInfo = optionInResponse[RestoreOptionsHelper.TailLogWithNoRecovery];
             Assert.AreEqual(planDetailInfo.Name, RestoreOptionsHelper.TailLogWithNoRecovery);
-            Assert.AreEqual(planDetailInfo.IsReadOnly, !optionValues.GetOptionValue<bool>("IsTailLogBackupWithNoRecoveryPossible") 
+            Assert.AreEqual(planDetailInfo.IsReadOnly, !optionValues.GetOptionValue<bool>("IsTailLogBackupWithNoRecoveryPossible")
                 | !optionValues.GetOptionValue<bool>(RestoreOptionsHelper.BackupTailLog));
             Assert.AreEqual(planDetailInfo.CurrentValue, optionValues.GetOptionValue<bool>("TailLogWithNoRecovery"));
             Assert.AreEqual(planDetailInfo.DefaultValue, optionValues.GetOptionValue<bool>("IsTailLogBackupWithNoRecoveryPossible"));
@@ -446,6 +446,6 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
             Assert.AreEqual(false, planDetailInfo.DefaultValue);
             Assert.AreEqual(true, planDetailInfo.IsVisiable);
         }
-        
+
     }
 }

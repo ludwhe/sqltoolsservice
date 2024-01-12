@@ -9,12 +9,12 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Extensibility;
-using Microsoft.SqlTools.Hosting;
-using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts;
 using Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage;
 using Microsoft.Kusto.ServiceLayer.Utility;
+using Microsoft.SqlTools.Extensibility;
+using Microsoft.SqlTools.Hosting;
+using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Utility;
 
 
@@ -44,7 +44,8 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
             RequestContext<SerializeDataResult> requestContext)
         {
             // Run in separate thread so that message thread isn't held up by a potentially time consuming file write
-            Task.Run(async () => {
+            Task.Run(async () =>
+            {
                 await RunSerializeStartRequest(serializeParams, requestContext);
             }).ContinueWithOnFaulted(async t => await SendErrorAndCleanup(serializeParams?.FilePath, requestContext, t.Exception));
             return Task.CompletedTask;
@@ -71,7 +72,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
                 {
                     inProgressSerializations.AddOrUpdate(serializer.FilePath, serializer, (key, old) => serializer);
                 }
-                
+
                 Logger.Verbose("HandleSerializeStartRequest");
                 SerializeDataResult result = serializer.ProcessRequest(serializeParams);
                 await requestContext.SendResult(result);

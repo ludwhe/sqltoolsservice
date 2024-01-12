@@ -142,7 +142,7 @@ ORDER BY permission_name;";
         {
             string sqlQuery;
             string fullSecurableName = null;
-            
+
             // get the class we will pass
             string securableClass = GetSecurableClassForUrn(this.securable);
 

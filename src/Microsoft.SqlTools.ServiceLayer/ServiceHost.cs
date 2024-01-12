@@ -15,10 +15,10 @@ using Microsoft.SqlTools.Hosting;
 using Microsoft.SqlTools.Hosting.Contracts;
 using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Hosting.Protocol.Channel;
-using Microsoft.SqlTools.Utility;
-using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Admin;
+using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Utility;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.Hosting
 {
@@ -199,8 +199,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Hosting
         /// Handles a request for the capabilities request
         /// </summary>
         internal async Task HandleCapabilitiesRequest(
-            CapabilitiesRequest initializeParams, 
-            RequestContext<CapabilitiesResult> requestContext)            
+            CapabilitiesRequest initializeParams,
+            RequestContext<CapabilitiesResult> requestContext)
         {
             await requestContext.SendResult(
                 new CapabilitiesResult
@@ -215,7 +215,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Hosting
                         Features = FeaturesMetadataProviderHelper.CreateFeatureMetadataProviders()
                     }
                 }
-            );            
+            );
         }
 
         /// <summary>

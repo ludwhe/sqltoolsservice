@@ -5,14 +5,14 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.ServiceLayer.LanguageServices;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Microsoft.SqlTools.ServiceLayer.LanguageServices;
 
 namespace Microsoft.SqlTools.ServiceLayer.Connection
 {
-    public class DatabaseLocksManager: IDisposable
+    public class DatabaseLocksManager : IDisposable
     {
         internal DatabaseLocksManager(int waitToGetFullAccess)
         {
@@ -97,7 +97,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection
                 item.OpenConnections(serverName, databaseName, DefaultWaitToGetFullAccess);
             }
             return true;
-            
+
         }
 
         private string GenerateKey(string serverName, string databaseName)

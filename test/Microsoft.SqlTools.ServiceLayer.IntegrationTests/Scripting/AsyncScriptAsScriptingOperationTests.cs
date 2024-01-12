@@ -6,9 +6,6 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.SqlTools.SqlCore.Scripting;
-using Microsoft.SqlTools.SqlCore.Scripting.Contracts;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Scripting
@@ -90,7 +87,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Scripting
                     },
                     new List<string> { "CREATE TABLE [dbo].[createTable]" }
                 );
-                
+
                 yield return new TestCaseData(
                     @"
                     CREATE TABLE testTable1 (c1 int)
@@ -133,7 +130,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Scripting
 
             var actualScript = await AsyncScriptAsScriptingOperation.GetScriptAsScript(scriptingParams);
 
-            foreach(var expectedStr in expectedScriptContents)
+            foreach (var expectedStr in expectedScriptContents)
             {
                 Assert.That(actualScript, Does.Contain(expectedStr));
             }

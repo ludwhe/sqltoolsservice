@@ -59,7 +59,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare.Contracts
         /// <summary>
         /// Gets or sets the original target connection string. This is the initial target connection string, not necessarily the same as TargetEndpointInfo if they were swapped
         /// The target connection string is necessary if the source and target are a dacpac and db with the same name
-            /// </summary>
+        /// </summary>
         public string OriginalTargetConnectionString { get; set; }
 
         /// <summary>

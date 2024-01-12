@@ -11,18 +11,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.SqlServer.Management.SqlParser.Common;
-using Microsoft.SqlServer.Management.SqlParser.Parser;
-using Microsoft.SqlServer.Management.SqlParser.SqlCodeDom;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.Kusto.ServiceLayer.DataSource;
 using Microsoft.Kusto.ServiceLayer.Connection;
 using Microsoft.Kusto.ServiceLayer.Connection.Contracts;
+using Microsoft.Kusto.ServiceLayer.DataSource;
 using Microsoft.Kusto.ServiceLayer.DataSource.Intellisense;
 using Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts;
 using Microsoft.Kusto.ServiceLayer.Utility;
 using Microsoft.Kusto.ServiceLayer.Workspace;
 using Microsoft.Kusto.ServiceLayer.Workspace.Contracts;
+using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Utility;
 using Location = Microsoft.Kusto.ServiceLayer.Workspace.Contracts.Location;
 using SqlToolsSettings = Microsoft.Kusto.ServiceLayer.SqlContext.SqlToolsSettings;
@@ -33,7 +30,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
     /// Main class for Language Service functionality including anything that requires knowledge of
     /// the language to perform, such as definitions, intellisense, etc.
     /// </summary>
-    public class LanguageService: IDisposable
+    public class LanguageService : IDisposable
     {
         #region Singleton Instance Implementation
 
@@ -152,7 +149,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
         {
             get
             {
-                workspaceServiceInstance ??=  WorkspaceService<SqlToolsSettings>.Instance;
+                workspaceServiceInstance ??= WorkspaceService<SqlToolsSettings>.Instance;
                 return workspaceServiceInstance;
             }
             set
@@ -240,7 +237,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
 
             // Register a callback for when a connection is closed
             ConnectionServiceInstance.RegisterOnDisconnectTask(RemoveAutoCompleteCacheUriReference);
-            
+
         }
 
         #endregion
@@ -264,7 +261,8 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                     if (result != null && result.Errors.Count() == 0)
                     {
                         syntaxResult.Parseable = true;
-                    } else
+                    }
+                    else
                     {
                         syntaxResult.Parseable = false;
                         string[] errorMessages = new string[result.Errors.Count()];
@@ -416,7 +414,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
             };
         }
 
-// turn off this code until needed (10/28/2016)
+        // turn off this code until needed (10/28/2016)
 #if false
         private async Task HandleReferencesRequest(
             ReferencesParams referencesParams,
@@ -583,19 +581,19 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                         }
 
                         // Send a notification to signal that autocomplete is ready
-                        ServiceHostInstance.SendEvent(IntelliSenseReadyNotification.Type, new IntelliSenseReadyParams() {OwnerUri = connInfo.OwnerUri});
+                        ServiceHostInstance.SendEvent(IntelliSenseReadyNotification.Type, new IntelliSenseReadyParams() { OwnerUri = connInfo.OwnerUri });
                     });
                 }
                 else
                 {
                     // Send a notification to signal that autocomplete is ready
-                    await ServiceHostInstance.SendEvent(IntelliSenseReadyNotification.Type, new IntelliSenseReadyParams() {OwnerUri = rebuildParams.OwnerUri});
+                    await ServiceHostInstance.SendEvent(IntelliSenseReadyNotification.Type, new IntelliSenseReadyParams() { OwnerUri = rebuildParams.OwnerUri });
                 }
             }
             catch (Exception ex)
             {
                 Logger.Error("Unknown error " + ex.ToString());
-                await ServiceHostInstance.SendEvent(IntelliSenseReadyNotification.Type, new IntelliSenseReadyParams() {OwnerUri = rebuildParams.OwnerUri});
+                await ServiceHostInstance.SendEvent(IntelliSenseReadyNotification.Type, new IntelliSenseReadyParams() { OwnerUri = rebuildParams.OwnerUri });
             }
         }
 
@@ -698,7 +696,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                 // PrepopulateCommonMetadata(connInfo, scriptInfo, this.BindingQueue);
 
                 // Send a notification to signal that autocomplete is ready
-                ServiceHostInstance.SendEvent(IntelliSenseReadyNotification.Type, new IntelliSenseReadyParams() {OwnerUri = connInfo.OwnerUri});
+                ServiceHostInstance.SendEvent(IntelliSenseReadyNotification.Type, new IntelliSenseReadyParams() { OwnerUri = connInfo.OwnerUri });
             });
         }
 
@@ -754,7 +752,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                 ReliableDataSourceConnection connection;
                 connInfo.TryGetConnection("Default", out connection);
                 IDataSource dataSource = connection.GetUnderlyingConnection();
-                
+
                 return dataSource.GetDefinition(scriptFile.Contents, textDocumentPosition.Position.Character, 1, 1);
             }
 
@@ -793,7 +791,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
                             {
                                 // get the current quick info text
                                 ScriptDocumentInfo scriptDocumentInfo = new ScriptDocumentInfo(textDocumentPosition, scriptFile, scriptParseInfo);
-                                
+
                                 ReliableDataSourceConnection connection;
                                 connInfo.TryGetConnection("Default", out connection);
                                 IDataSource dataSource = connection.GetUnderlyingConnection();

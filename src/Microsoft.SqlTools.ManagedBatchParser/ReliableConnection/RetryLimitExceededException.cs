@@ -35,7 +35,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
     public sealed class RetryLimitExceededException : Exception
     {
         public RetryLimitExceededException() : base()
-        {            
+        {
         }
 
         public RetryLimitExceededException(string m, Exception e) : base(m, e)

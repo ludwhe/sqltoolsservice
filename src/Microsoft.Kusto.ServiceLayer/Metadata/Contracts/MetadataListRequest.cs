@@ -7,9 +7,9 @@ using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.Kusto.ServiceLayer.Metadata.Contracts
 {
-    public class MetadataQueryParams 
+    public class MetadataQueryParams
     {
-        public string OwnerUri { get; set; }        
+        public string OwnerUri { get; set; }
     }
 
     public class MetadataQueryResult

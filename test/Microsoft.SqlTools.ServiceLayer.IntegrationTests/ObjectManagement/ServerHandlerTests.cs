@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.ObjectManagement;
-using Microsoft.SqlTools.ServiceLayer.Connection;
 
 using NUnit.Framework;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
 
 using Server = Microsoft.SqlServer.Management.Smo.Server;
 
@@ -153,7 +150,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ObjectManagement
                 };
 
                 Assert.That(result, Is.Not.Null);
-                Assert.That(result.AutoProcessorAffinityIOMaskForAll,Is.True, "Auto affinity should be default");
+                Assert.That(result.AutoProcessorAffinityIOMaskForAll, Is.True, "Auto affinity should be default");
                 Assert.That(result.AutoProcessorAffinityMaskForAll, Is.True, "Auto affinity should be default");
             }
         }

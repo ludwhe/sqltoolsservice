@@ -25,7 +25,7 @@ namespace Microsoft.SqlTools.Hosting.Protocol
 
         private const int CR = 0x0D;
         private const int LF = 0x0A;
-        private static readonly string[] NewLineDelimiters = { Environment.NewLine }; 
+        private static readonly string[] NewLineDelimiters = { Environment.NewLine };
 
         private readonly Stream inputStream;
         private readonly IMessageSerializer messageSerializer;
@@ -49,7 +49,7 @@ namespace Microsoft.SqlTools.Hosting.Protocol
         #endregion
 
         #region Constructors
-        public MessageReader() {} // added for mocking MessageReader in UT
+        public MessageReader() { } // added for mocking MessageReader in UT
 
         public MessageReader(
             Stream inputStream,
@@ -130,7 +130,7 @@ namespace Microsoft.SqlTools.Hosting.Protocol
             {
                 // Double the size of the buffer
                 Array.Resize(
-                    ref this.messageBuffer, 
+                    ref this.messageBuffer,
                     this.messageBuffer.Length * 2);
             }
 
@@ -161,10 +161,10 @@ namespace Microsoft.SqlTools.Hosting.Protocol
             int scanOffset = this.readOffset;
 
             // Scan for the final double-newline that marks the end of the header lines
-            while (scanOffset + 3 < this.bufferEndOffset && 
-                   (this.messageBuffer[scanOffset] != CR || 
-                    this.messageBuffer[scanOffset + 1] != LF || 
-                    this.messageBuffer[scanOffset + 2] != CR || 
+            while (scanOffset + 3 < this.bufferEndOffset &&
+                   (this.messageBuffer[scanOffset] != CR ||
+                    this.messageBuffer[scanOffset + 1] != LF ||
+                    this.messageBuffer[scanOffset + 2] != CR ||
                     this.messageBuffer[scanOffset + 3] != LF))
             {
                 scanOffset++;

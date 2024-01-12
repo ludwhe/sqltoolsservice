@@ -297,7 +297,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
         }
 
         [Test]
-        public void BatchExecuteNoSql([Values(null, "")]  string query)
+        public void BatchExecuteNoSql([Values(null, "")] string query)
         {
             // If:
             // ... I create a batch that has an empty query
@@ -324,7 +324,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
             // Then:
             // ... It should throw an exception
             Assert.Throws<ArgumentOutOfRangeException>(() => new Batch("stuff", Common.SubsectionDocument, -1, MemoryFileSystem.GetFileStreamFactory()));
-        }        
+        }
 
         [Test]
         public void StatementCompletedHandlerTest()
@@ -414,7 +414,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
             // And the actual message should be the exact info message
             Assert.AreEqual(infoMessage, actualMessage);
         }
-      
+
         private static DbConnection GetConnection(ConnectionInfo info)
         {
             return info.Factory.CreateSqlConnection(ConnectionService.BuildConnectionString(info.ConnectionDetails), null);
@@ -453,7 +453,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
             Assert.AreEqual(batch.HasError, batchSummary.HasError);
 
             // Something other than default date is provided for start and end times
-            Assert.True(DateTime.Parse(batchSummary.ExecutionStart) > default(DateTime));   
+            Assert.True(DateTime.Parse(batchSummary.ExecutionStart) > default(DateTime));
             Assert.True(DateTime.Parse(batchSummary.ExecutionEnd) > default(DateTime));
             Assert.NotNull(batchSummary.ExecutionElapsed);
         }

@@ -24,7 +24,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         public static Operation GetStatement(string statementTypeName)
         {
             Operation operation;
-            
+
             if (!Statements.TryGetValue(statementTypeName, out operation))
             {
                 operation = Operation.CreateUnknown(statementTypeName, "languageConstructCatchAll");
@@ -36,7 +36,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         public static Operation GetCursorType(string cursorTypeName)
         {
             Operation operation;
-            
+
             if (!CursorTypes.TryGetValue(cursorTypeName, out operation))
             {
                 cursorTypeName = GetNameFromXmlEnumAttribute(cursorTypeName, typeof(CursorType));
@@ -182,25 +182,25 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 new Operation("Result",                 SR.Keys.Result,                 SR.Keys.ResultDescription,                  "result"),
                 new Operation("Aggregate",              SR.Keys.Aggregate,              SR.Keys.AggregateDescription,               "aggregate"),
-                new Operation("Assign",                 SR.Keys.Assign,                 SR.Keys.AssignDescription,                  "assign"),                  
+                new Operation("Assign",                 SR.Keys.Assign,                 SR.Keys.AssignDescription,                  "assign"),
                 new Operation("ArithmeticExpression",   SR.Keys.ArithmeticExpression,   SR.Keys.ArithmeticExpressionDescription,    "arithmeticExpression"),
-                new Operation("BookmarkLookup",         SR.Keys.BookmarkLookup,         SR.Keys.BookmarkLookupDescription,          "bookmarkLookup"), 
-                new Operation("Convert",                SR.Keys.Convert,                SR.Keys.ConvertDescription,                 "convert"),                 
-                new Operation("Declare",                SR.Keys.Declare,                SR.Keys.DeclareDescription,                 "declare"),                 
-                new Operation("Delete",                 SR.Keys.Delete,                 SR.Keys.DeleteDescription,                  "deleteOperator"),                  
-                new Operation("Dynamic",                SR.Keys.Dynamic,                SR.Keys.DynamicDescription,                 "dynamic"),                 
-                new Operation("HashMatchRoot",          SR.Keys.HashMatchRoot,          SR.Keys.HashMatchRootDescription,           "hashMatchRoot"),         
-                new Operation("HashMatchTeam",          SR.Keys.HashMatchTeam,          SR.Keys.HashMatchTeamDescription,           "hashMatchTeam"),         
-                new Operation("If",                     SR.Keys.If,                     SR.Keys.IfDescription,                      "ifOperator"),                      
-                new Operation("Insert",                 SR.Keys.Insert,                 SR.Keys.InsertDescription,                  "insert"),                  
-                new Operation("Intrinsic",              SR.Keys.Intrinsic,              SR.Keys.IntrinsicDescription,               "intrinsic"),               
-                new Operation("Keyset",                 SR.Keys.Keyset,                 SR.Keys.KeysetDescription,                  "keyset"),                  
-                new Operation("Locate",                 SR.Keys.Locate,                 SR.Keys.LocateDescription,                  "locate"),                  
-                new Operation("PopulationQuery",        SR.Keys.PopulationQuery,        SR.Keys.PopulationQueryDescription,         "populationQuery"),        
-                new Operation("SetFunction",            SR.Keys.SetFunction,            SR.Keys.SetFunctionDescription,             "setFunction"),            
-                new Operation("Snapshot",               SR.Keys.Snapshot,               SR.Keys.SnapshotDescription,                "snapshot"),               
-                new Operation("Spool",                  SR.Keys.Spool,                  SR.Keys.SpoolDescription,                   "spool"),                   
-                new Operation("TSQL",                   SR.Keys.SQL,                    SR.Keys.SQLDescription,                     "tsql"),                    
+                new Operation("BookmarkLookup",         SR.Keys.BookmarkLookup,         SR.Keys.BookmarkLookupDescription,          "bookmarkLookup"),
+                new Operation("Convert",                SR.Keys.Convert,                SR.Keys.ConvertDescription,                 "convert"),
+                new Operation("Declare",                SR.Keys.Declare,                SR.Keys.DeclareDescription,                 "declare"),
+                new Operation("Delete",                 SR.Keys.Delete,                 SR.Keys.DeleteDescription,                  "deleteOperator"),
+                new Operation("Dynamic",                SR.Keys.Dynamic,                SR.Keys.DynamicDescription,                 "dynamic"),
+                new Operation("HashMatchRoot",          SR.Keys.HashMatchRoot,          SR.Keys.HashMatchRootDescription,           "hashMatchRoot"),
+                new Operation("HashMatchTeam",          SR.Keys.HashMatchTeam,          SR.Keys.HashMatchTeamDescription,           "hashMatchTeam"),
+                new Operation("If",                     SR.Keys.If,                     SR.Keys.IfDescription,                      "ifOperator"),
+                new Operation("Insert",                 SR.Keys.Insert,                 SR.Keys.InsertDescription,                  "insert"),
+                new Operation("Intrinsic",              SR.Keys.Intrinsic,              SR.Keys.IntrinsicDescription,               "intrinsic"),
+                new Operation("Keyset",                 SR.Keys.Keyset,                 SR.Keys.KeysetDescription,                  "keyset"),
+                new Operation("Locate",                 SR.Keys.Locate,                 SR.Keys.LocateDescription,                  "locate"),
+                new Operation("PopulationQuery",        SR.Keys.PopulationQuery,        SR.Keys.PopulationQueryDescription,         "populationQuery"),
+                new Operation("SetFunction",            SR.Keys.SetFunction,            SR.Keys.SetFunctionDescription,             "setFunction"),
+                new Operation("Snapshot",               SR.Keys.Snapshot,               SR.Keys.SnapshotDescription,                "snapshot"),
+                new Operation("Spool",                  SR.Keys.Spool,                  SR.Keys.SpoolDescription,                   "spool"),
+                new Operation("TSQL",                   SR.Keys.SQL,                    SR.Keys.SQLDescription,                     "tsql"),
                 new Operation("Update",                 SR.Keys.Update,                 SR.Keys.UpdateDescription,                  "update"),
 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -215,7 +215,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 new Operation("Apply",                  SR.Keys.Apply,                  SR.Keys.ApplyDescription,                   "apply"),
                 new Operation("Broadcast",              SR.Keys.Broadcast,              SR.Keys.BroadcastDescription,               "broadcast"),
-                new Operation("ComputeToControlNode",   SR.Keys.ComputeToControlNode,   SR.Keys.ComputeToControlNodeDescription,    "computeToControlNode"), 
+                new Operation("ComputeToControlNode",   SR.Keys.ComputeToControlNode,   SR.Keys.ComputeToControlNodeDescription,    "computeToControlNode"),
                 new Operation("ConstTableGet",          SR.Keys.ConstTableGet,          SR.Keys.ConstTableGetDescription,           "constTableGet"),
                 new Operation("ControlToComputeNodes",  SR.Keys.ControlToComputeNodes,  SR.Keys.ControlToComputeNodesDescription,   "controlToComputeNodes"),
                 new Operation("ExternalBroadcast",      SR.Keys.ExternalBroadcast,      SR.Keys.ExternalBroadcastDescription,       "externalBroadcast"),

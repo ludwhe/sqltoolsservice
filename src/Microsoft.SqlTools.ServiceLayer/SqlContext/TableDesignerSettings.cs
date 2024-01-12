@@ -18,6 +18,6 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlContext
         /// <summary>
         /// Whether the table designer should allow disabling and re-enabling DDL triggers during publish.
         /// </summary>
-        public bool AllowDisableAndReenableDdlTriggers {get; set; } = true;
+        public bool AllowDisableAndReenableDdlTriggers { get; set; } = true;
     }
 }

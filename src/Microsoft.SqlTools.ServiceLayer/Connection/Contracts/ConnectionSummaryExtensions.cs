@@ -6,7 +6,7 @@
 #nullable disable
 
 namespace Microsoft.SqlTools.ServiceLayer.Connection.Contracts
-{   
+{
     /// <summary>
     /// Extension methods to ConnectionSummary
     /// </summary>

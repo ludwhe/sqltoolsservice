@@ -15,20 +15,20 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
     /// execution or not.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class ServerSwitchingAttribute : Attribute 
+    public sealed class ServerSwitchingAttribute : Attribute
     {
         private bool needToSwitch = false;
 
-        private ServerSwitchingAttribute() {}
+        private ServerSwitchingAttribute() { }
 
-        public ServerSwitchingAttribute(bool needToSwitchServer) 
+        public ServerSwitchingAttribute(bool needToSwitchServer)
         {
             this.needToSwitch = needToSwitchServer;
         }
 
-        public bool NeedToSwtichServerObject 
+        public bool NeedToSwtichServerObject
         {
-            get 
+            get
             {
                 return this.needToSwitch;
             }

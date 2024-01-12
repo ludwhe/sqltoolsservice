@@ -10,16 +10,16 @@ using Microsoft.SqlTools.ServiceLayer.Workspace.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.LanguageServices.Contracts
 {
-    public enum DocumentHighlightKind 
+    public enum DocumentHighlightKind
     {
         Text = 1,
         Read = 2,
         Write = 3
     }
 
-    public class DocumentHighlight 
+    public class DocumentHighlight
     {
-	    public Range Range { get; set; }
+        public Range Range { get; set; }
 
         public DocumentHighlightKind Kind { get; set; }
     }

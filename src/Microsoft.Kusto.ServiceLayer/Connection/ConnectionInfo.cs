@@ -27,7 +27,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection
             OwnerUri = ownerUri;
             ConnectionDetails = details;
             ConnectionId = Guid.NewGuid();
-            IntellisenseMetrics = new InteractionMetrics<double>(new int[] {50, 100, 200, 500, 1000, 2000});
+            IntellisenseMetrics = new InteractionMetrics<double>(new int[] { 50, 100, 200, 500, 1000, 2000 });
             _connectionTypeToConnectionMap = new ConcurrentDictionary<string, ReliableDataSourceConnection>();
         }
 

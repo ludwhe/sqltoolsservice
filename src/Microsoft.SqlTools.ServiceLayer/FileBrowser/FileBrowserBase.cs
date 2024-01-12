@@ -185,11 +185,11 @@ namespace Microsoft.SqlTools.ServiceLayer.FileBrowser
 
         internal static bool IsValidDataSet(DataSet ds)
         {
-            return (ds != null 
-                && ds.Tables != null 
-                && ds.Tables.Count > 0 
-                && ds.Tables[0].Rows != null 
-                && ds.Tables[0].Rows.Count > 0) ;
+            return (ds != null
+                && ds.Tables != null
+                && ds.Tables.Count > 0
+                && ds.Tables[0].Rows != null
+                && ds.Tables[0].Rows.Count > 0);
         }
     }
 }

@@ -3,15 +3,15 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 using Microsoft.Kusto.ServiceLayer.Workspace.Contracts;
+using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts
 {
     public class PublishDiagnosticsNotification
     {
         public static readonly
-            EventType<PublishDiagnosticsNotification> Type = 
+            EventType<PublishDiagnosticsNotification> Type =
             EventType<PublishDiagnosticsNotification>.Create("textDocument/publishDiagnostics");
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts
         public Diagnostic[] Diagnostics { get; set; }
     }
 
-    public enum DiagnosticSeverity 
+    public enum DiagnosticSeverity
     {
         /// <summary>
         /// Indicates that the diagnostic represents an error.

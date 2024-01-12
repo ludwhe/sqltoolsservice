@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
         /// Event which tells if MetadataProvider is built fully or not
         /// </summary>
         public object BuildingMetadataLock
-        { 
+        {
             get { return this.buildingMetadataLock; }
         }
 
@@ -40,7 +40,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
         /// Gets or sets the previous SQL parse result
         /// </summary>
         public ParseResult ParseResult { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the current autocomplete suggestion list
         /// </summary>

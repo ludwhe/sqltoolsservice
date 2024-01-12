@@ -17,7 +17,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
     /// Tests for ProfilerSession class
     /// </summary>
     public class ProfilerSessionTests
-    {   
+    {
         /// <summary>
         /// Test the FilterOldEvents method
         /// </summary>
@@ -64,9 +64,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
             // create a profiler session and get some test events
             var profilerSession = new ProfilerSession(new XEventSession());
             var profilerEvents = ProfilerTestObjects.TestProfilerEvents;
-                        
+
             int expectedEventCount = profilerEvents.Count;
-                        
+
             // add a new "Profiler Polling" event
             var newEvent = new ProfilerEvent("sql_batch_completed", "1/1/2017");
             newEvent.Values.Add("batch_text", "SELECT target_data FROM sys.dm_xe_session_targets");
@@ -76,7 +76,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
             // verify that the polling event is removed
             Assert.AreEqual(profilerEvents.Count, expectedEventCount + 1);
             var newProfilerEvents = profilerSession.FilterProfilerEvents(profilerEvents);
-            Assert.AreEqual(newProfilerEvents.Count, expectedEventCount);           
+            Assert.AreEqual(newProfilerEvents.Count, expectedEventCount);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
             ProfilerEvent newEvent = new ProfilerEvent("event4", "6/18/2018");
             newEvent.Values.Add("event_sequence", "4");
 
-            profilerEvents.Add(newEvent);         
+            profilerEvents.Add(newEvent);
             profilerSession.FilterOldEvents(profilerEvents);
 
             // should not show event loss
@@ -112,7 +112,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
             newEvent = new ProfilerEvent("event7", "6/18/2018");
             newEvent.Values.Add("event_sequence", "7");
 
-            profilerEvents.Add(newEvent);         
+            profilerEvents.Add(newEvent);
             profilerSession.FilterOldEvents(profilerEvents);
 
             // should show event loss
@@ -122,8 +122,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
             profilerEvents.Add(newEvent);
 
             // old events were seen, no event loss occured
-            profilerSession.FilterOldEvents(profilerEvents);           
-            Assert.False(profilerSession.EventsLost);    
+            profilerSession.FilterOldEvents(profilerEvents);
+            Assert.False(profilerSession.EventsLost);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
 
             // create new profiler session
             var profilerSession = new ProfilerSession(new XEventSession());
-            
+
             // enter the polling block
             Assert.True(profilerSession.TryEnterPolling());
             Assert.True(profilerSession.IsPolling);

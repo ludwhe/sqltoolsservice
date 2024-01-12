@@ -18,9 +18,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin.Contracts
 
     public class CreateDatabaseResponse
     {
-        public bool Result { get; set;  }
+        public bool Result { get; set; }
 
-        public int TaskId { get; set;  }
+        public int TaskId { get; set; }
     }
 
     public class CreateDatabaseRequest

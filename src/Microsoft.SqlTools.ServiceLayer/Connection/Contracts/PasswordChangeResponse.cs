@@ -15,7 +15,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.Contracts
         /// <summary>
         /// Status indicating if password change was successful or not.     
         /// </summary>
-        public bool Result { get; set;  }
+        public bool Result { get; set; }
 
         /// <summary>
         /// Error message for the password change, if an error occured.

@@ -87,7 +87,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices
         /// <param name="taskToRun">The function to run the operation</param>
         /// <param name="taskToCancel">The function to cancel the operation</param>
         /// <returns>The new sql task</returns>
-        public SqlTask CreateTask(TaskMetadata taskMetadata, Func<SqlTask, Task<TaskResult>> taskToRun, Func<SqlTask, Task<TaskResult>> taskToCancel) 
+        public SqlTask CreateTask(TaskMetadata taskMetadata, Func<SqlTask, Task<TaskResult>> taskToRun, Func<SqlTask, Task<TaskResult>> taskToCancel)
         {
             return CreateTask<SqlTask>(taskMetadata, taskToRun, taskToCancel);
         }
@@ -211,10 +211,10 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices
             isDisposed = true;
         }
 
-       /// <summary>
-       /// Returns true if there's any completed task
-       /// </summary>
-       /// <returns></returns>
+        /// <summary>
+        /// Returns true if there's any completed task
+        /// </summary>
+        /// <returns></returns>
         internal bool HasCompletedTasks()
         {
             lock (lockObject)

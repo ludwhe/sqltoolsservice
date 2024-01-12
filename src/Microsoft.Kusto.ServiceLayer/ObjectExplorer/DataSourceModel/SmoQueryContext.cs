@@ -3,10 +3,10 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-using Microsoft.SqlTools.Extensibility;
-using Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes;
 using Microsoft.Kusto.ServiceLayer.DataSource;
 using Microsoft.Kusto.ServiceLayer.DataSource.Metadata;
+using Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes;
+using Microsoft.SqlTools.Extensibility;
 
 namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
 {
@@ -26,7 +26,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
             DataSource = dataSource;
             ServiceProvider = serviceProvider;
         }
-        
+
         /// <summary>
         /// Parent of a give node to use for queries
         /// </summary>
@@ -37,7 +37,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
         /// for specific SMO types
         /// </summary>
         public IMultiServiceProvider ServiceProvider { get; private set; }
-        
+
         /// <summary>
         /// Helper method to cast a parent to a specific type
         /// </summary>

@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
 {
-    
+
     public class SqlSelectStatementFormatterTests : FormatterUnitTestsBase
     {
         [SetUp]
@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         [Test]
         public void SimpleQuery()
         {
-            LoadAndFormatAndCompare("SimpleQuery", GetInputFile("SimpleQuery.sql"), 
+            LoadAndFormatAndCompare("SimpleQuery", GetInputFile("SimpleQuery.sql"),
                 GetBaselineFile("SimpleQuery.sql"), new FormatOptions(), true);
         }
 
@@ -33,7 +33,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             options.PlaceCommasBeforeNextStatement = true;
 
             // TODO:  fix verify to account for commma placement - this can 
-            LoadAndFormatAndCompare("SimpleQuery_CommasBeforeDefinition", GetInputFile("SimpleQuery.sql"), 
+            LoadAndFormatAndCompare("SimpleQuery_CommasBeforeDefinition", GetInputFile("SimpleQuery.sql"),
                 GetBaselineFile("SimpleQuery_CommasBeforeDefinition.sql"), options, false);
         }
 
@@ -43,7 +43,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             FormatOptions options = new FormatOptions();
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
 
-            LoadAndFormatAndCompare("SimpleQuery_EachReferenceOnNewLine", GetInputFile("SimpleQuery.sql"), 
+            LoadAndFormatAndCompare("SimpleQuery_EachReferenceOnNewLine", GetInputFile("SimpleQuery.sql"),
                 GetBaselineFile("SimpleQuery_EachReferenceOnNewLine.sql"), options, true);
         }
 
@@ -55,7 +55,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
 
             // TODO:  fix verify to account for commma placement - this can 
-            LoadAndFormatAndCompare("SimpleQuery_EachReferenceOnNewLine_CommasBeforeDefinition", 
+            LoadAndFormatAndCompare("SimpleQuery_EachReferenceOnNewLine_CommasBeforeDefinition",
                 GetInputFile("SimpleQuery.sql"), GetBaselineFile("SimpleQuery_EachReferenceOnNewLine_CommasBeforeDefinition.sql"), options, false);
         }
 
@@ -65,7 +65,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             FormatOptions options = new FormatOptions();
             options.UseTabs = true;
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
-            LoadAndFormatAndCompare("SimpleQuery_UseTabs", GetInputFile("SimpleQuery.sql"), 
+            LoadAndFormatAndCompare("SimpleQuery_UseTabs", GetInputFile("SimpleQuery.sql"),
                 GetBaselineFile("SimpleQuery_UseTabs.sql"), options, true);
         }
 
@@ -95,21 +95,21 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             FormatOptions options = new FormatOptions();
             options.KeywordCasing = CasingOptions.Lowercase;
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
-            LoadAndFormatAndCompare("SimpleQuery_LowerCaseKeywords", GetInputFile("SimpleQuery.sql"), 
+            LoadAndFormatAndCompare("SimpleQuery_LowerCaseKeywords", GetInputFile("SimpleQuery.sql"),
                 GetBaselineFile("SimpleQuery_LowerCaseKeywords.sql"), options, true);
         }
 
         [Test]
         public void SimpleQuery_ForBrowseClause()
         {
-            LoadAndFormatAndCompare("SimpleQuery_ForBrowseClause", GetInputFile("SimpleQuery_ForBrowseClause.sql"), 
+            LoadAndFormatAndCompare("SimpleQuery_ForBrowseClause", GetInputFile("SimpleQuery_ForBrowseClause.sql"),
                 GetBaselineFile("SimpleQuery_ForBrowseClause.sql"), new FormatOptions(), true);
         }
 
         [Test]
         public void SimpleQuery_ForXmlClause()
         {
-            LoadAndFormatAndCompare("SimpleQuery_ForXmlClause", GetInputFile("SimpleQuery_ForXmlClause.sql"), 
+            LoadAndFormatAndCompare("SimpleQuery_ForXmlClause", GetInputFile("SimpleQuery_ForXmlClause.sql"),
                 GetBaselineFile("SimpleQuery_ForXmlClause.sql"), new FormatOptions(), true);
         }
     }

@@ -28,7 +28,7 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution.Contracts.ExecuteReques
 
     public class BatchCompleteEvent
     {
-        public static readonly 
+        public static readonly
             EventType<BatchEventParams> Type =
             EventType<BatchEventParams>.Create("query/batchComplete");
     }

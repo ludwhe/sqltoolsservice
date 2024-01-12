@@ -6,9 +6,9 @@
 namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
 {
     public struct TextSpan
-    {        
+    {
         public int iEndIndex;
-        public int iEndLine;        
+        public int iEndLine;
         public int iStartIndex;
         public int iStartLine;
     }

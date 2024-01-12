@@ -5,9 +5,9 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 using System;
 using System.Collections.Generic;
+using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.SqlTools.Migration.Contracts
 {

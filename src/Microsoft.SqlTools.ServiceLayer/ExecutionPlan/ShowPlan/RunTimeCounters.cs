@@ -39,13 +39,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             {
                 Thread = thread;
                 BrickIdSpecified = true;
-                BrickId = brickId;                
+                BrickId = brickId;
                 Value = value;
             }
         }
 
         #endregion
-    
+
         #region Fields
 
         ulong totalCounters;
@@ -75,7 +75,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                 maxCounter = counterValue;
             }
         }
-        
+
         public void AddCounter(int thread, int brickId, ulong counterValue)
         {
             this.counters.Add(new Counter(thread, brickId, counterValue));
@@ -140,12 +140,12 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 
         #region ICustomTypeDescriptor
 
-        AttributeCollection ICustomTypeDescriptor.GetAttributes() 
+        AttributeCollection ICustomTypeDescriptor.GetAttributes()
         {
             return TypeDescriptor.GetAttributes(GetType());
         }
 
-        EventDescriptor ICustomTypeDescriptor.GetDefaultEvent() 
+        EventDescriptor ICustomTypeDescriptor.GetDefaultEvent()
         {
             return TypeDescriptor.GetDefaultEvent(GetType());
         }
@@ -155,7 +155,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             return TypeDescriptor.GetDefaultProperty(GetType());
         }
 
-        object ICustomTypeDescriptor.GetEditor(Type editorBaseType) 
+        object ICustomTypeDescriptor.GetEditor(Type editorBaseType)
         {
             return TypeDescriptor.GetEditor(GetType(), editorBaseType);
         }
@@ -165,17 +165,17 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             return TypeDescriptor.GetEvents(GetType());
         }
 
-        EventDescriptorCollection ICustomTypeDescriptor.GetEvents(Attribute[] attributes) 
+        EventDescriptorCollection ICustomTypeDescriptor.GetEvents(Attribute[] attributes)
         {
-            return TypeDescriptor.GetEvents(GetType(), attributes );
+            return TypeDescriptor.GetEvents(GetType(), attributes);
         }
 
-        object ICustomTypeDescriptor.GetPropertyOwner(PropertyDescriptor propertyDescriptor) 
+        object ICustomTypeDescriptor.GetPropertyOwner(PropertyDescriptor propertyDescriptor)
         {
             return this;
         }
 
-        PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties() 
+        PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties()
         {
             PropertyDescriptor[] propertiesDescriptors = new PropertyDescriptor[this.counters.Count];
             string description = SR.Keys.PerThreadCounterDescription;
@@ -196,7 +196,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             }
             else
             {
-                for (int i=0; i<this.counters.Count; i++)
+                for (int i = 0; i < this.counters.Count; i++)
                 {
                     PropertyValue property;
                     if (this.counters[i].BrickIdSpecified)
@@ -215,22 +215,22 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             return new PropertyDescriptorCollection(propertiesDescriptors);
         }
 
-        PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties(Attribute[] attributes) 
+        PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties(Attribute[] attributes)
         {
             return ((ICustomTypeDescriptor)this).GetProperties();
         }
 
-        string ICustomTypeDescriptor.GetComponentName() 
+        string ICustomTypeDescriptor.GetComponentName()
         {
             return null;
         }
 
-        TypeConverter ICustomTypeDescriptor.GetConverter() 
+        TypeConverter ICustomTypeDescriptor.GetConverter()
         {
             return TypeDescriptor.GetConverter(GetType());
         }
 
-        string ICustomTypeDescriptor.GetClassName() 
+        string ICustomTypeDescriptor.GetClassName()
         {
             return GetType().Name;
         }

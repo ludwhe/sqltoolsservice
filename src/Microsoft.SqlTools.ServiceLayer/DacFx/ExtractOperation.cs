@@ -3,11 +3,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
+using System;
 using Microsoft.SqlServer.Dac;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.DacFx.Contracts;
 using Microsoft.SqlTools.Utility;
-using System;
 
 namespace Microsoft.SqlTools.ServiceLayer.DacFx
 {
@@ -28,7 +28,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx
         {
             Version version = ParseVersion(this.Parameters.ApplicationVersion);
             DacExtractOptions extractOptions = GetExtractOptions(this.Parameters.ExtractTarget, this.Parameters.IncludePermissions);
-            this.DacServices.Extract(this.Parameters.PackageFilePath, this.Parameters.DatabaseName, this.Parameters.ApplicationName, version, applicationDescription:null, tables:null, extractOptions:extractOptions, cancellationToken:this.CancellationToken);
+            this.DacServices.Extract(this.Parameters.PackageFilePath, this.Parameters.DatabaseName, this.Parameters.ApplicationName, version, applicationDescription: null, tables: null, extractOptions: extractOptions, cancellationToken: this.CancellationToken);
         }
 
         public static Version ParseVersion(string incomingVersion)
@@ -44,7 +44,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx
 
         private DacExtractOptions GetExtractOptions(DacExtractTarget extractTarget, bool? includePermissions)
         {
-            DacExtractOptions extractOptions = new DacExtractOptions() { ExtractTarget = extractTarget }; 
+            DacExtractOptions extractOptions = new DacExtractOptions() { ExtractTarget = extractTarget };
 
             if (includePermissions == true)
             {

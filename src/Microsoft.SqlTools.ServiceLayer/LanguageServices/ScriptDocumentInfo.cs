@@ -6,10 +6,10 @@
 #nullable disable
 
 using System;
-using Microsoft.SqlServer.Management.SqlParser.Parser;
-using Microsoft.SqlTools.Utility;
-using Microsoft.SqlTools.ServiceLayer.Workspace.Contracts;
 using System.Collections.Generic;
+using Microsoft.SqlServer.Management.SqlParser.Parser;
+using Microsoft.SqlTools.ServiceLayer.Workspace.Contracts;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.LanguageServices.Completion
 {
@@ -141,9 +141,9 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices.Completion
         {
             Stack<Token> childrenTokens = new Stack<Token>();
             Queue<Token> parentTokens = new Queue<Token>();
-            if (scriptParseInfo != null 
-                && scriptParseInfo.ParseResult != null 
-                && scriptParseInfo.ParseResult.Script != null 
+            if (scriptParseInfo != null
+                && scriptParseInfo.ParseResult != null
+                && scriptParseInfo.ParseResult.Script != null
                 && scriptParseInfo.ParseResult.Script.Tokens != null)
             {
                 var tokenIndex = scriptParseInfo.ParseResult.Script.TokenManager.FindToken(startLine, startColumn);
@@ -178,7 +178,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices.Completion
                             {
                                 childrenTokens.Push(token);
                             }
-                            else 
+                            else
                             {
                                 break;
                             }
@@ -188,7 +188,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices.Completion
                     return Tuple.Create(childrenTokens, parentTokens);
                 }
             }
-          return null;
+            return null;
         }
     }
 }

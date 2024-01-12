@@ -86,7 +86,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices
 
                 Execute();
                 GenerateScript(mode);
-                
+
             }
             catch
             {

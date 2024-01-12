@@ -11,7 +11,7 @@ using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
 {
-    
+
     public class InsertFormatterTests : FormatterUnitTestsBase
     {
         [SetUp]
@@ -23,14 +23,14 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         [Test]
         public void Insert_DefaultValues()
         {
-            LoadAndFormatAndCompare("Insert_DefaultValues", GetInputFile("Insert_DefaultValues.sql"), 
+            LoadAndFormatAndCompare("Insert_DefaultValues", GetInputFile("Insert_DefaultValues.sql"),
                 GetBaselineFile("Insert_DefaultValues.sql"), new FormatOptions(), true);
         }
 
         [Test]
         public void Insert_OpenQuery()
         {
-            LoadAndFormatAndCompare("Insert_OpenQuery", GetInputFile("Insert_OpenQuery.sql"), 
+            LoadAndFormatAndCompare("Insert_OpenQuery", GetInputFile("Insert_OpenQuery.sql"),
                 GetBaselineFile("Insert_OpenQuery.sql"), new FormatOptions(), true);
         }
 
@@ -44,7 +44,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         [Test]
         public void Insert_OutputStatement()
         {
-            LoadAndFormatAndCompare("Insert_OutputStatement", GetInputFile("Insert_OutputStatement.sql"), 
+            LoadAndFormatAndCompare("Insert_OutputStatement", GetInputFile("Insert_OutputStatement.sql"),
                 GetBaselineFile("Insert_OutputStatement.sql"), new FormatOptions(), true);
         }
 
@@ -53,7 +53,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         {
             FormatOptions options = new FormatOptions();
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
-            LoadAndFormatAndCompare("Insert_Select", GetInputFile("Insert_Select.sql"), 
+            LoadAndFormatAndCompare("Insert_Select", GetInputFile("Insert_Select.sql"),
                 GetBaselineFile("Insert_Select.sql"), options, true);
         }
 
@@ -62,21 +62,21 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         {
             FormatOptions options = new FormatOptions();
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
-            LoadAndFormatAndCompare("Insert_SelectSource", GetInputFile("Insert_SelectSource.sql"), 
+            LoadAndFormatAndCompare("Insert_SelectSource", GetInputFile("Insert_SelectSource.sql"),
                 GetBaselineFile("Insert_SelectSource.sql"), options, true);
         }
 
         [Test]
         public void Insert_TopSpecification()
         {
-            LoadAndFormatAndCompare("Insert_TopSpecification", GetInputFile("Insert_TopSpecification.sql"), 
+            LoadAndFormatAndCompare("Insert_TopSpecification", GetInputFile("Insert_TopSpecification.sql"),
                 GetBaselineFile("Insert_TopSpecification.sql"), new FormatOptions(), true);
         }
 
         [Test]
         public void Insert_TopWithComments()
         {
-            LoadAndFormatAndCompare("Insert_TopWithComments", GetInputFile("Insert_TopWithComments.sql"), 
+            LoadAndFormatAndCompare("Insert_TopWithComments", GetInputFile("Insert_TopWithComments.sql"),
                 GetBaselineFile("Insert_TopWithComments.sql"), new FormatOptions(), true);
         }
 

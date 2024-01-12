@@ -22,5 +22,5 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// <returns></returns>
         ProgressStatus DoAction(ProgressItemCollection actions, int index);
     }
-#endregion
+    #endregion
 }

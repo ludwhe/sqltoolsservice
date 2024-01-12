@@ -29,4 +29,3 @@ namespace Microsoft.SqlTools.SqlCore.Connection
     }
 }
 
-    

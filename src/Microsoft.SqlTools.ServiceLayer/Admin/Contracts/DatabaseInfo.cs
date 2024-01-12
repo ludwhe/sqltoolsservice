@@ -20,6 +20,6 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin.Contracts
         {
             Options = new Dictionary<string, object>();
         }
-        
+
     }
 }

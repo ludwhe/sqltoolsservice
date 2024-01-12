@@ -52,7 +52,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection
         /// </summary>
         bool Disconnect(DisconnectParams disconnectParams);
 
-        void InitializeService(IProtocolEndpoint serviceHost, IDataSourceConnectionFactory dataSourceConnectionFactory, 
+        void InitializeService(IProtocolEndpoint serviceHost, IDataSourceConnectionFactory dataSourceConnectionFactory,
             IConnectedBindingQueue connectedBindingQueue, IConnectionManager connectionManager);
 
         /// <summary> 

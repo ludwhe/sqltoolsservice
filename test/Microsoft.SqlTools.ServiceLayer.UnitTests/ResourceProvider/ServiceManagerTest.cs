@@ -161,7 +161,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
         private IMultiServiceProvider CreateServiceProvider()
         {
             var providerMock = new Mock<IMultiServiceProvider>();
-            
+
             providerMock.Setup(x => x.GetServices<IServerDiscoveryProvider>()).Returns(_providers);
             providerMock.Setup(x => x.GetServices<IAccountManager>()).Returns(_accountManagers);
 

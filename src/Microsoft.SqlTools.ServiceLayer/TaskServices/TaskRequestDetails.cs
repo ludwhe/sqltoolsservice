@@ -12,6 +12,6 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices
         /// <summary>
         /// The executation mode for the operation. default is execution
         /// </summary>
-        public TaskExecutionMode TaskExecutionMode { get; set; }        
+        public TaskExecutionMode TaskExecutionMode { get; set; }
     }
 }

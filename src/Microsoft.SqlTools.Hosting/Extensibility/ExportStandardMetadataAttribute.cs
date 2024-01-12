@@ -22,9 +22,9 @@ namespace Microsoft.SqlTools.Extensibility
             : base(contractType)
         {
             Id = id;
-            DisplayName = displayName; 
+            DisplayName = displayName;
         }
-        
+
 
         /// <summary>
         /// The version of this extension

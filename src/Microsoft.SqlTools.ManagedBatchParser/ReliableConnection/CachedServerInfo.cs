@@ -6,8 +6,8 @@
 using System;
 using System.Collections.Concurrent;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Linq;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Dmf;
 using Microsoft.SqlTools.BatchParser.Utility;
@@ -37,7 +37,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             }
         }
 
-        public enum CacheVariable {
+        public enum CacheVariable
+        {
             EngineEdition,
             IsAzure,
             IsCloud
@@ -158,7 +159,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         {
             AddOrUpdateCache(connection, isCloud, CacheVariable.IsCloud);
         }
-        
+
         public void AddOrUpdateIsAzure(IDbConnection connection, bool isAzure)
         {
             AddOrUpdateCache(connection, isAzure, CacheVariable.IsAzure);
@@ -193,7 +194,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
 
         private T ConvertState<T>(object state)
         {
-            return (T) Convert.ChangeType(state, typeof(T));
+            return (T)Convert.ChangeType(state, typeof(T));
         }
 
         public void AddOrUpdateCache(SqlConnectionStringBuilder builder, object newState, CacheVariable cacheVar)
@@ -272,7 +273,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             CachedInfo info;
             bool hasFound = TryGetCacheValue(builder, out info);
 
-            if(hasFound)
+            if (hasFound)
             {
                 engineEdition = info.EngineEdition;
                 return engineEdition;
@@ -295,7 +296,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             }
             catch
             {
-                Logger.Error( String.Format(Resources.FailedToParseConnectionString, connection.ConnectionString));
+                Logger.Error(String.Format(Resources.FailedToParseConnectionString, connection.ConnectionString));
                 return null;
             }
         }

@@ -14,7 +14,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.SqlContext
     /// Tests for the SqlContext settins
     /// </summary>
     public class SettingsTests
-    {    
+    {
         /// <summary>
         /// Validate that the Language Service default settings are as expected
         /// </summary>
@@ -28,7 +28,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.SqlContext
             Assert.True(sqlToolsSettings.SqlTools.IntelliSense.EnableErrorChecking);
             Assert.True(sqlToolsSettings.SqlTools.IntelliSense.EnableSuggestions);
             Assert.True(sqlToolsSettings.SqlTools.IntelliSense.EnableQuickInfo);
-            Assert.False(sqlToolsSettings.SqlTools.IntelliSense.LowerCaseSuggestions);            
+            Assert.False(sqlToolsSettings.SqlTools.IntelliSense.LowerCaseSuggestions);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.SqlContext
 
             sqlToolsSettings.SqlTools.IntelliSense.EnableIntellisense = true;
             sqlToolsSettings.SqlTools.IntelliSense.EnableErrorChecking = false;
-            Assert.False(sqlToolsSettings.IsDiagnosticsEnabled);          
+            Assert.False(sqlToolsSettings.IsDiagnosticsEnabled);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.SqlContext
 
             sqlToolsSettings.SqlTools.IntelliSense.EnableIntellisense = true;
             sqlToolsSettings.SqlTools.IntelliSense.EnableSuggestions = false;
-            Assert.False(sqlToolsSettings.IsSuggestionsEnabled);          
+            Assert.False(sqlToolsSettings.IsSuggestionsEnabled);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.SqlContext
 
             sqlToolsSettings.SqlTools.IntelliSense.EnableIntellisense = true;
             sqlToolsSettings.SqlTools.IntelliSense.EnableQuickInfo = false;
-            Assert.False(sqlToolsSettings.IsQuickInfoEnabled);          
+            Assert.False(sqlToolsSettings.IsQuickInfoEnabled);
         }
     }
 }

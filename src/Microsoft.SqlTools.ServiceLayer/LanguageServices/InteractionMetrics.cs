@@ -24,7 +24,7 @@ namespace Microsoft.SqlTools.ServiceLayer
         public InteractionMetrics(int[] metrics)
         {
             Validate.IsNotNull("metrics", metrics);
-            if(metrics.Length == 0)
+            if (metrics.Length == 0)
             {
                 throw new ArgumentOutOfRangeException("metrics");
             }
@@ -56,7 +56,7 @@ namespace Microsoft.SqlTools.ServiceLayer
                 int previous = metrics[0];
                 for (int i = 1; i < metrics.Length; i++)
                 {
-                    if(metrics[i] < previous)
+                    if (metrics[i] < previous)
                     {
                         return false;
                     }

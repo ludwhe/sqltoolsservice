@@ -28,17 +28,17 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
     {
 
         private static readonly DbCellValue[][] DefaultData = new DbCellValue[3][] {
-            new DbCellValue[] { 
+            new DbCellValue[] {
                 new DbCellValue() { DisplayValue = "1", IsNull = false },
                 new DbCellValue() { DisplayValue = "Hello", IsNull = false },
                 new DbCellValue() { DisplayValue = "false", IsNull = false },
             },
-            new DbCellValue[] { 
+            new DbCellValue[] {
                 new DbCellValue() { DisplayValue = "2", IsNull = false },
                 new DbCellValue() { DisplayValue = null, IsNull = true },
                 new DbCellValue() { DisplayValue = "true", IsNull = false },
             },
-            new DbCellValue[] { 
+            new DbCellValue[] {
                 new DbCellValue() { DisplayValue = "3", IsNull = false },
                 new DbCellValue() { DisplayValue = "World", IsNull = false },
                 new DbCellValue() { DisplayValue = "True", IsNull = false },
@@ -136,23 +136,27 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
         [TestCase(false)]
         public async Task TestSaveAsCsvMultiRequestSuccess(bool includeHeaders)
         {
-            Action<SerializeDataStartRequestParams> setParams = (serializeParams) => {
+            Action<SerializeDataStartRequestParams> setParams = (serializeParams) =>
+            {
                 serializeParams.SaveFormat = "csv";
                 serializeParams.IncludeHeaders = includeHeaders;
             };
-            Action<string> validation = (filePath) => {
+            Action<string> validation = (filePath) =>
+            {
                 VerifyContents.VerifyCsvMatchesData(DefaultData, DefaultColumns, includeHeaders, filePath);
             };
             await this.TestSerializeDataMultiRequestSuccess(setParams, validation);
         }
-        
+
         [Test]
         public async Task SaveAsJsonMultiRequestSuccess()
         {
-            Action<SerializeDataStartRequestParams> setParams = (serializeParams) => {
+            Action<SerializeDataStartRequestParams> setParams = (serializeParams) =>
+            {
                 serializeParams.SaveFormat = "json";
             };
-            Action<string> validation = (filePath) => {
+            Action<string> validation = (filePath) =>
+            {
                 VerifyContents.VerifyJsonMatchesData(DefaultData, DefaultColumns, filePath);
             };
             await this.TestSerializeDataMultiRequestSuccess(setParams, validation);
@@ -161,10 +165,12 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
         [Test]
         public async Task SaveAsXmlMultiRequestSuccess()
         {
-            Action<SerializeDataStartRequestParams> setParams = (serializeParams) => {
+            Action<SerializeDataStartRequestParams> setParams = (serializeParams) =>
+            {
                 serializeParams.SaveFormat = "xml";
             };
-            Action<string> validation = (filePath) => {
+            Action<string> validation = (filePath) =>
+            {
                 VerifyContents.VerifyXmlMatchesData(DefaultData, DefaultColumns, filePath);
             };
             await this.TestSerializeDataMultiRequestSuccess(setParams, validation);
@@ -227,7 +233,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
                 .Complete();
 
             await SerializationService.RunSerializeStartRequest(request1, efv.Object);
-        
+
             // Then:
             // ... There should not have been an error
             efv.Validate();
@@ -283,7 +289,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
                 AssertLineEquals(lines[lineIndex], columns.Select((c) => c.Name).ToArray());
                 lineIndex++;
             }
-            for (int dataIndex =0; dataIndex < data.Length && lineIndex < lines.Length; dataIndex++, lineIndex++)
+            for (int dataIndex = 0; dataIndex < data.Length && lineIndex < lines.Length; dataIndex++, lineIndex++)
             {
                 AssertLineEquals(lines[lineIndex], data[dataIndex].Select(GetCsvPrintValue).ToArray());
             }
@@ -355,7 +361,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
             Assert.That(outputObject.Length, Is.EqualTo(data.Length), "Incorrect number of records in output");
             for (int rowIndex = 0; rowIndex < outputObject.Length; rowIndex++)
             {
-                Dictionary<string,object> item = outputObject[rowIndex];
+                Dictionary<string, object> item = outputObject[rowIndex];
                 Assert.That(item.Count, Is.EqualTo(columns.Length), $"Incorrect number of cells for record {rowIndex}");
                 for (int columnIndex = 0; columnIndex < columns.Length; columnIndex++)
                 {

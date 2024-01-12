@@ -21,7 +21,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.Metadata
         {
             Assert.Throws<ArgumentNullException>(() => MetadataFactory.CreateClusterMetadata(null));
         }
-        
+
         [Test]
         [TestCase("")]
         [TestCase(null)]
@@ -32,10 +32,10 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.Metadata
             {
                 MetadataType = DataSourceMetadataType.Cluster
             };
-            
+
             Assert.Throws<ArgumentNullException>(() => MetadataFactory.CreateDatabaseMetadata(testMetadata, databaseName));
         }
-        
+
         [Test]
         public void CreateDatabaseMetadata_ThrowsNullException_For_InvalidMetadataType()
         {
@@ -43,10 +43,10 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.Metadata
             {
                 MetadataType = DataSourceMetadataType.Database
             };
-            
+
             Assert.Throws<ArgumentException>(() => MetadataFactory.CreateDatabaseMetadata(testMetadata, "FakeDatabaseName"));
         }
-        
+
         [Test]
         public void CreateFolderMetadata_ThrowsNullException_For_NullMetadata()
         {
@@ -57,9 +57,9 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.Metadata
         public void CreateClusterMetadata_Returns_DataSourceObjectMetadata()
         {
             string clusterName = "FakeClusterName";
-            
+
             var objectMetadata = MetadataFactory.CreateClusterMetadata(clusterName);
-            
+
             Assert.AreEqual(DataSourceMetadataType.Cluster, objectMetadata.MetadataType);
             Assert.AreEqual(DataSourceMetadataType.Cluster.ToString(), objectMetadata.MetadataTypeName);
             Assert.AreEqual(clusterName, objectMetadata.Name);
@@ -77,10 +77,10 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.Metadata
                 Name = "FakeClusterName",
                 Urn = "FakeClusterName"
             };
-            
-            
+
+
             var objectMetadata = MetadataFactory.CreateDatabaseMetadata(clusterMetadata, databaseName);
-            
+
             Assert.AreEqual(DataSourceMetadataType.Database, objectMetadata.MetadataType);
             Assert.AreEqual(DataSourceMetadataType.Database.ToString(), objectMetadata.MetadataTypeName);
             Assert.AreEqual(databaseName, objectMetadata.Name);
@@ -94,9 +94,9 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.Metadata
             string path = "FakeCluster.FakeDatabase.FakeFolder";
             string name = "FakeFolderName";
             var parentMetadata = new DataSourceObjectMetadata();
-            
+
             var objectMetadata = MetadataFactory.CreateFolderMetadata(parentMetadata, path, name);
-            
+
             Assert.AreEqual(DataSourceMetadataType.Folder, objectMetadata.MetadataType);
             Assert.AreEqual(DataSourceMetadataType.Folder.ToString(), objectMetadata.MetadataTypeName);
             Assert.AreEqual(name, objectMetadata.Name);
@@ -115,9 +115,9 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.Metadata
                     Name = "FakeClusterName"
                 }
             };
-            
+
             var databaseInfos = MetadataFactory.ConvertToDatabaseInfo(inputList);
-            
+
             Assert.AreEqual(0, databaseInfos.Count);
         }
 
@@ -129,16 +129,16 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.Metadata
                 Name = "FakeDatabaseName",
                 SizeInMB = "2097152" // stored in bytes
             };
-            
+
             var inputList = new List<DatabaseMetadata>
             {
                 databaseMetadata
             };
-            
+
             var databaseInfos = MetadataFactory.ConvertToDatabaseInfo(inputList);
-            
+
             Assert.AreEqual(1, databaseInfos.Count);
-            
+
             var databaseInfo = databaseInfos.Single();
             Assert.AreEqual(databaseMetadata.Name, databaseInfo.Options["name"]);
             Assert.AreEqual("2", databaseInfo.Options["sizeInMB"]);
@@ -152,17 +152,17 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.Metadata
                 PrettyName = "FakeDatabaseName",
                 MetadataTypeName = "Table"
             };
-            
+
             var inputList = new List<DataSourceObjectMetadata>
             {
                 databaseMetadata
             };
-            
+
             var objectMetadatas = MetadataFactory.ConvertToObjectMetadata(inputList);
-            
+
             Assert.AreEqual(1, objectMetadatas.Count);
             var objectMetadata = objectMetadatas.Single();
-            
+
             Assert.AreEqual(databaseMetadata.PrettyName, objectMetadata.Name);
             Assert.AreEqual(databaseMetadata.MetadataTypeName, objectMetadata.MetadataTypeName);
             Assert.AreEqual(MetadataType.Table, objectMetadata.MetadataType);

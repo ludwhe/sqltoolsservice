@@ -45,12 +45,12 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
         private static readonly int stateStatisticsTime = BitVector32.CreateMask(stateShowPlanText);
         private static readonly int stateSqlCmd = BitVector32.CreateMask(stateStatisticsTime);
         private static readonly int stateScriptExecutionTracked = BitVector32.CreateMask(stateSqlCmd);
-                
+
         private BitVector32 state = new BitVector32();
         private string batchSeparator = Consts.BatchSeparator;
 
         #endregion
-        
+
         #region Constructors / Destructor
 
         /// <summary>

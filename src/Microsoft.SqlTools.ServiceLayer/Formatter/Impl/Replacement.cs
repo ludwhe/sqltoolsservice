@@ -24,7 +24,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         public int StartIndex { get; private set; }
         public string OldValue { get; private set; }
         public string NewValue { get; private set; }
-        
+
         public int EndIndex
         {
             get

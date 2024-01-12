@@ -5,9 +5,9 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using System.Globalization;
 using System.IO;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.ManagedBatchParser;
 
 namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
@@ -89,7 +89,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
 
             if (value == null)
             {
-                internalVariables.Remove(name);                
+                internalVariables.Remove(name);
             }
             else
             {

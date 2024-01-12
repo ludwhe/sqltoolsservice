@@ -4,11 +4,11 @@
 //
 
 
+using System;
+using System.ComponentModel;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Management;
-using System;
-using System.ComponentModel;
 
 namespace Microsoft.SqlTools.ServiceLayer.Admin
 {

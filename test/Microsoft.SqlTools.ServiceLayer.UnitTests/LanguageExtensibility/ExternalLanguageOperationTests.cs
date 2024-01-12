@@ -5,13 +5,13 @@
 
 #nullable disable
 
+using System;
+using System.Collections.Generic;
+using System.Data;
 using Microsoft.SqlTools.ServiceLayer.LanguageExtensibility;
 using Microsoft.SqlTools.ServiceLayer.LanguageExtensibility.Contracts;
 using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.LanguageExtensibility
@@ -20,7 +20,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.LanguageExtensibility
     {
         [Test]
         public void VerifyDeleteLanguageWithInvalidName()
-        { 
+        {
             ExternalLanguageOperations operations = new ExternalLanguageOperations();
             ExternalLanguage language = new ExternalLanguage();
             Verify(language, (connection, lang, commandMock) =>
@@ -131,7 +131,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.LanguageExtensibility
             {
                 operations.UpdateLanguage(connection, newLanguage);
                 commandMock.VerifySet(x => x.CommandText = It.Is<string>(
-                    s => s.Contains(ExternalLanguageOperations.AlterScript) 
+                    s => s.Contains(ExternalLanguageOperations.AlterScript)
                  && s.Contains(ExternalLanguageOperations.AddContentScript)));
                 return true;
             });

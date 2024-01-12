@@ -4,17 +4,11 @@
 //
 
 #nullable disable
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.DacFx.Contracts;
-using Microsoft.SqlTools.ServiceLayer.SchemaCompare;
-using Microsoft.SqlTools.ServiceLayer.SchemaCompare.Contracts;
-using Microsoft.SqlTools.ServiceLayer.TaskServices;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.SqlServer.Dac;
-using Moq;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.SqlServer.Dac;
+using Moq;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.SchemaCompare
@@ -273,7 +267,7 @@ END
                     Assert.True(false); //fail if it reaches here
                 }
                 catch (Exception ex)
-                {                    
+                {
                     // validate script generation failed because there were no differences
                     Assert.False(generateScriptOperation1.ScriptGenerationResult.Success);
                     Assert.AreEqual("Performing script generation is not possible for this comparison result.", generateScriptOperation1.ScriptGenerationResult.Message);

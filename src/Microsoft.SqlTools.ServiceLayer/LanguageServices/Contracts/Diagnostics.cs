@@ -13,7 +13,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices.Contracts
     public class PublishDiagnosticsNotification
     {
         public static readonly
-            EventType<PublishDiagnosticsNotification> Type = 
+            EventType<PublishDiagnosticsNotification> Type =
             EventType<PublishDiagnosticsNotification>.Create("textDocument/publishDiagnostics");
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices.Contracts
         public Diagnostic[] Diagnostics { get; set; }
     }
 
-    public enum DiagnosticSeverity 
+    public enum DiagnosticSeverity
     {
         /// <summary>
         /// Indicates that the diagnostic represents an error.

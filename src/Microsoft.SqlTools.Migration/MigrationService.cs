@@ -59,7 +59,7 @@ using Newtonsoft.Json;
 
 namespace Microsoft.SqlTools.Migration
 {
-    internal class MigrationService: IHostedService
+    internal class MigrationService : IHostedService
     {
         private static readonly Lazy<MigrationService> instance = new Lazy<MigrationService>(() => new MigrationService());
 
@@ -176,7 +176,9 @@ namespace Microsoft.SqlTools.Migration
 
                 // TO-DO: what should be returned?
                 await requestContext.SendResult(new StartPerfDataCollectionResult() { DateTimeStarted = DateTime.UtcNow });
-            } catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Logger.Error(e);
                 await requestContext.SendError(e.ToString());
             }
@@ -1046,20 +1048,20 @@ namespace Microsoft.SqlTools.Migration
                                                     ComputeTier.Provisioned,
                                                     AzureSqlPaaSHardwareType.PremiumSeries));
 
-                        // Premium Memory Optimized BC/GP
-                        eligibleSkuCategories.Add(new AzureSqlSkuPaaSCategory(
-                                                        AzureSqlTargetPlatform.AzureSqlManagedInstance,
-                                                        AzureSqlPurchasingModel.vCore,
-                                                        AzureSqlPaaSServiceTier.BusinessCritical,
-                                                        ComputeTier.Provisioned,
-                                                        AzureSqlPaaSHardwareType.PremiumSeriesMemoryOptimized));
+                    // Premium Memory Optimized BC/GP
+                    eligibleSkuCategories.Add(new AzureSqlSkuPaaSCategory(
+                                                    AzureSqlTargetPlatform.AzureSqlManagedInstance,
+                                                    AzureSqlPurchasingModel.vCore,
+                                                    AzureSqlPaaSServiceTier.BusinessCritical,
+                                                    ComputeTier.Provisioned,
+                                                    AzureSqlPaaSHardwareType.PremiumSeriesMemoryOptimized));
 
-                        eligibleSkuCategories.Add(new AzureSqlSkuPaaSCategory(
-                                                        AzureSqlTargetPlatform.AzureSqlManagedInstance,
-                                                        AzureSqlPurchasingModel.vCore,
-                                                        AzureSqlPaaSServiceTier.GeneralPurpose,
-                                                        ComputeTier.Provisioned,
-                                                        AzureSqlPaaSHardwareType.PremiumSeriesMemoryOptimized));
+                    eligibleSkuCategories.Add(new AzureSqlSkuPaaSCategory(
+                                                    AzureSqlTargetPlatform.AzureSqlManagedInstance,
+                                                    AzureSqlPurchasingModel.vCore,
+                                                    AzureSqlPaaSServiceTier.GeneralPurpose,
+                                                    ComputeTier.Provisioned,
+                                                    AzureSqlPaaSHardwareType.PremiumSeriesMemoryOptimized));
                     break;
 
                 case "AzureSqlVirtualMachine":
@@ -1127,7 +1129,7 @@ namespace Microsoft.SqlTools.Migration
             foreach (var dbName in parameters.EncryptedDatabases)
             {
                 var migrationResult = await MigrateCertificate(tdeMigrationClient, dbName);
-                
+
                 var eventData = new CertificateMigrationProgressParams
                 {
                     Name = dbName,
@@ -1147,7 +1149,7 @@ namespace Microsoft.SqlTools.Migration
             TdeValidationParams parameters,
             RequestContext<TdeValidationResult[]> requestContext)
         {
-            TdeValidationResult[] result = 
+            TdeValidationResult[] result =
                 await TdeMigration.RunTdeValidation(
                    parameters.SourceSqlConnectionString,
                    parameters.NetworkSharePath);
@@ -1177,7 +1179,7 @@ namespace Microsoft.SqlTools.Migration
                 {
                     return new CertificateMigrationEntryResult { DbName = dbName, Success = result.IsSuccess, Message = tdeExceptionResult.Exception.Message, StatusCode = tdeExceptionResult.StatusCode };
                 }
-                else 
+                else
                 {
                     return new CertificateMigrationEntryResult { DbName = dbName, Success = result.IsSuccess, Message = result.UserFriendlyMessage, StatusCode = result.StatusCode };
                 }

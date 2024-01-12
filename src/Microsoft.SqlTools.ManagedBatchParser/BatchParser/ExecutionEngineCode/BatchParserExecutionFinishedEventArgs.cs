@@ -12,19 +12,19 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
     /// </summary>
     public class BatchParserExecutionFinishedEventArgs : EventArgs
     {
-        
+
         private readonly Batch batch = null;
         private readonly ScriptExecutionResult result;
         private readonly SqlCmdCommand sqlCmdCommand;
 
-        private BatchParserExecutionFinishedEventArgs() 
+        private BatchParserExecutionFinishedEventArgs()
         {
         }
 
         /// <summary>
         /// Constructor method for the class
         /// </summary>
-        public BatchParserExecutionFinishedEventArgs(ScriptExecutionResult batchResult, Batch batch, SqlCmdCommand sqlCmdCommand)            
+        public BatchParserExecutionFinishedEventArgs(ScriptExecutionResult batchResult, Batch batch, SqlCmdCommand sqlCmdCommand)
         {
             this.batch = batch;
             result = batchResult;

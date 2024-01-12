@@ -37,7 +37,7 @@ namespace Microsoft.SqlTools.Credentials.Win32
                 if (set.Count > 0)
                 {
                     foundCred = set[0];
-                }                
+                }
 
                 if (foundCred != null)
                 {
@@ -52,14 +52,14 @@ namespace Microsoft.SqlTools.Credentials.Win32
         {
             Credential.ValidateForSave(credential);
 
-            using (Win32Credential cred = 
+            using (Win32Credential cred =
                 new Win32Credential(AnyUsername, credential.Password, credential.CredentialId, CredentialType.Generic)
                 { PersistanceType = PersistanceType.LocalComputer })
             {
                 return cred.Save();
             }
-                
+
         }
     }
-    
+
 }

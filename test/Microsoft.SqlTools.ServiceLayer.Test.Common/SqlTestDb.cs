@@ -7,11 +7,11 @@
 
 using System;
 using System.Globalization;
+using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 using NUnit.Framework;
-using Microsoft.Data.SqlClient;
-using System.Threading.Tasks;
 
 namespace Microsoft.SqlTools.ServiceLayer.Test.Common
 {

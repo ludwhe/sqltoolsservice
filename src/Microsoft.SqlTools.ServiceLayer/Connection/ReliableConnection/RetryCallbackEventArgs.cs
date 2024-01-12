@@ -48,7 +48,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         public TimeSpan Delay
         {
             get { return _delay; }
-        } 
+        }
 
         public Exception Exception
         {

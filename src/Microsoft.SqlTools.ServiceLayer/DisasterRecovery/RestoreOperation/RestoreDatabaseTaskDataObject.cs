@@ -12,10 +12,10 @@ using System.IO;
 using System.Linq;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts;
 using Microsoft.SqlTools.ServiceLayer.TaskServices;
 using Microsoft.SqlTools.Utility;
-using Microsoft.SqlTools.ServiceLayer.Connection;
 
 namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
 {
@@ -112,7 +112,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
         /// Boolean indicating whether the relocate all files checkbox was checked
         /// </summary>
         public bool RelocateAllFiles { get; set; }
-        
+
         /// <summary>
         /// Restore session id
         /// </summary>
@@ -246,7 +246,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                 || (specialEngineEditionSupportedDeviceTypes.ContainsKey(engineEdition) && specialEngineEditionSupportedDeviceTypes[engineEdition].Contains(deviceType));
         }
 
-        
+
         /// <summary>
         /// Returns the last backup taken
         /// </summary>
@@ -255,7 +255,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
         {
             string lastBackup = string.Empty;
             int lastSelectedIndex = GetLastSelectedBackupSetIndex();
-            BackupSet lastSelectedBackupSet = lastSelectedIndex >= 0 && this.RestorePlan.RestoreOperations != null && this.RestorePlan.RestoreOperations.Count > 0 ? 
+            BackupSet lastSelectedBackupSet = lastSelectedIndex >= 0 && this.RestorePlan.RestoreOperations != null && this.RestorePlan.RestoreOperations.Count > 0 ?
                 this.RestorePlan.RestoreOperations[lastSelectedIndex].BackupSet : null;
             if (this.RestorePlanner.RestoreToLastBackup &&
                 lastSelectedBackupSet != null &&
@@ -337,7 +337,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                     throw new InvalidOperationException(SR.RestoreNotSupported);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.Information($"Failed to execute restore task. error: {ex.Message}");
                 throw;
@@ -370,7 +370,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
             if (this.PlanUpdateRequired)
             {
                 this.RestorePlan = this.RestorePlanner.CreateRestorePlan(this.RestoreOptions);
-                
+
                 this.Util.AddCredentialNameForUrlBackupSet(this.RestorePlan, this.CredentialName);
             }
             RestorePlan rp = new RestorePlan(this.Server);
@@ -689,35 +689,37 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
         /// <summary>
         /// Combining the root and file name using the server connection file path seperator
         /// </summary>
-        private string CombineToServerConnectionPath(string root, string filePath) 
+        private string CombineToServerConnectionPath(string root, string filePath)
         {
             string pathSeparatorFromServerConnection = PathWrapper.PathSeparatorFromServerConnection(Server.ConnectionContext);
             string combinedPath = PathWrapper.Combine(root, filePath);
-            
+
             // Make sure all path seperators are server connection separator
             string result = combinedPath.Replace(Path.DirectorySeparatorChar.ToString(), pathSeparatorFromServerConnection);
 
             // Make sure there's not any double file seperator in the path
-            result = result.Replace(pathSeparatorFromServerConnection + pathSeparatorFromServerConnection, 
+            result = result.Replace(pathSeparatorFromServerConnection + pathSeparatorFromServerConnection,
             pathSeparatorFromServerConnection);
             return result;
         }
 
-        private string GetDirectoryName(string filePath) 
+        private string GetDirectoryName(string filePath)
         {
             string localPath = ConvertToLocalMachinePath(filePath);
             localPath = PathWrapper.GetDirectoryName(localPath);
             return ConvertToServerConnectionPath(localPath);
         }
 
-        private string ConvertToLocalMachinePath(string filePath) {
+        private string ConvertToLocalMachinePath(string filePath)
+        {
             string pathSeparator = Path.DirectorySeparatorChar.ToString();
             string localPath = filePath.Replace("/", pathSeparator);
             localPath = localPath.Replace("\\", pathSeparator);
             return localPath;
         }
 
-        private string ConvertToServerConnectionPath(string filePath) {
+        private string ConvertToServerConnectionPath(string filePath)
+        {
             string pathSeparator = PathWrapper.PathSeparatorFromServerConnection(Server.ConnectionContext);
             string serverPath = filePath.Replace("/", pathSeparator);
             serverPath = serverPath.Replace("\\", pathSeparator);
@@ -811,7 +813,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
             }
             set
             {
-                if(this.RestorePlanner != null)
+                if (this.RestorePlanner != null)
                 {
                     string currentDatabaseName = this.RestorePlanner.DatabaseName;
                     this.RestorePlanner.DatabaseName = value;
@@ -889,7 +891,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
             {
                 var item = new DatabaseFileInfo(backupSetInfo.ConvertPropertiesToArray());
                 Guid backupSetGuid;
-                if(!Guid.TryParse(item.Id, out backupSetGuid))
+                if (!Guid.TryParse(item.Id, out backupSetGuid))
                 {
                     backupSetGuid = Guid.Empty;
                 }
@@ -924,7 +926,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                     }
                 }
             }
-            catch(Exception ex )
+            catch (Exception ex)
             {
                 Logger.Information($"Failed to get restore db files. error: {ex.Message}");
             }
@@ -976,8 +978,8 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
             finally
             {
             }
-               
-           
+
+
             return ret;
         }
 
@@ -1012,7 +1014,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                     this.dbFiles = this.GetDbFiles();
 
                     UpdateDBFilesPhysicalRelocate();
-                   
+
 
                 }
             }
@@ -1029,7 +1031,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
 
         public bool ShouldCreateNewPlan()
         {
-            return RestorePlan == null || 
+            return RestorePlan == null ||
                 string.Compare(RestorePlanner.DatabaseName, this.RestoreParams.GetOptionValue<string>(RestoreOptionsHelper.SourceDatabaseName), StringComparison.InvariantCultureIgnoreCase) != 0 ||
                 RestorePlanner.ReadHeaderFromMedia != this.RestoreParams.ReadHeaderFromMedia ||
                 this.RelocateAllFiles != this.RestoreParams.GetOptionValue<bool>(RestoreOptionsHelper.RelocateDbFiles) ||
@@ -1061,7 +1063,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                 res => res.BackupSet.BackupMediaSet.BackupMediaList.Any(t => t.MediaType == DeviceType.Url)));
         }
 
-            
+
         /// <summary>
         /// Sets restore plan properties
         /// </summary>
@@ -1197,7 +1199,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
         {
             if (this.RestorePlan != null && this.RestorePlan.RestoreOperations.Any() && this.backupSetsFilterInfo.AnySelected)
             {
-                for (int i = this.RestorePlan.RestoreOperations.Count -1; i >= 0; i--)
+                for (int i = this.RestorePlan.RestoreOperations.Count - 1; i >= 0; i--)
                 {
                     BackupSet backupSet = this.RestorePlan.RestoreOperations[i].BackupSet;
                     if (this.backupSetsFilterInfo.IsBackupSetSelected(backupSet))
@@ -1283,8 +1285,8 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                             //If the second item is not selected and it's a diff backup 
                             if (index == 1 && backupSet.BackupSetType == BackupSetType.Differential)
                             {
-                                if (this.Server.Version.Major < 9 || 
-                                    (this.RestorePlan.RestoreOperations.Count >= 3 && 
+                                if (this.Server.Version.Major < 9 ||
+                                    (this.RestorePlan.RestoreOperations.Count >= 3 &&
                                     BackupSet.IsBackupSetsInSequence(this.RestorePlan.RestoreOperations[0].BackupSet, this.RestorePlan.RestoreOperations[2].BackupSet)))
                                 {
                                     // only the item at index 1 won't be selected
@@ -1303,12 +1305,12 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
 
         private bool BackUpSetGuidEqualsId(BackupSet backupSet, string id)
         {
-           return backupSet != null && string.Compare(backupSet.BackupSetGuid.ToString(), id, StringComparison.OrdinalIgnoreCase) == 0;
+            return backupSet != null && string.Compare(backupSet.BackupSetGuid.ToString(), id, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         private void AddBackupSetsToSelected(int from, int to)
         {
-            if (this.RestorePlan != null && this.RestorePlan.RestoreOperations != null 
+            if (this.RestorePlan != null && this.RestorePlan.RestoreOperations != null
                 && from < this.RestorePlan.RestoreOperations.Count && to < this.RestorePlan.RestoreOperations.Count)
             {
                 for (int i = from; i <= to; i++)

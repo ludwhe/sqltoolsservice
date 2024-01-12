@@ -12,20 +12,21 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution
     /// <summary>
     /// Class that represents a Special Action which occured by user request during the query 
     /// </summary>
-    public class SpecialAction {
-        
+    public class SpecialAction
+    {
+
         #region Private Class variables 
 
         // Underlying representation as bitwise flags to simplify logic
         [Flags]
-        private enum ActionFlags 
+        private enum ActionFlags
         {
-            None    = 0,
+            None = 0,
             // All added options must be powers of 2
             ExpectYukonXmlShowPlan = 1
         }
 
-        private ActionFlags flags; 
+        private ActionFlags flags;
 
         #endregion
 
@@ -41,10 +42,10 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution
         /// <summary>
         /// No Special action performed 
         /// </summary>
-        public bool None 
-        { 
-            get { return flags == ActionFlags.None; } 
-            set 
+        public bool None
+        {
+            get { return flags == ActionFlags.None; }
+            set
             {
                 flags = ActionFlags.None;
             }
@@ -53,16 +54,16 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution
         /// <summary>
         /// Contains an XML execution plan result set  
         /// </summary>
-        public bool ExpectYukonXMLShowPlan 
+        public bool ExpectYukonXMLShowPlan
         {
             get { return flags.HasFlag(ActionFlags.ExpectYukonXmlShowPlan); }
-            set 
+            set
             {
                 if (value)
                 {
                     // OR flags with value to apply 
                     flags |= ActionFlags.ExpectYukonXmlShowPlan;
-                } 
+                }
                 else
                 {
                     // AND flags with the inverse of the value we want to remove

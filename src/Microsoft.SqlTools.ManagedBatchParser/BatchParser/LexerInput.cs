@@ -48,7 +48,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser
         /// <summary>
         /// Get current line associated with lexer input
         /// </summary>
-        public int CurrentLine 
+        public int CurrentLine
         {
             get { return currentLine; }
         }
@@ -56,7 +56,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser
         /// <summary>
         /// Get current column associated with lexer input
         /// </summary>
-        public int CurrentColumn 
+        public int CurrentColumn
         {
             get { return currentColumn; }
         }

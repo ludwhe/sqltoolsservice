@@ -29,7 +29,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.Nodes
         /// </summary>
         /// <returns></returns>
         public abstract string ToPropertyFilterString(Type type, ValidForFlag validForFlag);
-        
+
         /// <summary>
         /// Creates a fully paramaterized property filter string for the URN query for SQL objects.
         /// Example of the output:[@ IsSystemObject = 0]

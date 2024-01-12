@@ -6,8 +6,8 @@
 using System;
 using System.Data;
 using System.Globalization;
-using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlTools.ServiceLayer.Management;
 
 namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
@@ -120,7 +120,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             string securableQuery = this.securable.GetPermissionsForSecurableSyntax();
 
             // merge the securableQuery with the EXECUTE AS context
-            string sqlQuery = 
+            string sqlQuery =
             String.Format(CultureInfo.InvariantCulture,
                 @"EXECUTE AS {0} = N'{1}';
 {2}

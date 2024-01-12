@@ -95,7 +95,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.AutoParameterization
         [Test]
         public void SqlParameterizerShouldThrowWhenSqlIsTooLong()
         {
-            
+
             string sqlLength_300 = $@"
                 DECLARE @SSN CHAR(11) = '123-45-6789'
                 DECLARE @BIRTHDAY DATE = '19990104'
@@ -124,7 +124,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.AutoParameterization
         public void SqlParameterizerShouldThrowWhenSqlIsInvalid()
         {
             string invalidSql = "THIS IS INVALID SQL";
-            
+
             string sql = string.Concat(Repeat(element: invalidSql, count: 1000));
             DbCommand command = new SqlCommand { CommandText = sql };
 
@@ -228,7 +228,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.AutoParameterization
                 SELECT * FROM [dbo].[Patients]
                 WHERE [N] = @SSN AND [B] = @BIRTHDAY AND [S] = @SALARY
                 GO";
-            
+
             // Repeat the SQL 1001 times to exceed length threshold
             string sql = string.Concat(Repeat(element: sqlLength_300, count: 1100));
 

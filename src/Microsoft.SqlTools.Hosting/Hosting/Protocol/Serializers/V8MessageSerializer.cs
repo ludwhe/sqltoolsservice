@@ -3,9 +3,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-using Newtonsoft.Json.Linq;
 using System;
 using Microsoft.SqlTools.Hosting.Protocol.Contracts;
+using Newtonsoft.Json.Linq;
 
 namespace Microsoft.SqlTools.Hosting.Protocol.Serializers
 {
@@ -109,6 +109,6 @@ namespace Microsoft.SqlTools.Hosting.Protocol.Serializers
 
             return Message.Unknown();
         }
-   }
+    }
 }
 

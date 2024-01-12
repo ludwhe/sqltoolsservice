@@ -5,20 +5,15 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.ManagedBatchParser.IntegrationTests.TSQLExecutionEngine;
-using Microsoft.SqlTools.ManagedBatchParser.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.BatchParser;
-using Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.SqlTools.ServiceLayer.Test.Common.Baselined;
 using System;
-using Microsoft.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using NUnit.Framework;
-using Microsoft.SqlTools.ServiceLayer.Connection;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+using Microsoft.SqlTools.ManagedBatchParser.IntegrationTests.TSQLExecutionEngine;
+using Microsoft.SqlTools.ManagedBatchParser.IntegrationTests.Utility;
+using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ManagedBatchParser.UnitTests.BatchParser
 {
@@ -52,7 +47,7 @@ SELECT '$(VAR2)'";
             StringBuilder output = new StringBuilder();
 
             TestCommandHandler handler = new TestCommandHandler(output);
-            
+
             using (var p = new Parser(
                 commandHandler: handler,
                 variableResolver: null,
@@ -559,9 +554,9 @@ GO";
                     testExecutor.Run();
                     Assert.Multiple(() =>
                     {
-                       Assert.That(testExecutor.ParserExecutionError, Is.False, "Parse Execution error should be false");
-                       Assert.That(testExecutor.ResultCountQueue.Count, Is.EqualTo(1), "Unexpected number of ResultCount items");
-                       Assert.That(testExecutor.ErrorMessageQueue, Is.Empty, "Unexpected error messages from test executor");
+                        Assert.That(testExecutor.ParserExecutionError, Is.False, "Parse Execution error should be false");
+                        Assert.That(testExecutor.ResultCountQueue.Count, Is.EqualTo(1), "Unexpected number of ResultCount items");
+                        Assert.That(testExecutor.ErrorMessageQueue, Is.Empty, "Unexpected error messages from test executor");
                     });
                 }
 
@@ -577,7 +572,7 @@ GO";
                 }
             }
         }
-        
+
         /// <summary>
         /// Verify whether the batchParser parsed :on error successfully
         /// </summary>
@@ -630,7 +625,7 @@ GO";
 select * from sys.databases where name = 'master'
 GO";
                     File.WriteAllText("VerifyIncludeSqlCmd_test.sql", sqlCmdFile);
-                     
+
                     string sqlCmdQuery = $@"
 :r {file}
 GO

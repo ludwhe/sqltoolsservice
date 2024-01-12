@@ -3,9 +3,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 using Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts;
 using Microsoft.Kusto.ServiceLayer.Workspace.Contracts;
+using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.Kusto.ServiceLayer.Formatter.Contracts
 {
@@ -50,7 +50,7 @@ namespace Microsoft.Kusto.ServiceLayer.Formatter.Contracts
         /// The document to format.
         /// </summary>
         public TextDocumentIdentifier TextDocument { get; set; }
-        
+
         /// <summary>
         /// The formatting options
         /// </summary>
@@ -64,12 +64,12 @@ namespace Microsoft.Kusto.ServiceLayer.Formatter.Contracts
     /// </summary>
     public class DocumentRangeFormattingParams : DocumentFormattingParams
     {
-        
+
         /// <summary>
         /// The range to format
         /// </summary>
         public Range Range { get; set; }
-        
+
     }
 
     /// <summary>
@@ -108,6 +108,6 @@ namespace Microsoft.Kusto.ServiceLayer.Formatter.Contracts
         // TODO there may be other options passed by VSCode - format is 
         // [key: string]: boolean | number | string;
         // Determine how these might be passed and add them here
-}
+    }
 
 }

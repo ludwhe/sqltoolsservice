@@ -7,22 +7,22 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Kusto.ServiceLayer.DataSource;
-using Microsoft.SqlTools.Extensibility;
-using Microsoft.SqlTools.Hosting;
-using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.Kusto.ServiceLayer.Formatter.Contracts;
 using Microsoft.Kusto.ServiceLayer.LanguageServices;
 using Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts;
 using Microsoft.Kusto.ServiceLayer.SqlContext;
 using Microsoft.Kusto.ServiceLayer.Workspace;
 using Microsoft.Kusto.ServiceLayer.Workspace.Contracts;
+using Microsoft.SqlTools.Extensibility;
+using Microsoft.SqlTools.Hosting;
+using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Utility;
 using FormattingOptions = Microsoft.Kusto.ServiceLayer.Formatter.Contracts.FormattingOptions;
 using Range = Microsoft.Kusto.ServiceLayer.Workspace.Contracts.Range;
 
 namespace Microsoft.Kusto.ServiceLayer.Formatter
 {
-    
+
     public class FormatterService : HostedService<FormatterService>, IComposableService
     {
         private FormatterSettings settings;
@@ -138,7 +138,7 @@ namespace Microsoft.Kusto.ServiceLayer.Formatter
         }
 
         private async Task<TextEdit[]> FormatAndReturnEdits(DocumentFormattingParams docFormatParams)
-        {            
+        {
             return await Task.Factory.StartNew(() =>
             {
                 if (ShouldSkipFormatting(docFormatParams))
@@ -199,12 +199,12 @@ namespace Microsoft.Kusto.ServiceLayer.Formatter
                 if (settings.PlaceSelectStatementReferencesOnNewLine.HasValue) { options.PlaceEachReferenceOnNewLineInQueryStatements = settings.PlaceSelectStatementReferencesOnNewLine.Value; }
 
                 if (settings.UseBracketForIdentifiers.HasValue) { options.EncloseIdentifiersInSquareBrackets = settings.UseBracketForIdentifiers.Value; }
-                
+
                 options.DatatypeCasing = settings.DatatypeCasing;
                 options.KeywordCasing = settings.KeywordCasing;
             }
         }
-        
+
         private ScriptFile GetFile(DocumentFormattingParams docFormatParams)
         {
             return WorkspaceService.Workspace.GetFile(docFormatParams.TextDocument.Uri);

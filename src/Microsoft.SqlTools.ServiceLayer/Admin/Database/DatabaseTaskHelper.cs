@@ -5,18 +5,18 @@
 
 #nullable disable
 
+using System;
+using System.Collections.Generic;
+using System.Xml;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Admin.Contracts;
 using Microsoft.SqlTools.ServiceLayer.Management;
 using Microsoft.SqlTools.Utility;
-using System;
-using System.Collections.Generic;
-using System.Xml;
 
 namespace Microsoft.SqlTools.ServiceLayer.Admin
 {
-    public class DatabaseTaskHelper: IDisposable
+    public class DatabaseTaskHelper : IDisposable
     {
         private static DateTime minBackupDate = new DateTime(1900, 1, 1);
 
@@ -107,7 +107,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                     this.prototype = new DatabasePrototype(context);
                 }
 
-                this.prototype.Initialize();         
+                this.prototype.Initialize();
             }
             else
             {
@@ -132,9 +132,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
             databaseInfo.Options.Add(AdminServicesProviderOptionsHelper.LastLogBackupDate, GetBackupDate(prototype.LastLogBackupDate));
 
             databaseInfo.Options.Add(
-                AdminServicesProviderOptionsHelper.FileGroups + "Count", 
+                AdminServicesProviderOptionsHelper.FileGroups + "Count",
                 prototype.Filegroups.Count);
-             
+
             for (int i = 0; i < prototype.Filegroups.Count; ++i)
             {
                 var fileGroup = prototype.Filegroups[i];
@@ -148,7 +148,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
             }
 
             databaseInfo.Options.Add(
-                AdminServicesProviderOptionsHelper.DatabaseFiles + "Count", 
+                AdminServicesProviderOptionsHelper.DatabaseFiles + "Count",
                 prototype.Files.Count);
 
             for (int i = 0; i < prototype.Files.Count; ++i)
@@ -189,7 +189,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
             return backupDate.ToString();
         }
 
-        private static T GetValueOrDefault<T>(string key, Dictionary<string, object> map, T defaultValue) 
+        private static T GetValueOrDefault<T>(string key, Dictionary<string, object> map, T defaultValue)
         {
             if (map != null && map.ContainsKey(key))
             {
@@ -205,7 +205,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
             if (databaseInfo != null && prototype != null)
             {
                 prototype.Name = GetValueOrDefault(AdminServicesProviderOptionsHelper.Name, databaseInfo.Options, prototype.Name);
-            
+
                 foreach (var file in prototype.Files)
                 {
                     if (string.IsNullOrWhiteSpace(file.Name))
@@ -214,7 +214,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                     }
                     else
                     {
-                        file.Name += prototype.Name + file.Name  + "_" + logicalNameCount;
+                        file.Name += prototype.Name + file.Name + "_" + logicalNameCount;
                     }
 
                     ++logicalNameCount;
@@ -233,7 +233,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                     this.DataContainer.Dispose();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.Warning($"Failed to disconnect Database task Helper connection. Error: {ex.Message}");
             }

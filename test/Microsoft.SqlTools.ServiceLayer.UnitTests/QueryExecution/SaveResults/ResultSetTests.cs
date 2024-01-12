@@ -78,7 +78,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
 
             // If: I attempt to save results with the same name as the non-completed task
             // Then: I should get an invalid operation exception
-            var requestParams = new SaveResultsRequestParams {FilePath = Constants.OwnerUri};
+            var requestParams = new SaveResultsRequestParams { FilePath = Constants.OwnerUri };
             Assert.Throws<InvalidOperationException>(() => rs.SaveAs(
                 requestParams, GetMockFactory(GetMockWriter().Object, null),
                 null, null));
@@ -102,7 +102,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
             IFileStreamFactory saveFactory = GetMockFactory(saveWriter.Object, resultFactory.GetReader);
 
             // If: I attempt to save results and await completion
-            rs.SaveAs(new SaveResultsRequestParams {FilePath = Constants.OwnerUri}, saveFactory, null, null);
+            rs.SaveAs(new SaveResultsRequestParams { FilePath = Constants.OwnerUri }, saveFactory, null, null);
             Assert.True(rs.SaveTasks.ContainsKey(Constants.OwnerUri));
             await rs.SaveTasks[Constants.OwnerUri];
 
@@ -153,7 +153,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
             // ... All the rows should have been written successfully
             saveWriter.Verify(
                 w => w.WriteRow(It.IsAny<IList<DbCellValue>>(), It.IsAny<IReadOnlyList<DbColumnWrapper>>()),
-                Times.Exactly((int) (saveParams.RowEndIndex - saveParams.RowStartIndex  + 1)));
+                Times.Exactly((int)(saveParams.RowEndIndex - saveParams.RowStartIndex + 1)));
         }
 
         private static Mock<IFileStreamWriter> GetMockWriter()

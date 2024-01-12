@@ -7,8 +7,6 @@
 
 using System.Threading.Tasks;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.ObjectManagement;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ObjectManagement
 {

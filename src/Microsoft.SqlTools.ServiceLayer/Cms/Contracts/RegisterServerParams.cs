@@ -28,7 +28,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Cms.Contracts
         public string RegisteredServerName { get; set; }
 
         public string RegisteredServerDescription { get; set; }
-        
+
         public ConnectionDetails RegisteredServerConnectionDetails { get; set; }
 
         public string ParentOwnerUri { get; set; }
@@ -56,7 +56,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Cms.Contracts
     public class RemoveServerGroupParams
     {
         public string GroupName { get; set; }
-        
+
         public string ParentOwnerUri { get; set; }
 
         public string RelativePath { get; set; }

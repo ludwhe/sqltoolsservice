@@ -50,7 +50,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
             {
                 observerDisposable = observableSession.ObservableSessionEvents?.Subscribe(sessionObserver = new SessionObserver());
             }
-        }    
+        }
 
         /// <summary>
         /// Underlying XEvent session wrapper
@@ -92,7 +92,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
             {
                 lock (this.pollingLock)
                 {
-                    this.isPolling  = value;
+                    this.isPolling = value;
                 }
             }
         }
@@ -118,7 +118,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
         /// </summary>
         private bool IsProfilerEvent(ProfilerEvent currentEvent)
         {
-            if (string.IsNullOrWhiteSpace(currentEvent.Name) ||  currentEvent.Values == null)
+            if (string.IsNullOrWhiteSpace(currentEvent.Name) || currentEvent.Values == null)
             {
                 return false;
             }
@@ -157,7 +157,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
         public void FilterOldEvents(List<ProfilerEvent> events)
         {
             this.eventsLost = false;
-            
+
             if (lastSeenId != -1)
             {
                 // find the last event we've previously seen
@@ -181,7 +181,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
                 {
                     events.RemoveRange(0, idx + 1);
                 }
-                else if(earliestSeenEventId > (lastSeenId + 1))
+                else if (earliestSeenEventId > (lastSeenId + 1))
                 {
                     // if there's a gap between the expected next event sequence
                     // and the furthest back event seen, we know we've lost events

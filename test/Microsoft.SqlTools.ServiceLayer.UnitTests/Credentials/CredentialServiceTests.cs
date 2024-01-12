@@ -44,7 +44,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Credentials
         // even if previous runs stopped midway through
         private ICredentialStore credStore;
         private CredentialService service;
-        
+
         [SetUp]
         public void SetupCredentialServiceTests()
         {

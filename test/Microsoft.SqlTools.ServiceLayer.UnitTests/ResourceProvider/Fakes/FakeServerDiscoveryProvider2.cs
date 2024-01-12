@@ -10,7 +10,7 @@ using Microsoft.SqlTools.ResourceProvider.Core;
 using Microsoft.SqlTools.ResourceProvider.Core.Extensibility;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
-{   
+{
     public class FakeServerDiscoveryProvider2 : ExportableBase, IServerDiscoveryProvider
     {
         public FakeServerDiscoveryProvider2(IExportableMetadata metadata)
@@ -22,8 +22,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
         {
             return await Task.Run(() => new ServiceResponse<ServerInstanceInfo>());
         }
-      
-        
+
+
         public IDatabaseResourceManager DatabaseResourceManager
         {
             get;

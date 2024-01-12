@@ -10,9 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Kusto.Language;
-using Kusto.Language.Symbols;
-using Kusto.Language.Syntax;
 using Microsoft.Kusto.ServiceLayer.DataSource.Intellisense;
 
 namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
@@ -26,12 +23,12 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
             _kustoClient = kustoClient;
             schemaState = LoadSchemaState(kustoClient.DatabaseName, kustoClient.ClusterName);
         }
-        
+
         public override void UpdateDatabase(string databaseName)
         {
             schemaState = LoadSchemaState(databaseName, _kustoClient.ClusterName);
         }
-        
+
         private GlobalState LoadSchemaState(string databaseName, string clusterName)
         {
             IEnumerable<ShowDatabaseSchemaResult> tableSchemas = Enumerable.Empty<ShowDatabaseSchemaResult>();
@@ -54,7 +51,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
             return AddOrUpdateDatabase(tableSchemas, functionSchemas, GlobalState.Default, databaseName,
                 clusterName);
         }
-        
+
         /// <summary>
         /// Loads the schema for the specified database and returns a new <see cref="GlobalState"/> with the database added or updated.
         /// </summary>
@@ -78,7 +75,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
             var cluster = globals.GetCluster(clusterName);
             if (cluster == null)
             {
-                cluster = new ClusterSymbol(clusterName, new[] {databaseSymbol}, isOpen: true);
+                cluster = new ClusterSymbol(clusterName, new[] { databaseSymbol }, isOpen: true);
                 globals = globals.AddOrUpdateCluster(cluster);
             }
             else
@@ -89,7 +86,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
 
             return globals.WithCluster(cluster).WithDatabase(databaseSymbol);
         }
-        
+
         /// <summary>
         /// Loads the schema for the specified database into a <see cref="DatabaseSymbol"/>.
         /// </summary>
@@ -128,7 +125,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
 
             return new DatabaseSymbol(databaseName, members);
         }
-        
+
         /// <summary>
         /// Convert CLR type name into a Kusto scalar type.
         /// </summary>
@@ -202,7 +199,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
                     throw new InvalidOperationException($"Unhandled clr type: {clrTypeName}");
             }
         }
-        
+
         /// <summary>
         /// Translate Kusto parameter list declaration into into list of <see cref="Parameter"/> instances.
         /// </summary>
@@ -228,7 +225,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
             var query = "let fn = " + parameters + " { };";
             var code = KustoCode.ParseAndAnalyze(query);
             var let = code.Syntax.GetFirstDescendant<LetStatement>();
-            
+
             FunctionSymbol function = let.Name.ReferencedSymbol is VariableSymbol variable
                 ? variable.Type as FunctionSymbol
                 : let.Name.ReferencedSymbol as FunctionSymbol;

@@ -29,7 +29,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             if (parentItem != null)
             {
                 PropertyDescriptor storedProcProperty = TypeDescriptor.GetProperties(parentItem)["StoredProc"];
-                
+
                 // If parent item has "StoredProc" property and it references the current item
                 // then this item is a Stored Procedure. Otherwise it is an UDF.
                 if (storedProcProperty != null && storedProcProperty.GetValue(parentItem) == item)

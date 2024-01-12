@@ -48,7 +48,7 @@ namespace Microsoft.SqlTools.ResourceProvider.Core
         /// <summary>
         /// Creates new instance given exception to create the error list
         /// </summary>
-        public ServiceResponse(Exception ex) : this(Enumerable.Empty<T>(), new List<Exception> {ex})
+        public ServiceResponse(Exception ex) : this(Enumerable.Empty<T>(), new List<Exception> { ex })
         {
         }
 

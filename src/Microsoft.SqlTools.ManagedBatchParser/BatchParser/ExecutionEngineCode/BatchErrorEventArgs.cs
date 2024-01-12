@@ -22,9 +22,9 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
         private Exception exception;
         private SqlError error;
         #endregion
-        
+
         #region Constructors / Destructor
-                
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -108,17 +108,17 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
 
         public int Line
         {
-            get 
-            { 
-                return line; 
+            get
+            {
+                return line;
             }
         }
 
         public TextSpan TextSpan
         {
-            get 
-            { 
-                return textSpan; 
+            get
+            {
+                return textSpan;
             }
         }
 

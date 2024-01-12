@@ -3,11 +3,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-using System.Composition;
-using Microsoft.Kusto.ServiceLayer.Scripting.Contracts;
-using Microsoft.Kusto.ServiceLayer.DataSource;
-using Microsoft.SqlServer.Management.Sdk.Sfc;
 using System.Text;
+using Microsoft.Kusto.ServiceLayer.DataSource;
+using Microsoft.Kusto.ServiceLayer.Scripting.Contracts;
 
 namespace Microsoft.Kusto.ServiceLayer.Scripting
 {
@@ -32,7 +30,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             var functionName = scriptingObject.Name.Substring(0, scriptingObject.Name.IndexOf('('));
             return dataSource.GenerateAlterFunctionScript(functionName);
         }
-        
+
         public string ExecuteFunction(IDataSource dataSource, ScriptingObject scriptingObject)
         {
             var functionName = scriptingObject.Name.Substring(0, scriptingObject.Name.IndexOf('('));

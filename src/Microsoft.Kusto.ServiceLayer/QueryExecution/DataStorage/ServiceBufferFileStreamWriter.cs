@@ -301,7 +301,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
         internal int WriteBoolean(bool val)
         {
             byteBuffer[0] = 0x01; // length
-            byteBuffer[1] = (byte) (val ? 0x01 : 0x00);
+            byteBuffer[1] = (byte)(val ? 0x01 : 0x00);
             return FileUtilities.WriteWithLength(fileStream, byteBuffer, 2);
         }
 

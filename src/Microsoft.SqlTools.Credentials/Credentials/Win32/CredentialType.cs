@@ -5,7 +5,7 @@
 
 namespace Microsoft.SqlTools.Credentials.Win32
 {
-    public enum CredentialType: uint 
+    public enum CredentialType : uint
     {
         None = 0,
         Generic = 1,

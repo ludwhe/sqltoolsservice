@@ -6,10 +6,10 @@
 #nullable disable
 
 using System;
-using System.ComponentModel;
-using System.Xml.Serialization;
-using System.Reflection;
 using System.Collections;
+using System.ComponentModel;
+using System.Reflection;
+using System.Xml.Serialization;
 
 namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 {

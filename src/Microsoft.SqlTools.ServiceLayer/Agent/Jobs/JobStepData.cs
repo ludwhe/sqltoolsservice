@@ -368,7 +368,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             }
             set
             {
-                if (this.failureAction != value) {
+                if (this.failureAction != value)
+                {
                     this.failureAction = value;
                 }
             }
@@ -399,7 +400,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             }
             set
             {
-                if (this.successAction != value) {
+                if (this.successAction != value)
+                {
                     this.successAction = value;
                 }
             }
@@ -937,7 +939,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
                 JobStepFlags historyOutputMask = JobStepFlags.AppendToJobHistory;
                 if (this.SubSystem == AgentSubSystem.CmdExec ||
-                    this.SubSystem == AgentSubSystem.Ssis || 
+                    this.SubSystem == AgentSubSystem.Ssis ||
                     this.subSystem == AgentSubSystem.PowerShell)
                 {
                     // for cmdexec, PowerShell and ssis subsystems, the history output flag 

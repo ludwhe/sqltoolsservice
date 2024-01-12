@@ -46,7 +46,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
     public class AgentOperatorResult : ResultStatus
     {
         public AgentOperatorInfo Operator { get; set; }
-    }    
+    }
 
     /// <summary>
     /// SQL Agent create Operator params
@@ -92,7 +92,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public static readonly
             RequestType<UpdateAgentOperatorParams, AgentOperatorResult> Type =
             RequestType<UpdateAgentOperatorParams, AgentOperatorResult>.Create("agent/updateoperator");
-    }    
+    }
 
     /// <summary>
     /// SQL Agent delete Operator params
@@ -115,5 +115,5 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public static readonly
             RequestType<DeleteAgentOperatorParams, ResultStatus> Type =
             RequestType<DeleteAgentOperatorParams, ResultStatus>.Create("agent/deleteoperator");
-    }    
+    }
 }

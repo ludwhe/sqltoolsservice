@@ -6,11 +6,11 @@
 #nullable disable
 
 using System.ComponentModel;
-using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
+using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Management;
 using Microsoft.SqlTools.ServiceLayer.Utility;
-using Microsoft.SqlServer.Management.Common;
 
 namespace Microsoft.SqlTools.ServiceLayer.Admin
 {
@@ -213,7 +213,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
         }
 
         ServerConnection Connection
-        {            
+        {
             get { return this.context.ServerConnection; }
         }
     }

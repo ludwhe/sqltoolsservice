@@ -6,11 +6,7 @@
 #nullable disable
 
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.FileBrowser;
-using Microsoft.SqlTools.ServiceLayer.FileBrowser.Contracts;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.Test.Common.RequestContextMocking;
 using Moq;
 using NUnit.Framework;
 
@@ -36,7 +32,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.FileBrowser
             {
                 OwnerUri = liveConnection.ConnectionInfo.OwnerUri,
                 ExpandPath = "",
-                FileFilters = new string[1] {"*"}
+                FileFilters = new string[1] { "*" }
             };
 
             await service.HandleFileBrowserOpenRequest(openParams, openRequestContext.Object);

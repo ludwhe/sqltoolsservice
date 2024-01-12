@@ -31,9 +31,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.FileBrowser
         public void FilterFilesTest()
         {
             FileBrowserOperation operation = new FileBrowserOperation(null, "", null);
-            string[] supportedFilePaths = new string[] {"te\\s/t1.txt", "te!s.t2.bak" };
+            string[] supportedFilePaths = new string[] { "te\\s/t1.txt", "te!s.t2.bak" };
             string[] unsupportedFilePaths = new string[] { "te.s*/t3.jpg", "t_est4.trn" };
-            string[] filters = new string[] { "*.txt", "*.bak"};
+            string[] filters = new string[] { "*.txt", "*.bak" };
 
             foreach (string path in supportedFilePaths)
             {

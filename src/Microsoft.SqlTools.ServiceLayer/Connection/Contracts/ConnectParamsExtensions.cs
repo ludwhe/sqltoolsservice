@@ -20,7 +20,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.Contracts
             errorMessage = string.Empty;
             if (string.IsNullOrEmpty(parameters.OwnerUri))
             {
-                errorMessage = SR.ConnectionParamsValidateNullOwnerUri; 
+                errorMessage = SR.ConnectionParamsValidateNullOwnerUri;
             }
             else if (parameters.Connection == null)
             {

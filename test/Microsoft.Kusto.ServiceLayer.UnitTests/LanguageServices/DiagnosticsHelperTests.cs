@@ -40,7 +40,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
             var eventContextMock = new Mock<EventContext>();
             var task = DiagnosticsHelper.ClearScriptDiagnostics(uri, eventContextMock.Object);
             task.Wait();
-            
+
             eventContextMock.Verify(
                 e => e.SendEvent(PublishDiagnosticsNotification.Type,
                     It.Is<PublishDiagnosticsNotification>(x => x.Uri == uri && x.Diagnostics.Length == 0)), Times.Once);
@@ -84,15 +84,15 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
 
             eventContextMock.Verify(e => e.SendEvent(PublishDiagnosticsNotification.Type,
                 It.IsAny<PublishDiagnosticsNotification>()), Times.Once);
-            
+
             Assert.AreEqual(PublishDiagnosticsNotification.Type.MethodName, actualEventType.MethodName);
             Assert.AreEqual(uri, actualNotification.Uri);
             Assert.AreEqual(1, actualNotification.Diagnostics.Length);
-            
+
             var diagnostic = actualNotification.Diagnostics.First();
             Assert.AreEqual(expected, diagnostic.Severity);
         }
-        
+
         [Test]
         public async Task PublishScriptDiagnostics_Creates_Diagnostic()
         {
@@ -123,13 +123,13 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
                         actualNotification = notification;
                     })
                 .Returns(Task.FromResult(0));
-            
-            await DiagnosticsHelper.PublishScriptDiagnostics(scriptFile, new[] {fileMarker}, eventContextMock.Object);
-            
+
+            await DiagnosticsHelper.PublishScriptDiagnostics(scriptFile, new[] { fileMarker }, eventContextMock.Object);
+
             Assert.AreEqual(PublishDiagnosticsNotification.Type.MethodName, actualEventType.MethodName);
             Assert.AreEqual(uri, actualNotification.Uri);
             Assert.AreEqual(1, actualNotification.Diagnostics.Length);
-            
+
             var diagnostic = actualNotification.Diagnostics.First();
             Assert.AreEqual(null, diagnostic.Code);
             Assert.AreEqual(fileMarker.Message, diagnostic.Message);

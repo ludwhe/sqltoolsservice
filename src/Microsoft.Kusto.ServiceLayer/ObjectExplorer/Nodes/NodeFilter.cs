@@ -76,7 +76,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes
                     if (Type == typeof(Enum))
                     {
                         propertyValue = (int)Convert.ChangeType(value, Type);
-                       
+
                     }
                     string orPrefix = i == 0 ? string.Empty : "or";
                     filter = $"{filter} {orPrefix} @{Property} = {propertyValue}";
@@ -94,7 +94,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes
             for (int i = 0; i < list.Count; i++)
             {
                 var value = list[i];
-                
+
                 string andPrefix = i == 0 ? string.Empty : "and";
                 filter = $"{filter} {andPrefix} {value.ToPropertyFilterString()}";
             }

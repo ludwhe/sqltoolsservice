@@ -6,13 +6,12 @@
 #nullable disable
 
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
-using System.Collections.Generic;
-
-using SMO = Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
+using SMO = Microsoft.SqlServer.Management.Smo;
 
 namespace Microsoft.SqlTools.ServiceLayer.Agent
 {
@@ -58,7 +57,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// <param name="unfilteredJobs"></param>
         /// <param name="filter"></param>
         /// <returns></returns>
-        private Dictionary<Guid, JobProperties> FilterJobs(Dictionary<Guid, JobProperties> unfilteredJobs, 
+        private Dictionary<Guid, JobProperties> FilterJobs(Dictionary<Guid, JobProperties> unfilteredJobs,
                                            JobActivityFilter filter)
         {
             if (unfilteredJobs == null)
@@ -75,7 +74,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             }
 
             Dictionary<Guid, JobProperties> filteredJobs = new Dictionary<Guid, JobProperties>();
-            
+
             // Apply Filter
             foreach (JobProperties jobProperties in unfilteredJobs.Values)
             {
@@ -139,7 +138,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// <param name="filter"></param>
         /// <param name="jobProperties"></param>
         /// <returns></returns>
-        private  bool CheckifNextRunDateIsGreater(JobActivityFilter filter, JobProperties jobProperties)
+        private bool CheckifNextRunDateIsGreater(JobActivityFilter filter, JobProperties jobProperties)
         {
             bool isNextRunOutDateMatched = false;
             // filter next run date
@@ -195,7 +194,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// <param name="filter"></param>
         /// <param name="jobProperties"></param>
         /// <returns></returns>
-        private  bool CheckIfJobStatusMatchesJob(JobActivityFilter filter, JobProperties jobProperties)
+        private bool CheckIfJobStatusMatchesJob(JobActivityFilter filter, JobProperties jobProperties)
         {
             bool isStatusMatched = false;
             // filter - job run status
@@ -288,7 +287,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// <param name="filter"></param>
         /// <param name="jobProperties"></param>
         /// <returns></returns>
-        private  bool CheckIfCategoryMatchesJob(JobActivityFilter filter, JobProperties jobProperties)
+        private bool CheckIfCategoryMatchesJob(JobActivityFilter filter, JobProperties jobProperties)
         {
             bool isCategoryMatched = false;
             // Apply category filter if specified
@@ -357,16 +356,16 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// </summary>
         /// <param name="urn"></param>
         /// <returns></returns>
-        public Dictionary<Guid, JobProperties> FetchJobs(string urn)          
+        public Dictionary<Guid, JobProperties> FetchJobs(string urn)
         {
-            if(String.IsNullOrEmpty(urn))
+            if (String.IsNullOrEmpty(urn))
             {
                 throw new ArgumentNullException("urn");
             }
 
-            Request request = new Request(); 
+            Request request = new Request();
             request.Urn = urn;
-            request.Fields = new string[] 
+            request.Fields = new string[]
                 {
                     "Name",
                     "IsEnabled",

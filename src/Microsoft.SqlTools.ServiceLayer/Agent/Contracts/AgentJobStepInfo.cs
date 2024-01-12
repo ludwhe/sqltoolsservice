@@ -43,7 +43,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         /// step that will be executed on failure
         /// </summary>
         public int FailStepId { get; set; }
-    
+
         /// <summary>
         /// step that will be executed on success
         /// </summary>
@@ -63,7 +63,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         /// Database this step will execute against
         /// </summary>
         public string DatabaseName { get; set; }
-    
+
         /// <summary>
         /// database user name this step will execute against
         /// </summary>

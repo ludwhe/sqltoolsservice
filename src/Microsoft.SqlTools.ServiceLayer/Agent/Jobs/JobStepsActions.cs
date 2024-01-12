@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         private ConfigAction configAction;
 
         public JobStepsActions(
-            CDataContainer dataContainer, 
+            CDataContainer dataContainer,
             JobData jobData,
             AgentJobStepInfo stepInfo,
             ConfigAction configAction)
@@ -57,7 +57,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             {
                 if (this.data.JobStep != null)
                 {
-                    this.data.JobStep.DropIfExists();                    
+                    this.data.JobStep.DropIfExists();
                 }
             }
             else
@@ -80,7 +80,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 }
 
                 if (runType == RunType.RunNow)
-                {                   
+                {
                     this.data.ApplyChanges(this.jobData.Job);
                 }
             }

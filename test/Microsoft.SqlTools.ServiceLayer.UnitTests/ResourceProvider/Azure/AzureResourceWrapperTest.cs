@@ -5,7 +5,6 @@
 
 #nullable disable
 
-using Microsoft.Azure.Management.Sql.Models;
 using Microsoft.SqlTools.ResourceProvider.DefaultImpl;
 using NUnit.Framework;
 

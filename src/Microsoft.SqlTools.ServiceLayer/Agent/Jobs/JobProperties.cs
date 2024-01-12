@@ -49,40 +49,40 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
         public JobProperties(DataRow row)
         {
-            System.Diagnostics.Debug.Assert(row["Name"]             != DBNull.Value, "Name is null!");
-            System.Diagnostics.Debug.Assert(row["IsEnabled"]        != DBNull.Value, "IsEnabled is null!");
-            System.Diagnostics.Debug.Assert(row["Category"]         != DBNull.Value, "Category is null!");
-            System.Diagnostics.Debug.Assert(row["CategoryID"]       != DBNull.Value, "CategoryID is null!");
-            System.Diagnostics.Debug.Assert(row["CategoryType"]     != DBNull.Value, "CategoryType is null!");
+            System.Diagnostics.Debug.Assert(row["Name"] != DBNull.Value, "Name is null!");
+            System.Diagnostics.Debug.Assert(row["IsEnabled"] != DBNull.Value, "IsEnabled is null!");
+            System.Diagnostics.Debug.Assert(row["Category"] != DBNull.Value, "Category is null!");
+            System.Diagnostics.Debug.Assert(row["CategoryID"] != DBNull.Value, "CategoryID is null!");
+            System.Diagnostics.Debug.Assert(row["CategoryType"] != DBNull.Value, "CategoryType is null!");
             System.Diagnostics.Debug.Assert(row["CurrentRunStatus"] != DBNull.Value, "CurrentRunStatus is null!");
-            System.Diagnostics.Debug.Assert(row["CurrentRunStep"]   != DBNull.Value, "CurrentRunStep is null!");
-            System.Diagnostics.Debug.Assert(row["HasSchedule"]      != DBNull.Value, "HasSchedule is null!");
-            System.Diagnostics.Debug.Assert(row["HasStep"]          != DBNull.Value, "HasStep is null!");
-            System.Diagnostics.Debug.Assert(row["HasServer"]        != DBNull.Value, "HasServer is null!");
-            System.Diagnostics.Debug.Assert(row["LastRunOutcome"]   != DBNull.Value, "LastRunOutcome is null!");
-            System.Diagnostics.Debug.Assert(row["JobID"]            != DBNull.Value, "JobID is null!");
+            System.Diagnostics.Debug.Assert(row["CurrentRunStep"] != DBNull.Value, "CurrentRunStep is null!");
+            System.Diagnostics.Debug.Assert(row["HasSchedule"] != DBNull.Value, "HasSchedule is null!");
+            System.Diagnostics.Debug.Assert(row["HasStep"] != DBNull.Value, "HasStep is null!");
+            System.Diagnostics.Debug.Assert(row["HasServer"] != DBNull.Value, "HasServer is null!");
+            System.Diagnostics.Debug.Assert(row["LastRunOutcome"] != DBNull.Value, "LastRunOutcome is null!");
+            System.Diagnostics.Debug.Assert(row["JobID"] != DBNull.Value, "JobID is null!");
 
-            this.name                    = row["Name"].ToString();
-            this.enabled                 = Convert.ToBoolean(row["IsEnabled"], CultureInfo.InvariantCulture);
-            this.category                = row["Category"].ToString();
-            this.categoryID              = Convert.ToInt32(row["CategoryID"], CultureInfo.InvariantCulture);
-            this.categoryType            = Convert.ToInt32(row["CategoryType"], CultureInfo.InvariantCulture);
-            this.currentExecutionStatus  = Convert.ToInt32(row["CurrentRunStatus"], CultureInfo.InvariantCulture);
-            this.currentExecutionStep    = row["CurrentRunStep"].ToString();
-            this.hasSchedule             = Convert.ToBoolean(row["HasSchedule"], CultureInfo.InvariantCulture);
-            this.hasStep                 = Convert.ToBoolean(row["HasStep"], CultureInfo.InvariantCulture);
-            this.hasTarget               = Convert.ToBoolean(row["HasServer"], CultureInfo.InvariantCulture);
-            this.lastRunOutcome          = Convert.ToInt32(row["LastRunOutcome"], CultureInfo.InvariantCulture);
-            this.jobId                   = Guid.Parse(row["JobID"].ToString());
-            this.description             = row["Description"].ToString();
-            this.owner                   = row["OwnerLoginName"].ToString();
-            this.operatorToEmail         = row["OperatorToEmail"].ToString();
-            this.operatorToPage          = row["OperatorToPage"].ToString();
-            this.startStepID             = Convert.ToInt32(row["StartStepID"], CultureInfo.InvariantCulture);
-            this.emailLevel              = Convert.ToInt32(row["EmailLevel"], CultureInfo.InvariantCulture);
-            this.pageLevel               = Convert.ToInt32(row["PageLevel"], CultureInfo.InvariantCulture);
-            this.eventLogLevel           = Convert.ToInt32(row["EventLogLevel"], CultureInfo.InvariantCulture);
-            this.deleteLevel             = Convert.ToInt32(row["DeleteLevel"], CultureInfo.InvariantCulture);
+            this.name = row["Name"].ToString();
+            this.enabled = Convert.ToBoolean(row["IsEnabled"], CultureInfo.InvariantCulture);
+            this.category = row["Category"].ToString();
+            this.categoryID = Convert.ToInt32(row["CategoryID"], CultureInfo.InvariantCulture);
+            this.categoryType = Convert.ToInt32(row["CategoryType"], CultureInfo.InvariantCulture);
+            this.currentExecutionStatus = Convert.ToInt32(row["CurrentRunStatus"], CultureInfo.InvariantCulture);
+            this.currentExecutionStep = row["CurrentRunStep"].ToString();
+            this.hasSchedule = Convert.ToBoolean(row["HasSchedule"], CultureInfo.InvariantCulture);
+            this.hasStep = Convert.ToBoolean(row["HasStep"], CultureInfo.InvariantCulture);
+            this.hasTarget = Convert.ToBoolean(row["HasServer"], CultureInfo.InvariantCulture);
+            this.lastRunOutcome = Convert.ToInt32(row["LastRunOutcome"], CultureInfo.InvariantCulture);
+            this.jobId = Guid.Parse(row["JobID"].ToString());
+            this.description = row["Description"].ToString();
+            this.owner = row["OwnerLoginName"].ToString();
+            this.operatorToEmail = row["OperatorToEmail"].ToString();
+            this.operatorToPage = row["OperatorToPage"].ToString();
+            this.startStepID = Convert.ToInt32(row["StartStepID"], CultureInfo.InvariantCulture);
+            this.emailLevel = Convert.ToInt32(row["EmailLevel"], CultureInfo.InvariantCulture);
+            this.pageLevel = Convert.ToInt32(row["PageLevel"], CultureInfo.InvariantCulture);
+            this.eventLogLevel = Convert.ToInt32(row["EventLogLevel"], CultureInfo.InvariantCulture);
+            this.deleteLevel = Convert.ToInt32(row["DeleteLevel"], CultureInfo.InvariantCulture);
 
             // for a job to be runnable, it must:
             // 1. have a target server
@@ -102,72 +102,72 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
         public bool Runnable
         {
-            get{ return runnable;}
+            get { return runnable; }
         }
 
         public string Name
         {
-            get{ return name;}
+            get { return name; }
         }
 
         public string Category
         {
-            get{ return category;}
+            get { return category; }
         }
 
         public int CategoryID
         {
-            get{ return categoryID;}
+            get { return categoryID; }
         }
 
         public int CategoryType
         {
-            get{ return categoryType;}
+            get { return categoryType; }
         }
 
         public int LastRunOutcome
         {
-            get{ return lastRunOutcome;}
+            get { return lastRunOutcome; }
         }
 
         public int CurrentExecutionStatus
         {
-            get{ return currentExecutionStatus;}
+            get { return currentExecutionStatus; }
         }
 
         public string CurrentExecutionStep
         {
-            get{ return currentExecutionStep;}
+            get { return currentExecutionStep; }
         }
 
         public bool Enabled
         {
-            get{ return enabled;}
+            get { return enabled; }
         }
 
         public bool HasTarget
         {
-            get{ return hasTarget;}
+            get { return hasTarget; }
         }
 
         public bool HasStep
         {
-            get{ return hasStep;}
+            get { return hasStep; }
         }
 
         public bool HasSchedule
         {
-            get{ return hasSchedule;}
+            get { return hasSchedule; }
         }
 
         public DateTime NextRun
         {
-            get{ return nextRun;}
+            get { return nextRun; }
         }
 
         public DateTime LastRun
         {
-            get{ return lastRun;}
+            get { return lastRun; }
         }
 
         public Guid JobID
@@ -221,7 +221,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             get { return (JobCompletionActionCondition)this.eventLogLevel; }
         }
 
-        public string Owner 
+        public string Owner
         {
             get { return this.owner; }
         }

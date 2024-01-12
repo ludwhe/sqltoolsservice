@@ -21,71 +21,71 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Messaging
     {
         [Test]
         public void SetRequestHandlerWithOverrideTest()
-        {           
-            RequestType<int, int> requestType = RequestType<int, int>.Create("test/requestType");            
+        {
+            RequestType<int, int> requestType = RequestType<int, int>.Create("test/requestType");
             var dispatcher = new MessageDispatcher(new Mock<ChannelBase>().Object);
             dispatcher.SetRequestHandler<int, int>(
                 requestType,
-                (i, j) => 
-                { 
+                (i, j) =>
+                {
                     return Task.FromResult(0);
                 },
                 true);
-            Assert.True(dispatcher.requestHandlers.Count > 0);            
+            Assert.True(dispatcher.requestHandlers.Count > 0);
         }
 
         [Test]
         public void SetEventHandlerTest()
-        {           
-            EventType<int> eventType = EventType<int>.Create("test/eventType");            
+        {
+            EventType<int> eventType = EventType<int>.Create("test/eventType");
             var dispatcher = new MessageDispatcher(new Mock<ChannelBase>().Object);
             dispatcher.SetEventHandler<int>(
                 eventType,
-                (i, j) => 
-                { 
+                (i, j) =>
+                {
                     return Task.FromResult(0);
                 });
-            Assert.True(dispatcher.eventHandlers.Count > 0);            
+            Assert.True(dispatcher.eventHandlers.Count > 0);
         }
 
         [Test]
         public void SetEventHandlerWithOverrideTest()
-        {           
-            EventType<int> eventType = EventType<int>.Create("test/eventType");            
+        {
+            EventType<int> eventType = EventType<int>.Create("test/eventType");
             var dispatcher = new MessageDispatcher(new Mock<ChannelBase>().Object);
             dispatcher.SetEventHandler<int>(
                 eventType,
-                (i, j) => 
-                { 
+                (i, j) =>
+                {
                     return Task.FromResult(0);
                 },
                 true);
-            Assert.True(dispatcher.eventHandlers.Count > 0);            
+            Assert.True(dispatcher.eventHandlers.Count > 0);
         }
 
         [Test]
         public void OnListenTaskCompletedFaultedTaskTest()
-        {           
+        {
             Task t = null;
-            
+
             try
             {
-                t = Task.Run(() => 
-                { 
+                t = Task.Run(() =>
+                {
                     throw new Exception();
-                });            
+                });
                 t.Wait();
             }
             catch
-            {                
+            {
             }
             finally
             {
                 bool handlerCalled = false;
                 var dispatcher = new MessageDispatcher(new Mock<ChannelBase>().Object);
-                dispatcher.UnhandledException += (s, e) => handlerCalled = true;       
+                dispatcher.UnhandledException += (s, e) => handlerCalled = true;
                 dispatcher.OnListenTaskCompleted(t);
-                Assert.True(handlerCalled);   
+                Assert.True(handlerCalled);
             }
         }
 

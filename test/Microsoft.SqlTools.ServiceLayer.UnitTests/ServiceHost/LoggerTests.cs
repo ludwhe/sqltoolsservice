@@ -70,7 +70,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ServiceHost
             {
                 SourceLevels expectedTracingLevel = Logger.defaultTracingLevel;
                 string expectedTraceSource = nameof(LoggerTestInitialization);
-                Logger.Initialize(traceSource:expectedTraceSource);
+                Logger.Initialize(traceSource: expectedTraceSource);
                 bool isLogFileExpectedToExist = ((uint)expectedTracingLevel >= (uint)SourceLevels.Information);
                 TestLogger.VerifyInitialization(expectedTracingLevel, expectedTraceSource, Logger.LogFileFullPath, isLogFileExpectedToExist, testNo++);
                 TestLogger.Cleanup(Logger.LogFileFullPath);
@@ -141,7 +141,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ServiceHost
                 SourceLevels expectedTracingLevel = SourceLevels.All;
                 string expectedTraceSource = Logger.defaultTraceSource;
                 string logFilePath = string.Empty;
-                Logger.Initialize(traceSource: expectedTraceSource, logFilePath: logFilePath, tracingLevel:expectedTracingLevel);
+                Logger.Initialize(traceSource: expectedTraceSource, logFilePath: logFilePath, tracingLevel: expectedTracingLevel);
                 bool isLogFileExpectedToExist = ((uint)expectedTracingLevel >= (uint)SourceLevels.Information);
                 TestLogger.VerifyInitialization(expectedTracingLevel, expectedTraceSource, Logger.LogFileFullPath, isLogFileExpectedToExist, testNo++);
                 TestLogger.Cleanup(Logger.LogFileFullPath);
@@ -206,7 +206,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ServiceHost
 
             test.Initialize();
             test.Write();
-            test.Verify(expectLogMessage:false); // The log message should be absent since the tracing level is set to collect messages only at 'Critical' logging level
+            test.Verify(expectLogMessage: false); // The log message should be absent since the tracing level is set to collect messages only at 'Critical' logging level
             test.Cleanup();
         }
 
@@ -242,7 +242,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ServiceHost
 
             test.Initialize();
             test.WriteWithCallstack();
-            test.Verify(expectLogMessage:false); // The log message and corresponding callstack details should be absent since the tracing level is set to collect messages only at 'Error' logging level
+            test.Verify(expectLogMessage: false); // The log message and corresponding callstack details should be absent since the tracing level is set to collect messages only at 'Error' logging level
             test.Cleanup();
         }
 

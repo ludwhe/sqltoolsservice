@@ -9,10 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.SqlTools.ServiceLayer.TaskServices.Contracts;
 using Microsoft.SqlTools.Utility;
-using System.Threading;
 
 namespace Microsoft.SqlTools.ServiceLayer.TaskServices
 {
@@ -143,7 +143,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices
         {
             TokenSource = new CancellationTokenSource();
             AddMessage(SR.TaskInProgress, SqlTaskStatus.InProgress, true);
-           
+
             TaskResult taskResult = new TaskResult();
             Task<TaskResult> performTask = TaskToRun(this);
             Task<TaskResult> completedTask = null;
@@ -332,7 +332,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices
                 return (stopTime - startTime).TotalMilliseconds;
             }
         }
-        
+
 
         /// <summary>
         /// Task Status

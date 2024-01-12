@@ -5,12 +5,9 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.QueryExecution;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using System;
 using System.IO;
+using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.QueryExecution

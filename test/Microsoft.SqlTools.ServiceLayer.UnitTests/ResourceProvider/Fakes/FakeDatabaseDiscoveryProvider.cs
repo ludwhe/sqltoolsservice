@@ -19,8 +19,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
     /// </summary>
     public class FakeDatabaseDiscoveryProvider : IDatabaseDiscoveryProvider
     {
-        private TimeSpan _timeout = TimeSpan.FromSeconds(5);        
-        
+        private TimeSpan _timeout = TimeSpan.FromSeconds(5);
+
         public IExportableMetadata Metadata { get; set; }
         public ExportableStatus Status { get; }
         IExportableMetadata IExportable.Metadata

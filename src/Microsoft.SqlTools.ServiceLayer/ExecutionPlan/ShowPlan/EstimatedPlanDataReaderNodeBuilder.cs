@@ -28,7 +28,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         protected override ShowPlanType ShowPlanType
         {
             get { return ShowPlanType.Estimated; }
-            
+
         }
 
         /// <summary>

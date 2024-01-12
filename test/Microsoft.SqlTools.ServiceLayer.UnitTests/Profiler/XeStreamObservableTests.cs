@@ -8,18 +8,18 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using NUnit.Framework;
-using System.Reflection;
-using Microsoft.SqlTools.ServiceLayer.Profiler.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Profiler;
-using System.Threading;
 using System.Linq;
+using System.Reflection;
+using System.Threading;
+using Microsoft.SqlTools.ServiceLayer.Profiler;
+using Microsoft.SqlTools.ServiceLayer.Profiler.Contracts;
 using Moq;
+using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
 {
     public class XeStreamObservableTests
-    { 
+    {
 
         /// <summary>
         /// this might technically be an integration test but putting it here because it doesn't require any connectivity.
@@ -74,7 +74,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
             return observer;
         }
 
-        private ProfilerService SetupProfilerService (string filePath = null)
+        private ProfilerService SetupProfilerService(string filePath = null)
         {
             filePath ??= Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Profiler", "TestXel_0.xel");
             var sessionFactory = new Mock<IXEventSessionFactory>();

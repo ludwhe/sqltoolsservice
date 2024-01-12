@@ -9,17 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Threading;
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using NUnit.Framework;
-using static Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection.RetryPolicy;
-using static Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection.RetryPolicy.TimeBasedRetryPolicy;
-using static Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection.SqlSchemaModelErrorCodes;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
 {
@@ -39,7 +32,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         internal sealed class TestSqlAzureTemporaryAndIgnorableErrorDetectionStrategy : SqlAzureTemporaryAndIgnorableErrorDetectionStrategy
         {
             public TestSqlAzureTemporaryAndIgnorableErrorDetectionStrategy()
-                : base (new int[] { 100 })
+                : base(new int[] { 100 })
             {
             }
 
@@ -57,11 +50,11 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         internal sealed class TestFixedDelayPolicy : FixedDelayPolicy
         {
             public TestFixedDelayPolicy(
-                IErrorDetectionStrategy strategy, 
-                int maxRetryCount, 
+                IErrorDetectionStrategy strategy,
+                int maxRetryCount,
                 TimeSpan intervalBetweenRetries)
-                : base(strategy, 
-                    maxRetryCount, 
+                : base(strategy,
+                    maxRetryCount,
                     intervalBetweenRetries)
             {
             }
@@ -80,15 +73,15 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         internal sealed class TestProgressiveRetryPolicy : ProgressiveRetryPolicy
         {
             public TestProgressiveRetryPolicy(
-                IErrorDetectionStrategy strategy, 
-                int maxRetryCount, 
-                TimeSpan initialInterval, 
+                IErrorDetectionStrategy strategy,
+                int maxRetryCount,
+                TimeSpan initialInterval,
                 TimeSpan increment)
-                : base(strategy, 
-                    maxRetryCount, 
-                    initialInterval, 
+                : base(strategy,
+                    maxRetryCount,
+                    initialInterval,
                     increment)
-            {         
+            {
             }
 
             public bool InvokeShouldRetryImpl(RetryState retryStateObj)
@@ -106,7 +99,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
                 double totalRetryTimeLimitRate,
                 TimeSpan minInterval,
                 TimeSpan maxInterval,
-                double intervalFactor) 
+                double intervalFactor)
                 : base(
                     strategy,
                     minTotalRetryTimeLimit,
@@ -129,7 +122,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         {
             TestFixedDelayPolicy policy = new TestFixedDelayPolicy(
                 strategy: new NetworkConnectivityErrorDetectionStrategy(),
-                maxRetryCount: 3, 
+                maxRetryCount: 3,
                 intervalBetweenRetries: TimeSpan.FromMilliseconds(100));
             var retryState = new RetryStateEx();
             bool shouldRety = policy.InvokeShouldRetryImpl(retryState);
@@ -142,7 +135,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         {
             TestFixedDelayPolicy policy = new TestFixedDelayPolicy(
                 strategy: new NetworkConnectivityErrorDetectionStrategy(),
-                maxRetryCount: 3, 
+                maxRetryCount: 3,
                 intervalBetweenRetries: TimeSpan.FromMilliseconds(20));
 
             // execute an action that throws a retry limit exception
@@ -150,12 +143,12 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
             Assert.AreEqual(default(int), policy.ExecuteAction<int>((s) => { throw new RetryLimitExceededException(); }, token));
 
             // execute an action that throws a retry limit exeception with an inner exception 
-            Assert.Throws<Exception>(() => 
+            Assert.Throws<Exception>(() =>
             {
-                policy.ExecuteAction<int>((s) => 
-                { 
+                policy.ExecuteAction<int>((s) =>
+                {
                     var e = new RetryLimitExceededException("retry", new Exception());
-                    throw e; 
+                    throw e;
                 });
             });
         }
@@ -165,9 +158,9 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         {
             TestFixedDelayPolicy policy = new TestFixedDelayPolicy(
                 strategy: new NetworkConnectivityErrorDetectionStrategy(),
-                maxRetryCount: 3, 
+                maxRetryCount: 3,
                 intervalBetweenRetries: TimeSpan.FromMilliseconds(20));
-                
+
             Assert.False(policy.IsRetryableException(new Exception()));
         }
 
@@ -176,8 +169,8 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         {
             TestProgressiveRetryPolicy policy = new TestProgressiveRetryPolicy(
                 strategy: new NetworkConnectivityErrorDetectionStrategy(),
-                maxRetryCount: 3, 
-                initialInterval: TimeSpan.FromMilliseconds(100), 
+                maxRetryCount: 3,
+                initialInterval: TimeSpan.FromMilliseconds(100),
                 increment: TimeSpan.FromMilliseconds(100));
             bool shouldRety = policy.InvokeShouldRetryImpl(new RetryStateEx());
             Assert.True(shouldRety);
@@ -185,7 +178,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
             policy.ShouldIgnoreOnFirstTry = false;
             Assert.False(policy.ShouldIgnoreOnFirstTry);
         }
-        
+
         [Test]
         public void TimeBasedRetryPolicyTest()
         {
@@ -243,9 +236,10 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
             {
                 csb.Password = connectParams.Connection.Password;
             }
-            csb.ConnectTimeout = connectParams.Connection.ConnectTimeout.HasValue ? connectParams.Connection.ConnectTimeout.Value: 30;
-            
-            csb.Encrypt = connectParams.Connection.Encrypt?.ToLowerInvariant() switch {
+            csb.ConnectTimeout = connectParams.Connection.ConnectTimeout.HasValue ? connectParams.Connection.ConnectTimeout.Value : 30;
+
+            csb.Encrypt = connectParams.Connection.Encrypt?.ToLowerInvariant() switch
+            {
                 "optional" or "false" or "no" => SqlConnectionEncryptOption.Optional,
                 "mandatory" or "true" or "yes" => SqlConnectionEncryptOption.Mandatory,
                 "strict" => SqlConnectionEncryptOption.Strict,
@@ -366,7 +360,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         [Test]
         public void TestIsDatabaseReadonlyWithNullBuilder()
         {
-            Assert.Throws<ArgumentNullException>(() => ReliableConnectionHelper.IsDatabaseReadonly(null, null));                        
+            Assert.Throws<ArgumentNullException>(() => ReliableConnectionHelper.IsDatabaseReadonly(null, null));
         }
 
         /// <summary>
@@ -375,7 +369,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         [Test]
         public void VerifyAnsiNullAndQuotedIdentifierSettingsReplayed()
         {
-            using (ReliableSqlConnection conn = (ReliableSqlConnection) ReliableConnectionHelper.OpenConnection(CreateTestConnectionStringBuilder(), useRetry: true, azureAccountToken: null))
+            using (ReliableSqlConnection conn = (ReliableSqlConnection)ReliableConnectionHelper.OpenConnection(CreateTestConnectionStringBuilder(), useRetry: true, azureAccountToken: null))
             {
                 VerifySessionSettings(conn, true);
                 VerifySessionSettings(conn, false);
@@ -458,7 +452,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         [Test]
         public void RetryPolicyFactoryConstructsPoliciesSuccessfully()
         {
-            RunIfWrapper.RunIfWindows(() => 
+            RunIfWrapper.RunIfWindows(() =>
             {
                 Assert.NotNull(RetryPolicyFactory.CreateColumnEncryptionTransferRetryPolicy());
                 Assert.NotNull(RetryPolicyFactory.CreateDatabaseCommandRetryPolicy());
@@ -572,21 +566,21 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
             var importModelDatabase = AmbientSettings.ImportModelDatabase;
             var supportAlwaysEncrypted = AmbientSettings.SupportAlwaysEncrypted;
             var alwaysEncryptedWizardMigration = AmbientSettings.AlwaysEncryptedWizardMigration;
-            var skipObjectTypeBlocking =AmbientSettings.SkipObjectTypeBlocking;
+            var skipObjectTypeBlocking = AmbientSettings.SkipObjectTypeBlocking;
             var doNotSerializeQueryStoreSettings = AmbientSettings.DoNotSerializeQueryStoreSettings;
             var lockTimeoutMilliSeconds = AmbientSettings.LockTimeoutMilliSeconds;
             var queryTimeoutSeconds = AmbientSettings.QueryTimeoutSeconds;
             var longRunningQueryTimeoutSeconds = AmbientSettings.LongRunningQueryTimeoutSeconds;
             var alwaysRetryOnTransientFailure = AmbientSettings.AlwaysRetryOnTransientFailure;
             var connectionRetryMessageHandler = AmbientSettings.ConnectionRetryMessageHandler;
-                        
+
             using (var settingsContext = AmbientSettings.CreateSettingsContext())
             {
                 var settings = settingsContext.Settings;
                 Assert.NotNull(settings);
             }
         }
-        
+
         /// <summary>
         /// Validate ambient settings populate
         /// </summary>
@@ -676,7 +670,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
             RetryPolicyFactory.ElementCommandFailureIgnore(retryState);
             RetryPolicyFactory.ElementCommandFailureRetry(retryState);
             RetryPolicyFactory.CreateDatabaseCommandFailureIgnore(retryState);
-            RetryPolicyFactory.CreateDatabaseCommandFailureRetry(retryState);  
+            RetryPolicyFactory.CreateDatabaseCommandFailureRetry(retryState);
             RetryPolicyFactory.CommandFailureIgnore(retryState);
             RetryPolicyFactory.CommandFailureRetry(retryState);
 
@@ -720,13 +714,13 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
             var isOnDisplay = error.IsOnDisplay;
             var isBuildErrorCodeDefined = error.IsBuildErrorCodeDefined;
             var buildErrorCode = error.BuildErrorCode;
-            var isPriorityEditable = error.IsPriorityEditable; 
+            var isPriorityEditable = error.IsPriorityEditable;
             var message = error.Message;
-            var exception = error.Exception; 
+            var exception = error.Exception;
             var prefix = error.Prefix;
             var column = error.Column;
-            var line =error.Line;
-            var errorCode =error.ErrorCode; 
+            var line = error.Line;
+            var errorCode = error.ErrorCode;
             var severity = error.Severity;
             var document = error.Document;
 
@@ -809,8 +803,8 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         [Test]
         public void RetryErrorsTest()
         {
-            var sqlServerRetryError =  new SqlServerRetryError(
-                "test message", new Exception(), 
+            var sqlServerRetryError = new SqlServerRetryError(
+                "test message", new Exception(),
                 1, 200, ErrorSeverity.Warning);
             Assert.True(sqlServerRetryError.RetryCount == 1);
             Assert.NotNull(SqlServerRetryError.FormatRetryMessage(1, TimeSpan.FromSeconds(15), new Exception()));
@@ -818,15 +812,15 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
 
             var sqlServerError1 = new SqlServerError("test message", "document", ErrorSeverity.Warning);
             var sqlServerError2 = new SqlServerError("test message", "document", 1, ErrorSeverity.Warning);
-            var sqlServerError3 = new SqlServerError(new Exception(), "document",1,  ErrorSeverity.Warning);
+            var sqlServerError3 = new SqlServerError(new Exception(), "document", 1, ErrorSeverity.Warning);
             var sqlServerError4 = new SqlServerError("test message", "document", 1, 2, ErrorSeverity.Warning);
             var sqlServerError5 = new SqlServerError(new Exception(), "document", 1, 2, 3, ErrorSeverity.Warning);
             var sqlServerError6 = new SqlServerError("test message", "document", 1, 2, 3, ErrorSeverity.Warning);
             var sqlServerError7 = new SqlServerError("test message", new Exception(), "document", 1, 2, 3, ErrorSeverity.Warning);
 
             Assert.True(SqlSchemaModelErrorCodes.IsParseErrorCode(46010));
-            Assert.True(SqlSchemaModelErrorCodes.IsInterpretationErrorCode(Interpretation.InterpretationBaseCode+ 1));
-            Assert.True(SqlSchemaModelErrorCodes.IsStatementFilterError(StatementFilter.StatementFilterBaseCode + 1));        
+            Assert.True(SqlSchemaModelErrorCodes.IsInterpretationErrorCode(Interpretation.InterpretationBaseCode + 1));
+            Assert.True(SqlSchemaModelErrorCodes.IsStatementFilterError(StatementFilter.StatementFilterBaseCode + 1));
         }
 
         [Test]
@@ -848,7 +842,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         [Test]
         public void CheckStaticVariables()
         {
-            Assert.NotNull(ReliableConnectionHelper.BuilderWithDefaultApplicationName);                        
+            Assert.NotNull(ReliableConnectionHelper.BuilderWithDefaultApplicationName);
         }
 
         [Test]
@@ -868,7 +862,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         public void GetConnectionStringBuilderNullConnectionString()
         {
             SqlConnectionStringBuilder builder;
-            Assert.False(ReliableConnectionHelper.TryGetConnectionStringBuilder(null, out builder));                
+            Assert.False(ReliableConnectionHelper.TryGetConnectionStringBuilder(null, out builder));
         }
 
         [Test]
@@ -880,7 +874,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
             Assert.False(ReliableConnectionHelper.TryGetConnectionStringBuilder("IntegratedGoldFish=True", out builder));
 
             // throws FormatException
-            Assert.False(ReliableConnectionHelper.TryGetConnectionStringBuilder("rabbits**frogs**lizards", out builder));            
+            Assert.False(ReliableConnectionHelper.TryGetConnectionStringBuilder("rabbits**frogs**lizards", out builder));
         }
 
         [Test]
@@ -910,7 +904,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
             command.CommandText = "SELECT 1";
             Assert.AreEqual("SELECT 1", command.CommandText);
             Assert.NotNull(command.CommandTimeout);
-            Assert.NotNull(command.CommandType);   
+            Assert.NotNull(command.CommandType);
             command.DesignTimeVisible = true;
             Assert.True(command.DesignTimeVisible);
             command.UpdatedRowSource = UpdateRowSource.None;
@@ -919,7 +913,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
             Assert.Throws<InvalidOperationException>(command.ValidateConnectionIsSet);
             command.Prepare();
             Assert.NotNull(command.CreateParameter());
-            command.Cancel();            
+            command.Cancel();
         }
 
         [Test]
@@ -951,7 +945,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
         [Test]
         public void StatementCompletedTests()
         {
-            StatementCompletedEventHandler handler = (s, e) => { }; 
+            StatementCompletedEventHandler handler = (s, e) => { };
             var command = new DbCommandWrapper(new SqlCommand());
             command.StatementCompleted += handler;
             command.StatementCompleted -= handler;

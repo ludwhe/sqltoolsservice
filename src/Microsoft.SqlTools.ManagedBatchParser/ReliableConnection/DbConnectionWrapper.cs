@@ -30,7 +30,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             {
                 throw new InvalidOperationException(Resources.InvalidConnectionType);
             }
-            
+
             _connection = connection;
         }
 
@@ -60,9 +60,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             {
                 if (_isReliableConnection)
                 {
-                    return ((ReliableSqlConnection) _connection).DataSource;
+                    return ((ReliableSqlConnection)_connection).DataSource;
                 }
-                return ((SqlConnection)_connection).DataSource; 
+                return ((SqlConnection)_connection).DataSource;
             }
         }
 
@@ -74,7 +74,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
                 {
                     return ((ReliableSqlConnection)_connection).ServerVersion;
                 }
-                return ((SqlConnection)_connection).ServerVersion; 
+                return ((SqlConnection)_connection).ServerVersion;
             }
         }
 
@@ -86,9 +86,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         {
             if (_isReliableConnection)
             {
-                return ((ReliableSqlConnection) _connection).GetUnderlyingConnection();
+                return ((ReliableSqlConnection)_connection).GetUnderlyingConnection();
             }
-            return (SqlConnection) _connection;
+            return (SqlConnection)_connection;
         }
 
         /*

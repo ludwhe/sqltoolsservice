@@ -4,8 +4,6 @@
 //
 
 #nullable disable
-using Microsoft.SqlServer.Dac;
-using Microsoft.SqlTools.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +12,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.SqlServer.Dac;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.DacFx.Contracts
 {
@@ -171,7 +171,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx.Contracts
         public void InitializeBooleanTypeOptions(DacDeployOptions options)
         {
             PropertyInfo[] dacDeploymentOptionsProperties = options.GetType().GetProperties();
-            foreach (PropertyInfo  prop in dacDeploymentOptionsProperties)
+            foreach (PropertyInfo prop in dacDeploymentOptionsProperties)
             {
                 if (prop != null && prop.PropertyType == typeof(System.Boolean))
                 {
@@ -242,7 +242,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx.Contracts
         public object GetDeploymentOptionProp(PropertyInfo prop, DacDeployOptions options)
         {
             var val = prop.GetValue(options);
-            DescriptionAttribute descriptionAttribute = prop.GetCustomAttributes<DescriptionAttribute>().FirstOrDefault(); 
+            DescriptionAttribute descriptionAttribute = prop.GetCustomAttributes<DescriptionAttribute>().FirstOrDefault();
             DisplayNameAttribute displayNameAttribute = prop.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault();
             Type type = val != null ? typeof(DeploymentOptionProperty<>).MakeGenericType(val.GetType())
                 : typeof(DeploymentOptionProperty<>).MakeGenericType(prop.PropertyType);
@@ -251,11 +251,11 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx.Contracts
             if (prop.Name == nameof(this.ExcludeObjectTypes))
             {
                 type = typeof(DeploymentOptionProperty<string[]>);
-                val = val != null ? ConvertObjectTypeToStringArray((ObjectType[])val): new string[] { };
+                val = val != null ? ConvertObjectTypeToStringArray((ObjectType[])val) : new string[] { };
             }
 
-            return Activator.CreateInstance(type, val, 
-                (descriptionAttribute != null ? descriptionAttribute.Description : string.Empty), 
+            return Activator.CreateInstance(type, val,
+                (descriptionAttribute != null ? descriptionAttribute.Description : string.Empty),
                 (displayNameAttribute != null ? displayNameAttribute.DisplayName : string.Empty));
         }
 

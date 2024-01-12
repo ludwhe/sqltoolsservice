@@ -18,7 +18,7 @@ namespace Microsoft.SqlTools.ServiceLayer.EditData.Contracts
         /// <summary>
         /// Default, parameterless constructor to make sure that JSON serializing is happy
         /// </summary>
-        public EditCell() {}
+        public EditCell() { }
 
         /// <summary>
         /// Constructs a new EditCell based on a DbCellValue

@@ -46,7 +46,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Azure
                 await accountManager.GetSelectedSubscriptionsAsync();
             Assert.False(result.Any());
         }
-        
+
         [Test]
         public async Task GetSubscriptionShouldThrowWhenUserNeedsAuthentication()
         {
@@ -80,14 +80,14 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Azure
         private AccountTokenWrapper CreateAccount(bool needsReauthentication = false)
         {
             return new AccountTokenWrapper(new Account()
+            {
+                Key = new AccountKey()
                 {
-                    Key = new AccountKey()
-                    {
-                        AccountId = "MyAccount",
-                        ProviderId = "MSSQL"
-                    },
-                    IsStale = needsReauthentication
+                    AccountId = "MyAccount",
+                    ProviderId = "MSSQL"
                 },
+                IsStale = needsReauthentication
+            },
                 new Dictionary<string, AccountSecurityToken>());
         }
         private async Task<AzureAuthenticationManager> CreateAccountManager(AccountTokenWrapper currentAccount,

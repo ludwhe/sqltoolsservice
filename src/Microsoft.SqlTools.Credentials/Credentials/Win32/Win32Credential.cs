@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Microsoft.SqlTools.Credentials.Win32
 {
-    public class Win32Credential: IDisposable
+    public class Win32Credential : IDisposable
     {
         bool disposed;
 
@@ -21,7 +21,7 @@ namespace Microsoft.SqlTools.Credentials.Win32
         string description;
         DateTime lastWriteTime;
         PersistanceType persistanceType;
-        
+
         public Win32Credential()
             : this(null)
         {
@@ -83,7 +83,8 @@ namespace Microsoft.SqlTools.Credentials.Win32
         }
 
 
-        public string Username {
+        public string Username
+        {
             get
             {
                 CheckNotDisposed();
@@ -160,8 +161,8 @@ namespace Microsoft.SqlTools.Credentials.Win32
                 return LastWriteTimeUtc.ToLocalTime();
             }
         }
-        public DateTime LastWriteTimeUtc 
-        { 
+        public DateTime LastWriteTimeUtc
+        {
             get
             {
                 CheckNotDisposed();
@@ -215,7 +216,7 @@ namespace Microsoft.SqlTools.Credentials.Win32
             credential.CredentialBlobSize = passwordBytes.Length;
             credential.Comment = Description;
             credential.Type = (int)Type;
-            credential.Persist = (int) PersistanceType;
+            credential.Persist = (int)PersistanceType;
 
             bool result = NativeMethods.CredWrite(ref credential, 0);
             if (!result)

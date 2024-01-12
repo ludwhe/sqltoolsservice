@@ -75,7 +75,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ServiceHost
             string id = scriptFile.Id;
             Assert.True(!string.IsNullOrWhiteSpace(id));
 
-            BufferRange range =scriptFile.FileRange;
+            BufferRange range = scriptFile.FileRange;
             Assert.Null(range);
 
             string[] lines = scriptFile.GetLinesInRange(

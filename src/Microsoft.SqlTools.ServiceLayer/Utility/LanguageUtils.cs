@@ -41,7 +41,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
             }
 
             return languageAlias;
-        }        
+        }
 
         /// <summary>
         /// Gets name for a language alias.
@@ -213,7 +213,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
         public static string GetLanguageAliasFromDisplayText(string? displayText)
         {
             string[] parts = displayText?.Split(" - ");
-            return (parts != null && parts.Length > 1) ? parts[0] : displayText;            
+            return (parts != null && parts.Length > 1) ? parts[0] : displayText;
         }
 
         public static bool IsDefaultLanguageSupported(Server server)
@@ -225,7 +225,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility
 
         public static string FormatLanguageDisplay(LanguageDisplay? l)
         {
-            if (l == null) 
+            if (l == null)
             {
                 return null;
             }

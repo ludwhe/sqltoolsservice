@@ -7,9 +7,7 @@
 
 using System;
 using System.Data.Common;
-using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.QueryExecution.DataStorage;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.QueryExecution.DataStorage

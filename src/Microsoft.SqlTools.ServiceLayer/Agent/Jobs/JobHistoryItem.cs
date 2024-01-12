@@ -35,13 +35,13 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
     public interface ILogEntry
     {
-        string          OriginalSourceTypeName  {get;}
-        string          OriginalSourceName      {get;}
-        SeverityClass   Severity                {get;}
-        DateTime        PointInTime             {get;}
-        string          this[string fieldName]  {get;}
-        bool            CanLoadSubEntries       {get;}
-        List<ILogEntry> SubEntries              {get;}
+        string OriginalSourceTypeName { get; }
+        string OriginalSourceName { get; }
+        SeverityClass Severity { get; }
+        DateTime PointInTime { get; }
+        string this[string fieldName] { get; }
+        bool CanLoadSubEntries { get; }
+        List<ILogEntry> SubEntries { get; }
     }
 
     internal class LogSourceJobHistory : ILogSource, IDisposable //, ITypedColumns, ILogCommandTarget
@@ -62,9 +62,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         private bool m_isClosed = false;
         private IServiceProvider serviceProvider = null;
 
-        private static string historyTableDeclaration   = "declare @tmp_sp_help_jobhistory table";
+        private static string historyTableDeclaration = "declare @tmp_sp_help_jobhistory table";
         private static string historyTableDeclaration80 = "create table #tmp_sp_help_jobhistory";
-        private static string historyTableName   = "@tmp_sp_help_jobhistory";
+        private static string historyTableName = "@tmp_sp_help_jobhistory";
         private static string historyTableName80 = "#tmp_sp_help_jobhistory";
         private static string jobHistoryQuery =
 @"{0}
@@ -129,7 +129,7 @@ ORDER BY [InstanceID] ASC";
             }
         }
 
-        public List<ILogEntry> LogEntries 
+        public List<ILogEntry> LogEntries
         {
             get
             {
@@ -170,7 +170,7 @@ ORDER BY [InstanceID] ASC";
         }
 
         #region Constructor
-        
+
         public LogSourceJobHistory(string jobName, SqlConnectionInfo sqlCi, object customCommandHandler, int jobCategoryId, Guid JobId, IServiceProvider serviceProvider)
         {
             m_logName = jobName;
@@ -180,7 +180,7 @@ ORDER BY [InstanceID] ASC";
 
             m_jobName = jobName;
             m_sqlConnectionInfo = sqlCi;
-            m_fieldNames = new string[] 
+            m_fieldNames = new string[]
             {
                 "LogViewerSR.Field_StepID",
                 "LogViewerSR.Field_Server",
@@ -219,20 +219,20 @@ ORDER BY [InstanceID] ASC";
         bool ILogSource.ReadEntry()
         {
             if (!m_isClosed && m_index >= 0)
-                {
-                    m_currentEntry = m_logEntries[m_index--];
+            {
+                m_currentEntry = m_logEntries[m_index--];
 
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         void ILogSource.CloseReader()
         {
-            m_index = m_logEntries.Count -1;
+            m_index = m_logEntries.Count - 1;
             m_isClosed = true;
             m_currentEntry = null;
             return;
@@ -296,8 +296,8 @@ ORDER BY [InstanceID] ASC";
 
                 string jobId = this.m_jobId.ToString();
 
-                string query = 
-                      (this.m_sqlConnectionInfo.ServerVersion == null 
+                string query =
+                      (this.m_sqlConnectionInfo.ServerVersion == null
                     || this.m_sqlConnectionInfo.ServerVersion.Major >= 9) ?
 
                                 string.Format(jobHistoryQuery,
@@ -402,9 +402,9 @@ ORDER BY [InstanceID] ASC";
                     }
                 }
                 else
-                {                   
+                {
                     InitializeJobHistoryFromDataRow(sourceName, dt.Rows[rowno]);
-                }                
+                }
             }
 
             /// <summary>
@@ -452,7 +452,7 @@ ORDER BY [InstanceID] ASC";
                         case CompletionResult.Unknown:
                             m_severity = SeverityClass.Unknown;
                             break;
-                        default:                            
+                        default:
                             m_severity = SeverityClass.Unknown;
                             break;
                     }
@@ -491,7 +491,7 @@ ORDER BY [InstanceID] ASC";
                         m_fieldStepID = Convert.ToString(currentStepId, System.Globalization.CultureInfo.CurrentCulture);
                         m_fieldStepName = Convert.ToString(dr[AgentUtilities.UrnStepName], System.Globalization.CultureInfo.CurrentCulture);
                     }
-                    
+
                     m_fieldMessage = Convert.ToString(dr[AgentUtilities.UrnMessage], System.Globalization.CultureInfo.CurrentCulture);
                     m_fieldSqlSeverity = Convert.ToString(dr[AgentUtilities.UrnSqlSeverity], System.Globalization.CultureInfo.CurrentCulture);
                     m_fieldSqlMessageID = Convert.ToString(dr[AgentUtilities.UrnSqlMessageID], System.Globalization.CultureInfo.CurrentCulture);
@@ -553,11 +553,11 @@ ORDER BY [InstanceID] ASC";
                         m_subEntries.Insert(0, new LogEntryJobHistory(sourceName, dr));
                     }
                     catch (InvalidCastException)
-                    {                       
+                    {
                     }
 
                     ++i;
-                }                
+                }
             }
 
             /// <summary>
@@ -643,7 +643,7 @@ ORDER BY [InstanceID] ASC";
             {
                 get { return ((m_subEntries != null) && (m_subEntries.Count > 0)); }
             }
-        
+
             List<ILogEntry> ILogEntry.SubEntries
             {
                 get { return m_subEntries; }
@@ -651,8 +651,8 @@ ORDER BY [InstanceID] ASC";
 
             /* Public Properties */
 
-            internal string Duration 
-            {   
+            internal string Duration
+            {
                 get { return m_fieldDuration; }
             }
 
@@ -669,7 +669,7 @@ ORDER BY [InstanceID] ASC";
             internal string StepID
             {
                 get { return m_fieldStepID; }
-            }   
+            }
 
             internal string OperatorEmailed
             {
@@ -686,9 +686,9 @@ ORDER BY [InstanceID] ASC";
                 get { return m_fieldOperatorPaged; }
             }
 
-            internal string StepName 
+            internal string StepName
             {
-                get { return m_fieldStepName; }    
+                get { return m_fieldStepName; }
             }
 
             internal string RetriesAttempted

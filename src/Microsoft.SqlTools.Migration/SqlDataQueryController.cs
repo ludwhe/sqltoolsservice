@@ -5,16 +5,16 @@
 
 #nullable disable
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using Microsoft.SqlServer.DataCollection.Common.Contracts.Advisor;
 using Microsoft.SqlServer.DataCollection.Common.Contracts.ErrorHandling;
 using Microsoft.SqlServer.DataCollection.Common.Contracts.SqlQueries;
 using Microsoft.SqlServer.DataCollection.Common.ErrorHandling;
 using Microsoft.SqlServer.Migration.SkuRecommendation;
 using Microsoft.SqlServer.Migration.SkuRecommendation.Contracts.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 
 namespace Microsoft.SqlTools.Migration
 {
@@ -127,7 +127,7 @@ namespace Microsoft.SqlTools.Migration
 
                     this.messages.Add(new KeyValuePair<string, DateTime>(
                         string.Format("Performance data query iteration: {0} of {1}, collected {2} data points.", currentIteration, numberOfIterations, result.Count),
-                        DateTime.UtcNow)); 
+                        DateTime.UtcNow));
 
                     // perform aggregation and persistence once enough iterations have completed
                     if (currentIteration == numberOfIterations)

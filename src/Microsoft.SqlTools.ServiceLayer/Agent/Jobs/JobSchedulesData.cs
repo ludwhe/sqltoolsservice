@@ -16,7 +16,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     internal class JobSchedulesData
     {
         #region data members
-        
+
         // Typed List of job schedules (unshared)
         private List<JobScheduleData> jobSchedules = new List<JobScheduleData>();
         private List<JobScheduleData> deletedJobSchedues = new List<JobScheduleData>();
@@ -96,7 +96,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             }
 
             this.jobSchedules.Add(schedule);
-            
+
             // check to see if it has been previously removed, if so delete it from the
             // removed schedules list
             for (int i = deletedJobSchedues.Count - 1; i >= 0; i--)
@@ -150,7 +150,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             if (job != null)
             {
                 JobScheduleCollection schedules = job.JobSchedules;
-                
+
                 for (int i = 0; i < schedules.Count; i++)
                 {
                     this.jobSchedules.Add(new JobScheduleData(schedules[i], this.IsReadOnly, this.AllowEnableDisable));

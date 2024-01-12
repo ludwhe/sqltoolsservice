@@ -48,7 +48,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             Assert.AreEqual(nullString, cu.ValueAsString);
             Assert.AreEqual(col, cu.Column);
         }
-        
+
         [Test]
         public void NullStringNotAllowedTest()
         {
@@ -72,7 +72,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         }
 
         [Test]
-        public void StringTooLongTest([Values("This is way too long", "TooLong")]string value)
+        public void StringTooLongTest([Values("This is way too long", "TooLong")] string value)
         {
             // If: I attempt to create a CellUpdate to set it to a large string
             // Then: I should get an exception thrown
@@ -100,37 +100,37 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             get
             {
                 // All zero tests
-                yield return new object[] {"00000000", new byte[] {0x00}, "0x00"};                  // Base10 
-                yield return new object[] {"0x000000", new byte[] {0x00, 0x00, 0x00}, "0x000000"};  // Base16
-                yield return new object[] {"0x000", new byte[] {0x00, 0x00}, "0x0000"};             // Base16, odd
+                yield return new object[] { "00000000", new byte[] { 0x00 }, "0x00" };                  // Base10 
+                yield return new object[] { "0x000000", new byte[] { 0x00, 0x00, 0x00 }, "0x000000" };  // Base16
+                yield return new object[] { "0x000", new byte[] { 0x00, 0x00 }, "0x0000" };             // Base16, odd
 
                 // Single byte tests
-                yield return new object[] {"50", "2"u8.ToArray(), "0x32"};                        // Base10
-                yield return new object[] {"050", "2"u8.ToArray(), "0x32"};                       // Base10, leading zeros
-                yield return new object[] {"0xF0", new byte[] {0xF0}, "0xF0"};                      // Base16
-                yield return new object[] {"0x0F", new byte[] {0x0F}, "0x0F"};                      // Base16, leading zeros
-                yield return new object[] {"0xF", new byte[] {0x0F}, "0x0F"};                       // Base16, odd
+                yield return new object[] { "50", "2"u8.ToArray(), "0x32" };                        // Base10
+                yield return new object[] { "050", "2"u8.ToArray(), "0x32" };                       // Base10, leading zeros
+                yield return new object[] { "0xF0", new byte[] { 0xF0 }, "0xF0" };                      // Base16
+                yield return new object[] { "0x0F", new byte[] { 0x0F }, "0x0F" };                      // Base16, leading zeros
+                yield return new object[] { "0xF", new byte[] { 0x0F }, "0x0F" };                       // Base16, odd
 
                 // Two byte tests
-                yield return new object[] {"1000", new byte[] {0x03, 0xE8}, "0x03E8"};              // Base10
-                yield return new object[] {"01000", new byte[] {0x03, 0xE8}, "0x03E8"};             // Base10, leading zeros
-                yield return new object[] {"0xF001", new byte[] {0xF0, 0x01}, "0xF001"};            // Base16
-                yield return new object[] {"0x0F10", new byte[] {0x0F, 0x10}, "0x0F10"};            // Base16, leading zeros
-                yield return new object[] {"0xF10", new byte[] {0x0F, 0x10}, "0x0F10"};             // Base16, odd
+                yield return new object[] { "1000", new byte[] { 0x03, 0xE8 }, "0x03E8" };              // Base10
+                yield return new object[] { "01000", new byte[] { 0x03, 0xE8 }, "0x03E8" };             // Base10, leading zeros
+                yield return new object[] { "0xF001", new byte[] { 0xF0, 0x01 }, "0xF001" };            // Base16
+                yield return new object[] { "0x0F10", new byte[] { 0x0F, 0x10 }, "0x0F10" };            // Base16, leading zeros
+                yield return new object[] { "0xF10", new byte[] { 0x0F, 0x10 }, "0x0F10" };             // Base16, odd
 
                 // Three byte tests
-                yield return new object[] {"100000", new byte[] {0x01, 0x86, 0xA0}, "0x0186A0"};    // Base10
-                yield return new object[] {"0100000", new byte[] {0x01, 0x86, 0xA0}, "0x0186A0"};   // Base10, leading zeros
-                yield return new object[] {"0x101010", new byte[] {0x10, 0x10, 0x10}, "0x101010"};  // Base16
-                yield return new object[] {"0x010101", new byte[] {0x01, 0x01, 0x01}, "0x010101"};  // Base16, leading zeros
-                yield return new object[] {"0x10101", new byte[] {0x01, 0x01, 0x01}, "0x010101"};   // Base16, odd
+                yield return new object[] { "100000", new byte[] { 0x01, 0x86, 0xA0 }, "0x0186A0" };    // Base10
+                yield return new object[] { "0100000", new byte[] { 0x01, 0x86, 0xA0 }, "0x0186A0" };   // Base10, leading zeros
+                yield return new object[] { "0x101010", new byte[] { 0x10, 0x10, 0x10 }, "0x101010" };  // Base16
+                yield return new object[] { "0x010101", new byte[] { 0x01, 0x01, 0x01 }, "0x010101" };  // Base16, leading zeros
+                yield return new object[] { "0x10101", new byte[] { 0x01, 0x01, 0x01 }, "0x010101" };   // Base16, odd
 
                 // Four byte tests
-                yield return new object[] {"20000000", new byte[] {0x01, 0x31, 0x2D, 0x00}, "0x01312D00"};      // Base10
-                yield return new object[] {"020000000", new byte[] {0x01, 0x31, 0x2D, 0x00}, "0x01312D00"};     // Base10, leading zeros
-                yield return new object[] {"0xF0F00101", new byte[] {0xF0, 0xF0, 0x01, 0x01}, "0xF0F00101"};    // Base16
-                yield return new object[] {"0x0F0F1010", new byte[] {0x0F, 0x0F, 0x10, 0x10}, "0x0F0F1010"};    // Base16, leading zeros
-                yield return new object[] {"0xF0F1010", new byte[] {0x0F, 0x0F, 0x10, 0x10}, "0x0F0F1010"};     // Base16, odd
+                yield return new object[] { "20000000", new byte[] { 0x01, 0x31, 0x2D, 0x00 }, "0x01312D00" };      // Base10
+                yield return new object[] { "020000000", new byte[] { 0x01, 0x31, 0x2D, 0x00 }, "0x01312D00" };     // Base10, leading zeros
+                yield return new object[] { "0xF0F00101", new byte[] { 0xF0, 0xF0, 0x01, 0x01 }, "0xF0F00101" };    // Base16
+                yield return new object[] { "0x0F0F1010", new byte[] { 0x0F, 0x0F, 0x10, 0x10 }, "0x0F0F1010" };    // Base16, leading zeros
+                yield return new object[] { "0xF0F1010", new byte[] { 0x0F, 0x0F, 0x10, 0x10 }, "0x0F0F1010" };     // Base16, odd
             }
         }
 
@@ -162,10 +162,10 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         {
             get
             {
-                yield return new object[] {"1", true, bool.TrueString};
-                yield return new object[] {"0", false, bool.FalseString};
-                yield return new object[] {bool.TrueString, true, bool.TrueString};
-                yield return new object[] {bool.FalseString, false, bool.FalseString};
+                yield return new object[] { "1", true, bool.TrueString };
+                yield return new object[] { "0", false, bool.FalseString };
+                yield return new object[] { bool.TrueString, true, bool.TrueString };
+                yield return new object[] { bool.FalseString, false, bool.FalseString };
             }
         }
 
@@ -220,26 +220,26 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         {
             get
             {
-                yield return new object[] {GetWrapper<Guid>("uniqueidentifier"), Guid.NewGuid()};
-                yield return new object[] {GetWrapper<TimeSpan>("time"), new TimeSpan(0, 1, 20, 0, 123)};
-                yield return new object[] {GetWrapper<DateTime>("datetime"), new DateTime(2016, 04, 25, 9, 45, 0)};
+                yield return new object[] { GetWrapper<Guid>("uniqueidentifier"), Guid.NewGuid() };
+                yield return new object[] { GetWrapper<TimeSpan>("time"), new TimeSpan(0, 1, 20, 0, 123) };
+                yield return new object[] { GetWrapper<DateTime>("datetime"), new DateTime(2016, 04, 25, 9, 45, 0) };
                 yield return new object[]
                 {
                     GetWrapper<DateTimeOffset>("datetimeoffset"),
                     new DateTimeOffset(2016, 04, 25, 9, 45, 0, TimeSpan.FromHours(8))
                 };
-                yield return new object[] {GetWrapper<long>("bigint"), 1000L};
-                yield return new object[] {GetWrapper<decimal>("decimal"), new decimal(3.14)};
-                yield return new object[] {GetWrapper<int>("int"), 1000};
-                yield return new object[] {GetWrapper<short>("smallint"), (short) 1000};
-                yield return new object[] {GetWrapper<byte>("tinyint"), (byte) 5};
-                yield return new object[] {GetWrapper<double>("float"), 3.14d};
-                yield return new object[] {GetWrapper<float>("real"), 3.14f};
+                yield return new object[] { GetWrapper<long>("bigint"), 1000L };
+                yield return new object[] { GetWrapper<decimal>("decimal"), new decimal(3.14) };
+                yield return new object[] { GetWrapper<int>("int"), 1000 };
+                yield return new object[] { GetWrapper<short>("smallint"), (short)1000 };
+                yield return new object[] { GetWrapper<byte>("tinyint"), (byte)5 };
+                yield return new object[] { GetWrapper<double>("float"), 3.14d };
+                yield return new object[] { GetWrapper<float>("real"), 3.14f };
             }
         }
 
         [Test]
-        public void AsDbCellValue([Values]bool isNull)
+        public void AsDbCellValue([Values] bool isNull)
         {
             // Setup: Create a cell update
             var value = isNull ? "NULL" : "foo";
@@ -264,7 +264,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         }
 
         [Test]
-        public void AsEditCellValue([Values]bool isNull)
+        public void AsEditCellValue([Values] bool isNull)
         {
             // Setup: Create a cell update
             var value = isNull ? "NULL" : "foo";

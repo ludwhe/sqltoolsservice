@@ -5,8 +5,8 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using System.Runtime.InteropServices;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.BatchParser.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
@@ -80,7 +80,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
                 //// SQL Error Code: 40613
                 //// Database XXXX on server YYYY is not currently available. Please retry the connection later. If the problem persists, contact customer 
                 //// support, and provide them the session tracing ID of ZZZZZ.
-                40613,                
+                40613,
             };
 
             _retryableAzureErrors = new HashSet<int>
@@ -164,7 +164,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
                 45133,
             };
 
-            foreach(int errorNum in _retryableNetworkConnectivityErrors)
+            foreach (int errorNum in _retryableNetworkConnectivityErrors)
             {
                 _retryableAzureErrors.Add(errorNum);
             }
@@ -238,7 +238,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         {
             //// SQL Error Code: 40501
             //// The service is currently busy. Retry the request after 10 seconds. Code: (reason code to be decoded).
-            if(error.Number ==  RetryPolicy.ThrottlingReason.ThrottlingErrorNumber)
+            if (error.Number == RetryPolicy.ThrottlingReason.ThrottlingErrorNumber)
             {
                 // Decode the reason code from the error message to determine the grounds for throttling.
                 var condition = RetryPolicy.ThrottlingReason.FromError(error);

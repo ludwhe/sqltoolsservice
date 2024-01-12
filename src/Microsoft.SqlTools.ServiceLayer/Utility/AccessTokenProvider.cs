@@ -5,8 +5,8 @@
 
 #nullable disable
 
-using Microsoft.SqlServer.Dac;
 using System;
+using Microsoft.SqlServer.Dac;
 
 namespace Microsoft.SqlTools.ServiceLayer.Utility
 {

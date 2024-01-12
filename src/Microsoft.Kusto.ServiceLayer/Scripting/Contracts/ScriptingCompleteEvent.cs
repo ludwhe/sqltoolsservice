@@ -3,7 +3,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-    using Microsoft.SqlTools.Hosting.Protocol.Contracts;
+using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.Kusto.ServiceLayer.Scripting.Contracts
 {
@@ -43,7 +43,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting.Contracts
     /// </summary>
     public class ScriptingCompleteEvent
     {
-        public static readonly EventType<ScriptingCompleteParams> Type = 
+        public static readonly EventType<ScriptingCompleteParams> Type =
             EventType<ScriptingCompleteParams>.Create("scripting/scriptComplete");
     }
 }

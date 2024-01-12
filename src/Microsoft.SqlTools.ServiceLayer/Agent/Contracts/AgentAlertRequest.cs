@@ -102,7 +102,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public static readonly
             RequestType<UpdateAgentAlertParams, UpdateAgentAlertResult> Type =
             RequestType<UpdateAgentAlertParams, UpdateAgentAlertResult>.Create("agent/updatealert");
-    }    
+    }
 
     /// <summary>
     /// SQL Agent delete Alert params
@@ -125,5 +125,5 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public static readonly
             RequestType<DeleteAgentAlertParams, ResultStatus> Type =
             RequestType<DeleteAgentAlertParams, ResultStatus>.Create("agent/deletealert");
-    }    
+    }
 }

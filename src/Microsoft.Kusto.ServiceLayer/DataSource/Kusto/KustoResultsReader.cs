@@ -30,14 +30,14 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
                     dt.Load(reader); // This calls NextResult on the reader
                     results.Add(dt);
                 }
-                
+
                 // Trim results
-                if(results.Count > 3) results.RemoveRange(results.Count - 3, 3);
+                if (results.Count > 3) results.RemoveRange(results.Count - 3, 3);
             }
 
             // Create a DataReader for the trimmed set
             _resultDataSet = new DataSet();
-            for(int i = 0; i < results.Count; i++)
+            for (int i = 0; i < results.Count; i++)
             {
                 results[i].TableName = "Table_" + i;
                 _resultDataSet.Tables.Add(results[i]);

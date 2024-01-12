@@ -18,7 +18,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         private ConfigAction configAction;
 
         public JobActions(CDataContainer dataContainer, JobData data, ConfigAction configAction)
-        {          
+        {
             this.DataContainer = dataContainer;
             this.data = data;
             this.configAction = configAction;
@@ -30,7 +30,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {               
+            {
             }
             base.Dispose(disposing);
 
@@ -53,15 +53,15 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             {
                 if (this.data.Job != null)
                 {
-                    this.data.Job.DropIfExists();                    
+                    this.data.Job.DropIfExists();
                 }
             }
             else
             {
                 this.data.ApplyChanges(creating: this.configAction == ConfigAction.Create);
-                if (!IsScripting(runType)) 
+                if (!IsScripting(runType))
                 {
-                    this.DataContainer.SqlDialogSubject	= this.data.Job;
+                    this.DataContainer.SqlDialogSubject = this.data.Job;
                 }
             }
             return false;

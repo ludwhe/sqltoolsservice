@@ -41,9 +41,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         }
 
         #region SetCell Tests
-        
+
         [Test]
-        public async Task SetCellOutOfRange([Values(-1,3,100)]int columnId)
+        public async Task SetCellOutOfRange([Values(-1, 3, 100)] int columnId)
         {
             // Setup: Generate a row create
             RowUpdate ru = await GetStandardRowUpdate();
@@ -51,7 +51,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // If: I attempt to set a cell on a column that is out of range, I should get an exception
             Assert.Throws<ArgumentOutOfRangeException>(() => ru.SetCell(columnId, string.Empty));
         }
-        
+
         [Test]
         public async Task SetCellImplicitRevertTest()
         {
@@ -65,7 +65,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             Common.AddCells(ru, 1);
 
             // ... Then I update a cell back to it's old value
-            var eucr = ru.SetCell(1, (string) rs.GetRow(0)[1].RawObject);
+            var eucr = ru.SetCell(1, (string)rs.GetRow(0)[1].RawObject);
 
             // Then:
             // ... A edit cell was returned
@@ -105,7 +105,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             ru.SetCell(1, "qqq");
 
             // ... Then I update the cell to its original value
-            var eucr = ru.SetCell(1, (string) rs.GetRow(0)[1].RawObject);
+            var eucr = ru.SetCell(1, (string)rs.GetRow(0)[1].RawObject);
 
             // Then:
             // ... An edit cell should have been returned
@@ -124,7 +124,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
 
             // TODO: Make sure that the script and command things will return null
         }
-        
+
         [Test]
         public void SetCellHasCorrections()
         {
@@ -138,7 +138,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                     DataTypeName = "binary"
                 }
             };
-            object[][] rows = { new object[]{new byte[] {0x00}}};
+            object[][] rows = { new object[] { new byte[] { 0x00 } } };
             var testResultSet = new TestResultSet(cols, rows);
             var testReader = new TestDbDataReader(new[] { testResultSet }, false);
             var rs = new ResultSet(0, 0, MemoryFileSystem.GetFileStreamFactory());
@@ -173,7 +173,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             Assert.That(ru.cellUpdates.Keys, Has.Member(0));
             Assert.NotNull(ru.cellUpdates[0]);
         }
-        
+
         [Test]
         public async Task SetCell()
         {
@@ -202,11 +202,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             Assert.That(ru.cellUpdates.Keys, Has.Member(0));
             Assert.NotNull(ru.cellUpdates[0]);
         }
-        
+
         #endregion
 
         [Test]
-        public async Task GetScriptTest([Values]bool isMemoryOptimized)
+        public async Task GetScriptTest([Values] bool isMemoryOptimized)
         {
             // Setup: Create a fake table to update
             var data = new Common.TestDbColumnsWithTableMetadata(isMemoryOptimized, true, 0, 0);
@@ -237,7 +237,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             Assert.AreEqual(3, updateSplit.Length);
             Assert.That(updateSplit.Select(s => s.Split('=').Length), Has.All.EqualTo(2));
         }
-        
+
         #region GetCommand Tests
 
         [Test]
@@ -264,19 +264,19 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // Break the query into parts
             string[] splitSql = cmd.CommandText.Split(Environment.NewLine);
             Assert.True(splitSql.Length >= 3);
-            
+
             // Check the declare statement first
             Match declareMatch = GetDeclareTableRegex().Match(splitSql[0]);
             Assert.True(declareMatch.Success);
-            
+
             // Declared table name matches
             Assert.True(declareMatch.Groups[1].Value.StartsWith("Update"));
             Assert.True(declareMatch.Groups[1].Value.EndsWith("Output"));
-            
+
             // Correct number of columns in declared table
             string[] declareCols = declareMatch.Groups[2].Value.Split(", ");
             Assert.AreEqual(rs.Columns.Length, declareCols.Length);
-            
+
             // Check the update statement in the middle
             string regex = isMemoryOptimized
                 ? @"^UPDATE (.+) WITH \(SNAPSHOT\) SET (.+) OUTPUT (.+) INTO @(.+) WHERE .+$"
@@ -284,15 +284,15 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             var updateRegex = new Regex(regex);
             Match updateMatch = updateRegex.Match(splitSql[10]);
             Assert.True(updateMatch.Success);
-            
+
             // Table name matches
             Assert.AreEqual(Common.TableName, updateMatch.Groups[1].Value);
-            
+
             // Output columns match
             string[] outCols = updateMatch.Groups[3].Value.Split(", ");
             Assert.AreEqual(rs.Columns.Length, outCols.Length);
             Assert.That(outCols, Has.All.StartsWith("inserted."));
-            
+
             string[] setCols = updateMatch.Groups[2].Value.Split(", ");
             Assert.AreEqual(3, setCols.Length);
             Assert.That(setCols, Has.All.Match(@".+ = @Value\d+_\d+"), "Set columns match");
@@ -300,19 +300,19 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // Output table name matches
             Assert.That(updateMatch.Groups[4].Value, Does.StartWith("Update"));
             Assert.That(updateMatch.Groups[4].Value, Does.EndWith("Output"));
-            
+
             // Check the select statement last
             Match selectMatch = GetSelectRegex().Match(splitSql[11]);
             Assert.True(selectMatch.Success);
-            
+
             // Correct number of columns in select statement
             string[] selectCols = selectMatch.Groups[1].Value.Split(", ");
             Assert.AreEqual(rs.Columns.Length, selectCols.Length);
-            
+
             // Select table name matches
             Assert.That(selectMatch.Groups[2].Value, Does.StartWith("Update"));
             Assert.That(selectMatch.Groups[2].Value, Does.EndWith("Output"));
-            
+
             // ... There should be an appropriate number of parameters in it
             //     (1 or 3 keys, 3 value parameters)
             int expectedKeys = includeIdentity ? 1 : 3;
@@ -329,11 +329,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // Then: It should throw an exception
             Assert.Throws<ArgumentNullException>(() => ru.GetCommand(null));
         }
-        
+
         #endregion
 
         #region GetEditRow Tests
-        
+
         [Test]
         public async Task GetEditRow()
         {
@@ -386,9 +386,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         }
 
         #endregion
-        
+
         #region ApplyChanges Tests
-        
+
         [Test]
         public async Task ApplyChanges([Values] bool includeIdentity)
         {
@@ -426,11 +426,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         }
 
         #endregion
-        
+
         #region RevertCell Tests
-        
+
         [Test]
-        public async Task RevertCellOutOfRange([Values(-1, 3, 100)]  int columnId)
+        public async Task RevertCellOutOfRange([Values(-1, 3, 100)] int columnId)
         {
             // Setup: 
             // ... Create a row update (no cell updates needed)
@@ -526,7 +526,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
 
             Assert.That(ru.cellUpdates.Keys, Has.None.Zero, "The cell should no longer be set");
         }
-        
+
         #endregion
 
         private async Task<RowUpdate> GetStandardRowUpdate()

@@ -25,7 +25,8 @@ namespace Microsoft.SqlTools.Authentication
         /// </summary>
         /// <param name="token">Access token as string</param>
         /// <param name="expiresOn">Expiry date</param>
-        public AccessToken(string token, DateTimeOffset expiresOn) {
+        public AccessToken(string token, DateTimeOffset expiresOn)
+        {
             this.Token = token;
             this.ExpiresOn = expiresOn;
         }

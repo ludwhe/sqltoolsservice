@@ -6,8 +6,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.SqlTools.ResourceProvider.Core.Authentication;
-using Microsoft.SqlTools.ResourceProvider.Core.Firewall;
 using Microsoft.SqlTools.ResourceProvider.Core.Extensibility;
+using Microsoft.SqlTools.ResourceProvider.Core.Firewall;
 
 namespace Microsoft.SqlTools.ResourceProvider.Core
 {

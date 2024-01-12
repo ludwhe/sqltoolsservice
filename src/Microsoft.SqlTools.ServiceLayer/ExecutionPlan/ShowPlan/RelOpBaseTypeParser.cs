@@ -5,8 +5,8 @@
 
 #nullable disable
 
-using System.ComponentModel;
 using System.Collections;
+using System.ComponentModel;
 
 namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 {

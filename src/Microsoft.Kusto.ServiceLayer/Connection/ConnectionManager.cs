@@ -4,7 +4,6 @@
 //
 
 using System.Collections.Concurrent;
-using System.Composition;
 
 namespace Microsoft.Kusto.ServiceLayer.Connection
 {

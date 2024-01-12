@@ -6,18 +6,18 @@
 #nullable disable
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.ServiceLayer.BatchParser;
 using Microsoft.Kusto.ServiceLayer.Connection;
 using Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts;
 using Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage;
 using Microsoft.Kusto.ServiceLayer.SqlContext;
-using Microsoft.SqlTools.Utility;
-using Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode;
-using System.Collections.Generic;
 using Microsoft.Kusto.ServiceLayer.Utility;
+using Microsoft.SqlTools.ServiceLayer.BatchParser;
+using Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.Kusto.ServiceLayer.QueryExecution
 {
@@ -47,7 +47,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
         /// <summary>
         /// Whether or not the execute method has been called for this query
         /// </summary>
-        private bool hasExecuteBeenCalled;     
+        private bool hasExecuteBeenCalled;
 
         #endregion
 
@@ -59,9 +59,9 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
         /// <param name="settings">Settings for how to execute the query, from the user</param>
         /// <param name="outputFactory">Factory for creating output files</param>
         public Query(
-            string queryText, 
-            ConnectionInfo connection, 
-            QueryExecutionSettings settings, 
+            string queryText,
+            ConnectionInfo connection,
+            QueryExecutionSettings settings,
             IFileStreamFactory outputFactory,
             bool getFullColumnSchema = false,
             bool applyExecutionSettings = false)
@@ -84,12 +84,12 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
 
             var batchSelection = parserResult
                 .Select((batchDefinition, index) =>
-                    new Batch(batchDefinition.BatchText, 
+                    new Batch(batchDefinition.BatchText,
                         new SelectionData(
-                            batchDefinition.StartLine-1,
-                            batchDefinition.StartColumn-1,
-                            batchDefinition.EndLine-1,
-                            batchDefinition.EndColumn-1),                       
+                            batchDefinition.StartLine - 1,
+                            batchDefinition.StartColumn - 1,
+                            batchDefinition.EndLine - 1,
+                            batchDefinition.EndColumn - 1),
                         index, outputFactory,
                         batchDefinition.BatchExecutionCount,
                         getFullColumnSchema));
@@ -108,14 +108,14 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
         /// </summary>
         /// <param name="query">The query that completed</param>
         public delegate Task QueryAsyncEventHandler(Query query);
-        
+
         /// <summary>
         /// Delegate type for callback when a query fails
         /// </summary>
         /// <param name="query">Query that raised the event</param>
         /// <param name="exception">Exception that caused the query to fail</param>
         public delegate Task QueryAsyncErrorEventHandler(Query query, Exception exception);
-        
+
         /// <summary>
         /// Event to be called when a batch is completed.
         /// </summary>
@@ -310,7 +310,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
         /// </param>
         /// <param name="successHandler">Delegate to call when the request completes successfully</param>
         /// <param name="failureHandler">Delegate to call if the request fails</param>
-        public void SaveAs(SaveResultsRequestParams saveParams, IFileStreamFactory fileFactory, 
+        public void SaveAs(SaveResultsRequestParams saveParams, IFileStreamFactory fileFactory,
             ResultSet.SaveAsAsyncEventHandler successHandler, ResultSet.SaveAsFailureAsyncEventHandler failureHandler)
         {
             // Sanity check to make sure that the batch is within bounds
@@ -405,7 +405,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
                 }
             }
             finally
-            {                
+            {
                 foreach (Batch b in Batches)
                 {
                     if (b.HasError)

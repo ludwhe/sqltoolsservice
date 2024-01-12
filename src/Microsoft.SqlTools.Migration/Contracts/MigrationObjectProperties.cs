@@ -54,7 +54,7 @@ namespace Microsoft.SqlTools.Migration.Contracts
         /// <summary>
         /// Count of Dbs assessed
         /// </summary>
-        public long AssessedDatabaseCount{get; set;}
+        public long AssessedDatabaseCount { get; set; }
         /// <summary>
         /// Give assessed server stats for SQL MI compatibility
         /// </summary>
@@ -102,7 +102,7 @@ namespace Microsoft.SqlTools.Migration.Contracts
         /// <summary>
         /// Database assessment errors
         /// </summary>
-        public ErrorModel[] Errors {get; set;}
+        public ErrorModel[] Errors { get; set; }
         /// <summary>
         /// Flags that indicate if the database is ready for migration
         /// </summary>

@@ -72,7 +72,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.Contracts
             RequestType<CloseSessionParams, CloseSessionResponse> Type =
             RequestType<CloseSessionParams, CloseSessionResponse>.Create("objectexplorer/closesession");
     }
-    
+
     /// <summary>
     /// Session disconnected notification
     /// </summary>

@@ -256,7 +256,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
             public override void Write(char value)
             {
                 if (stopWriting) { return; }
-                
+
                 if (CurrentLength < MaximumCapacity)
                 {
                     base.Write(value);
@@ -288,7 +288,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
             public override void Write(string value)
             {
                 if (stopWriting) { return; }
-                
+
                 int curLen = CurrentLength;
                 if (value.Length + curLen > MaximumCapacity)
                 {

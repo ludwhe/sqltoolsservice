@@ -101,6 +101,6 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices
 
             return taskMetadata;
         }
-       
+
     }
 }

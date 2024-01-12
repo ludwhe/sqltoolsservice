@@ -23,7 +23,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Azure
     {
         public FakeAzureServerDiscoveryProvider()
         {
-            Metadata = new ExportableMetadata(ServerTypes.SqlServer, Categories.Azure, 
+            Metadata = new ExportableMetadata(ServerTypes.SqlServer, Categories.Azure,
                 "Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Azure.FakeAzureServerDiscoveryProvider", 1);
         }
         public Task<ServiceResponse<ServerInstanceInfo>> GetServerInstancesAsync()
@@ -33,7 +33,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Azure
 
         public IAccountManager AccountManager
         {
-            get; 
+            get;
             set;
         }
 

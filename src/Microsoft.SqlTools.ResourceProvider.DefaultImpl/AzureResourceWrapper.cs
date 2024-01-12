@@ -4,7 +4,6 @@
 //
 
 using System;
-using Microsoft.Azure.Management.Sql.Models;
 using Microsoft.SqlTools.ResourceProvider.Core;
 
 namespace Microsoft.SqlTools.ResourceProvider.DefaultImpl
@@ -75,7 +74,8 @@ namespace Microsoft.SqlTools.ResourceProvider.DefaultImpl
         /// <summary>
         /// Resource Group Name
         /// </summary>
-        public string ResourceGroupName {
+        public string ResourceGroupName
+        {
             get
             {
                 this.resourceGroupName ??= ParseResourceGroupNameFromId();

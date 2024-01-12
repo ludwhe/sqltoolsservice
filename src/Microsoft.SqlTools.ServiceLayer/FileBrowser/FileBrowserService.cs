@@ -21,7 +21,7 @@ namespace Microsoft.SqlTools.ServiceLayer.FileBrowser
     /// <summary>
     /// Main class for file browser service
     /// </summary>
-    public sealed class FileBrowserService: IDisposable
+    public sealed class FileBrowserService : IDisposable
     {
         private static readonly Lazy<FileBrowserService> LazyInstance = new Lazy<FileBrowserService>(() => new FileBrowserService());
         public static FileBrowserService Instance => LazyInstance.Value;

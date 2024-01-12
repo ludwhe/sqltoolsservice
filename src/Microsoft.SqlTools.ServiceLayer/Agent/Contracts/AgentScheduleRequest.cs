@@ -50,7 +50,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
     public class AgentScheduleResult : ResultStatus
     {
         public AgentScheduleInfo Schedule { get; set; }
-    }    
+    }
 
 
     /// <summary>
@@ -99,7 +99,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public static readonly
             RequestType<UpdateAgentScheduleParams, AgentScheduleResult> Type =
             RequestType<UpdateAgentScheduleParams, AgentScheduleResult>.Create("agent/updateschedule");
-    }    
+    }
 
     /// <summary>
     /// SQL Agent delete Schedule params
@@ -122,5 +122,5 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent.Contracts
         public static readonly
             RequestType<DeleteAgentScheduleParams, ResultStatus> Type =
             RequestType<DeleteAgentScheduleParams, ResultStatus>.Create("agent/deleteschedule");
-    }    
+    }
 }

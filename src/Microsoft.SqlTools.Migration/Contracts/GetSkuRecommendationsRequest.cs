@@ -5,10 +5,10 @@
 
 #nullable disable
 
+using System.Collections.Generic;
 using Microsoft.SqlServer.Migration.SkuRecommendation.Contracts.Models;
 using Microsoft.SqlServer.Migration.SkuRecommendation.Models.Sql;
 using Microsoft.SqlTools.Hosting.Protocol.Contracts;
-using System.Collections.Generic;
 
 namespace Microsoft.SqlTools.Migration.Contracts
 {
@@ -154,7 +154,8 @@ namespace Microsoft.SqlTools.Migration.Contracts
     }
 
     // Helper class containing recommendation results, durations, and report paths, which is recommendation model-agnostic
-    internal class RecommendationResultSet {
+    internal class RecommendationResultSet
+    {
         internal List<SkuRecommendationResult> sqlDbResults;
         internal List<SkuRecommendationResult> sqlMiResults;
         internal List<SkuRecommendationResult> sqlVmResults;

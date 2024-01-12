@@ -23,7 +23,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
         /// </summary>
         public ConnectedBindingContext()
         {
-            this.bindingLock = new ManualResetEvent(initialState: true);            
+            this.bindingLock = new ManualResetEvent(initialState: true);
             this.BindingTimeout = ConnectedBindingQueue.DefaultBindingTimeout;
         }
 
@@ -35,8 +35,8 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices
         /// <summary>
         /// Gets the binding lock object
         /// </summary>
-        public ManualResetEvent BindingLock 
-        { 
+        public ManualResetEvent BindingLock
+        {
             get
             {
                 return this.bindingLock;

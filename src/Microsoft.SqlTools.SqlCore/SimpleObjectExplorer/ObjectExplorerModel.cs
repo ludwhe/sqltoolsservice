@@ -11,395 +11,395 @@ using System.Collections.Generic;
 
 namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
 {
-	/// <summary>
-	/// Database Node
-	/// </summary>
-	public class DatabaseNode : TreeNode
-	{
-		public DatabaseNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
-		{
-			Type = NodeTypes.Database;
-			IsLeaf = false;
-			ScriptingObject.Type = "Database";
-		}
+    /// <summary>
+    /// Database Node
+    /// </summary>
+    public class DatabaseNode : TreeNode
+    {
+        public DatabaseNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
+        {
+            Type = NodeTypes.Database;
+            IsLeaf = false;
+            ScriptingObject.Type = "Database";
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			foreach(ObjectMetadata child in metadata)
-			{
-				if (child.Type == "Schema" && child.Parent == this.Name)
-				{
-					Children.Add(new SchemaNode(this, child));
-				}
-			}
-		}
-	}
-	/// <summary>
-	/// Schema Node
-	/// </summary>
-	public class SchemaNode : TreeNode
-	{
-		public SchemaNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
-		{
-			Type = NodeTypes.Schema;
-			IsLeaf = false;
-			ScriptingObject.Type = "Schema";
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            foreach (ObjectMetadata child in metadata)
+            {
+                if (child.Type == "Schema" && child.Parent == this.Name)
+                {
+                    Children.Add(new SchemaNode(this, child));
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// Schema Node
+    /// </summary>
+    public class SchemaNode : TreeNode
+    {
+        public SchemaNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
+        {
+            Type = NodeTypes.Schema;
+            IsLeaf = false;
+            ScriptingObject.Type = "Schema";
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			Children.Add(new TablesFolder(this));
-			Children.Add(new ViewsFolder(this));
-			Children.Add(new StoredProceduresFolder(this));
-			Children.Add(new FunctionsFolder(this));
-		}
-	}
-	/// <summary>
-	/// Table Node
-	/// </summary>
-	public class TableNode : TreeNode
-	{
-		public TableNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
-		{
-			Type = NodeTypes.Table;
-			IsLeaf = false;
-			ScriptingObject.Type = "Table";
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            Children.Add(new TablesFolder(this));
+            Children.Add(new ViewsFolder(this));
+            Children.Add(new StoredProceduresFolder(this));
+            Children.Add(new FunctionsFolder(this));
+        }
+    }
+    /// <summary>
+    /// Table Node
+    /// </summary>
+    public class TableNode : TreeNode
+    {
+        public TableNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
+        {
+            Type = NodeTypes.Table;
+            IsLeaf = false;
+            ScriptingObject.Type = "Table";
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			Children.Add(new ColumnsFolder(this));
-			Children.Add(new IndexesFolder(this));
-		}
-	}
-	/// <summary>
-	/// Column Node
-	/// </summary>
-	public class ColumnNode : TreeNode
-	{
-		public ColumnNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
-		{
-			Type = NodeTypes.Column;
-			IsLeaf = true;
-			ScriptingObject.Type = "Column";
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            Children.Add(new ColumnsFolder(this));
+            Children.Add(new IndexesFolder(this));
+        }
+    }
+    /// <summary>
+    /// Column Node
+    /// </summary>
+    public class ColumnNode : TreeNode
+    {
+        public ColumnNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
+        {
+            Type = NodeTypes.Column;
+            IsLeaf = true;
+            ScriptingObject.Type = "Column";
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-		}
-	}
-	/// <summary>
-	/// Index Node
-	/// </summary>
-	public class IndexNode : TreeNode
-	{
-		public IndexNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, true)
-		{
-			Type = NodeTypes.Index;
-			IsLeaf = true;
-			ScriptingObject.Type = "Index";
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+        }
+    }
+    /// <summary>
+    /// Index Node
+    /// </summary>
+    public class IndexNode : TreeNode
+    {
+        public IndexNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, true)
+        {
+            Type = NodeTypes.Index;
+            IsLeaf = true;
+            ScriptingObject.Type = "Index";
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-		}
-	}
-	/// <summary>
-	/// View Node
-	/// </summary>
-	public class ViewNode : TreeNode
-	{
-		public ViewNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
-		{
-			Type = NodeTypes.View;
-			IsLeaf = false;
-			ScriptingObject.Type = "View";
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+        }
+    }
+    /// <summary>
+    /// View Node
+    /// </summary>
+    public class ViewNode : TreeNode
+    {
+        public ViewNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
+        {
+            Type = NodeTypes.View;
+            IsLeaf = false;
+            ScriptingObject.Type = "View";
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			Children.Add(new ColumnsFolder(this));
-			Children.Add(new IndexesFolder(this));
-		}
-	}
-	/// <summary>
-	/// StoredProcedure Node
-	/// </summary>
-	public class StoredProcedureNode : TreeNode
-	{
-		public StoredProcedureNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
-		{
-			Type = NodeTypes.StoredProcedure;
-			IsLeaf = false;
-			ScriptingObject.Type = "StoredProcedure";
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            Children.Add(new ColumnsFolder(this));
+            Children.Add(new IndexesFolder(this));
+        }
+    }
+    /// <summary>
+    /// StoredProcedure Node
+    /// </summary>
+    public class StoredProcedureNode : TreeNode
+    {
+        public StoredProcedureNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
+        {
+            Type = NodeTypes.StoredProcedure;
+            IsLeaf = false;
+            ScriptingObject.Type = "StoredProcedure";
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			Children.Add(new ParametersFolder(this));
-		}
-	}
-	/// <summary>
-	/// Param Node
-	/// </summary>
-	public class ParamNode : TreeNode
-	{
-		public ParamNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
-		{
-			Type = NodeTypes.Param;
-			IsLeaf = true;
-			ScriptingObject.Type = "Param";
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            Children.Add(new ParametersFolder(this));
+        }
+    }
+    /// <summary>
+    /// Param Node
+    /// </summary>
+    public class ParamNode : TreeNode
+    {
+        public ParamNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
+        {
+            Type = NodeTypes.Param;
+            IsLeaf = true;
+            ScriptingObject.Type = "Param";
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-		}
-	}
-	/// <summary>
-	/// ScalarFunction Node
-	/// </summary>
-	public class ScalarFunctionNode : TreeNode
-	{
-		public ScalarFunctionNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
-		{
-			Type = NodeTypes.ScalarFunction;
-			IsLeaf = false;
-			ScriptingObject.Type = "UserDefinedFunction";
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+        }
+    }
+    /// <summary>
+    /// ScalarFunction Node
+    /// </summary>
+    public class ScalarFunctionNode : TreeNode
+    {
+        public ScalarFunctionNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
+        {
+            Type = NodeTypes.ScalarFunction;
+            IsLeaf = false;
+            ScriptingObject.Type = "UserDefinedFunction";
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			Children.Add(new ParametersFolder(this));
-		}
-	}
-	/// <summary>
-	/// TableValuedFunction Node
-	/// </summary>
-	public class TableValuedFunctionNode : TreeNode
-	{
-		public TableValuedFunctionNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
-		{
-			Type = NodeTypes.TableValuedFunction;
-			IsLeaf = false;
-			ScriptingObject.Type = "UserDefinedFunction";
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            Children.Add(new ParametersFolder(this));
+        }
+    }
+    /// <summary>
+    /// TableValuedFunction Node
+    /// </summary>
+    public class TableValuedFunctionNode : TreeNode
+    {
+        public TableValuedFunctionNode(TreeNode parent, ObjectMetadata metadata) : base(parent, metadata, false)
+        {
+            Type = NodeTypes.TableValuedFunction;
+            IsLeaf = false;
+            ScriptingObject.Type = "UserDefinedFunction";
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			Children.Add(new ParametersFolder(this));
-		}
-	}
-	public class TablesFolder : FolderNode
-	{
-		public TablesFolder(TreeNode parent) : base(parent)
-		{
-			Name = "Tables";
-			Type = NodeTypes.Tables;
-			IsLeaf = false;
-			Label = SR.SchemaHierarchy_Tables;
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            Children.Add(new ParametersFolder(this));
+        }
+    }
+    public class TablesFolder : FolderNode
+    {
+        public TablesFolder(TreeNode parent) : base(parent)
+        {
+            Name = "Tables";
+            Type = NodeTypes.Tables;
+            IsLeaf = false;
+            Label = SR.SchemaHierarchy_Tables;
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			foreach(ObjectMetadata child in metadata)
-			{
-				if (child.Type == "Table" && child.Parent == this.Parent.Name)
-				{
-					Children.Add(new TableNode(this, child));
-				}
-			}
-		}
-	}
-	public class ColumnsFolder : FolderNode
-	{
-		public ColumnsFolder(TreeNode parent) : base(parent)
-		{
-			Name = "Columns";
-			Type = NodeTypes.Columns;
-			IsLeaf = false;
-			Label = SR.SchemaHierarchy_Columns;
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            foreach (ObjectMetadata child in metadata)
+            {
+                if (child.Type == "Table" && child.Parent == this.Parent.Name)
+                {
+                    Children.Add(new TableNode(this, child));
+                }
+            }
+        }
+    }
+    public class ColumnsFolder : FolderNode
+    {
+        public ColumnsFolder(TreeNode parent) : base(parent)
+        {
+            Name = "Columns";
+            Type = NodeTypes.Columns;
+            IsLeaf = false;
+            Label = SR.SchemaHierarchy_Columns;
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			foreach(ObjectMetadata child in metadata)
-			{
-				if (child.Type == "Column" && child.Parent == this.Parent.Name)
-				{
-					Children.Add(new ColumnNode(this, child));
-				}
-			}
-		}
-	}
-	public class IndexesFolder : FolderNode
-	{
-		public IndexesFolder(TreeNode parent) : base(parent)
-		{
-			Name = "Indexes";
-			Type = NodeTypes.Indexes;
-			IsLeaf = false;
-			Label = SR.SchemaHierarchy_Indexes;
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            foreach (ObjectMetadata child in metadata)
+            {
+                if (child.Type == "Column" && child.Parent == this.Parent.Name)
+                {
+                    Children.Add(new ColumnNode(this, child));
+                }
+            }
+        }
+    }
+    public class IndexesFolder : FolderNode
+    {
+        public IndexesFolder(TreeNode parent) : base(parent)
+        {
+            Name = "Indexes";
+            Type = NodeTypes.Indexes;
+            IsLeaf = false;
+            Label = SR.SchemaHierarchy_Indexes;
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			foreach(ObjectMetadata child in metadata)
-			{
-				if (child.Type == "Index" && child.Parent == this.Parent.Name)
-				{
-					Children.Add(new IndexNode(this, child));
-				}
-			}
-		}
-	}
-	public class ViewsFolder : FolderNode
-	{
-		public ViewsFolder(TreeNode parent) : base(parent)
-		{
-			Name = "Views";
-			Type = NodeTypes.Views;
-			IsLeaf = false;
-			Label = SR.SchemaHierarchy_Views;
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            foreach (ObjectMetadata child in metadata)
+            {
+                if (child.Type == "Index" && child.Parent == this.Parent.Name)
+                {
+                    Children.Add(new IndexNode(this, child));
+                }
+            }
+        }
+    }
+    public class ViewsFolder : FolderNode
+    {
+        public ViewsFolder(TreeNode parent) : base(parent)
+        {
+            Name = "Views";
+            Type = NodeTypes.Views;
+            IsLeaf = false;
+            Label = SR.SchemaHierarchy_Views;
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			foreach(ObjectMetadata child in metadata)
-			{
-				if (child.Type == "View" && child.Parent == this.Parent.Name)
-				{
-					Children.Add(new ViewNode(this, child));
-				}
-			}
-		}
-	}
-	public class StoredProceduresFolder : FolderNode
-	{
-		public StoredProceduresFolder(TreeNode parent) : base(parent)
-		{
-			Name = "StoredProcedures";
-			Type = NodeTypes.StoredProcedures;
-			IsLeaf = false;
-			Label = SR.SchemaHierarchy_StoredProcedures;
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            foreach (ObjectMetadata child in metadata)
+            {
+                if (child.Type == "View" && child.Parent == this.Parent.Name)
+                {
+                    Children.Add(new ViewNode(this, child));
+                }
+            }
+        }
+    }
+    public class StoredProceduresFolder : FolderNode
+    {
+        public StoredProceduresFolder(TreeNode parent) : base(parent)
+        {
+            Name = "StoredProcedures";
+            Type = NodeTypes.StoredProcedures;
+            IsLeaf = false;
+            Label = SR.SchemaHierarchy_StoredProcedures;
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			foreach(ObjectMetadata child in metadata)
-			{
-				if (child.Type == "StoredProcedure" && child.Parent == this.Parent.Name)
-				{
-					Children.Add(new StoredProcedureNode(this, child));
-				}
-			}
-		}
-	}
-	public class ParametersFolder : FolderNode
-	{
-		public ParametersFolder(TreeNode parent) : base(parent)
-		{
-			Name = "Parameters";
-			Type = NodeTypes.Parameters;
-			IsLeaf = false;
-			Label = SR.SchemaHierarchy_Parameters;
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            foreach (ObjectMetadata child in metadata)
+            {
+                if (child.Type == "StoredProcedure" && child.Parent == this.Parent.Name)
+                {
+                    Children.Add(new StoredProcedureNode(this, child));
+                }
+            }
+        }
+    }
+    public class ParametersFolder : FolderNode
+    {
+        public ParametersFolder(TreeNode parent) : base(parent)
+        {
+            Name = "Parameters";
+            Type = NodeTypes.Parameters;
+            IsLeaf = false;
+            Label = SR.SchemaHierarchy_Parameters;
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			foreach(ObjectMetadata child in metadata)
-			{
-				if (child.Type == "Param" && child.Parent == this.Parent.Name)
-				{
-					Children.Add(new ParamNode(this, child));
-				}
-			}
-		}
-	}
-	public class FunctionsFolder : FolderNode
-	{
-		public FunctionsFolder(TreeNode parent) : base(parent)
-		{
-			Name = "Functions";
-			Type = NodeTypes.Functions;
-			IsLeaf = false;
-			Label = SR.SchemaHierarchy_Functions;
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            foreach (ObjectMetadata child in metadata)
+            {
+                if (child.Type == "Param" && child.Parent == this.Parent.Name)
+                {
+                    Children.Add(new ParamNode(this, child));
+                }
+            }
+        }
+    }
+    public class FunctionsFolder : FolderNode
+    {
+        public FunctionsFolder(TreeNode parent) : base(parent)
+        {
+            Name = "Functions";
+            Type = NodeTypes.Functions;
+            IsLeaf = false;
+            Label = SR.SchemaHierarchy_Functions;
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			Children.Add(new ScalarFunctionsFolder(this));
-			Children.Add(new TableValuedFunctionsFolder(this));
-		}
-	}
-	public class ScalarFunctionsFolder : FolderNode
-	{
-		public ScalarFunctionsFolder(TreeNode parent) : base(parent)
-		{
-			Name = "ScalarFunctions";
-			Type = NodeTypes.ScalarFunctions;
-			IsLeaf = false;
-			Label = SR.SchemaHierarchy_ScalarValuedFunctions;
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            Children.Add(new ScalarFunctionsFolder(this));
+            Children.Add(new TableValuedFunctionsFolder(this));
+        }
+    }
+    public class ScalarFunctionsFolder : FolderNode
+    {
+        public ScalarFunctionsFolder(TreeNode parent) : base(parent)
+        {
+            Name = "ScalarFunctions";
+            Type = NodeTypes.ScalarFunctions;
+            IsLeaf = false;
+            Label = SR.SchemaHierarchy_ScalarValuedFunctions;
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			foreach(ObjectMetadata child in metadata)
-			{
-				if (child.Type == "ScalarFunction" && child.Parent == this.Parent.Parent.Name)
-				{
-					Children.Add(new ScalarFunctionNode(this, child));
-				}
-			}
-		}
-	}
-	public class TableValuedFunctionsFolder : FolderNode
-	{
-		public TableValuedFunctionsFolder(TreeNode parent) : base(parent)
-		{
-			Name = "TableValuedFunctions";
-			Type = NodeTypes.TableValuedFunctions;
-			IsLeaf = false;
-			Label = SR.SchemaHierarchy_TableValuedFunctions;
-		}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            foreach (ObjectMetadata child in metadata)
+            {
+                if (child.Type == "ScalarFunction" && child.Parent == this.Parent.Parent.Name)
+                {
+                    Children.Add(new ScalarFunctionNode(this, child));
+                }
+            }
+        }
+    }
+    public class TableValuedFunctionsFolder : FolderNode
+    {
+        public TableValuedFunctionsFolder(TreeNode parent) : base(parent)
+        {
+            Name = "TableValuedFunctions";
+            Type = NodeTypes.TableValuedFunctions;
+            IsLeaf = false;
+            Label = SR.SchemaHierarchy_TableValuedFunctions;
+        }
 
-		public override void  LoadChildren(ObjectMetadata[] metadata)
-		{
-			this.Children = new List<TreeNode>();
-			foreach(ObjectMetadata child in metadata)
-			{
-				if (child.Type == "TableValuedFunction" && child.Parent == this.Parent.Parent.Name)
-				{
-					Children.Add(new TableValuedFunctionNode(this, child));
-				}
-			}
-		}
-	}
+        public override void LoadChildren(ObjectMetadata[] metadata)
+        {
+            this.Children = new List<TreeNode>();
+            foreach (ObjectMetadata child in metadata)
+            {
+                if (child.Type == "TableValuedFunction" && child.Parent == this.Parent.Parent.Name)
+                {
+                    Children.Add(new TableValuedFunctionNode(this, child));
+                }
+            }
+        }
+    }
 
-	public static class ObjectExplorerModelQueries
-	{
-		public static Dictionary<string, string> Queries = new Dictionary<string, string>()
-		{
-			{ 
-				"Schema", 
-				@"
+    public static class ObjectExplorerModelQueries
+    {
+        public static Dictionary<string, string> Queries = new Dictionary<string, string>()
+        {
+            {
+                "Schema",
+                @"
   SELECT
     SCHEMA_NAME AS schema_name,
     SCHEMA_NAME AS object_name,
@@ -424,11 +424,11 @@ namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
     'INFORMATION_SCHEMA',
     'guest'
   )
-" 
-			},
-			{ 
-				"Table", 
-				@"
+"
+            },
+            {
+                "Table",
+                @"
   SELECT
     TABLE_SCHEMA AS schema_name,
     TABLE_NAME AS object_name,
@@ -440,11 +440,11 @@ namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
     INFORMATION_SCHEMA.TABLES
   WHERE
     TABLE_TYPE = 'BASE TABLE'
-  " 
-			},
-			{ 
-				"Column", 
-				@"
+  "
+            },
+            {
+                "Column",
+                @"
     SELECT
         c.TABLE_SCHEMA AS schema_name,
         c.COLUMN_NAME AS object_name,
@@ -488,11 +488,11 @@ namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
         information_schema.KEY_COLUMN_USAGE AS kcu ON c.TABLE_SCHEMA = kcu.TABLE_SCHEMA AND c.TABLE_NAME = kcu.TABLE_NAME AND c.COLUMN_NAME = kcu.COLUMN_NAME AND kcu.CONSTRAINT_NAME LIKE 'PK%'
         LEFT JOIN
         information_schema.KEY_COLUMN_USAGE AS kcu2 ON c.TABLE_SCHEMA = kcu2.TABLE_SCHEMA AND c.TABLE_NAME = kcu2.TABLE_NAME AND c.COLUMN_NAME = kcu2.COLUMN_NAME AND kcu2.CONSTRAINT_NAME LIKE 'FK%'
-    " 
-			},
-			{ 
-				"Index", 
-				@"
+    "
+            },
+            {
+                "Index",
+                @"
   SELECT
     S.name AS schema_name,
     I.name AS object_name,
@@ -516,11 +516,11 @@ namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
         ) AS O ON O.schema_id = S.schema_id
     JOIN sys.indexes AS I ON I.object_id = O.object_id
   Where I.name IS NOT NULL
-  " 
-			},
-			{ 
-				"View", 
-				@"
+  "
+            },
+            {
+                "View",
+                @"
   SELECT
     TABLE_SCHEMA AS schema_name,
     TABLE_NAME AS object_name,
@@ -532,11 +532,11 @@ namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
     INFORMATION_SCHEMA.TABLES
   WHERE
     TABLE_TYPE = 'VIEW'
-  " 
-			},
-			{ 
-				"StoredProcedure", 
-				@"
+  "
+            },
+            {
+                "StoredProcedure",
+                @"
   SELECT
     SPECIFIC_SCHEMA AS schema_name,
     SPECIFIC_NAME AS object_name,
@@ -548,11 +548,11 @@ namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
     INFORMATION_SCHEMA.ROUTINES
   WHERE
     ROUTINE_TYPE = 'PROCEDURE'
-  " 
-			},
-			{ 
-				"Param", 
-				@"
+  "
+            },
+            {
+                "Param",
+                @"
     SELECT
         S.name AS schema_name,
         P.name AS object_name,
@@ -569,11 +569,11 @@ namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
         JOIN sys.objects AS O ON O.object_id = P.object_id
         JOIN sys.schemas AS S ON O.schema_id = S.schema_id
     WHERE P.name != NULL OR P.name != ''
-" 
-			},
-			{ 
-				"ScalarFunction", 
-				@"
+"
+            },
+            {
+                "ScalarFunction",
+                @"
   SELECT
       S.name AS schema_name,
       P.name AS object_name,
@@ -586,11 +586,11 @@ namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
       JOIN sys.objects AS P ON S.schema_id = P.schema_id
   WHERE
       P.type = 'FN'
-  " 
-			},
-			{ 
-				"TableValuedFunction", 
-				@"
+  "
+            },
+            {
+                "TableValuedFunction",
+                @"
   SELECT
       S.name AS schema_name,
       P.name AS object_name,
@@ -603,32 +603,32 @@ namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
       JOIN sys.objects AS P ON S.schema_id = P.schema_id
   WHERE
       P.type = 'IF' OR P.type = 'TF'
-  " 
-			},
-		};
-	}
+  "
+            },
+        };
+    }
 
-	public enum NodeTypes
-	{
-		Database,
-		Schema,
-		Table,
-		Column,
-		Index,
-		View,
-		StoredProcedure,
-		Param,
-		ScalarFunction,
-		TableValuedFunction,
-		Tables,
-		Columns,
-		Indexes,
-		Views,
-		StoredProcedures,
-		Parameters,
-		Functions,
-		ScalarFunctions,
-		TableValuedFunctions,
-		Folder,
-	}
+    public enum NodeTypes
+    {
+        Database,
+        Schema,
+        Table,
+        Column,
+        Index,
+        View,
+        StoredProcedure,
+        Param,
+        ScalarFunction,
+        TableValuedFunction,
+        Tables,
+        Columns,
+        Indexes,
+        Views,
+        StoredProcedures,
+        Parameters,
+        Functions,
+        ScalarFunctions,
+        TableValuedFunctions,
+        Folder,
+    }
 }

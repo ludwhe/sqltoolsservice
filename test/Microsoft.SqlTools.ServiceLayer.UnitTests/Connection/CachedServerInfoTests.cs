@@ -5,10 +5,10 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
-using NUnit.Framework;
 using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
+using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Connection
 {
@@ -54,9 +54,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Connection
             }, out _), Is.Not.EqualTo(DatabaseEngineEdition.SqlDataWarehouse), "expect NotEqual for a different DB");
         }
 
-        
+
         [Test]
-        public void AddOrUpdateEngineEdition([Values(null, "", "myDb")] string dbName, 
+        public void AddOrUpdateEngineEdition([Values(null, "", "myDb")] string dbName,
                                               [Values(DatabaseEngineEdition.SqlDataWarehouse, DatabaseEngineEdition.SqlOnDemand)] DatabaseEngineEdition state)
         {
             // Set result into cache
@@ -74,7 +74,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Connection
 
             Assert.Multiple(() =>
             {
-                Assert.That(cache.TryGetEngineEdition(testSource, out engineEdition), Is.Not.EqualTo(DatabaseEngineEdition.Unknown) );
+                Assert.That(cache.TryGetEngineEdition(testSource, out engineEdition), Is.Not.EqualTo(DatabaseEngineEdition.Unknown));
                 Assert.That(engineEdition, Is.EqualTo(state), "Expect the same returned result");
             });
         }
@@ -91,7 +91,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Connection
             cache.AddOrUpdateCache(testSource, state, CachedServerInfo.CacheVariable.EngineEdition);
 
             Assert.Multiple(() =>
-            {                 
+            {
                 Assert.That(cache.TryGetEngineEdition(testSource, out engineEdition), Is.Not.EqualTo(DatabaseEngineEdition.Unknown));
                 Assert.That(engineEdition, Is.EqualTo(state), "Expect the same returned result");
             });
@@ -108,47 +108,47 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Connection
             });
         }
 
-       /* [Test]
-        public void AddOrUpdateIsSqlDwFalseToggle()
-        {
-            bool state = true;
+        /* [Test]
+         public void AddOrUpdateIsSqlDwFalseToggle()
+         {
+             bool state = true;
 
-            SqlConnectionStringBuilder testSource = new SqlConnectionStringBuilder
-            {
-                DataSource = "testDataSource"
-            };
+             SqlConnectionStringBuilder testSource = new SqlConnectionStringBuilder
+             {
+                 DataSource = "testDataSource"
+             };
 
-            SqlConnectionStringBuilder sameServerDifferentDb = new SqlConnectionStringBuilder
-            {
-                DataSource = "testDataSource",
-                InitialCatalog = "myDb"          
-            };
-            SqlConnectionStringBuilder differentServerSameDb = new SqlConnectionStringBuilder
-            {
-                DataSource = "testDataSource2",
-                InitialCatalog = ""
-            };
+             SqlConnectionStringBuilder sameServerDifferentDb = new SqlConnectionStringBuilder
+             {
+                 DataSource = "testDataSource",
+                 InitialCatalog = "myDb"          
+             };
+             SqlConnectionStringBuilder differentServerSameDb = new SqlConnectionStringBuilder
+             {
+                 DataSource = "testDataSource2",
+                 InitialCatalog = ""
+             };
 
-            cache.AddOrUpdateCache(testSource, state, CachedServerInfo.CacheVariable.IsSqlDw);
-            cache.AddOrUpdateCache(sameServerDifferentDb, !state, CachedServerInfo.CacheVariable.IsSqlDw);
-            cache.AddOrUpdateCache(differentServerSameDb, !state, CachedServerInfo.CacheVariable.IsSqlDw);
+             cache.AddOrUpdateCache(testSource, state, CachedServerInfo.CacheVariable.IsSqlDw);
+             cache.AddOrUpdateCache(sameServerDifferentDb, !state, CachedServerInfo.CacheVariable.IsSqlDw);
+             cache.AddOrUpdateCache(differentServerSameDb, !state, CachedServerInfo.CacheVariable.IsSqlDw);
 
-            // Expect the same returned result
-            // Set sqlDw result into cache
-            bool isSqlDwResult;
-            bool isSqlDwResult2;
-            bool isSqlDwResult3;
-            Assert.True(cache.TryGetIsSqlDw(testSource, out isSqlDwResult));
-            Assert.True(cache.TryGetIsSqlDw(sameServerDifferentDb, out isSqlDwResult2));
-            Assert.True(cache.TryGetIsSqlDw(differentServerSameDb, out isSqlDwResult3));
+             // Expect the same returned result
+             // Set sqlDw result into cache
+             bool isSqlDwResult;
+             bool isSqlDwResult2;
+             bool isSqlDwResult3;
+             Assert.True(cache.TryGetIsSqlDw(testSource, out isSqlDwResult));
+             Assert.True(cache.TryGetIsSqlDw(sameServerDifferentDb, out isSqlDwResult2));
+             Assert.True(cache.TryGetIsSqlDw(differentServerSameDb, out isSqlDwResult3));
 
-            // Assert cache is set on a per connection basis
-            Assert.AreEqual(isSqlDwResult, state);
-            Assert.AreEqual(isSqlDwResult2, !state);
-            Assert.AreEqual(isSqlDwResult3, !state);
+             // Assert cache is set on a per connection basis
+             Assert.AreEqual(isSqlDwResult, state);
+             Assert.AreEqual(isSqlDwResult2, !state);
+             Assert.AreEqual(isSqlDwResult3, !state);
 
-        }
-        */
+         }
+         */
 
         [Test]
         public void AskforEngineEditionBeforeCached()
@@ -156,7 +156,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Connection
             Assert.AreEqual(DatabaseEngineEdition.Unknown, cache.TryGetEngineEdition(new SqlConnectionStringBuilder
             {
                 DataSource = "testDataSourceUnCached"
-            }, 
+            },
             out _));
         }
     }

@@ -12,7 +12,7 @@ using Microsoft.SqlTools.ResourceProvider.Core.Extensibility;
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
 {
     [Exportable(ServerTypeValue, CategoryValue
-    , typeof(IServerDiscoveryProvider), 
+    , typeof(IServerDiscoveryProvider),
     "Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes.FakeServerDiscoveryProvider")]
     public class FakeServerDiscoveryProvider : ExportableBase, IServerDiscoveryProvider
     {
@@ -26,12 +26,12 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
             return await Task.Run(() => new ServiceResponse<ServerInstanceInfo>());
         }
 
-        
+
         public IDatabaseResourceManager DatabaseResourceManager
         {
             get;
             set;
-        }         
+        }
 
         public const string ServerTypeValue = "FakeServerType";
         public const string CategoryValue = "FakeCategory";

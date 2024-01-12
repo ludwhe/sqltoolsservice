@@ -20,7 +20,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         [Test]
         public void UsageIsShownWhenHelpFlagProvided()
         {
-            var args = new string[] {"--help"};
+            var args = new string[] { "--help" };
             ServiceLayerCommandOptions options = new ServiceLayerCommandOptions(args);
             Assert.NotNull(options);
 
@@ -31,7 +31,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         [Test]
         public void UsageIsShownWhenBadArgumentsProvided()
         {
-            var args = new string[] {"--unknown-argument", "/bad-argument"};
+            var args = new string[] { "--unknown-argument", "/bad-argument" };
             ServiceLayerCommandOptions options = new ServiceLayerCommandOptions(args);
             Assert.NotNull(options);
 
@@ -102,7 +102,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         [Test]
         public void LocaleSetWhenProvided([Values("en", "es")] string locale)
         {
-            var args = new string[] {"--locale", locale};
+            var args = new string[] { "--locale", locale };
             ServiceLayerCommandOptions options = new ServiceLayerCommandOptions(args); ;
 
             // Asserting all options were properly set 
@@ -126,7 +126,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         [Test]
         public void LocaleNotSetWhenNotProvided()
         {
-            var args = new string[] {};
+            var args = new string[] { };
             ServiceLayerCommandOptions options = new ServiceLayerCommandOptions(args);
 
             // Asserting all options were properly set 
@@ -153,7 +153,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         public void AutoFlushLogSet()
         {
             bool expectedAutoFlush = true;
-            var args = new string[] { "--autoflush-log"};
+            var args = new string[] { "--autoflush-log" };
             ServiceLayerCommandOptions options = new ServiceLayerCommandOptions(args);
 
             // Asserting all options were properly set 

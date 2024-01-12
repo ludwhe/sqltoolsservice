@@ -1210,7 +1210,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
                 </params></formdescription> ",
                 serverNameNode,
                 connectionMonikerNode,
-                urnNode);   
+                urnNode);
             }
             else
             {

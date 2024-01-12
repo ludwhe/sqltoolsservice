@@ -7,12 +7,12 @@
 
 using System;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.ServiceLayer.QueryExecution.Contracts;
 using Microsoft.SqlTools.Utility;
 
@@ -334,7 +334,7 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution.DataStorage
             public override void Write(char value)
             {
                 if (stopWriting) { return; }
-                
+
                 if (CurrentLength < MaximumCapacity)
                 {
                     base.Write(value);
@@ -366,7 +366,7 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution.DataStorage
             public override void Write(string value)
             {
                 if (stopWriting) { return; }
-                
+
                 int curLen = CurrentLength;
                 if (value.Length + curLen > MaximumCapacity)
                 {

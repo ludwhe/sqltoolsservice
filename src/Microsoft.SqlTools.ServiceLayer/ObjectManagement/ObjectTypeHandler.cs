@@ -75,7 +75,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 }
             }
             // If connection is not instantiated in the using statement, it can be leaked here, therefore close explicitly.
-            if(serverConnection.SqlConnectionObject.State == System.Data.ConnectionState.Open)
+            if (serverConnection.SqlConnectionObject.State == System.Data.ConnectionState.Open)
             {
                 serverConnection.SqlConnectionObject.Close();
             }

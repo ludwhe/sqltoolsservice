@@ -68,7 +68,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
         /// <summary>
         /// Gets or sets the database engine type
         /// </summary>
-        DatabaseEngineType DatabaseEngineType {  get; }
+        DatabaseEngineType DatabaseEngineType { get; }
 
         /// <summary>
         /// Gets or sets the T-SQL version

@@ -19,7 +19,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
         {
             return LoginCustomNodeHelper.GetStatus(smoObject);
         }
-        
+
         private readonly Lazy<List<NodeSmoProperty>> smoPropertiesLazy = new Lazy<List<NodeSmoProperty>>(() => new List<NodeSmoProperty>
         {
             new NodeSmoProperty

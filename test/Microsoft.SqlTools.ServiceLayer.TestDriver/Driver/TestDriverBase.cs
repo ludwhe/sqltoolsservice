@@ -52,18 +52,18 @@ namespace Microsoft.SqlTools.ServiceLayer.TestDriver.Driver
         }
 
         public Task<TResult> SendRequest<TParams, TResult>(
-            RequestType<TParams, TResult> requestType, 
+            RequestType<TParams, TResult> requestType,
             TParams requestParams)
         {
-            return 
+            return
                 this.protocolClient.SendRequest(
-                    requestType, 
+                    requestType,
                     requestParams);
         }
 
         public Task SendEvent<TParams>(EventType<TParams> eventType, TParams eventParams)
         {
-            return 
+            return
                 this.protocolClient.SendEvent(
                     eventType,
                     eventParams);
@@ -81,7 +81,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TestDriver.Driver
                 eventType,
                 (p, ctx) =>
                 {
-                    return eventQueue.EnqueueAsync(p);   
+                    return eventQueue.EnqueueAsync(p);
                 });
         }
 
@@ -89,7 +89,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TestDriver.Driver
             EventType<TParams> eventType,
             TimeSpan timeout)
         {
-            return await WaitForEvent(eventType, (int) timeout.TotalMilliseconds);
+            return await WaitForEvent(eventType, (int)timeout.TotalMilliseconds);
         }
 
         public async Task<TParams> WaitForEvent<TParams>(
@@ -128,7 +128,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TestDriver.Driver
                 eventTask = eventTaskSource.Task;
             }
 
-            await 
+            await
                 Task.WhenAny(
                     eventTask,
                     Task.Delay(timeoutMilliseconds));
@@ -181,7 +181,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TestDriver.Driver
                 requestTask = requestTaskSource.Task;
             }
 
-            await 
+            await
                 Task.WhenAny(
                     requestTask,
                     Task.Delay(timeoutMilliseconds));

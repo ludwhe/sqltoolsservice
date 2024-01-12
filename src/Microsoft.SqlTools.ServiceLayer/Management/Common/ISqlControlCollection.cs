@@ -11,14 +11,14 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
     /// defines notion of sitable object
     /// </summary>
     public interface IObjectWithSite
-	{
-	    void SetSite(System.IServiceProvider sp);
+    {
+        void SetSite(System.IServiceProvider sp);
     }
-    
-	/// <summary>
-	/// ISqlControlCollection allows access to a collection of dialog views
-	/// </summary>
-	public interface ISqlControlCollection : IObjectWithSite
-	{
+
+    /// <summary>
+    /// ISqlControlCollection allows access to a collection of dialog views
+    /// </summary>
+    public interface ISqlControlCollection : IObjectWithSite
+    {
     }
 }

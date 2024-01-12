@@ -26,7 +26,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             Assert.Null(sqlToolsSettings.SqlTools.Format.PlaceSelectStatementReferencesOnNewLine);
             Assert.Null(sqlToolsSettings.SqlTools.Format.UseBracketForIdentifiers);
         }
-        
+
         [Test]
         public void ValidateFormatSettingsParsedFromJson()
         {
@@ -85,7 +85,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         [Test]
         public void CanCopyDefaultFormatSettingsToOptions()
         {
-            var sqlToolsSettings = new SqlToolsSettings();            
+            var sqlToolsSettings = new SqlToolsSettings();
             FormatOptions options = new FormatOptions();
             TSqlFormatterService.UpdateFormatOptionsFromSettings(options, sqlToolsSettings.SqlTools.Format);
             AssertOptionsHaveDefaultValues(options);
@@ -137,7 +137,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             var sqlToolsSettings = CreateNonDefaultFormatSettings();
 
             FormatOptions options = TSqlFormatterService.MergeFormatOptions(
-                new FormattingOptions { InsertSpaces = true, TabSize = 2 }, 
+                new FormattingOptions { InsertSpaces = true, TabSize = 2 },
                 sqlToolsSettings.SqlTools.Format);
 
             AssertOptionsHaveExpectedNonDefaultValues(options);

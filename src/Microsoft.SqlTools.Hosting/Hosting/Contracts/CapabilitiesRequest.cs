@@ -25,5 +25,5 @@ namespace Microsoft.SqlTools.Hosting.Contracts
     public class CapabilitiesResult
     {
         public DmpServerCapabilities Capabilities { get; set; }
-    }    
+    }
 }

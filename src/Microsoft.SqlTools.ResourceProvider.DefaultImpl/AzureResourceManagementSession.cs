@@ -4,8 +4,6 @@
 //
 
 using System;
-using Microsoft.Azure.Management.ResourceManager;
-using Microsoft.Azure.Management.Sql;
 using Microsoft.SqlTools.ResourceProvider.Core;
 using Microsoft.SqlTools.ResourceProvider.Core.Authentication;
 

@@ -9,7 +9,7 @@ namespace Microsoft.SqlTools.Extensibility
     /// Standard Metadata needed for extensions.
     /// </summary>
     public interface IStandardMetadata
-    {       
+    {
         /// <summary>
         /// Extension version. Should be in the format "1.0.0.0" or similar
         /// </summary>

@@ -5,15 +5,15 @@
 
 #nullable disable
 
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Threading.Tasks;
 using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Hosting;
 using Microsoft.SqlTools.ServiceLayer.ModelManagement.Contracts;
 using Microsoft.SqlTools.Utility;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Threading.Tasks;
 
 namespace Microsoft.SqlTools.ServiceLayer.ModelManagement
 {

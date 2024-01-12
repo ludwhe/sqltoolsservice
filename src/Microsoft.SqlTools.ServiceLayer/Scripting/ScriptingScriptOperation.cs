@@ -7,12 +7,12 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using System.Linq;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.SqlScriptPublish;
-using Microsoft.SqlTools.Utility;
 using Microsoft.SqlTools.SqlCore.Scripting;
 using Microsoft.SqlTools.SqlCore.Scripting.Contracts;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.Scripting
 {
@@ -30,7 +30,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting
 
         private string azureAccessToken;
 
-        public ScriptingScriptOperation(ScriptingParams parameters, string azureAccessToken): base(parameters)
+        public ScriptingScriptOperation(ScriptingParams parameters, string azureAccessToken) : base(parameters)
         {
             this.azureAccessToken = azureAccessToken;
         }
@@ -76,7 +76,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting
                         this.eventSequenceNumber,
                         this.totalScriptedObjectCount,
                         this.scriptedObjectCount));
-                
+
                 ScriptText = publishModel.RawScript;
 
                 this.SendCompletionNotificationEvent(new ScriptingCompleteParams
@@ -90,7 +90,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting
                 {
                     Logger.Information(string.Format("Scripting operation {0} was canceled", this.OperationId));
                     this.SendCompletionNotificationEvent(new ScriptingCompleteParams
-                    { 
+                    {
                         Canceled = true,
                     });
                 }
@@ -146,7 +146,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting
             // criteria should include the target objects to script.
             //
             bool hasObjectsSpecified = this.Parameters.ScriptingObjects != null && this.Parameters.ScriptingObjects.Any();
-            bool hasCriteriaSpecified = 
+            bool hasCriteriaSpecified =
                 (this.Parameters.IncludeObjectCriteria != null && this.Parameters.IncludeObjectCriteria.Any()) ||
                 (this.Parameters.ExcludeObjectCriteria != null && this.Parameters.ExcludeObjectCriteria.Any()) ||
                 (this.Parameters.IncludeSchemas != null && this.Parameters.IncludeSchemas.Any()) ||
@@ -252,7 +252,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting
                     "Sending scripting plan notification event OperationId={0}, Sequence={1}, Count={2}, Objects: {3}",
                     this.OperationId,
                     this.eventSequenceNumber,
-                    this.totalScriptedObjectCount, 
+                    this.totalScriptedObjectCount,
                     string.Join(", ", e.Urns)));
 
             this.SendPlanNotificationEvent(new ScriptingPlanNotificationParams
@@ -290,6 +290,6 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting
                 ErrorDetails = e?.Error?.ToString(),
             });
         }
-        
+
     }
 }

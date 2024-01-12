@@ -260,28 +260,28 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 // Delete Row
                 Action<EditSession, long> delAction = (s, l) => s.DeleteRow(l);
                 yield return new object[] { -1L, delAction };
-                yield return new object[] {(long) QueryExecution.Common.StandardRows, delAction};
+                yield return new object[] { (long)QueryExecution.Common.StandardRows, delAction };
                 yield return new object[] { 100L, delAction };
 
                 // Update Cell
                 Action<EditSession, long> upAction = (s, l) => s.UpdateCell(l, 0, null);
                 yield return new object[] { -1L, upAction };
-                yield return new object[] {(long) QueryExecution.Common.StandardRows, upAction};
+                yield return new object[] { (long)QueryExecution.Common.StandardRows, upAction };
                 yield return new object[] { 100L, upAction };
 
                 // Revert Row
                 Action<EditSession, long> revertRowAction = (s, l) => s.RevertRow(l);
-                yield return new object[] {-1L, revertRowAction};
-                yield return new object[] {0L, revertRowAction};    // This is invalid b/c there isn't an edit pending for this row
-                yield return new object[] {(long) QueryExecution.Common.StandardRows, revertRowAction};
-                yield return new object[] {100L, revertRowAction};
+                yield return new object[] { -1L, revertRowAction };
+                yield return new object[] { 0L, revertRowAction };    // This is invalid b/c there isn't an edit pending for this row
+                yield return new object[] { (long)QueryExecution.Common.StandardRows, revertRowAction };
+                yield return new object[] { 100L, revertRowAction };
 
                 // Revert Cell
                 Action<EditSession, long> revertCellAction = (s, l) => s.RevertCell(l, 0);
-                yield return new object[] {-1L, revertCellAction};
-                yield return new object[] {0L, revertCellAction};    // This is invalid b/c there isn't an edit pending for this row
-                yield return new object[] {(long) QueryExecution.Common.StandardRows, revertCellAction};
-                yield return new object[] {100L, revertCellAction};
+                yield return new object[] { -1L, revertCellAction };
+                yield return new object[] { 0L, revertCellAction };    // This is invalid b/c there isn't an edit pending for this row
+                yield return new object[] { (long)QueryExecution.Common.StandardRows, revertCellAction };
+                yield return new object[] { 100L, revertCellAction };
             }
         }
 
@@ -293,7 +293,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // Setup:
             // ... Create a session and fake that it has been initialized
             var emf = new Mock<IEditMetadataFactory>();
-            var s = new EditSession(emf.Object) {IsInitialized = true};
+            var s = new EditSession(emf.Object) { IsInitialized = true };
 
             // If: I initialize it
             // Then: I should get an exception
@@ -306,7 +306,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // Setup:
             // ... Create a session and fake that it is in progress of initializing
             var emf = new Mock<IEditMetadataFactory>();
-            var s = new EditSession(emf.Object) {InitializeTask = new Task(() => {})};
+            var s = new EditSession(emf.Object) { InitializeTask = new Task(() => { }) };
 
             // If: I initialize it
             // Then: I should get an exception
@@ -330,12 +330,12 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         {
             get
             {
-                yield return new object[] {Common.BasicInitializeParameters, null, DoNothingQueryRunner, DoNothingSuccessHandler, DoNothingFailureHandler};
-                yield return new object[] {Common.BasicInitializeParameters, DoNothingConnector, null, DoNothingSuccessHandler, DoNothingFailureHandler};
-                yield return new object[] {Common.BasicInitializeParameters, DoNothingConnector, DoNothingQueryRunner, null, DoNothingFailureHandler};
-                yield return new object[] {Common.BasicInitializeParameters, DoNothingConnector, DoNothingQueryRunner, DoNothingSuccessHandler, null};
+                yield return new object[] { Common.BasicInitializeParameters, null, DoNothingQueryRunner, DoNothingSuccessHandler, DoNothingFailureHandler };
+                yield return new object[] { Common.BasicInitializeParameters, DoNothingConnector, null, DoNothingSuccessHandler, DoNothingFailureHandler };
+                yield return new object[] { Common.BasicInitializeParameters, DoNothingConnector, DoNothingQueryRunner, null, DoNothingFailureHandler };
+                yield return new object[] { Common.BasicInitializeParameters, DoNothingConnector, DoNothingQueryRunner, DoNothingSuccessHandler, null };
 
-                string[] nullOrWhitespace = {null, string.Empty, " \t\r\n"};
+                string[] nullOrWhitespace = { null, string.Empty, " \t\r\n" };
 
                 // Tests with invalid object name or type
                 foreach (string str in nullOrWhitespace)
@@ -347,7 +347,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                         ObjectType = "table",
                         Filters = new EditInitializeFiltering()
                     };
-                    yield return new object[] {eip1, DoNothingConnector, DoNothingQueryRunner, DoNothingSuccessHandler, DoNothingFailureHandler};
+                    yield return new object[] { eip1, DoNothingConnector, DoNothingQueryRunner, DoNothingSuccessHandler, DoNothingFailureHandler };
 
                     // Invalid object type
                     var eip2 = new EditInitializeParams
@@ -356,7 +356,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                         ObjectType = str,
                         Filters = new EditInitializeFiltering()
                     };
-                    yield return new object[] {eip2, DoNothingConnector, DoNothingQueryRunner, DoNothingSuccessHandler, DoNothingFailureHandler};
+                    yield return new object[] { eip2, DoNothingConnector, DoNothingQueryRunner, DoNothingSuccessHandler, DoNothingFailureHandler };
                 }
 
                 // Test with null init filters
@@ -636,7 +636,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
 
             // Check that the nextRowId has a value that reflects the number of rows.
             Assert.That(s.NextRowId, Is.EqualTo(rows.Length), "The NextRowId should match the same number of rows as the array (following array indexing rules).");
- 
+
             // If: I revert the row that has a pending CreateRow (Such as when there's a row edit failure)
             s.RevertRow(result1Id);
 
@@ -664,7 +664,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // Check that returned result of createRow matches NextRowId index.
             Assert.That(result2Id, Is.EqualTo(s.NextRowId - 1), "The returned row ID should be one less than the current next row ID.");
 
-             // Check that returned result of createRow matches the previous added row id.
+            // Check that returned result of createRow matches the previous added row id.
             Assert.That(result2Id, Is.EqualTo(result1Id), "The row id of the newly created row should match that of the previously created row in the same position.");
 
             // Check that the nextRowId has a value that reflects the number of rows.
@@ -701,7 +701,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // ... Add a edit that we will say the edit was reverted if we update a cell
             var mockEdit = new Mock<RowEditBase>();
             mockEdit.Setup(e => e.RevertCell(It.IsAny<int>()))
-                .Returns(new EditRevertCellResult {IsRowDirty = false});
+                .Returns(new EditRevertCellResult { IsRowDirty = false });
             s.EditCache[0] = mockEdit.Object;
 
             // If: I update a cell that will return an implicit revert
@@ -742,7 +742,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // ... Add a mock edit to the edit cache to cause the .TryAdd to fail
             var mockEdit = new Mock<RowEditBase>();
             mockEdit.Setup(e => e.SetCell(It.IsAny<int>(), It.IsAny<string>()))
-                .Returns(new EditUpdateCellResult {IsRowDirty = true});
+                .Returns(new EditUpdateCellResult { IsRowDirty = true });
             s.EditCache[0] = mockEdit.Object;
 
             // If: I update a cell on a row that already has a pending edit
@@ -782,7 +782,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // ... Add a edit that we will say the edit was reverted if we update a cell
             var mockEdit = new Mock<RowEditBase>();
             mockEdit.Setup(e => e.SetCell(It.IsAny<int>(), It.IsAny<string>()))
-                .Returns(new EditUpdateCellResult {IsRowDirty = false});
+                .Returns(new EditUpdateCellResult { IsRowDirty = false });
             s.EditCache[0] = mockEdit.Object;
 
             // If: I update a cell that will return an implicit revert
@@ -1088,7 +1088,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             DbConnection conn = new TestSqlConnection(null);
 
             // ... Mock a task that has not completed
-            var notCompleted = new Task(() => {});
+            var notCompleted = new Task(() => { });
             s.CommitTask = notCompleted;
 
             // If: I attempt to commit while a task is in progress
@@ -1114,11 +1114,13 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             bool successCalled = false;
             bool failureCalled = false;
             s.CommitEdits(conn,
-                () => {
+                () =>
+                {
                     successCalled = true;
                     return Task.FromResult(0);
                 },
-                e => {
+                e =>
+                {
                     failureCalled = true;
                     return Task.FromResult(0);
                 });
@@ -1157,11 +1159,13 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             bool successCalled = false;
             bool failureCalled = false;
             s.CommitEdits(conn,
-                () => {
+                () =>
+                {
                     successCalled = true;
                     return Task.FromResult(0);
                 },
-                e => {
+                e =>
+                {
                     failureCalled = true;
                     return Task.FromResult(0);
                 });
@@ -1230,7 +1234,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         }
 
         [Test]
-        public void ConstructQueryWithLimit([Values(0,10,1000)]int limit)
+        public void ConstructQueryWithLimit([Values(0, 10, 1000)] int limit)
         {
             // Setup: Create a metadata provider for some basic columns
             var data = new Common.TestDbColumnsWithTableMetadata(false, false, 0, 0);
@@ -1284,7 +1288,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
 
         private static Mock<Func<Task>> DoNothingSuccessMock
         {
-            get {
+            get
+            {
                 var successHandler = new Mock<Func<Task>>();
                 successHandler.Setup(f => f()).Returns(Task.FromResult(0));
                 return successHandler;

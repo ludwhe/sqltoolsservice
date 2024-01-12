@@ -20,7 +20,7 @@ using Moq;
 using NUnit.Framework;
 
 namespace Microsoft.Kusto.ServiceLayer.UnitTests.ObjectExplorer.DataSourceModel
-{ 
+{
     public class ServerNodeTests
     {
         [Test]
@@ -31,7 +31,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.ObjectExplorer.DataSourceModel
 
             Assert.Throws<ArgumentNullException>(() => new ServerNode(param, serviceProviderMock.Object, null, new DatabaseMetadata()));
         }
-        
+
         [Test]
         public void ServerNode_ThrowsException_NullConnectionSummary()
         {
@@ -44,7 +44,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.ObjectExplorer.DataSourceModel
 
             Assert.Throws<ArgumentNullException>(() => new ServerNode(param, serviceProviderMock.Object, null, new DatabaseMetadata()));
         }
-        
+
         [Test]
         public void ServerNode_ThrowsException_NullServiceProvider()
         {
@@ -81,7 +81,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.ObjectExplorer.DataSourceModel
                     ServerVersion = "2020"
                 }
             };
-            
+
             var serviceProviderMock = new Mock<IMultiServiceProvider>();
             var dataSourceMock = new Mock<IDataSource>();
             var metadata = new DataSourceObjectMetadata();
@@ -109,7 +109,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.ObjectExplorer.DataSourceModel
                     ServerVersion = "Version"
                 }
             };
-            
+
             var serviceProviderMock = new Mock<IMultiServiceProvider>();
             var dataSourceMock = new Mock<IDataSource>();
             var metadata = new DataSourceObjectMetadata();
@@ -131,7 +131,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.ObjectExplorer.DataSourceModel
                 MetadataType = DataSourceMetadataType.Database,
                 Name = "Database1"
             };
-            
+
             var connectionParams = new ConnectionCompleteParams
             {
                 ConnectionSummary = new ConnectionSummary
@@ -145,11 +145,11 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.ObjectExplorer.DataSourceModel
                     ServerVersion = "Version"
                 }
             };
-            
+
             var serviceProviderMock = new Mock<IMultiServiceProvider>();
             var dataSourceMock = new Mock<IDataSource>();
             dataSourceMock.Setup(x => x.GetChildObjects(It.IsAny<DataSourceObjectMetadata>(), It.IsAny<bool>()))
-                .Returns(new List<DataSourceObjectMetadata> {childMetadata});
+                .Returns(new List<DataSourceObjectMetadata> { childMetadata });
 
             var parentMetadata = new DataSourceObjectMetadata();
             var serverNode = new ServerNode(connectionParams, serviceProviderMock.Object, dataSourceMock.Object,
@@ -158,7 +158,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.ObjectExplorer.DataSourceModel
             var children = serverNode.Refresh(CancellationToken.None);
             Assert.AreEqual(1, children.Count);
             var child = children.First();
-            
+
             Assert.AreEqual(childMetadata.MetadataTypeName, child.NodeType);
             Assert.AreEqual(NodeTypes.Database, child.NodeTypeId);
             Assert.AreEqual(childMetadata.PrettyName, child.NodeValue);

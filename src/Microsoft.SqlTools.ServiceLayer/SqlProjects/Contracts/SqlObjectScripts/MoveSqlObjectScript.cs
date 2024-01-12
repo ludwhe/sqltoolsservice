@@ -18,7 +18,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlProjects.Contracts
         /// <summary>
         /// Destination path of the file or folder, relative to the .sqlproj
         /// </summary>
-        public string DestinationPath { get; set; } 
+        public string DestinationPath { get; set; }
     }
 
     /// <summary>

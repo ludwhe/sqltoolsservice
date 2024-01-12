@@ -12,7 +12,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
     public interface IDatabaseResourceManager
     {
     }
-    
+
     [Exportable(FakeServerDiscoveryProvider.ServerTypeValue, FakeServerDiscoveryProvider.CategoryValue
     , typeof(IDatabaseResourceManager), "Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes.FakeDatabaseResourceManager")]
     public class FakeDatabaseResourceManager : IDatabaseResourceManager

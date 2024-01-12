@@ -3,8 +3,8 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-using Microsoft.SqlTools.Hosting.Protocol;
 using System.Threading.Tasks;
+using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.Kusto.ServiceLayer.QueryExecution
@@ -18,7 +18,8 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
     {
         private readonly RequestContext<TResult> OrigContext;
 
-        public ResultOnlyContext(RequestContext<TResult> context) {
+        public ResultOnlyContext(RequestContext<TResult> context)
+        {
             OrigContext = context;
         }
 

@@ -14,7 +14,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.Contracts
         /// <summary>
         /// Gets or sets the connection server name
         /// </summary>
-       string ServerName { get; set; }
+        string ServerName { get; set; }
 
         /// <summary>
         /// Gets or sets the connection database name

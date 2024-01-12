@@ -184,7 +184,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 this.pagerAddress = value;
             }
         }
-        
+
         /// <summary>
         /// the days of the week the operator is active
         /// </summary>
@@ -359,7 +359,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 return this.lastPagerDate;
             }
         }
-        
+
         #endregion
         #endregion
 
@@ -393,11 +393,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// </summary>
         private void LoadGeneralData()
         {
-            if(this.generalInitialized)
+            if (this.generalInitialized)
                 return;
 
             // load defaults if we're creating
-            if(createMode)
+            if (createMode)
             {
                 LoadGeneralDefaults();
                 return;
@@ -433,11 +433,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// </summary>
         private void LoadJobNotificationData()
         {
-            if(this.jobNotifications != null)
+            if (this.jobNotifications != null)
                 return;
 
             // just set defaults if we're creating as no jobs will point to this operator yet.
-            if(createMode)
+            if (createMode)
             {
                 LoadJobNotificationDefaults();
                 return;
@@ -448,11 +448,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             this.jobNotifications = new List<AgentJobNotificationHelper>();
 
             // we have to loop through each job and see if it notifies us.
-            foreach(Job job in jobServer.Jobs)
+            foreach (Job job in jobServer.Jobs)
             {
                 bool emailOperator = (job.OperatorToEmail == this.originalOperatorName);
                 bool pageOperator = (job.OperatorToPage == this.originalOperatorName);
-                if(emailOperator || pageOperator )
+                if (emailOperator || pageOperator)
                 {
                     // only return jobs that notify this operator
                     AgentJobNotificationHelper notification = new AgentJobNotificationHelper(job.Name
@@ -501,7 +501,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 // see if the alert notifies us already
                 foreach (DataRow row in notifications.Rows)
                 {
-                    if((string)row["AlertName"] == alert.Name)
+                    if ((string)row["AlertName"] == alert.Name)
                     {
                         alertRow = row;
                         break;
@@ -516,14 +516,15 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                     notifyPager = (bool)alertRow["UsePager"];
                 }
                 else
-                {   notifyEmail = false;
+                {
+                    notifyEmail = false;
                     notifyPager = false;
                 }
 
                 alertNotification = new AgentAlertNotificationHelper(alert.Name
-                    ,notifyEmail
-                    ,notifyPager
-                    ,alert);
+                    , notifyEmail
+                    , notifyPager
+                    , alert);
 
                 this.alertNotifications.Add(alertNotification);
             }
@@ -548,7 +549,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             Microsoft.SqlServer.Management.Smo.Agent.Operator currentOperator = GetCurrentOperator();
 
             this.lastEmailDate = currentOperator.LastEmailDate;
-            this.lastPagerDate = currentOperator.LastPagerDate;            
+            this.lastPagerDate = currentOperator.LastPagerDate;
 
         }
         #endregion
@@ -582,7 +583,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             {
                 currentOperator.PagerAddress = operatorInfo.PagerAddress;
             }
-    
+
             currentOperator.PagerDays = this.pagerDays;
 
             if ((operatorInfo.PagerDays & Contracts.WeekDays.WeekDays) > 0)
@@ -667,7 +668,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                     {
                         notifyMethods |= SqlServer.Management.Smo.Agent.NotifyMethods.Pager;
                     }
-                    
+
                     bool alertAlreadyNotifiesOperator = false;
 
                     // if we're not creating see if the current alert already notifies this operator
@@ -683,7 +684,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                     // either update or clear existing notifications
                     if (alertAlreadyNotifiesOperator)
                     {
-                        if(notifyMethods != SqlServer.Management.Smo.Agent.NotifyMethods.None)
+                        if (notifyMethods != SqlServer.Management.Smo.Agent.NotifyMethods.None)
                         {
                             alertNotifications[i].Alert.UpdateNotification(this.originalOperatorName, notifyMethods);
                         }
@@ -692,7 +693,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                             alertNotifications[i].Alert.RemoveNotification(this.originalOperatorName);
                         }
                     }
-                    else if(notifyMethods != SqlServer.Management.Smo.Agent.NotifyMethods.None)
+                    else if (notifyMethods != SqlServer.Management.Smo.Agent.NotifyMethods.None)
                     {
                         // add a new notification
                         alertNotifications[i].Alert.AddNotification(this.originalOperatorName, notifyMethods);
@@ -704,7 +705,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             if (!this.createMode && currentOperator.Name != this.originalOperatorName)
             {
                 currentOperator.Rename(this.name);
-                if(this.dataContainer.Server.ConnectionContext.SqlExecutionModes != SqlExecutionModes.CaptureSql)
+                if (this.dataContainer.Server.ConnectionContext.SqlExecutionModes != SqlExecutionModes.CaptureSql)
                 {
                     this.originalOperatorName = this.name;
                 }
@@ -777,9 +778,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             JobServer jobServer = GetJobServer();
 
             AgentAlertNotificationHelper alertNotification;
-            foreach(Alert alert in jobServer.Alerts)
+            foreach (Alert alert in jobServer.Alerts)
             {
-                alertNotification = new AgentAlertNotificationHelper(alert.Name, notifyEmail:false, notifyPager:false, alert: alert);
+                alertNotification = new AgentAlertNotificationHelper(alert.Name, notifyEmail: false, notifyPager: false, alert: alert);
                 this.alertNotifications.Add(alertNotification);
             }
         }
@@ -791,7 +792,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         {
             this.lastEmailDate = DateTime.MinValue;
             this.lastPagerDate = DateTime.MinValue;
-            
+
             this.historyInitialized = true;
         }
         #endregion
@@ -867,7 +868,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         #endregion
     }
 
-#region internal structures
+    #region internal structures
     /// <summary>
     /// Provides data to be consumed in the job notification grid
     /// </summary>

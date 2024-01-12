@@ -23,7 +23,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         {
             FormatOptions options = new FormatOptions();
             //options.PlaceEachReferenceOnNewLineInQueryStatements = true;
-            LoadAndFormatAndCompare("BQE_IndentOperands", GetInputFile("BQE_IndentOperands.sql"), 
+            LoadAndFormatAndCompare("BQE_IndentOperands", GetInputFile("BQE_IndentOperands.sql"),
                 GetBaselineFile("BQE_IndentOperands.sql"), options, true);
         }
 
@@ -32,7 +32,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         {
             FormatOptions options = new FormatOptions();
             options.KeywordCasing = CasingOptions.Uppercase;
-            LoadAndFormatAndCompare("BQE_KeywordCasing_UpperCase", GetInputFile("BQE_KeywordCasing.sql"), 
+            LoadAndFormatAndCompare("BQE_KeywordCasing_UpperCase", GetInputFile("BQE_KeywordCasing.sql"),
                 GetBaselineFile("BQE_KeywordCasing_UpperCase.sql"), options, true);
         }
 
@@ -41,7 +41,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         {
             FormatOptions options = new FormatOptions();
             options.KeywordCasing = CasingOptions.Lowercase;
-            LoadAndFormatAndCompare("BQE_KeywordCasing_LowerCase", GetInputFile("BQE_KeywordCasing.sql"), 
+            LoadAndFormatAndCompare("BQE_KeywordCasing_LowerCase", GetInputFile("BQE_KeywordCasing.sql"),
                 GetBaselineFile("BQE_KeywordCasing_LowerCase.sql"), options, true);
         }
 
@@ -50,7 +50,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         {
             FormatOptions options = new FormatOptions();
             options.KeywordCasing = CasingOptions.None;
-            LoadAndFormatAndCompare("BQE_KeywordCasing_NoFormat", GetInputFile("BQE_KeywordCasing.sql"), 
+            LoadAndFormatAndCompare("BQE_KeywordCasing_NoFormat", GetInputFile("BQE_KeywordCasing.sql"),
                 GetBaselineFile("BQE_KeywordCasing_NoFormat.sql"), options, true);
         }
 

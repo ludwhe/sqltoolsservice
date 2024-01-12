@@ -8,11 +8,11 @@
 using System;
 using System.Linq;
 using System.Threading;
+using Microsoft.SqlServer.Dac;
 using Microsoft.SqlServer.Dac.Compare;
 using Microsoft.SqlTools.ServiceLayer.SchemaCompare.Contracts;
 using Microsoft.SqlTools.ServiceLayer.TaskServices;
 using Microsoft.SqlTools.Utility;
-using Microsoft.SqlServer.Dac;
 
 namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare
 {

@@ -6,10 +6,10 @@
 #nullable disable
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using System.Collections.Generic;
 
 namespace Microsoft.SqlTools.ServiceLayer.TestEnvConfig
 {

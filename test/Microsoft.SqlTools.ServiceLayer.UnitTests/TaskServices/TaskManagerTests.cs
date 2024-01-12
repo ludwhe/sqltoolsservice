@@ -110,7 +110,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.TaskServices
                 };
 
                 Assert.NotNull(sqlTask);
-                
+
                 Task taskToVerify = sqlTask.RunAsync().ContinueWith(task =>
                 {
                     Assert.True(scriptAddedEventRaised);

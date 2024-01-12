@@ -87,10 +87,10 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         public static DbDataReader GetNewRowDataReader(DbColumn[] columns, bool includeIdentity)
         {
             object[][] rows = includeIdentity
-                ? new[] {new object[] {"id", "q", "q", "q"}}
-                : new[] {new object[] {"q", "q", "q"}};
+                ? new[] { new object[] { "id", "q", "q", "q" } }
+                : new[] { new object[] { "q", "q", "q" } };
             var testResultSet = new TestResultSet(columns, rows);
-            return new TestDbDataReader(new [] {testResultSet}, false);
+            return new TestDbDataReader(new[] { testResultSet }, false);
         }
 
         public static EditTableMetadata GetCustomEditTableMetadata(DbColumn[] columns)
@@ -118,7 +118,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             editTableMetadata.Extend(columnWrappers.ToArray());
             return editTableMetadata;
         }
-        
+
         public static void AddCells(RowEditBase rc, int colsToSkip)
         {
             // Skip the first column since if identity, since identity columns can't be updated
@@ -127,7 +127,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 rc.SetCell(i, "123");
             }
         }
-        
+
         public class TestDbColumnsWithTableMetadata
         {
             public TestDbColumnsWithTableMetadata(bool isMemoryOptimized, bool identityCol, int defaultCols, int nullableCols)
@@ -137,12 +137,12 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 List<EditColumnMetadata> columnMetadatas = new List<EditColumnMetadata>();
 
                 int startingOrdinal = 0;
-                
+
                 // Add the identity column at the front of the table
                 if (identityCol)
                 {
                     const string colName = "id";
-                    
+
                     DbColumn dbColumn = new TestDbColumn(colName)
                     {
                         IsKey = true,
@@ -161,18 +161,18 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
 
                     startingOrdinal++;
                 }
-                
+
                 // Add each column to the table
                 for (int i = startingOrdinal; i < 3 + startingOrdinal; i++)
                 {
                     string colName = $"col{i}";
                     DbColumn dbColumn;
                     EditColumnMetadata columnMetadata;
-                    
+
                     if (i < defaultCols + startingOrdinal)
                     {
                         // This column will have a default value
-                        dbColumn = new TestDbColumn(colName) {AllowDBNull = false};
+                        dbColumn = new TestDbColumn(colName) { AllowDBNull = false };
                         columnMetadata = new EditColumnMetadata
                         {
                             EscapedName = colName,
@@ -183,7 +183,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                     else if (i < nullableCols + defaultCols + startingOrdinal)
                     {
                         // This column will be nullable
-                        dbColumn = new TestDbColumn(colName) {AllowDBNull = true};
+                        dbColumn = new TestDbColumn(colName) { AllowDBNull = true };
                         columnMetadata = new EditColumnMetadata
                         {
                             EscapedName = colName,
@@ -194,7 +194,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                     else
                     {
                         // This column doesn't have a default value or is nullable
-                        dbColumn = new TestDbColumn(colName) {AllowDBNull = false};
+                        dbColumn = new TestDbColumn(colName) { AllowDBNull = false };
                         columnMetadata = new EditColumnMetadata
                         {
                             EscapedName = colName,
@@ -206,7 +206,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                     columnWrappers.Add(new DbColumnWrapper(dbColumn));
                     columnMetadatas.Add(columnMetadata);
                 }
-                
+
                 // Put together the table metadata
                 EditTableMetadata editTableMetadata = new EditTableMetadata
                 {
@@ -219,7 +219,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 DbColumns = dbColumns.ToArray();
                 TableMetadata = editTableMetadata;
             }
-            
+
             public DbColumn[] DbColumns { get; }
             public EditTableMetadata TableMetadata { get; }
         }

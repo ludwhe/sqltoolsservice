@@ -18,6 +18,6 @@ namespace Microsoft.Kusto.ServiceLayer.Admin.Contracts
         {
             Options = new Dictionary<string, object>();
         }
-        
+
     }
 }

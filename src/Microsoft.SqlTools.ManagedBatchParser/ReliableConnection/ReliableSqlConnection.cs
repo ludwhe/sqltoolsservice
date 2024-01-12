@@ -27,12 +27,12 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlTools.BatchParser.Utility;
 
@@ -65,7 +65,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         {
             _underlyingConnection = new SqlConnection(connectionString);
 
-            if (retryProvider != null) {
+            if (retryProvider != null)
+            {
                 _underlyingConnection.RetryLogicProvider = retryProvider;
             }
 
@@ -413,12 +414,12 @@ SET NUMERIC_ROUNDABORT OFF;";
 
         private void RetryCommandCallback(RetryState retryState)
         {
-            RetryPolicyUtils.RaiseSchemaAmbientRetryMessage(retryState, SqlSchemaModelErrorCodes.ServiceActions.CommandRetry, _azureSessionId); 
+            RetryPolicyUtils.RaiseSchemaAmbientRetryMessage(retryState, SqlSchemaModelErrorCodes.ServiceActions.CommandRetry, _azureSessionId);
         }
 
         private void RetryConnectionCallback(RetryState retryState)
         {
-            RetryPolicyUtils.RaiseSchemaAmbientRetryMessage(retryState, SqlSchemaModelErrorCodes.ServiceActions.ConnectionRetry, _azureSessionId); 
+            RetryPolicyUtils.RaiseSchemaAmbientRetryMessage(retryState, SqlSchemaModelErrorCodes.ServiceActions.ConnectionRetry, _azureSessionId);
         }
 
         public void OnConnectionStateChange(object sender, StateChangeEventArgs e)
@@ -524,7 +525,7 @@ SET NUMERIC_ROUNDABORT OFF;";
 
         private object ExecuteScalar(IDbCommand command)
         {
-            Tuple<string,bool>[] sessionSettings = null;
+            Tuple<string, bool>[] sessionSettings = null;
             return _commandRetryPolicy.ExecuteAction(() =>
             {
                 VerifyConnectionOpen(command);
@@ -536,7 +537,7 @@ SET NUMERIC_ROUNDABORT OFF;";
 
         private Tuple<string, bool>[] QuerySessionSettings(IDbCommand originalCommand)
         {
-            Tuple<string,bool>[] sessionSettings = new Tuple<string,bool>[2];
+            Tuple<string, bool>[] sessionSettings = new Tuple<string, bool>[2];
 
             IDbConnection connection = originalCommand.Connection;
             if (IsSqlDwConnection(connection) || IsSqlOnDemandConnection(connection))
@@ -557,7 +558,7 @@ SET NUMERIC_ROUNDABORT OFF;";
                         if (reader.Read())
                         {
                             sessionSettings[0] = Tuple.Create("ANSI_NULLS", ((int)reader[0] == 1));
-                            sessionSettings[1] = Tuple.Create("QUOTED_IDENTIFIER", ((int)reader[1] ==1));
+                            sessionSettings[1] = Tuple.Create("QUOTED_IDENTIFIER", ((int)reader[1] == 1));
                         }
                         else
                         {
@@ -569,11 +570,11 @@ SET NUMERIC_ROUNDABORT OFF;";
             return sessionSettings;
         }
 
-        private void SetSessionSettings(IDbConnection connection, params  Tuple<string, bool>[] settings)
+        private void SetSessionSettings(IDbConnection connection, params Tuple<string, bool>[] settings)
         {
             List<string> setONOptions = new List<string>();
             List<string> setOFFOptions = new List<string>();
-            if(settings != null)
+            if (settings != null)
             {
                 foreach (Tuple<string, bool> setting in settings)
                 {

@@ -41,7 +41,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
         /// End index of the selected rows (inclusive)
         /// </summary>
         public int? RowEndIndex { get; set; }
-        
+
         /// <summary>
         /// Start index of the selected columns (inclusive)
         /// </summary>
@@ -71,7 +71,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
     /// <summary>
     /// Parameters to save results as CSV
     /// </summary>
-    public class SaveResultsAsCsvRequestParams: SaveResultsRequestParams
+    public class SaveResultsAsCsvRequestParams : SaveResultsRequestParams
     {
         /// <summary>
         /// Include headers of columns in CSV
@@ -113,7 +113,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
     /// <summary>
     /// Parameters to save results as JSON
     /// </summary>
-    public class SaveResultsAsJsonRequestParams: SaveResultsRequestParams
+    public class SaveResultsAsJsonRequestParams : SaveResultsRequestParams
     {
         //TODO: define config for save as JSON
     }
@@ -121,19 +121,19 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
     /// <summary>
     /// Parameters to save results as XML
     /// </summary>
-    public class SaveResultsAsXmlRequestParams: SaveResultsRequestParams
+    public class SaveResultsAsXmlRequestParams : SaveResultsRequestParams
     {
         /// <summary>
         /// Formatting of the XML file
         /// </summary>
         public bool Formatted { get; set; }
-        
+
         /// <summary>
         /// Encoding of the XML file
         /// </summary>
         public string Encoding { get; set; }
     }
-    
+
     /// <summary>
     /// Parameters for the save results result
     /// </summary>
@@ -174,7 +174,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
             RequestType<SaveResultsAsJsonRequestParams, SaveResultRequestResult> Type =
             RequestType<SaveResultsAsJsonRequestParams, SaveResultRequestResult>.Create("query/saveJson");
     }
-    
+
     /// <summary>
     /// Request type to save results as XML
     /// </summary>

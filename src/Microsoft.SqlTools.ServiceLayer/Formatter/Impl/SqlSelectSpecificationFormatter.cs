@@ -30,9 +30,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         internal SqlSelectSpecificationFormatter(FormatterVisitor visitor, SqlSelectSpecification codeObject)
             : base(visitor, codeObject, false)
         {
-     
+
         }
-        
+
         internal override void ProcessChild(SqlCodeObject child)
         {
             Validate.IsNotNull(nameof(child), child);
@@ -75,7 +75,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
                 Debug.Assert(forTokenIndex < CodeObject.Position.endTokenNumber, "No FOR token.");
                 #endregion // Find the "FOR" token
 
-                
+
                 #region Process the tokens before the "FOR" token
                 for (int i = previousChild.Position.endTokenNumber; i < forTokenIndex; i++)
                 {
@@ -120,6 +120,6 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
                 base.ProcessInterChildRegion(previousChild, nextChild);
             }
         }
-        
+
     }
 }

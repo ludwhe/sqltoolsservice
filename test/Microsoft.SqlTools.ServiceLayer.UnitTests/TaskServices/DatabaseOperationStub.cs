@@ -78,7 +78,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.TaskServices
                 return new TaskResult
                 {
                     TaskStatus = SqlTaskStatus.Succeeded,
-                    
+
                 };
             });
         }

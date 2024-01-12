@@ -144,12 +144,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common
             string ownerUri = scriptFilePath;
             var connectionService = ConnectionService.Instance;
             var connectionResult = await connectionService.Connect(new ConnectParams()
-                {
-                    OwnerUri = ownerUri,
-                    Connection = connectParams.Connection
-                });
+            {
+                OwnerUri = ownerUri,
+                Connection = connectParams.Connection
+            });
 
-            if(!string.IsNullOrEmpty(connectionResult.ErrorMessage))
+            if (!string.IsNullOrEmpty(connectionResult.ErrorMessage))
             {
                 throw new Exception($"Error creating live connection to {connectParams.Connection.ServerName} (Type={serverType}). Error: {connectionResult.ErrorMessage}");
             }

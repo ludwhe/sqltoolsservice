@@ -5,13 +5,13 @@
 
 #nullable disable
 
+using System;
+using System.Threading;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.ServiceLayer.DisasterRecovery;
 using Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts;
 using Microsoft.SqlTools.ServiceLayer.Management;
 using Microsoft.SqlTools.ServiceLayer.TaskServices;
-using System;
-using Microsoft.Data.SqlClient;
-using System.Threading;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
 {
@@ -26,7 +26,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
         {
             this.BackupSemaphore = new SemaphoreSlim(0, 1);
         }
-        
+
         public string ScriptContent { get; set; }
 
         public string ErrorMessage

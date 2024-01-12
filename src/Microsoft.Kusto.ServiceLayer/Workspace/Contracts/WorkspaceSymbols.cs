@@ -7,7 +7,7 @@ using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.Kusto.ServiceLayer.Workspace.Contracts
 {
-    public enum SymbolKind 
+    public enum SymbolKind
     {
         File = 1,
         Module = 2,
@@ -29,7 +29,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace.Contracts
         Array = 18,
     }
 
-    public class SymbolInformation 
+    public class SymbolInformation
     {
         public string Name { get; set; }
 
@@ -37,7 +37,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace.Contracts
 
         public Location Location { get; set; }
 
-        public string ContainerName { get; set;}
+        public string ContainerName { get; set; }
     }
 
     public class DocumentSymbolRequest
@@ -64,7 +64,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace.Contracts
 
     public class WorkspaceSymbolParams
     {
-        public string Query { get; set;}
+        public string Query { get; set; }
     }
 }
 

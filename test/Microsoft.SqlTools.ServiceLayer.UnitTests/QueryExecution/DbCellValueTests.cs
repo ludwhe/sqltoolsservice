@@ -42,7 +42,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
         public void CopyToValid()
         {
             // If: I copy a DbCellValue to another DbCellValue
-            DbCellValue source = new DbCellValue {DisplayValue = "qqq", IsNull = true, RawObject = 12};
+            DbCellValue source = new DbCellValue { DisplayValue = "qqq", IsNull = true, RawObject = 12 };
             DbCellValue dest = new DbCellValue();
             source.CopyTo(dest);
 

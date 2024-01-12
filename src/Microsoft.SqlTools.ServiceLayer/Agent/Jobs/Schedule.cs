@@ -8,8 +8,8 @@
 using System;
 using System.Data;
 using System.Xml;
-using Microsoft.SqlServer.Management.Smo.Agent;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
+using Microsoft.SqlServer.Management.Smo.Agent;
 using Microsoft.SqlTools.ServiceLayer.Management;
 
 namespace Microsoft.SqlTools.ServiceLayer.Agent
@@ -23,9 +23,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
         private CDataContainer dataContainerContext = null; // must be non-null to display JobsInSchedule
 
-#region Constructors / Dispose
+        #region Constructors / Dispose
 
-        
+
 
         /// <summary>
         /// Constructs a new ScheduleDialog based upon a JobScheduleData object
@@ -50,9 +50,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             base.Dispose(disposing);
         }
 
-#endregion
+        #endregion
 
-#region Public Properties
+        #region Public Properties
         /// <summary>
         /// Underlying JobScheduleData object
         /// </summary>
@@ -90,7 +90,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 return this.ToString();
             }
         }
-#endregion
+        #endregion
 
         private JobScheduleData ExtractScheduleDataFromXml(XmlDocument xmlDoc)
         {
@@ -143,7 +143,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         }
 
 
-#region Events
+        #region Events
         // private void OK_Click(System.Object sender, System.EventArgs e)
         // {
         //     try
@@ -152,7 +152,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         //         {
         //             throw new ApplicationException(SR.ScheduleNameTooLong);
         //         }
-                
+
         //         scheduleData.Name = this.textboxScheduleName.Text;
         //         this.scheduleData.Enabled = this.checkboxEnabled.Checked;
 
@@ -204,7 +204,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         //     }
         // }
 
-#endregion
+        #endregion
 
 
     }

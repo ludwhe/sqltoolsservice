@@ -77,7 +77,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
             var applicationAuthenticationManagerMock = new Mock<IAzureAuthenticationManager>();
             applicationAuthenticationManagerMock.Setup(x => x.GetUserNeedsReauthenticationAsync()).Throws(new ApplicationException());
             var azureResourceManagerMock = new Mock<IAzureResourceManager>();
-            
+
             ServiceTestContext testContext = new ServiceTestContext();
             testContext.ApplicationAuthenticationManagerMock = applicationAuthenticationManagerMock;
             testContext.AzureResourceManagerMock = azureResourceManagerMock;
@@ -120,7 +120,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
             testContext.ApplicationAuthenticationManagerMock = applicationAuthenticationManagerMock;
             testContext.AzureResourceManagerMock = azureResourceManagerMock;
             Assert.ThrowsAsync<FirewallRuleException>(() => VerifyCreateAsync(testContext, "invalid server"));
-            
+
             azureResourceManagerMock.Verify(x => x.CreateFirewallRuleAsync(
                 It.IsAny<IAzureResourceManagementSession>(), It.IsAny<IAzureSqlServerResource>(), It.IsAny<FirewallRuleRequest>()),
                 Times.Never);
@@ -132,7 +132,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
             ServiceTestContext testContext = new ServiceTestContext();
             testContext = CreateMocks(testContext);
             Assert.ThrowsAsync<FirewallRuleException>(() => VerifyCreateAsync(testContext, "invalid server"));
-           
+
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
             ServiceTestContext testContext = new ServiceTestContext();
             testContext = CreateMocks(testContext);
 
-            await VerifyCreateAsync(testContext, testContext.ServerName);           
+            await VerifyCreateAsync(testContext, testContext.ServerName);
         }
 
         [Test]
@@ -157,7 +157,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
 
             testContext = CreateMocks(testContext);
 
-            await VerifyCreateAsync(testContext, testContext.ServerName);            
+            await VerifyCreateAsync(testContext, testContext.ServerName);
         }
 
         [Test]
@@ -172,7 +172,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
             };
             testContext.Initialize();
             testContext = CreateMocks(testContext);
-            await VerifyCreateAsync(testContext, testContext.ServerName);            
+            await VerifyCreateAsync(testContext, testContext.ServerName);
         }
 
         [Test]
@@ -189,7 +189,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
 
             testContext = CreateMocks(testContext);
 
-            await VerifyCreateAsync(testContext, testContext.ServerName);           
+            await VerifyCreateAsync(testContext, testContext.ServerName);
         }
 
         [Test]
@@ -201,11 +201,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
                 ServiceTestContext.CreateAzureSqlServer(Guid.NewGuid().ToString()),
                 ServiceTestContext.CreateAzureSqlServer(testContext.ServerName),
             };
-            testContext.SubscriptionToResourcesMap[testContext.ValidSubscription.Subscription.SubscriptionId] = resources; 
+            testContext.SubscriptionToResourcesMap[testContext.ValidSubscription.Subscription.SubscriptionId] = resources;
 
             testContext = CreateMocks(testContext);
 
-            await VerifyCreateAsync(testContext, testContext.ServerName);           
+            await VerifyCreateAsync(testContext, testContext.ServerName);
         }
 
         [Test]
@@ -221,7 +221,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
 
             testContext = CreateMocks(testContext);
 
-            await VerifyCreateAsync(testContext, testContext.ServerName);           
+            await VerifyCreateAsync(testContext, testContext.ServerName);
         }
 
         [Test]
@@ -261,7 +261,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
         public void CreateThrowExceptionIfResourcesIsEmpty()
         {
             ServiceTestContext testContext = new ServiceTestContext();
-          
+
             testContext.SubscriptionToResourcesMap[testContext.ValidSubscription.Subscription.SubscriptionId] = new List<IAzureSqlServerResource>();
             testContext = CreateMocks(testContext);
 
@@ -292,7 +292,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
 
             testContext = CreateMocks(testContext);
             Assert.ThrowsAsync<FirewallRuleException>(() => VerifyCreateAsync(testContext, testContext.ServerName, false));
-        }       
+        }
 
         [Test]
         public async Task CreateShouldCreateFirewallForTheRightServerFullyQualifiedName()
@@ -305,7 +305,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
             testContext = CreateMocks(testContext);
 
             await VerifyCreateAsync(testContext, testContext.ServerName);
-        }        
+        }
 
         private async Task<FirewallRuleResponse> VerifyCreateAsync(ServiceTestContext testContext, string serverName, bool verifyFirewallRuleCreated = true)
         {
@@ -402,7 +402,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
                 It.Is<FirewallRuleRequest>(
                     y => y.EndIpAddress.ToString().Equals(testContext.EndIpAddress)
                     && y.StartIpAddress.ToString().Equals(testContext.StartIpAddress))))
-            .Returns(Task.FromResult(new FirewallRuleResponse() {Created = true}));
+            .Returns(Task.FromResult(new FirewallRuleResponse() { Created = true }));
         }
     }
 
@@ -493,10 +493,10 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider
             azureSqlServer.Setup(x => x.Name).Returns(GetServerNameWithoutDomain(serverName));
             azureSqlServer.Setup(x => x.FullyQualifiedDomainName).Returns(serverName);
             return azureSqlServer.Object;
-        }       
+        }
 
         internal Dictionary<string, List<IAzureSqlServerResource>> SubscriptionToResourcesMap
-        {            
+        {
             get { return _subscriptionToResourcesMap; }
         }
 

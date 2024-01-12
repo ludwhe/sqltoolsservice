@@ -6,8 +6,8 @@
 #nullable disable
 
 using System.Data.Common;
-using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
 using Microsoft.Data.SqlClient;
+using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
 
 namespace Microsoft.SqlTools.ServiceLayer.Connection
 {

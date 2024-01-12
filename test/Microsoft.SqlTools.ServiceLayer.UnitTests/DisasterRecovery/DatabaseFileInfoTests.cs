@@ -34,7 +34,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
         {
             LocalizedPropertyInfo[] properties = new LocalizedPropertyInfo[] {
                 new LocalizedPropertyInfo
-                { 
+                {
                     PropertyName = "name",
                     PropertyValue = 1
                 },

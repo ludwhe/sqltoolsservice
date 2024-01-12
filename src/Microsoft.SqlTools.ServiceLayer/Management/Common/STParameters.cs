@@ -6,9 +6,9 @@
 #nullable disable
 
 using System;
-using System.Xml;
 using System.Collections;
 using System.Diagnostics;
+using System.Xml;
 
 namespace Microsoft.SqlTools.ServiceLayer.Management
 {

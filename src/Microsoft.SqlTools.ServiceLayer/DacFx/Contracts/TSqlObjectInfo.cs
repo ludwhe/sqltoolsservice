@@ -29,7 +29,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx.Contracts
         public string ObjectType { get; set; }
 
         public string RelationshipType { get; set; }
-        
+
         public string FromObjectName { get; set; }
 
         public string FromObjectType { get; set; }

@@ -12,9 +12,9 @@ namespace Microsoft.SqlTools.Hosting.Protocol
         public string OriginalMessageText { get; private set; }
 
         public MessageParseException(
-            string originalMessageText, 
-            string errorMessage, 
-            params object[] errorMessageArgs) 
+            string originalMessageText,
+            string errorMessage,
+            params object[] errorMessageArgs)
             : base(string.Format(errorMessage, errorMessageArgs))
         {
             this.OriginalMessageText = originalMessageText;

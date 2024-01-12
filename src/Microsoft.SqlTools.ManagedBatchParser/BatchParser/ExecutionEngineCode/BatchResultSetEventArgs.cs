@@ -13,10 +13,10 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
     /// </summary>
     public class BatchResultSetEventArgs : EventArgs
     {
-        
+
         private readonly IDataReader dataReader = null;
         private readonly ShowPlanType expectedShowPlan = ShowPlanType.None;
-        
+
         /// <summary>
         /// Default constructor
         /// </summary>

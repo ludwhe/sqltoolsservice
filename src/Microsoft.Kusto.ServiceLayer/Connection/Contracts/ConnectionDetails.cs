@@ -22,7 +22,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection.Contracts
         /// <summary>
         /// Gets or sets the connection password
         /// </summary>
-        public string Password 
+        public string Password
         {
             get
             {
@@ -432,7 +432,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection.Contracts
             {
                 SetOptionValue("port", value);
             }
-        }        
+        }
 
         /// <summary>
         /// Gets or sets a string value that indicates the type system the application expects.
@@ -469,7 +469,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection.Contracts
         /// <summary>
         /// Gets or sets the group ID
         /// </summary>
-        public string GroupId 
+        public string GroupId
         {
             get
             {
@@ -484,7 +484,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection.Contracts
         /// <summary>
         /// Gets or sets the database display name
         /// </summary>
-        public string DatabaseDisplayName 
+        public string DatabaseDisplayName
         {
             get
             {

@@ -3,15 +3,15 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-using Microsoft.SqlTools.ServiceLayer.QueryExecution.DataStorage;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Moq;
 using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.SqlTools.ServiceLayer.QueryExecution.Contracts;
+using Microsoft.SqlTools.ServiceLayer.QueryExecution.DataStorage;
+using Microsoft.SqlTools.ServiceLayer.Test.Common;
+using Moq;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
@@ -316,7 +316,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
 
                 try
                 {
-                    sheet.WriteColumnInformation(new []{ 1F, 2F, 3F, 4F, 5F, 6F, 7F });
+                    sheet.WriteColumnInformation(new[] { 1F, 2F, 3F, 4F, 5F, 6F, 7F });
 
                     Assert.Fail("Did not throw an exception when calling WriteColumnInformation too late");
                 }

@@ -122,7 +122,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
             foreach (DbColumnWrapper column in columns)
             {
                 colType = column.DataType;
-                
+
                 // Use the right read function for the type to read the data from the file
                 ReadMethod readFunc;
                 if (!readMethods.TryGetValue(colType, out readFunc))

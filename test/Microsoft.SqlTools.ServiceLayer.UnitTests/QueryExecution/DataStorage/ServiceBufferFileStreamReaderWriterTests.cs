@@ -116,8 +116,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
         }
 
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
-        private static string VerifyReadWrite<T>(int valueLength, T value, 
-            Func<ServiceBufferFileStreamWriter, T, int> writeFunc, 
+        private static string VerifyReadWrite<T>(int valueLength, T value,
+            Func<ServiceBufferFileStreamWriter, T, int> writeFunc,
             Func<ServiceBufferFileStreamReader, long, FileStreamReadResult> readFunc,
             QueryExecutionSettings overrideSettings = null)
         {
@@ -125,7 +125,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
             byte[] storage = new byte[8192];
             overrideSettings = overrideSettings ?? new QueryExecutionSettings();
             const long rowId = 100;
-            
+
             // If:
             // ... I write a type T to the writer
             using (var writer = new ServiceBufferFileStreamWriter(new MemoryStream(storage), overrideSettings))
@@ -153,11 +153,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
         }
 
         [Test]
-        
-        
-        
-        
-        
+
+
+
+
+
         public void Int16([Values(
             0,
             10,
@@ -200,7 +200,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
         }
 
         [Test]
-        public void Byte([Values(0,10)] byte value)
+        public void Byte([Values(0, 10)] byte value)
         {
             VerifyReadWrite(sizeof(byte) + 1, value, (writer, val) => writer.WriteByte(val), (reader, rowId) => reader.ReadByte(0, rowId));
         }
@@ -220,7 +220,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
             string displayValue = VerifyReadWrite(sizeof(bool) + 1, value,
                 (writer, val) => writer.WriteBoolean(val),
                 (reader, rowId) => reader.ReadBoolean(0, rowId),
-                new QueryExecutionSettings {DisplayBitAsNumber = preferNumeric}
+                new QueryExecutionSettings { DisplayBitAsNumber = preferNumeric }
             );
 
             // Validate the display value
@@ -236,7 +236,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
             }
         }
 
-        [Test]        
+        [Test]
         public void Single([Values(
             0,
             10.1F,
@@ -296,7 +296,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
 
             foreach (decimal value in testValues)
             {
-                int valueLength = decimal.GetBits(value).Length*4 + 1;
+                int valueLength = decimal.GetBits(value).Length * 4 + 1;
                 VerifyReadWrite(valueLength, value, (writer, val) => writer.WriteDecimal(val), (reader, rowId) => reader.ReadDecimal(0, rowId));
             }
         }
@@ -306,14 +306,14 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
         {
             // Setup: Create some test values
             // NOTE: We are doing these here instead of InlineData because DateTime values can't be written as constant expressions
-            DateTime[] testValues = 
+            DateTime[] testValues =
             {
                 DateTime.Now, DateTime.UtcNow, DateTime.MinValue, DateTime.MaxValue
             };
 
             // Setup: Create a DATE column
-            var col = new DbColumnWrapper(new TestDbColumn {DataTypeName = "DaTe"});
-            
+            var col = new DbColumnWrapper(new TestDbColumn { DataTypeName = "DaTe" });
+
             foreach (DateTime value in testValues)
             {
                 string displayValue = VerifyReadWrite(sizeof(long) + 1, value, (writer, val) => writer.WriteDateTime(val),
@@ -335,7 +335,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
             };
 
             // Setup: Create a DATETIME column
-            var col = new DbColumnWrapper(new TestDbColumn {DataTypeName = "DaTeTiMe"});
+            var col = new DbColumnWrapper(new TestDbColumn { DataTypeName = "DaTeTiMe" });
 
             foreach (DateTime value in testValues)
             {
@@ -348,7 +348,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
         }
 
         [Test]
-        public void DateTime2Test([Values(1,2,3,4,5,6,7)] int precision)
+        public void DateTime2Test([Values(1, 2, 3, 4, 5, 6, 7)] int precision)
         {
             // Setup: Create some test values
             // NOTE: We are doing these here instead of InlineData because DateTime values can't be written as constant expressions
@@ -389,7 +389,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
             };
 
             // Setup: Create a DATETIME2 column
-            var col = new DbColumnWrapper(new TestDbColumn {DataTypeName = "DaTeTiMe2", NumericScale = 0});
+            var col = new DbColumnWrapper(new TestDbColumn { DataTypeName = "DaTeTiMe2", NumericScale = 0 });
 
             foreach (DateTime value in testValues)
             {
@@ -412,7 +412,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
             };
 
             // Setup: Create a DATETIME2 column
-            var col = new DbColumnWrapper(new TestDbColumn {DataTypeName = "DaTeTiMe2", NumericScale = 255});
+            var col = new DbColumnWrapper(new TestDbColumn { DataTypeName = "DaTeTiMe2", NumericScale = 255 });
 
             foreach (DateTime value in testValues)
             {
@@ -440,7 +440,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
 
             foreach (DateTimeOffset value in testValues)
             {
-                string displayValue = VerifyReadWrite(sizeof(long)*2 + 1, value, (writer, val) => writer.WriteDateTimeOffset(val),
+                string displayValue = VerifyReadWrite(sizeof(long) * 2 + 1, value, (writer, val) => writer.WriteDateTimeOffset(val),
                     (reader, rowId) => reader.ReadDateTimeOffset(0, rowId, col));
 
                 // Make sure the display value has a time string with 6 milliseconds and a time zone
@@ -504,8 +504,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
         }
 
         [Test, Sequential]
-        public void StringTest([Values(0,1,1,100,512)] int length, 
-                               [Values(null, 
+        public void StringTest([Values(0, 1, 1, 100, 512)] int length,
+                               [Values(null,
                                        new[] { 'j' },
                                        new[] { (char)0x9152 },
                                        new[] { 'j', (char)0x9152 }, // Test alternating utf-16/ascii characters
@@ -517,11 +517,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
             var sb = new StringBuilder();
             for (int i = 0; i < length; i++)
             {
-                sb.Append(values[i%values.Length]);
+                sb.Append(values[i % values.Length]);
             }
             string value = sb.ToString();
             int lengthLength = length == 0 || length > 255 ? 5 : 1;
-            VerifyReadWrite(sizeof(char)*length + lengthLength, value, (writer, val) => writer.WriteString(value),
+            VerifyReadWrite(sizeof(char) * length + lengthLength, value, (writer, val) => writer.WriteString(value),
                 (reader, rowId) => reader.ReadString(0, rowId));
         }
 
@@ -543,7 +543,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
         }
 
         [Test, Sequential]
-        public void Bytes([Values(0, 1, 1, 100, 512)] int length, 
+        public void Bytes([Values(0, 1, 1, 100, 512)] int length,
                           [Values(new byte[] { 0x00 }, // Test of empty byte[]
                                   new byte[] { 0x00 },
                                   new byte[] { 0xFF },
@@ -561,7 +561,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.DataStorage
             }
             byte[] value = sb.ToArray();
             int lengthLength = length == 0 || length > 255 ? 5 : 1;
-            int valueLength = sizeof(byte)*length + lengthLength;
+            int valueLength = sizeof(byte) * length + lengthLength;
             VerifyReadWrite(valueLength, value, (writer, val) => writer.WriteBytes(value),
                 (reader, rowId) => reader.ReadBytes(0, rowId));
         }

@@ -6,8 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Kusto.Language;
-using Kusto.Language.Editor;
 using Microsoft.Kusto.ServiceLayer.LanguageServices;
 using Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts;
 using Microsoft.Kusto.ServiceLayer.Workspace.Contracts;
@@ -109,7 +107,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Intellisense
                 var insertText = autoCompleteItem.Kind == CompletionKind.Table || autoCompleteItem.Kind == CompletionKind.Database
                     ? KustoQueryUtils.EscapeName(label)
                     : label;
-                
+
                 var completionKind = CreateCompletionItemKind(autoCompleteItem.Kind);
                 completions.Add(AutoCompleteHelper.CreateCompletionItem(label, autoCompleteItem.Kind.ToString(),
                     insertText, completionKind, scriptDocumentInfo.StartLine, scriptDocumentInfo.StartColumn,
@@ -118,7 +116,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Intellisense
 
             return completions.ToArray();
         }
-        
+
         private CompletionItemKind CreateCompletionItemKind(CompletionKind kustoKind)
         {
             switch (kustoKind)

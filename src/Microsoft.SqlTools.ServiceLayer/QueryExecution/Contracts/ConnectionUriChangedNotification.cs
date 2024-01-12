@@ -19,7 +19,7 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution.Contracts
     }
     public class ConnectionUriChangedNotification
     {
-        public static readonly 
+        public static readonly
             EventType<ConnectionUriChangedParams> Type =
             EventType<ConnectionUriChangedParams>.Create("query/connectionUriChanged");
     }

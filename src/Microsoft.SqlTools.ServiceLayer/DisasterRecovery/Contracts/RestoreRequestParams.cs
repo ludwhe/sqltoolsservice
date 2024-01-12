@@ -54,7 +54,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts
             }
         }
 
-        internal DeviceType DeviceType 
+        internal DeviceType DeviceType
         {
             get
             {
@@ -139,7 +139,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts
                 if (selectedBackupSets != null)
                 {
                     JArray array = selectedBackupSets as JArray;
-                    if(array != null)
+                    if (array != null)
                     {
                         return array.ToObject<IEnumerable<string>>();
                     }

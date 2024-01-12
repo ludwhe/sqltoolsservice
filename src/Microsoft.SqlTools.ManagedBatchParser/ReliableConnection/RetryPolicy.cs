@@ -24,11 +24,11 @@
 // namespace Microsoft.SqlServer.Management.Common
 
 using System;
-using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Threading;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.BatchParser.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
@@ -166,7 +166,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         public R ExecuteAction<R>(Func<RetryState, R> func, CancellationToken? token = null)
         {
             RetryState retryState = CreateRetryState();
-            
+
             if (token != null)
             {
                 token.Value.ThrowIfCancellationRequested();
@@ -187,7 +187,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
                     {
                         throw limitExceededEx.InnerException;
                     }
-                    
+
                     return default(R);
                 }
                 catch (Exception ex)
@@ -241,19 +241,19 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         public bool ShouldRetry(RetryState retryState)
         {
             bool canRetry = ErrorDetectionStrategy.CanRetry(retryState.LastError);
-            bool shouldRetry =  canRetry
+            bool shouldRetry = canRetry
                    && ShouldRetryImpl(retryState);
 
             Logger.Error(
                 string.Format(
                     CultureInfo.InvariantCulture,
-                    "Retry requested: Retry count = {0}. Delay = {1}, SQL Error Number = {2}, Can retry error = {3}, Will retry = {4}", 
-                    retryState.RetryCount, 
+                    "Retry requested: Retry count = {0}. Delay = {1}, SQL Error Number = {2}, Can retry error = {3}, Will retry = {4}",
+                    retryState.RetryCount,
                     retryState.Delay,
-                    GetErrorNumber(retryState.LastError), 
-                    canRetry, 
+                    GetErrorNumber(retryState.LastError),
+                    canRetry,
                     shouldRetry));
-           
+
             // Perform an extra check in the delay interval. Should prevent from accidentally ending up with the value of -1 which will block a thread indefinitely. 
             // In addition, any other negative numbers will cause an ArgumentOutOfRangeException fault which will be thrown by Thread.Sleep.
             if (retryState.Delay.TotalMilliseconds < 0)
@@ -273,7 +273,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
                     "Ignore Error requested: Retry count = {0}. Delay = {1}, SQL Error Number = {2}, Should Ignore Error = {3}",
                     retryState.RetryCount,
                     retryState.Delay,
-                    GetErrorNumber(retryState.LastError), 
+                    GetErrorNumber(retryState.LastError),
                     shouldIgnoreError));
 
             return shouldIgnoreError;

@@ -5,22 +5,14 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.Scripting;
-using Microsoft.SqlTools.ServiceLayer.Scripting.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.SqlTools.ServiceLayer.Workspace.Contracts;
-using Moq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
+using Moq;
 using NUnit.Framework;
 using static Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility.LiveConnectionHelper;
-using Microsoft.SqlTools.SqlCore.Scripting.Contracts;
-using Microsoft.SqlTools.SqlCore.Scripting;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Scripting
 {
@@ -317,7 +309,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Scripting
                     };
 
                     string scriptCreateOperation = "ScriptCreate";
-                    if(operation == ScriptingOperationType.Delete)
+                    if (operation == ScriptingOperationType.Delete)
                     {
                         scriptCreateOperation = "ScriptDrop";
                     }

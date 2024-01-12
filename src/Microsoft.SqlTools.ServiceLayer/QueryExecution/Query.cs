@@ -6,22 +6,22 @@
 #nullable disable
 
 using System;
+using System.Collections.Generic;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.ServiceLayer.BatchParser;
+using Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
 using Microsoft.SqlTools.ServiceLayer.QueryExecution.Contracts;
 using Microsoft.SqlTools.ServiceLayer.QueryExecution.DataStorage;
 using Microsoft.SqlTools.ServiceLayer.SqlContext;
-using Microsoft.SqlTools.Utility;
-using Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode;
-using System.Collections.Generic;
 using Microsoft.SqlTools.ServiceLayer.Utility;
-using System.Text;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.QueryExecution
 {
@@ -498,7 +498,8 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution
                     {
                         // Update Server Connection ID here as it may change upon reconnect and only updates upon query execution.
                         var ServerConnID = (sqlConn.GetUnderlyingConnection() as SqlConnection).ServerProcessId;
-                        if (ServerConnID != 0) {
+                        if (ServerConnID != 0)
+                        {
                             // If 0, that would mean the connection is inactive, so there's no 
                             // need to return the connection id.
                             ServerConnectionId = ServerConnID.ToString();
@@ -525,7 +526,8 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution
                     {
                         // Update Server Connection ID here as it may change upon reconnect and only updates upon query execution.
                         var ServerConnID = (sqlConn.GetUnderlyingConnection() as SqlConnection).ServerProcessId;
-                        if (ServerConnID != 0) {
+                        if (ServerConnID != 0)
+                        {
                             // If 0, that would mean the connection is inactive, so there's no 
                             // need to return the connection id.
                             ServerConnectionId = ServerConnID.ToString();

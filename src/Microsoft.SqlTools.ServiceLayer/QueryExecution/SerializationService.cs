@@ -46,7 +46,8 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution
             RequestContext<SerializeDataResult> requestContext)
         {
             // Run in separate thread so that message thread isn't held up by a potentially time consuming file write
-            Task.Run(async () => {
+            Task.Run(async () =>
+            {
                 await RunSerializeStartRequest(serializeParams, requestContext);
             }).ContinueWithOnFaulted(async t => await SendErrorAndCleanup(serializeParams?.FilePath, requestContext, t.Exception));
             return Task.CompletedTask;

@@ -5,14 +5,14 @@
 
 using System;
 using System.Globalization;
+using System.IO;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlTools.SqlCore.ObjectExplorer.Nodes;
-using Microsoft.SqlTools.Utility;
 using Microsoft.SqlTools.Extensibility;
-using Microsoft.SqlTools.SqlCore.Utility;
-using System.IO;
 using Microsoft.SqlTools.SqlCore.Connection;
+using Microsoft.SqlTools.SqlCore.ObjectExplorer.Nodes;
+using Microsoft.SqlTools.SqlCore.Utility;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 {
@@ -112,12 +112,12 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
             return label;
         }
 
-       
+
 
         private SmoQueryContext CreateContext(IMultiServiceProvider serviceProvider, Func<bool> groupBySchemaFlag = null, SecurityToken token = null)
         {
             string exceptionMessage;
-   
+
             try
             {
                 Server server = SmoWrapper.CreateServer(this.serverConnection);

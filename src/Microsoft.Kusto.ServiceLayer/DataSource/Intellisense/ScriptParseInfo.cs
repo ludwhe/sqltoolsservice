@@ -4,8 +4,6 @@
 //
 
 using System.Collections.Generic;
-using Kusto.Language;
-using Kusto.Language.Editor;
 
 namespace Microsoft.Kusto.ServiceLayer.DataSource.Intellisense
 {
@@ -20,7 +18,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Intellisense
         /// Event which tells if MetadataProvider is built fully or not
         /// </summary>
         public object BuildingMetadataLock
-        { 
+        {
             get { return this.buildingMetadataLock; }
         }
 
@@ -38,11 +36,11 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Intellisense
         /// Gets or sets the previous Kusto diagnostics result. TODOKusto: Check exact usage.
         /// </summary>
         public IReadOnlyList<Diagnostic> ParseResult { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the current autocomplete suggestion list retrieved from the Kusto language library.
         /// So that other details like documentation can be later retrieved in ResolveCompletionItem.
         /// </summary>
-        public IEnumerable<CompletionItem > CurrentSuggestions { get; set; }
+        public IEnumerable<CompletionItem> CurrentSuggestions { get; set; }
     }
 }

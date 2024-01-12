@@ -6,7 +6,7 @@
 namespace Microsoft.SqlTools.Utility
 {
     public static class TextUtilities
-    {   
+    {
         /// <summary>
         /// Find the position of the cursor in the SQL script content buffer and return previous new line position
         /// </summary>
@@ -15,7 +15,7 @@ namespace Microsoft.SqlTools.Utility
         /// <param name="startColumn">parameter is 0-based</param>
         /// <param name="prevNewLine">parameter is 0-based</param>
         public static int PositionOfCursor(string sql, int startRow, int startColumn, out int prevNewLine)
-        {            
+        {
             prevNewLine = 0;
             if (string.IsNullOrWhiteSpace(sql))
             {
@@ -43,7 +43,7 @@ namespace Microsoft.SqlTools.Utility
         /// <param name="startColumn">parameter is 0-based</param>
         /// <param name="tokenText"></param>
         public static int PositionOfPrevDelimeter(string sql, int startRow, int startColumn)
-        {            
+        {
             int prevNewLine;
             int delimeterPos = PositionOfCursor(sql, startRow, startColumn, out prevNewLine);
 
@@ -70,17 +70,17 @@ namespace Microsoft.SqlTools.Utility
         /// <param name="startRow">parameter is 0-based</param>
         /// <param name="startColumn">parameter is 0-based</param>
         public static int PositionOfNextDelimeter(string sql, int startRow, int startColumn)
-        {            
+        {
             int prevNewLine;
             int delimeterPos = PositionOfCursor(sql, startRow, startColumn, out prevNewLine);
-           
+
             while (delimeterPos < sql.Length)
             {
                 if (IsCharacterDelimeter(sql[delimeterPos]))
                 {
                     break;
                 }
-                ++delimeterPos;              
+                ++delimeterPos;
             }
 
             return delimeterPos - prevNewLine;
@@ -92,7 +92,7 @@ namespace Microsoft.SqlTools.Utility
         /// <param name="ch"></param>
         private static bool IsCharacterDelimeter(char ch)
         {
-            return ch == ' ' 
+            return ch == ' '
                 || ch == '\t'
                 || ch == '\n'
                 || ch == '.'
@@ -117,7 +117,7 @@ namespace Microsoft.SqlTools.Utility
         /// <returns> string with outer brackets removed</returns>
         public static string RemoveSquareBracketSyntax(string tokenText)
         {
-            if(tokenText.StartsWith("[") && tokenText.EndsWith("]"))
+            if (tokenText.StartsWith("[") && tokenText.EndsWith("]"))
             {
                 return tokenText.Substring(1, tokenText.Length - 2);
             }

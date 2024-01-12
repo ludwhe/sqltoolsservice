@@ -72,10 +72,10 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             return Match(
                 includeCriteria == null ? new ScriptingObject[0] : new[] { includeCriteria },
                 excludeCriteria == null ? new ScriptingObject[0] : new[] { excludeCriteria },
-                includeSchemas == null ? new List<string>(): new List<string> { includeSchemas },
-                excludeSchemas == null ? new List<string>(): new List<string> { excludeSchemas },
-                includeTypes == null ? new List<string>(): new List<string> { includeTypes },
-                excludeTypes == null ? new List<string>(): new List<string> { excludeTypes },
+                includeSchemas == null ? new List<string>() : new List<string> { includeSchemas },
+                excludeSchemas == null ? new List<string>() : new List<string> { excludeSchemas },
+                includeTypes == null ? new List<string>() : new List<string> { includeTypes },
+                excludeTypes == null ? new List<string>() : new List<string> { excludeTypes },
                 candidates);
         }
 
@@ -101,7 +101,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             IEnumerable<ScriptingObject> candidates)
         {
             Validate.IsNotNull("candidates", candidates);
-            
+
             IEnumerable<ScriptingObject> matchedObjects = new List<ScriptingObject>();
 
             if (includeCriteria != null && includeCriteria.Any())
@@ -133,7 +133,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             return matchedObjects;
         }
 
-        private static IEnumerable<ScriptingObject> ExcludeSchemaAndOrType(IEnumerable<string> excludeSchemas, IEnumerable<string> excludeTypes, 
+        private static IEnumerable<ScriptingObject> ExcludeSchemaAndOrType(IEnumerable<string> excludeSchemas, IEnumerable<string> excludeTypes,
             IEnumerable<ScriptingObject> candidates)
         {
             // Given a list of candidates, we remove any objects that match the excluded schema and/or type.
@@ -141,7 +141,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             IEnumerable<ScriptingObject> matches = null;
 
             if (excludeSchemas != null && excludeSchemas.Any())
-            {            
+            {
                 foreach (string exclude_schema in excludeSchemas)
                 {
                     matches = MatchCriteria(exclude_schema, (candidate) => { return candidate.Schema; }, candidates);
@@ -154,14 +154,14 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
                 foreach (string exclude_type in excludeTypes)
                 {
                     matches = remainingObjects.Where(o => string.Equals(exclude_type, o.Type, StringComparison.OrdinalIgnoreCase));
-                    remainingObjects = remainingObjects.Except(matches);           
+                    remainingObjects = remainingObjects.Except(matches);
                 }
             }
 
             return remainingObjects;
         }
 
-        private static IEnumerable<ScriptingObject> IncludeSchemaAndOrType(IEnumerable<string> includeSchemas, IEnumerable<string> includeTypes, 
+        private static IEnumerable<ScriptingObject> IncludeSchemaAndOrType(IEnumerable<string> includeSchemas, IEnumerable<string> includeTypes,
             IEnumerable<ScriptingObject> candidates)
         {
             // Given a list of candidates, we return a new list of scripting objects that match
@@ -172,7 +172,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             IEnumerable<ScriptingObject> matches = null;
 
             if (includeSchemas != null && includeSchemas.Any())
-            {            
+            {
                 foreach (string include_schema in includeSchemas)
                 {
                     matches = MatchCriteria(include_schema, (candidate) => { return candidate.Schema; }, candidates);
@@ -229,8 +229,8 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
                 if (property.EndsWith(Wildcard, StringComparison.OrdinalIgnoreCase))
                 {
                     matchedObjects = candidates.Where(
-                        o => 
-                            propertySelector(o) != null && 
+                        o =>
+                            propertySelector(o) != null &&
                             propertySelector(o).StartsWith(
                                 propertySelector(o).Substring(0, propertySelector(o).Length - 1),
                                 StringComparison.OrdinalIgnoreCase));

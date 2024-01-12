@@ -12,7 +12,7 @@ namespace Microsoft.SqlTools.Credentials
         private static partial class Libraries
         {
             internal const string CoreFoundationLibrary = "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation";
-            internal const string CoreServicesLibrary   = "/System/Library/Frameworks/CoreServices.framework/CoreServices";
+            internal const string CoreServicesLibrary = "/System/Library/Frameworks/CoreServices.framework/CoreServices";
             internal const string SecurityLibrary = "/System/Library/Frameworks/Security.framework/Security";
         }
     }

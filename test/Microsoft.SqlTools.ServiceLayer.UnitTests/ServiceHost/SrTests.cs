@@ -41,7 +41,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ServiceHost
             Assert.AreEqual("prueba", TestLocalizationConstant);
 
             // Reset the locale
-            SrStringsTestWithEnLocalization(); 
+            SrStringsTestWithEnLocalization();
         }
 
         [Test]

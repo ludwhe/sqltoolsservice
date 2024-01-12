@@ -9,10 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.ObjectManagement;
-using Microsoft.SqlTools.ServiceLayer.ObjectManagement.Contracts;
 using Moq;
 using Newtonsoft.Json.Linq;
 using DatabaseFile = Microsoft.SqlTools.ServiceLayer.ObjectManagement.DatabaseFile;
@@ -149,7 +146,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ObjectManagement
             return fgs;
         }
 
-            internal static UserInfo GetTestUserInfo(DatabaseUserType userType, string userName = null, string loginName = null)
+        internal static UserInfo GetTestUserInfo(DatabaseUserType userType, string userName = null, string loginName = null)
         {
             return new UserInfo()
             {

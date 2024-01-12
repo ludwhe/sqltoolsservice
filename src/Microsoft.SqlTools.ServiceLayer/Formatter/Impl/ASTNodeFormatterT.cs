@@ -30,7 +30,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             Visitor = visitor;
             CodeObject = codeObject;
         }
-        
+
         protected TokenManager TokenManager
         {
             get { return Visitor.Context.Script.TokenManager; }
@@ -73,7 +73,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         }
 
 
-        protected void ProcessAndNormalizeTokenRange(int startindex, int endIndex, 
+        protected void ProcessAndNormalizeTokenRange(int startindex, int endIndex,
             NormalizeWhitespace normalizer, bool areAllTokensWhitespace)
         {
             for (int i = startindex; i < endIndex; i++)
@@ -186,7 +186,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             {
                 ProcessEndOfLine(currentToken, t);
             }
-            else 
+            else
             {
                 ProcessTokenRange(currentToken, currentToken + 1);
             }
@@ -283,7 +283,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         {
             return HasToken(currentToken - 1);
         }
-        
+
         protected bool HasToken(int tokenIndex)
         {
             return tokenIndex >= 0 && tokenIndex < TokenManager.TokenList.Count;
@@ -308,7 +308,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         {
             return Visitor.Context.GetIndentString();
         }
-        
+
         /// <summary>
         /// Finds an expected token 
         /// </summary>
@@ -326,7 +326,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             Debug.Assert(currentIndex < CodeObject.Position.endTokenNumber, "No token with ID" + id + " found in the columns definition.");
             return currentIndex;
         }
-        
+
         internal delegate string NormalizeWhitespace(string original, FormatContext context);
     }
 }

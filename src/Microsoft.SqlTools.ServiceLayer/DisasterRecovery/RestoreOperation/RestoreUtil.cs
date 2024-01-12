@@ -8,9 +8,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.Smo;
-using System.Globalization;
 
 namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
 {
@@ -66,11 +66,11 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
             {
                 dt = Convert.ToDateTime(dataset.Tables[0].Rows[0][0], CultureInfo.CurrentCulture);
             }
-            
+
             return dt;
         }
 
-       
+
         /// <summary>
         /// Queries msdb for source database names
         /// </summary>
@@ -136,7 +136,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                 Restore res = new Restore();
                 res.CredentialName = credential;
                 res.Devices.Add(bkdev);
-                
+
                 DataTable dt = res.ReadBackupHeader(this.server);
                 if (dt != null)
                 {
@@ -405,7 +405,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
             // If any of the backup media in the restore object is in URL, we assign the credential name to the CredentialName property of the Restore object
             foreach (Restore res in restorePlan.RestoreOperations)
             {
-                
+
                 if (res.BackupSet != null && res.BackupSet.BackupMediaSet != null && res.BackupSet.BackupMediaSet.BackupMediaList != null)
                 {
                     foreach (BackupMedia bkMedia in res.BackupSet.BackupMediaSet.BackupMediaList)
@@ -417,7 +417,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                         }
                     }
                 }
-                
+
                 if (res.Devices != null)
                 {
                     foreach (BackupDeviceItem bkDevice in res.Devices)

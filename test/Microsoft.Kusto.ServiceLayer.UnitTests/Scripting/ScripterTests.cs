@@ -23,7 +23,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.Scripting
             var urn = new Urn(@"Server[@Name = 'SERVER']/Database[@Name = 'quoted''db']/Table[@Name = 'quoted''Name' and @Schema = 'quoted''Schema']");
             var scripter = new Scripter();
             var result = scripter.SelectFromTableOrView(mockDataSource.Object, urn);
-            
+
             Assert.AreEqual("[@\"quoted'Name\"]\n | take 10", result);
         }
 
@@ -33,14 +33,14 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.Scripting
             var expected = "AlterScript";
             var mockDataSource = new Mock<IDataSource>();
             mockDataSource.Setup(x => x.GenerateAlterFunctionScript(It.IsAny<string>())).Returns(expected);
-            
+
             var scriptingObject = new ScriptingObject
             {
                 Name = "Name(a:int, b: int)"
             };
             var scripter = new Scripter();
             var result = scripter.AlterFunction(mockDataSource.Object, scriptingObject);
-            
+
             Assert.AreEqual(expected, result);
         }
 
@@ -50,14 +50,14 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.Scripting
             var expected = "ExecuteScript";
             var mockDataSource = new Mock<IDataSource>();
             mockDataSource.Setup(x => x.GenerateExecuteFunctionScript(It.IsAny<string>())).Returns(expected);
-            
+
             var scriptingObject = new ScriptingObject
             {
                 Name = "Name(a:int, b: int)"
             };
             var scripter = new Scripter();
             var result = scripter.ExecuteFunction(mockDataSource.Object, scriptingObject);
-            
+
             Assert.AreEqual(expected, result);
         }
     }

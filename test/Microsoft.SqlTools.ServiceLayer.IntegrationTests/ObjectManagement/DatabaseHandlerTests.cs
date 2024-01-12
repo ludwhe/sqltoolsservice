@@ -13,14 +13,8 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlTools.ServiceLayer.Admin;
-using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.ObjectManagement;
-using Microsoft.SqlTools.ServiceLayer.ObjectManagement.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using NUnit.Framework;
-using static Microsoft.SqlTools.ServiceLayer.Admin.AzureSqlDbHelper;
 using DatabaseFile = Microsoft.SqlTools.ServiceLayer.ObjectManagement.DatabaseFile;
 using FileGroup = Microsoft.SqlServer.Management.Smo.FileGroup;
 
@@ -426,7 +420,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ObjectManagement
                     file = ((DatabaseInfo)updatedDatabaseViewInfo.ObjectInfo).Files.FirstOrDefault(x => x.Name == testDatabaseFiles[0].Name);
                     Assert.That(file, Is.Not.Null, $"New file should be created");
                     Assert.That(file, Is.Not.EqualTo(0), $"Newly created file should have an Id");
-                    
+
                     // Deleting newly created file
                     List<DatabaseFile> newfiles = ((DatabaseInfo)updatedDatabaseViewInfo.ObjectInfo).Files.ToList();
                     var fileIndexTobeRemoved = newfiles.FindIndex(x => x.Name == testDatabaseFiles[0].Name);
@@ -694,7 +688,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ObjectManagement
                             dbExists = this.DatabaseExists(testDb.DatabaseName, server);
                             Assert.That(dbExists, Is.False, "Should not have attached DB when only generating a script.");
 
-                            var queryBuilder = new StringBuilder(); 
+                            var queryBuilder = new StringBuilder();
                             queryBuilder.AppendLine("USE [master]");
                             queryBuilder.AppendLine($"CREATE DATABASE [{testDb.DatabaseName}] ON ");
 

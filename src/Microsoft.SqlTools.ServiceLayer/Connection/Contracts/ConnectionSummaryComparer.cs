@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Microsoft.SqlTools.ServiceLayer.Connection.Contracts
 {
-    
+
     /// <summary>
     /// Treats connections as the same if their server, db and usernames all match
     /// </summary>
@@ -18,10 +18,10 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.Contracts
     {
         public bool Equals(ConnectionSummary x, ConnectionSummary y)
         {
-            if(x == y) { return true; }
-            else if(x != null)
+            if (x == y) { return true; }
+            else if (x != null)
             {
-                if(y == null) { return false; }
+                if (y == null) { return false; }
 
                 // Compare server, db, username. Note: server is case-insensitive in the driver
                 return string.Compare(x.ServerName, y.ServerName, StringComparison.OrdinalIgnoreCase) == 0
@@ -34,9 +34,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.Contracts
         public int GetHashCode(ConnectionSummary obj)
         {
             int hashcode = 31;
-            if(obj != null)
+            if (obj != null)
             {
-                if(obj.ServerName != null)
+                if (obj.ServerName != null)
                 {
                     hashcode ^= obj.ServerName.GetHashCode();
                 }

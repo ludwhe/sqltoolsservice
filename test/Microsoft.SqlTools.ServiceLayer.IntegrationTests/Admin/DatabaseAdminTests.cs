@@ -5,14 +5,10 @@
 
 #nullable disable
 
+using System;
 using System.Threading.Tasks;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.Workspace.Contracts;
 using Moq;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.Admin.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Admin;
-using System;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.AdminServices
@@ -57,7 +53,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.AdminServices
                 OwnerUri = result.ConnectionInfo.OwnerUri,
                 DatabaseInfo = databaseInfo
             };
-        
+
             await AdminService.HandleCreateDatabaseRequest(dbParams, requestContext.Object);
 
             requestContext.VerifyAll();
@@ -99,7 +95,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.AdminServices
             };
 
             await AdminService.HandleGetDatabaseInfoRequest(dbParams, requestContext.Object);
-            
+
             requestContext.VerifyAll();
         }
 

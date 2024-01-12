@@ -16,14 +16,14 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
         private readonly string message = string.Empty;
         private readonly string detailedMessage = string.Empty;
         private readonly SqlError error;
-                
+
         private BatchMessageEventArgs()
         {
         }
 
         internal BatchMessageEventArgs(string msg)
             : this(string.Empty, msg)
-        {            
+        {
         }
 
         internal BatchMessageEventArgs(string detailedMsg, string msg) : this(detailedMsg, msg, null)

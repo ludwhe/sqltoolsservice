@@ -7,8 +7,8 @@
 
 using System.IO;
 using System.Reflection;
-using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Extensibility;
+using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.ServiceLayer.Formatter;
 using Microsoft.SqlTools.ServiceLayer.LanguageServices;
 using Microsoft.SqlTools.ServiceLayer.SqlContext;
@@ -65,7 +65,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         {
             return new FileInfo(Path.Combine(BaselineDirectory.FullName, fileName));
         }
-        
+
         public DirectoryInfo BaselineDirectory
         {
             get

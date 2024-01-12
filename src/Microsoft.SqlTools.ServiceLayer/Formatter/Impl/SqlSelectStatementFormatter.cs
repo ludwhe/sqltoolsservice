@@ -22,11 +22,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
 
     class SqlSelectStatementFormatter : NewLineSeparatedListFormatter
     {
-        
+
         internal SqlSelectStatementFormatter(FormatterVisitor visitor, SqlSelectStatement codeObject)
             : base(visitor, codeObject, false)
         {
-            
+
         }
 
     }

@@ -36,11 +36,14 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             PlaceEachReferenceOnNewLineInQueryStatements = false;
         }
 
-        public int SpacesPerIndent 
-        { 
+        public int SpacesPerIndent
+        {
             get { return spacesPerIndent; }
-            set { spacesPerIndent = value; 
-                RaisePropertyChanged("SpacesPerIndent"); }
+            set
+            {
+                spacesPerIndent = value;
+                RaisePropertyChanged("SpacesPerIndent");
+            }
         }
 
         public bool UseTabs
@@ -114,7 +117,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         {
             get { return KeywordCasing == CasingOptions.None; }
         }
-        
+
         public CasingOptions DatatypeCasing
         {
             get { return datatypeCasing; }
@@ -137,7 +140,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         {
             get { return DatatypeCasing == CasingOptions.None; }
         }
-        
+
         public bool AlignColumnDefinitionsInColumns
         {
             get { return alignColumnDefinitionsInColumns; }
@@ -147,7 +150,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
                 RaisePropertyChanged("AlignColumnDefinitionsInColumns");
             }
         }
-        
+
         private void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

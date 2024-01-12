@@ -22,8 +22,8 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution.Contracts.ExecuteReques
 
     public class ExecuteStringRequest
     {
-        public static readonly 
-            RequestType<ExecuteStringParams, ExecuteRequestResult> Type = 
+        public static readonly
+            RequestType<ExecuteStringParams, ExecuteRequestResult> Type =
             RequestType<ExecuteStringParams, ExecuteRequestResult>.Create("query/executeString");
     }
 }

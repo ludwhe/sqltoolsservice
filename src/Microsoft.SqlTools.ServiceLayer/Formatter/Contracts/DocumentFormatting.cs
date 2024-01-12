@@ -52,7 +52,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter.Contracts
         /// The document to format.
         /// </summary>
         public TextDocumentIdentifier TextDocument { get; set; }
-        
+
         /// <summary>
         /// The formatting options
         /// </summary>
@@ -66,12 +66,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter.Contracts
     /// </summary>
     public class DocumentRangeFormattingParams : DocumentFormattingParams
     {
-        
+
         /// <summary>
         /// The range to format
         /// </summary>
         public Range Range { get; set; }
-        
+
     }
 
     /// <summary>
@@ -110,6 +110,6 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter.Contracts
         // TODO there may be other options passed by VSCode - format is 
         // [key: string]: boolean | number | string;
         // Determine how these might be passed and add them here
-}
+    }
 
 }

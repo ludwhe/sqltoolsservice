@@ -15,7 +15,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts
         /// <summary>
         /// URI identifying the file that should have its IntelliSense cache rebuilt    
         /// </summary>
-        public string OwnerUri { get; set;  }        
+        public string OwnerUri { get; set; }
     }
 
     /// <summary>
@@ -23,7 +23,7 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts
     /// </summary>
     public class RebuildIntelliSenseNotification
     {
-        public static readonly 
+        public static readonly
             EventType<RebuildIntelliSenseParams> Type =
             EventType<RebuildIntelliSenseParams>.Create("textDocument/rebuildIntelliSense");
     }

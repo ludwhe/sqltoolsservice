@@ -11,7 +11,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
     {
         private RunType runType;
         private string script;
-        private PreProcessExecutionInfo() {}
+        private PreProcessExecutionInfo() { }
 
         internal PreProcessExecutionInfo(RunType runType)
         {
@@ -39,14 +39,14 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
             }
         }
     }
-    
-    
+
+
     /// <summary>
-	/// IExecutionAwareSqlControlCollection allows control's container to do pre and post
-	/// processing of the execution commands
-	/// </summary>
-	public interface IExecutionAwareManagementAction : ISqlControlCollection, IManagementAction
-	{
+    /// IExecutionAwareSqlControlCollection allows control's container to do pre and post
+    /// processing of the execution commands
+    /// </summary>
+    public interface IExecutionAwareManagementAction : ISqlControlCollection, IManagementAction
+    {
         /// <summary>
         /// called before dialog's host executes actions on all panels in the dialog one by one.
         /// If something fails inside this function and the execution should be aborted,
@@ -82,5 +82,5 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// <param name="executionMode">result of the execution</param>
         /// <param name="runType">type of execution</param>
         void PostProcessExecution(RunType runType, ExecutionMode executionMode);
-	}
+    }
 }

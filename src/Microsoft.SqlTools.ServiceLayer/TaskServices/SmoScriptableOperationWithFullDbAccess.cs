@@ -5,10 +5,10 @@
 
 #nullable disable
 
+using System;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.Utility;
-using System;
 
 namespace Microsoft.SqlTools.ServiceLayer.TaskServices
 {
@@ -84,7 +84,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices
             {
                 result = LockedDatabaseManager.GainFullAccessToDatabase(ServerName, DatabaseName);
             }
-            if(result && SourceDatabas != null &&  string.Compare(DatabaseName , SourceDatabas, StringComparison.InvariantCultureIgnoreCase) != 0)
+            if (result && SourceDatabas != null && string.Compare(DatabaseName, SourceDatabas, StringComparison.InvariantCultureIgnoreCase) != 0)
             {
                 result = LockedDatabaseManager.GainFullAccessToDatabase(ServerName, SourceDatabas);
             }

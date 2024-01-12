@@ -5,12 +5,12 @@
 
 #nullable disable
 
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.SqlTools.ServiceLayer.AzureFunctions.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.SqlTools.ServiceLayer.AzureFunctions.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.AzureFunctions
 {

@@ -8,9 +8,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.LanguageServices.Completion;
 using Microsoft.SqlTools.ServiceLayer.LanguageServices.Completion.Extension;
@@ -64,7 +64,7 @@ namespace Microsoft.SqlTools.Test.CompletionExtension
 
             var sortedItems = completions.OrderBy(item => item.SortText);
             sortedItems.First().Preselect = true;
-            foreach(var item in sortedItems)
+            foreach (var item in sortedItems)
             {
                 item.Command = new Command
                 {

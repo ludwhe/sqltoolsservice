@@ -27,7 +27,7 @@ namespace Microsoft.SqlTools.Credentials
         protected override bool ReleaseHandle()
         {
             Interop.CoreFoundation.CFRelease(handle);
-            
+
             return true;
         }
 

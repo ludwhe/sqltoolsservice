@@ -113,7 +113,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Messaging
                 inputStream.Flush();
                 inputStream.Seek(0, SeekOrigin.Begin);
 
-                Assert.ThrowsAsync<MessageParseException>(messageReader.ReadMessage, "An exception should be thrown while reading") ;
+                Assert.ThrowsAsync<MessageParseException>(messageReader.ReadMessage, "An exception should be thrown while reading");
             }
         }
 
@@ -199,7 +199,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Messaging
             byte[] messageBuffer = this.GetMessageBytes(
                 string.Format(
                     Common.TestEventFormatString,
-                    new String('X', (int) (MessageReader.DefaultBufferSize*3))));
+                    new String('X', (int)(MessageReader.DefaultBufferSize * 3))));
 
             inputStream.Write(messageBuffer, 0, messageBuffer.Length);
             inputStream.Flush();
@@ -219,7 +219,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Messaging
                 new MessageReader(
                     inputStream,
                     this.messageSerializer);
-            
+
             string dateString = "2018-04-27T18:33:55.870Z";
 
             // Get a message with content that is a date as a string

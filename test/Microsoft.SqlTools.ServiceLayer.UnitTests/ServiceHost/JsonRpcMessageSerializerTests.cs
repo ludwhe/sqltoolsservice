@@ -47,8 +47,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ServiceHost
             var messageObj =
                 this.messageSerializer.SerializeMessage(
                     HostingMessage.Request(
-                        MessageId, 
-                        MethodName, 
+                        MessageId,
+                        MethodName,
                         MessageContent));
 
             AssertMessageFields(
@@ -64,7 +64,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ServiceHost
             var messageObj =
                 this.messageSerializer.SerializeMessage(
                     HostingMessage.Event(
-                        MethodName, 
+                        MethodName,
                         MessageContent));
 
             AssertMessageFields(
@@ -106,11 +106,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ServiceHost
         }
 
         private static void AssertMessageFields(
-            JObject messageObj, 
+            JObject messageObj,
             bool checkId = false,
             bool checkMethod = false,
             bool checkParams = false,
-            bool checkResult = false, 
+            bool checkResult = false,
             bool checkError = false)
         {
             JToken token = null;

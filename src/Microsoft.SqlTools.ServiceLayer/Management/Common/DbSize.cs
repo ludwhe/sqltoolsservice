@@ -43,7 +43,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
             this.size = copy.Size;
             this.sizeUnit = copy.SizeUnit;
         }
-        
+
         /// <summary>
         /// Size of the DB
         /// </summary>
@@ -77,11 +77,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
                 switch (SizeUnit)
                 {
                     case SizeUnits.MB:
-                        return sizeBase*1024.0*1024.0;
+                        return sizeBase * 1024.0 * 1024.0;
                     case SizeUnits.GB:
-                        return sizeBase*1024.0*1024.0*1024.0;
+                        return sizeBase * 1024.0 * 1024.0 * 1024.0;
                     case SizeUnits.TB:
-                        return sizeBase*1024.0*1024.0*1024.0*1024.0;
+                        return sizeBase * 1024.0 * 1024.0 * 1024.0 * 1024.0;
                 }
                 throw new InvalidOperationException(SR.UnknownSizeUnit(SizeUnit.ToString()));
             }
@@ -131,7 +131,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
             if (int.TryParse(dbSizeString.Substring(0, dbSizeString.Length - 2), out size))
             {
                 //Get the unit portion (last two characters)
-                string unitPortion = dbSizeString.Substring(dbSizeString.Length - 2 );
+                string unitPortion = dbSizeString.Substring(dbSizeString.Length - 2);
                 SizeUnits unit;
                 if (Enum.TryParse(unitPortion, true, out unit))
                 {
@@ -150,12 +150,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
 
         public static bool operator ==(DbSize x, DbSize y)
         {
-            if(ReferenceEquals(x, y))
+            if (ReferenceEquals(x, y))
             { //Both null or both same instance, are equal
                 return true;
             }
 
-            if((object)x == null || (object)y == null)
+            if ((object)x == null || (object)y == null)
             { //Only one null, never equal (cast to object to avoid infinite loop of ==)
                 return false;
             }

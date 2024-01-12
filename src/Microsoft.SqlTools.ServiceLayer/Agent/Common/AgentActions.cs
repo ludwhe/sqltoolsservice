@@ -10,8 +10,8 @@ using System.Collections.Specialized;
 using System.Data;
 using System.Threading;
 using System.Xml;
-using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.Smo.Agent;
 using Microsoft.SqlTools.ServiceLayer.Management;
 
@@ -34,7 +34,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        protected Microsoft.SqlServer.Management.Smo.Server smoServer = null;        
+        protected Microsoft.SqlServer.Management.Smo.Server smoServer = null;
         protected IManagedConnection managedConnection;
         protected Urn[] urnParameters;
         protected STParameters param = null;
@@ -70,14 +70,14 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             }
 
             // get the managed connection
-            managedConnection = source.GetService(typeof (IManagedConnection)) as IManagedConnection;
+            managedConnection = source.GetService(typeof(IManagedConnection)) as IManagedConnection;
 
             // get the connection
             SqlOlapConnectionInfoBase ci = managedConnection.Connection;
             // get the server connection
             ServerConnection serverConnection =
-                ((SqlConnectionInfoWithConnection) managedConnection.Connection).ServerConnection;
-                
+                ((SqlConnectionInfoWithConnection)managedConnection.Connection).ServerConnection;
+
             smoServer = new Microsoft.SqlServer.Management.Smo.Server(serverConnection);
 
             // get the list or urn's that have been passed in
@@ -130,7 +130,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                     this.managedConnection = null;
                 }
                 catch (Exception)
-                {                   
+                {
                 }
             }
         }
@@ -251,7 +251,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     {
         public DisableAgentAlerts(XmlDocument document, IServiceProvider source)
             : base(document, source)
-        {         
+        {
         }
 
         protected override void GenerateActions()
@@ -617,9 +617,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             // SMO step object but this is too inefficient as it generates a batch 
             // per step.
             Request request = new Request();
-            request.Fields = new string[] {"Name", "ID", "SubSystem"};
+            request.Fields = new string[] { "Name", "ID", "SubSystem" };
             request.Urn = job.Urn + "/Step";
-            request.OrderByList = new OrderBy[] {new OrderBy("ID", OrderBy.Direction.Asc)};
+            request.OrderByList = new OrderBy[] { new OrderBy("ID", OrderBy.Direction.Asc) };
 
             Enumerator en = new Enumerator();
             return en.Process(job.Parent.Parent.ConnectionContext, request);
@@ -839,9 +839,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 // per step.
                 Request request = new Request();
 
-                request.Fields = new string[] {"Name", "ID", "SubSystem"};
+                request.Fields = new string[] { "Name", "ID", "SubSystem" };
                 request.Urn = this.job.Urn + "/Step";
-                request.OrderByList = new OrderBy[] {new OrderBy("ID", OrderBy.Direction.Asc)};
+                request.OrderByList = new OrderBy[] { new OrderBy("ID", OrderBy.Direction.Asc) };
 
                 if (this.currentJobStep != null)
                 {

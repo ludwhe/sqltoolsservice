@@ -28,7 +28,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.Contracts
         /// </summary>
         /// <param name="key">Key for MSAL cache encryption</param>
         /// <param name="iv">Iv for MSAL cache encryption</param>
-        public EncryptionKeysChangeParams(string key, string iv) {
+        public EncryptionKeysChangeParams(string key, string iv)
+        {
             this.Iv = iv;
             this.Key = key;
         }

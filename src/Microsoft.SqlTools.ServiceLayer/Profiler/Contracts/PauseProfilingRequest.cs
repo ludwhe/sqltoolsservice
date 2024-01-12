@@ -18,7 +18,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler.Contracts
         public string OwnerUri { get; set; }
     }
 
-    public class PauseProfilingResult{}
+    public class PauseProfilingResult { }
 
     /// <summary>
     /// Pause Profile request type

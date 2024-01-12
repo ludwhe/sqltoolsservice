@@ -5,12 +5,12 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
+using Microsoft.SqlTools.Utility;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.Test.Common

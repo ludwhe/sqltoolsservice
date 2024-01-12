@@ -367,7 +367,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
                     }
                     else
                     {
-                        fg = new FileGroup(db, this.Name, this.FileGroupType);                        
+                        fg = new FileGroup(db, this.Name, this.FileGroupType);
                         db.FileGroups.Add(fg);
                     }
 
@@ -2122,7 +2122,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Admin
             if (isAllWhitespace || (0 == fileName.Length) || (-1 != fileName.IndexOfAny(badFileCharacters)))
             {
                 ResourceManager resourceManager = new ResourceManager("Microsoft.SqlTools.ServiceLayer.Localization.SR", typeof(DatabasePrototype).GetAssembly());
-            
+
 
                 string message = String.Empty;
 

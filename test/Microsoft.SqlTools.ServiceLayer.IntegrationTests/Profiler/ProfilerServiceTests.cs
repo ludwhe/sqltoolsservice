@@ -6,19 +6,14 @@
 #nullable disable
 
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
+using Microsoft.SqlServer.Management.Sdk.Sfc;
+using Microsoft.SqlServer.Management.XEvent;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.Profiler;
-using Microsoft.SqlTools.ServiceLayer.Profiler.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using Moq;
 using NUnit.Framework;
-using Microsoft.SqlServer.Management.Sdk.Sfc;
-using System.Linq;
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlServer.Management.XEvent;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Profiler
 {
@@ -69,7 +64,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Profiler
                             return Task.FromResult(0);
                         });
 
-                    
+
                     await profilerService.HandleStartProfilingRequest(startParams, startContext.Object);
                     Assert.That(sessionId, Does.Contain(connectionResult.ConnectionInfo.ConnectionDetails.ServerName), "UniqueSessionId");
                     startContext.VerifyAll();
@@ -107,7 +102,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Profiler
                             {
                                 xeStore.Sessions[sessionName].Stop();
                             }
-                            catch 
+                            catch
                             { }
                             xeStore.Sessions[sessionName].Drop();
                         }

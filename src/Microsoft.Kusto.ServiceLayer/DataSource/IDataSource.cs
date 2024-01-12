@@ -119,7 +119,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
         /// <param name="functionName"></param>
         /// <returns></returns>
         string GenerateExecuteFunctionScript(string functionName);
-        
+
         ScriptFileMarker[] GetSemanticMarkers(ScriptParseInfo parseInfo, ScriptFile scriptFile, string queryText);
         DefinitionResult GetDefinition(string queryText, int index, int startLine, int startColumn, bool throwOnError = false);
         Hover GetHoverHelp(ScriptDocumentInfo scriptDocumentInfo, Position textPosition, bool throwOnError = false);

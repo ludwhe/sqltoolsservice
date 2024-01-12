@@ -5,8 +5,8 @@
 
 #nullable disable
 
-using NUnit.Framework;
 using Microsoft.SqlTools.ServiceLayer.Management;
+using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Admin
 {

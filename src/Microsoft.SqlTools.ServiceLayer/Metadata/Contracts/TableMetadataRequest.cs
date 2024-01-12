@@ -9,13 +9,13 @@ using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.Metadata.Contracts
 {
-    public class TableMetadataParams 
+    public class TableMetadataParams
     {
-        public string OwnerUri { get; set; }        
+        public string OwnerUri { get; set; }
 
-        public string Schema { get; set; }  
+        public string Schema { get; set; }
 
-        public string ObjectName { get; set; }  
+        public string ObjectName { get; set; }
     }
 
     public class TableMetadataResult

@@ -6,16 +6,16 @@
 #nullable disable
 
 using System;
+using System.Linq;
 using System.Threading;
 using Microsoft.SqlServer.Management.Common;
-using SMO = Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.SmoMetadataProvider;
 using Microsoft.SqlServer.Management.SqlParser.Binder;
 using Microsoft.SqlServer.Management.SqlParser.Common;
 using Microsoft.SqlServer.Management.SqlParser.MetadataProvider;
 using Microsoft.SqlServer.Management.SqlParser.Parser;
 using Microsoft.SqlTools.Utility;
-using System.Linq;
+using SMO = Microsoft.SqlServer.Management.Smo;
 
 namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
 {
@@ -37,7 +37,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
         /// </summary>
         public ConnectedBindingContext()
         {
-            this.bindingLock = new ManualResetEvent(initialState: true);            
+            this.bindingLock = new ManualResetEvent(initialState: true);
             this.BindingTimeout = ConnectedBindingQueue.DefaultBindingTimeout;
             this.MetadataDisplayInfoProvider = new MetadataDisplayInfoProvider();
         }
@@ -50,8 +50,8 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
         /// <summary>
         /// Gets or sets the binding server connection
         /// </summary>
-        public ServerConnection ServerConnection 
-        { 
+        public ServerConnection ServerConnection
+        {
             get
             {
                 return this.serverConnection;
@@ -95,8 +95,8 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
         /// <summary>
         /// Gets the binding lock object
         /// </summary>
-        public ManualResetEvent BindingLock 
-        { 
+        public ManualResetEvent BindingLock
+        {
             get
             {
                 return this.bindingLock;
@@ -106,7 +106,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
         /// <summary>
         /// Gets or sets the binding operation timeout in milliseconds
         /// </summary>
-        public int BindingTimeout { get; set; } 
+        public int BindingTimeout { get; set; }
 
         /// <summary>
         /// Gets the Language Service ServerVersion
@@ -173,7 +173,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
             {
                 this.parseOptions ??= new ParseOptions(
                         batchSeparator: LanguageService.DefaultBatchSeperator,
-                        isQuotedIdentifierSet: true, 
+                        isQuotedIdentifierSet: true,
                         compatibilityLevel: DatabaseCompatibilityLevel,
                         transactSqlVersion: TransactSqlVersion);
                 return this.parseOptions;

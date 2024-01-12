@@ -38,7 +38,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.DataSourceIntellisen
             var scriptFile = new ScriptFile("", "", "");
             var queryText = ".show databases";
             var completionItems = KustoIntellisenseHelper.GetDefaultDiagnostics(parseInfo, scriptFile, queryText);
-            
+
             Assert.AreEqual(0, completionItems.Length);
         }
     }

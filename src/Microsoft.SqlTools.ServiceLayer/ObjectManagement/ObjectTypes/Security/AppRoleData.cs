@@ -5,13 +5,13 @@
 
 #nullable disable
 
-using Microsoft.SqlServer.Management.Sdk.Sfc;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Management;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.SqlTools.ServiceLayer.ObjectManagement.PermissionsData;
 
 namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement

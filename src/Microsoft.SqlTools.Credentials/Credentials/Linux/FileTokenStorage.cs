@@ -44,8 +44,8 @@ namespace Microsoft.SqlTools.Credentials.Linux
         }
 
         public IEnumerable<Credential> LoadEntries()
-        {            
-            if(!File.Exists(this.fileName))
+        {
+            if (!File.Exists(this.fileName))
             {
                 return Enumerable.Empty<Credential>();
             }
@@ -57,7 +57,7 @@ namespace Microsoft.SqlTools.Credentials.Linux
             }
 
             CredentialsWrapper creds = JsonConvert.DeserializeObject<CredentialsWrapper>(serializedCreds, Constants.JsonSerializerSettings);
-            if(creds != null)
+            if (creds != null)
             {
                 return creds.Credentials;
             }
@@ -69,7 +69,7 @@ namespace Microsoft.SqlTools.Credentials.Linux
             CredentialsWrapper credentials = new CredentialsWrapper() { Credentials = entries.ToList() };
             string serializedCreds = JsonConvert.SerializeObject(credentials, Constants.JsonSerializerSettings);
 
-            lock(lockObject)
+            lock (lockObject)
             {
                 WriteToFile(this.fileName, serializedCreds);
             }
@@ -78,7 +78,7 @@ namespace Microsoft.SqlTools.Credentials.Linux
         private static void WriteToFile(string filePath, string fileContents)
         {
             string dir = Path.GetDirectoryName(filePath);
-            if(!Directory.Exists(dir))
+            if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
             }
@@ -86,7 +86,7 @@ namespace Microsoft.SqlTools.Credentials.Linux
             // Overwrite file, then use ChMod to ensure we have 
             File.WriteAllText(filePath, fileContents);
             // set appropriate permissions so only current user can read/write
-            Interop.Sys.ChMod(filePath, OwnerAccessMode);            
+            Interop.Sys.ChMod(filePath, OwnerAccessMode);
         }
     }
 

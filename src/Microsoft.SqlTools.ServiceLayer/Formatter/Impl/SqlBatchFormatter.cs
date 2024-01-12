@@ -22,8 +22,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
     class SqlBatchFormatter : NewLineSeparatedListFormatter
     {
         public SqlBatchFormatter(FormatterVisitor visitor, SqlCodeObject codeObject)
-            :base(visitor, codeObject, false)
-        {                
+            : base(visitor, codeObject, false)
+        {
         }
 
         internal override void ProcessPrefixRegion(int startTokenNumber, int firstChildStartTokenNumber)

@@ -35,62 +35,62 @@ namespace ScriptGenerator
                         {
                             case "-filepathprefix":
                             case "fp":
-                               FilePathPrefix = args[++i];
-                               break;
+                                FilePathPrefix = args[++i];
+                                break;
                             case "-numberofdatabases":
                             case "-numberofdbs":
                             case "ndb":
-                            {
-                                if (int.TryParse(args[++i], out int n))
                                 {
-                                    Databases = n;
+                                    if (int.TryParse(args[++i], out int n))
+                                    {
+                                        Databases = n;
+                                    }
+                                    else
+                                    {
+                                        ErrorMessage += $@"Argument for NumberOfDatabases:'{args[i]}' is not a valid integer";
+                                    }
+                                    break;
                                 }
-                                else
-                                {
-                                    ErrorMessage += $@"Argument for NumberOfDatabases:'{args[i]}' is not a valid integer";
-                                }
-                                break;
-                            }
                             case "-tablesmultiplier":
                             case "tm":
-                            {
-                                if (int.TryParse(args[++i], out int n))
                                 {
-                                    TablesMultiplier = n;
+                                    if (int.TryParse(args[++i], out int n))
+                                    {
+                                        TablesMultiplier = n;
+                                    }
+                                    else
+                                    {
+                                        ErrorMessage += $@"Argument for NumberOfTables:'{args[i]}' is not a valid integer";
+                                    }
+                                    break;
                                 }
-                                else
-                                {
-                                    ErrorMessage += $@"Argument for NumberOfTables:'{args[i]}' is not a valid integer";
-                                }
-                                break;
-                            }
                             case "-storedproceduresmultiplier":
                             case "spm":
-                            {
-                                if (int.TryParse(args[++i], out int n))
                                 {
-                                    StoredProceduresMultiplier = n;
+                                    if (int.TryParse(args[++i], out int n))
+                                    {
+                                        StoredProceduresMultiplier = n;
+                                    }
+                                    else
+                                    {
+                                        ErrorMessage += $@"Argument for NumberOfStoredProcedures:'{args[i]}' is not a valid integer";
+                                    }
+                                    break;
                                 }
-                                else
-                                {
-                                    ErrorMessage += $@"Argument for NumberOfStoredProcedures:'{args[i]}' is not a valid integer";
-                                }
-                                break;
-                            }
                             case "-viewsmultiplier":
                             case "vm":
-                            {
-                                if (int.TryParse(args[++i], out int n))
                                 {
-                                    ViewsMultiplier = n;
-                                }
-                                else
-                                {
-                                    ErrorMessage += $@"Argument for NumberOfTables:'{args[i]}' is not a valid integer";
-                                }
+                                    if (int.TryParse(args[++i], out int n))
+                                    {
+                                        ViewsMultiplier = n;
+                                    }
+                                    else
+                                    {
+                                        ErrorMessage += $@"Argument for NumberOfTables:'{args[i]}' is not a valid integer";
+                                    }
 
-                                break;
-                            }
+                                    break;
+                                }
                             case "h":
                             case "-help":
                                 ShouldExit = true;

@@ -8,26 +8,26 @@
 using System;
 using Microsoft.Kusto.ServiceLayer.DataSource.Contracts;
 using Microsoft.Kusto.ServiceLayer.DataSource.Kusto;
-using static Microsoft.SqlTools.Utility.SqlConstants;
 using NUnit.Framework;
+using static Microsoft.SqlTools.Utility.SqlConstants;
 
 namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource
 {
     public class KustoClientTests
     {
-        [TestCase(dstsAuth)]	
-        [TestCase(AzureMFA)]	
-        public void Constructor_Throws_ArgumentException_For_MissingToken(string authType)	
-        {	
-            var connectionDetails = new DataSourceConnectionDetails	
-            {	
+        [TestCase(dstsAuth)]
+        [TestCase(AzureMFA)]
+        public void Constructor_Throws_ArgumentException_For_MissingToken(string authType)
+        {
+            var connectionDetails = new DataSourceConnectionDetails
+            {
                 UserToken = "",
                 AuthenticationType = authType
-            };	
+            };
 
-            Assert.Throws<ArgumentException>(() => new KustoClient(connectionDetails, "ownerUri"));	
+            Assert.Throws<ArgumentException>(() => new KustoClient(connectionDetails, "ownerUri"));
         }
-        
+
         [Test]
         [Ignore("This should be moved to an integration test since Kusto Client calls Query")]
         public void Constructor_Sets_ClusterName_With_DefaultDatabaseName()
@@ -60,8 +60,8 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource
                 ServerName = clusterName,
                 DatabaseName = "FakeDatabaseName",
                 AuthenticationType = authenticationType,
-                UserName = authenticationType == SqlLogin ? "username": null,
-                Password = authenticationType == SqlLogin ? "password": null
+                UserName = authenticationType == SqlLogin ? "username" : null,
+                Password = authenticationType == SqlLogin ? "password" : null
             };
 
             var client = new KustoClient(connectionDetails, "ownerUri");

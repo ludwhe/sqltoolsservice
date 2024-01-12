@@ -8,12 +8,12 @@
 using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 using Microsoft.Kusto.ServiceLayer.Connection;
 using Microsoft.Kusto.ServiceLayer.Scripting.Contracts;
-using Microsoft.SqlTools.Utility;
 using Microsoft.Kusto.ServiceLayer.Utility;
+using Microsoft.SqlTools.Hosting.Protocol;
+using Microsoft.SqlTools.Hosting.Protocol.Contracts;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.Kusto.ServiceLayer.Scripting
 {
@@ -34,7 +34,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             new Lazy<ConcurrentDictionary<string, ScriptingOperation>>(() => new ConcurrentDictionary<string, ScriptingOperation>());
 
         private bool disposed;
-        
+
         private IScripter _scripter;
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             _scripter = scripter;
             _connectionService = connectionService;
             _connectionManager = connectionManager;
-            
+
             serviceHost.SetRequestHandler(ScriptingRequest.Type, this.HandleScriptExecuteRequest);
             serviceHost.SetRequestHandler(ScriptingCancelRequest.Type, this.HandleScriptCancelRequest);
             serviceHost.SetRequestHandler(ScriptingListObjectsRequest.Type, this.HandleListObjectsRequest);
@@ -114,7 +114,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
                 {
                     throw new InvalidOperationException("Unable to create script.");
                 }
-                
+
                 var datasource = _connectionService.GetOrOpenConnection(parameters.OwnerUri, ConnectionType.Default)
                     .Result.GetUnderlyingConnection();
 
@@ -137,10 +137,10 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             // Scripting as operation should be used to script one object.
             // Scripting data and scripting to file is not supported by scripting as operation
             // To script Select, alter and execute use scripting as operation. The other operation doesn't support those types
-            return parameters.ScriptingObjects != null && parameters.ScriptingObjects.Count == 1 && parameters.ScriptOptions != null 
-                   && parameters.ScriptOptions.TypeOfDataToScript == "SchemaOnly" && parameters.ScriptDestination == "ToEditor" 
-                   || parameters.Operation == ScriptingOperationType.Select 
-                   || parameters.Operation == ScriptingOperationType.Execute 
+            return parameters.ScriptingObjects != null && parameters.ScriptingObjects.Count == 1 && parameters.ScriptOptions != null
+                   && parameters.ScriptOptions.TypeOfDataToScript == "SchemaOnly" && parameters.ScriptDestination == "ToEditor"
+                   || parameters.Operation == ScriptingOperationType.Select
+                   || parameters.Operation == ScriptingOperationType.Execute
                    || parameters.Operation == ScriptingOperationType.Alter;
         }
 
@@ -169,7 +169,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             }
         }
 
-        private async void SendScriptingCompleteEvent<TParams>(RequestContext<ScriptingResult> requestContext, EventType<TParams> eventType, TParams parameters, 
+        private async void SendScriptingCompleteEvent<TParams>(RequestContext<ScriptingResult> requestContext, EventType<TParams> eventType, TParams parameters,
                                                                SmoScriptingOperation operation, string scriptDestination)
         {
             await requestContext.SendEvent(eventType, parameters);
@@ -221,7 +221,7 @@ namespace Microsoft.Kusto.ServiceLayer.Scripting
             if (!disposed)
             {
                 disposed = true;
-                
+
                 foreach (var operation in this.ActiveOperations.Values)
                 {
                     operation.Dispose();

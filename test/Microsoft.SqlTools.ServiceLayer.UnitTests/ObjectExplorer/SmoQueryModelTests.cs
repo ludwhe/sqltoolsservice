@@ -11,8 +11,8 @@ using System.Linq;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.Extensibility;
 using Microsoft.SqlTools.SqlCore.ObjectExplorer;
-using Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel;
 using Microsoft.SqlTools.SqlCore.ObjectExplorer.Nodes;
+using Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ObjectExplorer
@@ -41,7 +41,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ObjectExplorer
             // And I expect the service provider to have been set by the extension code
             Assert.NotNull(querier.ServiceProvider);
         }
-        
+
         [Test]
         public void ShouldFindQuerierIfInExtensionList()
         {
@@ -87,7 +87,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ObjectExplorer
         {
             var tableFactory = new TableValuedFunctionsChildFactory();
             var filters = tableFactory.Filters;
-            Assert.True(filters.ToList().Any(filter => {
+            Assert.True(filters.ToList().Any(filter =>
+            {
                 var f = filter as NodePropertyFilter;
                 return f.Values.Contains(UserDefinedFunctionType.Table) && f.Values.Contains(UserDefinedFunctionType.Inline);
             }));

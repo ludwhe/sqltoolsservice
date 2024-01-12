@@ -5,13 +5,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Composition;
-using Kusto.Data;
-using Kusto.Language;
-using Kusto.Language.Editor;
 using Microsoft.Kusto.ServiceLayer.Connection.Contracts;
 using Microsoft.Kusto.ServiceLayer.DataSource.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
 using Microsoft.Kusto.ServiceLayer.DataSource.Intellisense;
 using Microsoft.Kusto.ServiceLayer.DataSource.Kusto;
 using Microsoft.Kusto.ServiceLayer.DataSource.Monitor;
@@ -19,8 +14,9 @@ using Microsoft.Kusto.ServiceLayer.Formatter;
 using Microsoft.Kusto.ServiceLayer.LanguageServices;
 using Microsoft.Kusto.ServiceLayer.Utility;
 using Microsoft.Kusto.ServiceLayer.Workspace.Contracts;
-using CompletionItem = Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts.CompletionItem;
+using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
 using static Microsoft.SqlTools.Utility.SqlConstants;
+using CompletionItem = Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts.CompletionItem;
 
 namespace Microsoft.Kusto.ServiceLayer.DataSource
 {
@@ -31,27 +27,27 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
         private const string LogAnalyticsProviderName = "LOGANALYTICS";
         private const string KustoProviderDescription = "Microsoft Azure Data Explorer";
         private const string LogAnalyticsProviderDescription = "Microsoft Azure Monitor Explorer";
-        
+
         public IDataSource Create(ConnectionDetails connectionDetails, string ownerUri)
         {
             var dataSourceType = GetDataSourceType();
             switch (dataSourceType)
             {
                 case DataSourceType.Kusto:
-                {
-                    var kustoConnectionDetails = MapKustoConnectionDetails(connectionDetails);
-                    var kustoClient = new KustoClient(kustoConnectionDetails, ownerUri);
-                    var intellisenseClient = new KustoIntellisenseClient(kustoClient);
-                    return new KustoDataSource(kustoClient, intellisenseClient);
-                }
+                    {
+                        var kustoConnectionDetails = MapKustoConnectionDetails(connectionDetails);
+                        var kustoClient = new KustoClient(kustoConnectionDetails, ownerUri);
+                        var intellisenseClient = new KustoIntellisenseClient(kustoClient);
+                        return new KustoDataSource(kustoClient, intellisenseClient);
+                    }
                 case DataSourceType.LogAnalytics:
-                {
-                    var httpClient = new MonitorClient(connectionDetails.ServerName, connectionDetails.AccountToken);
-                    var intellisenseClient = new MonitorIntellisenseClient(httpClient);
-                    return new MonitorDataSource(httpClient, intellisenseClient);
-                }
+                    {
+                        var httpClient = new MonitorClient(connectionDetails.ServerName, connectionDetails.AccountToken);
+                        var intellisenseClient = new MonitorIntellisenseClient(httpClient);
+                        return new MonitorDataSource(httpClient, intellisenseClient);
+                    }
                 default:
-                    
+
                     throw new ArgumentException($@"Unsupported data source type ""{dataSourceType}""",
                         nameof(dataSourceType));
             }
@@ -87,9 +83,9 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
             switch (dataSourceType)
             {
                 case DataSourceType.Kusto:
-                {
-                    return new KustoConnectionStringBuilder(serverName, databaseName);
-                }
+                    {
+                        return new KustoConnectionStringBuilder(serverName, databaseName);
+                    }
 
                 default:
                     throw new ArgumentException($@"Unsupported data source type ""{dataSourceType}""",
@@ -102,9 +98,9 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
             switch (dataSourceType)
             {
                 case DataSourceType.Kusto:
-                {
-                    return new KustoConnectionStringBuilder(connectionString);
-                }
+                    {
+                        return new KustoConnectionStringBuilder(connectionString);
+                    }
 
                 default:
                     throw new ArgumentException($@"Unsupported data source type ""{dataSourceType}""",
@@ -113,7 +109,8 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
         }
 
         // Gets default keywords for intellisense when there is no connection.
-        public static CompletionItem[] GetDefaultAutoComplete(DataSourceType dataSourceType, ScriptDocumentInfo scriptDocumentInfo, Position textDocumentPosition){
+        public static CompletionItem[] GetDefaultAutoComplete(DataSourceType dataSourceType, ScriptDocumentInfo scriptDocumentInfo, Position textDocumentPosition)
+        {
             switch (dataSourceType)
             {
                 case DataSourceType.Kusto:
@@ -127,7 +124,8 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
         }
 
         // Gets default keywords errors related to intellisense when there is no connection.
-        public static ScriptFileMarker[] GetDefaultSemanticMarkers(DataSourceType dataSourceType, ScriptParseInfo parseInfo, ScriptFile scriptFile, string queryText){
+        public static ScriptFileMarker[] GetDefaultSemanticMarkers(DataSourceType dataSourceType, ScriptParseInfo parseInfo, ScriptFile scriptFile, string queryText)
+        {
             switch (dataSourceType)
             {
                 case DataSourceType.Kusto:

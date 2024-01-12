@@ -100,7 +100,7 @@ namespace Microsoft.SqlTools.SqlCore.Scripting
             urnBuilder.AppendFormat("Server[@Name='{0}']/", server.ToUpper(System.Globalization.CultureInfo.InvariantCulture));
             urnBuilder.AppendFormat("Database[@Name='{0}']/", Urn.EscapeString(database));
 
-            bool hasParentObject = !string.IsNullOrWhiteSpace(scriptingObject.ParentName) 
+            bool hasParentObject = !string.IsNullOrWhiteSpace(scriptingObject.ParentName)
                 && !string.IsNullOrWhiteSpace(scriptingObject.ParentTypeName);
             if (hasParentObject)
             {

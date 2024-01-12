@@ -5,9 +5,9 @@
 
 #nullable disable
 
+using System.Collections.Generic;
 using Microsoft.SqlServer.Migration.Logins.Contracts.Exceptions;
 using Microsoft.SqlTools.Hosting.Protocol.Contracts;
-using System.Collections.Generic;
 
 namespace Microsoft.SqlTools.Migration.Contracts
 {
@@ -101,7 +101,7 @@ namespace Microsoft.SqlTools.Migration.Contracts
         /// <summary>
         /// Microsoft Entra domain name (required for Windows Auth)
         /// </summary>
-        public string AADDomainName{ get; set; }
+        public string AADDomainName { get; set; }
     }
 
     /// <summary>
@@ -122,7 +122,7 @@ namespace Microsoft.SqlTools.Migration.Contracts
         /// <summary>
         /// How long this step took
         /// </summary>
-        public string ElapsedTime{ get; set; }
+        public string ElapsedTime { get; set; }
     }
 
     /// <summary>
@@ -143,7 +143,7 @@ namespace Microsoft.SqlTools.Migration.Contracts
         /// <summary>
         /// How long this step took
         /// </summary>
-        public string ElapsedTime{ get; set; }
+        public string ElapsedTime { get; set; }
     }
 
     /// <summary>

@@ -5,13 +5,9 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.ServiceLayer.AzureFunctions;
-using Microsoft.SqlTools.ServiceLayer.AzureFunctions.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Utility;
-using Microsoft.SqlTools.ServiceLayer.Test.Common.Extensions;
-using NUnit.Framework;
 using System;
 using System.IO;
+using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.AzureFunctions
 {

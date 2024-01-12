@@ -17,7 +17,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Connection
     {
         private const string server1 = "server1";
         private const string database1 = "database1";
-       
+
         [Test]
         public void GainFullAccessShouldDisconnectTheConnections()
         {

@@ -669,7 +669,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
 
                 // Verify that we got exactly on complete Flag Count.
                 //
-                Assert.True(1 == completeFlagCount, $"Complete flag should be set in exactly once on Update Result Summary Event. Observed Count: {completeFlagCount}, \r\nresultSetEventParamsList is:{string.Join("\r\n\t\t", list.ConvertAll((p) => p.GetType() + ":" + p.ResultSetSummary))}" );
+                Assert.True(1 == completeFlagCount, $"Complete flag should be set in exactly once on Update Result Summary Event. Observed Count: {completeFlagCount}, \r\nresultSetEventParamsList is:{string.Join("\r\n\t\t", list.ConvertAll((p) => p.GetType() + ":" + p.ResultSetSummary))}");
 
                 // Verify that the complete event was set on the last updateResultSet event.
                 //

@@ -24,7 +24,8 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.Nodes
         /// </summary>
         /// <param name="type">Type of the querier</param>
         /// <param name="validForFlag">Server Type</param>
-        public override bool CanApplyFilter(Type type, ValidForFlag validForFlag) {
+        public override bool CanApplyFilter(Type type, ValidForFlag validForFlag)
+        {
             return this.FilterList.Exists(f => f.CanApplyFilter(type, validForFlag));
         }
 

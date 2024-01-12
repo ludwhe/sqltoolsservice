@@ -38,7 +38,7 @@ namespace Microsoft.SqlTools.ResourceProvider.Core
 
         public async Task<ServiceResponse<DatabaseInstanceInfo>> GetDatabasesForServers(IList<IAzureSqlServerResource> serverResources, CancellationToken cancellationToken)
         {
-            ServiceResponse < DatabaseInstanceInfo >  result = new ServiceResponse<DatabaseInstanceInfo>();
+            ServiceResponse<DatabaseInstanceInfo> result = new ServiceResponse<DatabaseInstanceInfo>();
             if (serverResources != null)
             {
                 result = await AzureUtil.ExecuteGetAzureResourceAsParallel(_session, serverResources, null, cancellationToken, GetDatabasesForServerFromService);

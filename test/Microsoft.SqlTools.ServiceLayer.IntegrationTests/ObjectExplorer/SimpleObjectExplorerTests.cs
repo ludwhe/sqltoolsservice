@@ -5,9 +5,7 @@
 
 using System;
 using System.Threading.Tasks;
-using Castle.Core.Internal;
 using Microsoft.Data.SqlClient;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using NUnit.Framework;
 using OE = Microsoft.SqlTools.SqlCore.SimpleObjectExplorer.ObjectExplorer;
 
@@ -182,11 +180,11 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.ObjectExplorer
                 nodes = OE.GetNodeChildrenFromPath(oeRoot, "/dbo/Functions/TableValuedFunctions/f2/");
                 Assert.AreEqual(1, nodes.Length, "f2 function should one folder");
                 Assert.IsNotNull(nodes.Find(node => node.Name == "Parameters"), "f2 function should have Parameters folder");
-                
+
                 // Expand Parameters folder
                 nodes = OE.GetNodeChildrenFromPath(oeRoot, "/dbo/Functions/TableValuedFunctions/f2/Parameters/");
                 Assert.AreEqual(1, nodes.Length, "Parameters folder should have 1 parameter");
-                Assert.IsNotNull(nodes.Find(node => node.Name == "@p1" && node.SubType == "InputParameter" ), "Parameters folder should have @p1 parameter");
+                Assert.IsNotNull(nodes.Find(node => node.Name == "@p1" && node.SubType == "InputParameter"), "Parameters folder should have @p1 parameter");
             });
         }
 

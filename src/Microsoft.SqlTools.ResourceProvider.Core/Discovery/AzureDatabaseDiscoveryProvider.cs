@@ -290,7 +290,7 @@ namespace Microsoft.SqlTools.ResourceProvider.Core
             }
             catch (Exception ex)
             {
-                result =  new ServiceResponse<DatabaseInstanceInfo>(ex);
+                result = new ServiceResponse<DatabaseInstanceInfo>(ex);
             }
 
             return result ?? new ServiceResponse<DatabaseInstanceInfo>();

@@ -29,7 +29,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 
         public ExpandableObjectWrapper(object item, string defaultPropertyName, string displayName)
         {
-            this.properties = new PropertyDescriptorCollection(new PropertyDescriptor[]{});
+            this.properties = new PropertyDescriptorCollection(new PropertyDescriptor[] { });
 
             if (item != null)
             {

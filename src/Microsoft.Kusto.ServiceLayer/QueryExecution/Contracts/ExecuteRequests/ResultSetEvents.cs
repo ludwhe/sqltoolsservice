@@ -38,7 +38,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts.ExecuteRequests
     {
     }
 
-    public class ResultSetCompleteEvent 
+    public class ResultSetCompleteEvent
     {
         public static string MethodName { get; } = "query/resultSetComplete";
 
@@ -47,7 +47,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts.ExecuteRequests
             EventType<ResultSetCompleteEventParams>.Create(MethodName);
     }
 
-    public class ResultSetAvailableEvent 
+    public class ResultSetAvailableEvent
     {
         public static string MethodName { get; } = "query/resultSetAvailable";
 
@@ -56,7 +56,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts.ExecuteRequests
             EventType<ResultSetAvailableEventParams>.Create(MethodName);
     }
 
-    public class ResultSetUpdatedEvent 
+    public class ResultSetUpdatedEvent
     {
         public static string MethodName { get; } = "query/resultSetUpdated";
 

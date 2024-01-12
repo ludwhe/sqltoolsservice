@@ -70,7 +70,7 @@ namespace Microsoft.SqlTools.ResourceProvider.Core
                 }
                 catch (Exception ex)
                 {
-                    result = new ServiceResponse<ServerInstanceInfo>(serverInstances, new List<Exception>() {ex});
+                    result = new ServiceResponse<ServerInstanceInfo>(serverInstances, new List<Exception>() { ex });
                 }
             }
 

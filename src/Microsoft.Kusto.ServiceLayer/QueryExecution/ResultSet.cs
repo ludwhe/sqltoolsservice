@@ -5,10 +5,6 @@
 
 #nullable disable
 
-using Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts;
-using Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage;
-using Microsoft.Kusto.ServiceLayer.Utility;
-using Microsoft.SqlTools.Utility;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -19,6 +15,10 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts;
+using Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage;
+using Microsoft.Kusto.ServiceLayer.Utility;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.Kusto.ServiceLayer.QueryExecution
 {
@@ -305,7 +305,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
 
 
             return Task.Factory.StartNew(() =>
-            { 
+            {
                 string content;
                 string format = null;
 
@@ -314,12 +314,12 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
                     // Determine the format and get the first col/row of XML
                     content = fileStreamReader.ReadRow(0, 0, Columns)[0].DisplayValue;
 
-                    if (specialAction.ExpectYukonXMLShowPlan) 
+                    if (specialAction.ExpectYukonXMLShowPlan)
                     {
                         format = "xml";
                     }
                 }
-                    
+
                 return new ExecutionPlan
                 {
                     Format = format,
@@ -519,7 +519,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
                     }
                 }
             });
-            
+
             // Add exception handling to the save task
             Task taskWithHandling = saveAsTask.ContinueWithOnFaulted(async t =>
             {
@@ -588,7 +588,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
         /// Sends the ResultsUpdated message if the number of rows has changed since last send.
         /// </summary>
         /// <param name="stateInfo"></param>
-        private void SendResultAvailableOrUpdated (object stateInfo = null)
+        private void SendResultAvailableOrUpdated(object stateInfo = null)
         {
             // Make the call to send current results and synchronously wait for it to finish
             //
@@ -604,7 +604,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
                 //
                 sendResultsSemphore.Wait();
 
-                var currentResultSetSnapshot = (ResultSet) MemberwiseClone();
+                var currentResultSetSnapshot = (ResultSet)MemberwiseClone();
                 if (LastUpdatedSummary == null) // We need to send results available message.
                 {
                     // Fire off results Available task and await it
@@ -659,7 +659,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
                 }
             }
             finally
-            { 
+            {
                 // Release the sendResultsSemphore so the next invocation gets unblocked
                 //
                 sendResultsSemphore.Release();
@@ -696,8 +696,8 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
         /// <summary>
         /// Determine the special action, if any, for this result set
         /// </summary>
-        private SpecialAction ProcessSpecialAction() 
-        {           
+        private SpecialAction ProcessSpecialAction()
+        {
 
             // Check if this result set is a showplan 
             if (Columns.Length == 1 && string.Compare(Columns[0].ColumnName, YukonXmlShowPlanColumn, StringComparison.OrdinalIgnoreCase) == 0)
@@ -732,7 +732,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution
             {
                 throw new InvalidOperationException(SR.QueryServiceResultSetAddNoRows);
             }
-            
+
             using (IFileStreamWriter writer = fileStreamFactory.GetWriter(outputFileName))
             {
                 // Write the row to the end of the file

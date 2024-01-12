@@ -112,7 +112,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility.SqlScriptFormatters
             namedParts.Add(sb.ToString());
             return namedParts.ToArray();
         }
-        
+
         /// <summary>
         /// Converts a value from a script into a plain version by unwrapping literal wrappers
         /// and unescaping characters.
@@ -133,7 +133,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility.SqlScriptFormatters
             }
             return literal;
         }
-        
+
         /// <summary>
         /// Tests whether an identifier is escaped with brackets e.g. [Northwind].[dbo].[Orders]
         /// </summary>
@@ -142,13 +142,13 @@ namespace Microsoft.SqlTools.ServiceLayer.Utility.SqlScriptFormatters
         public static bool IsIdentifierBracketed(string identifer) => GetBracketRegex().IsMatch(identifer);
 
         #region Private Helpers
-        
+
         private static bool HasNextCharacter(string haystack, char needle, int position)
         {
             return position + 1 < haystack.Length
                    && haystack[position + 1] == needle;
         }
-        
+
         private static string UnEscapeString(string value, char escapeCharacter)
         {
             Validate.IsNotNull(nameof(value), value);

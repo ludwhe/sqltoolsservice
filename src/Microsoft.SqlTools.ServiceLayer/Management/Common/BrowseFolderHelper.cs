@@ -6,12 +6,12 @@
 #nullable disable
 
 using System;
-using System.IO;
 using System.Data;
+using System.IO;
 using System.Text.RegularExpressions;
+using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlServer.Management.Common;
 
 namespace Microsoft.SqlTools.ServiceLayer.Management
 {
@@ -25,10 +25,10 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// </summary>
         /// <param name="serverConnection">The connection to the server</param>
         /// <returns></returns>
-        public static string GetBrowseStartPath(ServerConnection    serverConnection)
+        public static string GetBrowseStartPath(ServerConnection serverConnection)
         {
             string result = String.Empty;
-    
+
             // if (US.Current.SSMS.TaskForms.ServerFileSystem.LastPath.TryGetValue(serverConnection.TrueName, out result))
             // {
             //     return result;
@@ -39,16 +39,16 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
                 // try and fetch the default location from SMO...
                 Microsoft.SqlServer.Management.Smo.Server server = new Microsoft.SqlServer.Management.Smo.Server(serverConnection);
                 result = server.Settings.DefaultFile;
-            
+
                 if ((result == null) || (result.Length == 0))
                 {
                     // if the default file property doesn't return a string, 
                     // use the location of the model database's data file.
-                    Enumerator  enumerator  = new Enumerator();
-                    Request     request     = new Request();    
-                    request.Urn             = "Server/Database[@Name='model']/FileGroup[@Name='PRIMARY']/File";
-                    request.Fields          = new string[1] {"FileName"};
-                    DataSet     dataSet     = enumerator.Process(serverConnection, request);
+                    Enumerator enumerator = new Enumerator();
+                    Request request = new Request();
+                    request.Urn = "Server/Database[@Name='model']/FileGroup[@Name='PRIMARY']/File";
+                    request.Fields = new string[1] { "FileName" };
+                    DataSet dataSet = enumerator.Process(serverConnection, request);
 
                     if (0 < dataSet.Tables[0].Rows.Count)
                     {

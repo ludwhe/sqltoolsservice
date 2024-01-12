@@ -29,7 +29,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
         private WorkspaceResponse _metadata;
         private Dictionary<string, SortedDictionary<string, DataSourceObjectMetadata>> _nodes;
         private const string DatabaseKeyPrefix = "OnlyTables";
-        
+
         public override string ClusterName => _monitorClient.WorkspaceId;
         public override string DatabaseName { get; set; }
 
@@ -42,12 +42,12 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
             DataSourceType = DataSourceType.LogAnalytics;
             SetupTableGroups(monitorClient.WorkspaceId);
         }
-        
+
         private void SetupTableGroups(string workspaceId)
         {
             var workspace = _metadata.Workspaces.First(x => x.Id == workspaceId);
             DatabaseName = $"{workspace.Name} ({workspace.Id})";
-            
+
             var tableGroups = _metadata.TableGroups.Where(x => workspace.TableGroups.Contains(x.Id));
 
             foreach (TableGroupsModel workspaceTableGroup in tableGroups)
@@ -72,11 +72,11 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
                 SetupTables(customLogsNodeInfo.Urn, workspace.Tables, workspace.Id);
             }
         }
-        
+
         private void SetupTables(string urn, string[] tables, string workspaceId)
         {
             var tableGroupTables = _metadata.Tables.Where(x => tables.Contains(x.Id));
-            
+
             foreach (TablesModel metadataTable in tableGroupTables)
             {
                 var tableNodeInfo = MetadataFactory.CreateDataSourceObjectMetadata(DataSourceMetadataType.Table, metadataTable.Name,
@@ -129,7 +129,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
                 string newKey = $"{DatabaseKeyPrefix}.{parentMetadata.Urn}";
                 return _nodes[newKey].Values;
             }
-            
+
             return _nodes[parentMetadata.Urn].Values;
         }
 
@@ -155,11 +155,11 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
             DatabaseName = $"{workspace.Name} ({workspace.Id})";
             _intellisenseClient.UpdateDatabase(databaseName);
         }
-        
+
         private string ParseWorkspaceId(string workspace)
         {
             var regex = GetWorkspaceIdRegex();
-            
+
             return regex.IsMatch(workspace)
                 ? regex.Match(workspace).Value
                 : workspace;

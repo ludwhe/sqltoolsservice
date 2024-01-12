@@ -8,8 +8,6 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.ServiceLayer.SqlContext;
-using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ResourceProvider
 {

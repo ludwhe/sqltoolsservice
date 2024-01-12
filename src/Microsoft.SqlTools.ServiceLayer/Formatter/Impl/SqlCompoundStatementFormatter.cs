@@ -30,7 +30,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
 
         internal override void ProcessPrefixRegion(int startTokenNumber, int firstChildStartTokenNumber)
         {
-            
+
             for (int i = startTokenNumber; i < firstChildStartTokenNumber; i++)
             {
                 if (TokenManager.TokenList[i].TokenId == FormatterTokens.TOKEN_BEGIN_CS)
@@ -41,14 +41,14 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             }
         }
 
-        internal override void  ProcessSuffixRegion(int lastChildEndTokenNumber, int endTokenNumber)
+        internal override void ProcessSuffixRegion(int lastChildEndTokenNumber, int endTokenNumber)
         {
             DecrementIndentLevel();
 
             for (int i = lastChildEndTokenNumber; i < endTokenNumber; i++)
             {
                 if (TokenManager.TokenList[i].TokenId == FormatterTokens.TOKEN_END_CS
-                    && !TokenManager.IsTokenWhitespace(TokenManager.TokenList[i-1].TokenId))
+                    && !TokenManager.IsTokenWhitespace(TokenManager.TokenList[i - 1].TokenId))
                 {
                     TokenData td = TokenManager.TokenList[i];
                     AddIndentedNewLineReplacement(td.StartIndex);
@@ -56,7 +56,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
                 SimpleProcessToken(i, FormatterUtilities.NormalizeNewLinesEnsureOneNewLineMinimum);
             }
         }
- 
+
     }
- 
+
 }

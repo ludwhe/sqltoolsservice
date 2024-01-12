@@ -83,7 +83,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
         }
 
         [Test]
-        public void BatchExecutionPlanInvalidParamsTest([Values(-1,2)] int resultSetIndex)
+        public void BatchExecutionPlanInvalidParamsTest([Values(-1, 2)] int resultSetIndex)
         {
             // If I have an executed batch which has an execution plan 
             Batch b = Common.GetExecutedBatchWithExecutionPlan();
@@ -99,7 +99,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
         #region Query Class Tests
 
         [Test]
-        public void QueryExecutionPlanInvalidParamsTest([Values(-1,2)]int batchIndex)
+        public void QueryExecutionPlanInvalidParamsTest([Values(-1, 2)] int batchIndex)
         {
             // Setup query settings
             QueryExecutionSettings querySettings = new QueryExecutionSettings
@@ -117,7 +117,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // ... And I ask for a subset with an invalid result set index
             // Then: 
             // ... It should throw an exception
-           Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => q.GetExecutionPlan(batchIndex, 0));
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => q.GetExecutionPlan(batchIndex, 0));
         }
 
         #endregion
@@ -159,7 +159,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             executionPlanRequest.Validate();
         }
 
-        
+
         [Test]
         public async Task ExecutionPlanServiceMissingQueryTest()
         {
@@ -231,8 +231,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             var contextMock = RequestContextMocks.Create<QueryExecutionPlanResult>(null);
             Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => queryService.HandleExecutionPlanRequest(executionPlanParams, contextMock.Object));
         }
-        
+
         #endregion
-        
+
     }
 }

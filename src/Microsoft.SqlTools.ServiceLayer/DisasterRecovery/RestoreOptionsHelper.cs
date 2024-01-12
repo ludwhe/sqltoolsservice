@@ -307,7 +307,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery
                     //TODO: we could send back the error message so client knows the option is set incorrectly
                 }
             }
-            
+
         }
     }
 }

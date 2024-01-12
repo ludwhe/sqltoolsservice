@@ -184,7 +184,7 @@ namespace Microsoft.SqlTools.Credentials.OSX
                         return null;
                     }
                     return InteropUtils.CopyToString(passwordPtr, passwordLength,
-                        this.encoding == Encoding.UTF8 ? Encoding.UTF8: Encoding.Unicode);
+                        this.encoding == Encoding.UTF8 ? Encoding.UTF8 : Encoding.Unicode);
                 }
             }
             protected override bool ReleaseHandle()

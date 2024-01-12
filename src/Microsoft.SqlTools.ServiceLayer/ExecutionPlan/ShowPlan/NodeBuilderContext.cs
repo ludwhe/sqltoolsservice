@@ -8,7 +8,7 @@
 namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 {
     public class NodeBuilderContext
-	{
+    {
         public NodeBuilderContext(ShowPlanGraph graph, ShowPlanType type, object context)
         {
             this.graph = graph;

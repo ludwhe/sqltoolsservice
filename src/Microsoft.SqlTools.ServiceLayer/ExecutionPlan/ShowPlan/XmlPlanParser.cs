@@ -77,7 +77,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                         }
                         parser.ParseProperties(item, node.Properties, context);
                     }
-                    if(parentNode == null)
+                    if (parentNode == null)
                     {
                         context.Graph.Root = node;
                     }
@@ -118,7 +118,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         /// <param name="context"></param>
         /// <returns></returns>
         public abstract Node GetCurrentNode(object item, object parentItem, Node parentNode, NodeBuilderContext context);
-        
+
         /// <summary>
         /// Enumerates children items of the item being parsed.
         /// </summary>
@@ -165,8 +165,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             // EstimateExecutions = EstimateRebinds +  EstimateRewinds + 1
             if (node["EstimateRebinds"] != null && node["EstimateRewinds"] != null)
             {
-                double estimateRebinds = (double) node["EstimateRebinds"];
-                double estimateRewinds = (double) node["EstimateRewinds"];
+                double estimateRebinds = (double)node["EstimateRebinds"];
+                double estimateRewinds = (double)node["EstimateRewinds"];
                 node["EstimateExecutions"] = estimateRebinds + estimateRewinds + 1;
             }
 
@@ -273,7 +273,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         {
             XmlPlanNodeBuilder nodeBuilder = context.Context as XmlPlanNodeBuilder;
             Debug.Assert(nodeBuilder != null);
-            
+
             // We don't use "NodeId" property of the Node here because
             // not all nodes have Id and the same Id can repeat in different
             // statement branches

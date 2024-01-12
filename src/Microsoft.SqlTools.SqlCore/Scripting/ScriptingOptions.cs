@@ -258,6 +258,6 @@ namespace Microsoft.SqlTools.SqlCore.Scripting
         /// The default value is true.
         /// </remarks>
         public virtual bool? UniqueKeys { get; set; } = true;
-            
+
     }
 }

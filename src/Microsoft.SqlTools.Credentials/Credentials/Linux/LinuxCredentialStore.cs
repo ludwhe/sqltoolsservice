@@ -25,7 +25,7 @@ namespace Microsoft.SqlTools.Credentials.Linux
         public string CredentialFile { get; set; }
         public bool IsRelativeToUserHomeDir { get; set; }
     }
-    
+
 #if !WINDOWS_ONLY_BUILD
 
     /// <summary>
@@ -47,7 +47,7 @@ namespace Microsoft.SqlTools.Credentials.Linux
             Validate.IsNotNull("config", config);
             Validate.IsNotNullOrEmptyString("credentialFolder", config.CredentialFolder);
             Validate.IsNotNullOrEmptyString("credentialFileName", config.CredentialFile);
-            
+
             this.credentialFolderPath = config.IsRelativeToUserHomeDir ? GetUserScopedDirectory(config.CredentialFolder) : config.CredentialFolder;
             this.credentialFileName = config.CredentialFile;
 
@@ -55,7 +55,7 @@ namespace Microsoft.SqlTools.Credentials.Linux
             string combinedPath = Path.Combine(this.credentialFolderPath, this.credentialFileName);
             storage = new FileTokenStorage(combinedPath);
         }
-        
+
         public bool DeletePassword(string credentialId)
         {
             Validate.IsNotNullOrEmptyString("credentialId", credentialId);
@@ -117,7 +117,7 @@ namespace Microsoft.SqlTools.Credentials.Linux
             IEnumerable<Credential> creds;
             LoadCredentialsAndFilterById(credential.CredentialId, out creds);
             storage.SaveEntries(creds.Append(credential));
-            
+
             return true;
         }
 
@@ -151,10 +151,10 @@ namespace Microsoft.SqlTools.Credentials.Linux
             {
                 return userHomeDirectory;
             }
-            
+
             // In initialization conditions, however, the "HOME" environment variable may 
             // not yet be set. For such cases, consult with the password entry.
-            
+
             // First try with a buffer that should suffice for 99% of cases.
             // Note that, theoretically, userHomeDirectory may be null in the success case 
             // if we simply couldn't find a home directory for the current user.
@@ -181,7 +181,7 @@ namespace Microsoft.SqlTools.Credentials.Linux
                 {
                     return userHomeDirectory;
                 }
-            }   
+            }
         }
 
         /// <summary>Wrapper for getpwuid_r.</summary>

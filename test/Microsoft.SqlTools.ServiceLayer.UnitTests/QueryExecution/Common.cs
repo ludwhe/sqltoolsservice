@@ -5,26 +5,26 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 using Microsoft.SqlTools.ServiceLayer.QueryExecution;
 using Microsoft.SqlTools.ServiceLayer.QueryExecution.Contracts;
 using Microsoft.SqlTools.ServiceLayer.QueryExecution.Contracts.ExecuteRequests;
 using Microsoft.SqlTools.ServiceLayer.SqlContext;
+using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using Microsoft.SqlTools.ServiceLayer.UnitTests.Utility;
 using Microsoft.SqlTools.ServiceLayer.Workspace;
 using Microsoft.SqlTools.ServiceLayer.Workspace.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.Data.SqlClient;
 using Moq;
 using Moq.Protected;
 using HostingProtocol = Microsoft.SqlTools.Hosting.Protocol;
-using System.Collections.Generic;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
 {
@@ -99,7 +99,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
 
         public static TestResultSet MillionRowTestResultSet => MillionRowTestResultSetLazy.Value;
 
-        private static readonly Lazy<TestResultSet[]> MillionRowTestDataSetLazy = new Lazy<TestResultSet[]>(new[]{ MillionRowTestResultSet });
+        private static readonly Lazy<TestResultSet[]> MillionRowTestDataSetLazy = new Lazy<TestResultSet[]>(new[] { MillionRowTestResultSet });
 
         public static TestResultSet[] MillionRowTestDataSet => MillionRowTestDataSetLazy.Value;
 
@@ -122,7 +122,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             {
                 DbColumn[] columns = { new TestDbColumn("Microsoft SQL Server 2005 XML Showplan") };
                 object[][] rows = { new object[] { "Execution Plan" } };
-                return new[] {new TestResultSet(columns, rows)};
+                return new[] { new TestResultSet(columns, rows) };
             }
         }
 
@@ -152,7 +152,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // ConnectionInfo with the same URI as the query, so we will manually set it
             ConnectionService.Instance.OwnerToConnectionMap[ci.OwnerUri] = ci;
 
-            Query query = new Query(Constants.StandardQuery, ci, new QueryExecutionSettings(), 
+            Query query = new Query(Constants.StandardQuery, ci, new QueryExecutionSettings(),
                 MemoryFileSystem.GetFileStreamFactory());
             query.Execute();
             query.ExecutionTask.Wait();
@@ -167,7 +167,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // ConnectionInfo with the same URI as the query, so we will manually set it
             ConnectionService.Instance.OwnerToConnectionMap[ci.OwnerUri] = ci;
 
-            Query query = new Query(Constants.StandardQuery, ci, querySettings, 
+            Query query = new Query(Constants.StandardQuery, ci, querySettings,
                 MemoryFileSystem.GetFileStreamFactory());
             query.Execute();
             query.ExecutionTask.Wait();
@@ -211,7 +211,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             {
                 commandMockSetup.Returns(new TestDbDataReader(data, throwOnRead));
             }
-                
+
 
             return commandMock.Object;
         }
@@ -249,7 +249,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
         }
 
         public static ConnectionInfo CreateConnectedConnectionInfo(
-            TestResultSet[] data, 
+            TestResultSet[] data,
             bool throwOnExecute,
             bool throwOnRead,
             string type = ConnectionType.Default)
@@ -275,12 +275,12 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
 
         public static QueryExecutionService GetPrimedExecutionService(
             TestResultSet[] data,
-            bool isConnected, 
-            bool throwOnExecute, 
+            bool isConnected,
+            bool throwOnExecute,
             bool throwOnRead,
             WorkspaceService<SqlToolsSettings> workspaceService,
-            out ConcurrentDictionary<string, byte[]> storage, 
-            int sizeFactor=1)
+            out ConcurrentDictionary<string, byte[]> storage,
+            int sizeFactor = 1)
         {
             // Create a place for the temp "files" to be written
             storage = new ConcurrentDictionary<string, byte[]>();
@@ -298,12 +298,12 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
         }
 
         public static QueryExecutionService GetPrimedExecutionService(
-            TestResultSet[] data, 
-            bool isConnected, 
+            TestResultSet[] data,
+            bool isConnected,
             bool throwOnExecute,
             bool throwOnRead,
             WorkspaceService<SqlToolsSettings> workspaceService,
-            int sizeFactor=1)
+            int sizeFactor = 1)
         {
             ConcurrentDictionary<string, byte[]> storage;
             return GetPrimedExecutionService(data, isConnected, throwOnExecute, throwOnRead, workspaceService, out storage, sizeFactor);
@@ -314,7 +314,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // Set up file for returning the query
             var fileMock = new Mock<ScriptFile>();
             fileMock.SetupGet(file => file.Contents).Returns(query);
-           
+
             // Set up workspace mock
             var workspaceService = new Mock<WorkspaceService<SqlToolsSettings>>();
             workspaceService.Setup(service => service.Workspace.GetFile(It.IsAny<string>()))

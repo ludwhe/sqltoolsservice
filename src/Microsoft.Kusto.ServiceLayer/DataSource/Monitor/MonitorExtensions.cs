@@ -6,8 +6,6 @@
 using System;
 using System.Data;
 using System.Linq;
-using Kusto.Language.Symbols;
-using Microsoft.Azure.OperationalInsights.Models;
 
 namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
 {
@@ -26,9 +24,9 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
             {
                 return new DataTableReader(new DataTable());
             }
-            
+
             var dataTable = new DataTable(resultTable.Name);
-            
+
             foreach (var column in resultTable.Columns)
             {
                 dataTable.Columns.Add(column.Name, MapType(column.Type));
@@ -42,13 +40,13 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
                 {
                     dataRow[i] = row[i] ?? DBNull.Value as object;
                 }
-                
+
                 dataTable.Rows.Add(dataRow);
             }
-            
+
             return new DataTableReader(dataTable);
         }
-        
+
         /// <summary>
         /// Map Kusto type to .NET Type equivalent using scalar data types
         /// </summary>
@@ -69,7 +67,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
                 case "string": return Type.GetType("System.String");
                 case "timespan": return Type.GetType("System.TimeSpan");
                 case "decimal": return Type.GetType("System.Data.SqlTypes.SqlDecimal");
-                
+
                 default: return typeof(string);
             }
         }
@@ -88,7 +86,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
                 case "string": return ScalarTypes.String;
                 case "timespan": return ScalarTypes.TimeSpan;
                 case "decimal": return ScalarTypes.Decimal;
-                
+
                 default: return ScalarTypes.String;
             }
         }

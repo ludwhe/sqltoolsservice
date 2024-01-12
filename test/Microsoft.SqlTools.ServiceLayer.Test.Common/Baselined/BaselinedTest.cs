@@ -144,12 +144,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common.Baselined
         /// <summary>
         /// Gets or Sets the sub directory in Baselines where the exected baseline results are located
         /// </summary>
-        public string BaselinesSubdir 
+        public string BaselinesSubdir
         {
-            get 
+            get
             {
                 this._baselineSubDir ??= string.Empty;
-                return this._baselineSubDir; 
+                return this._baselineSubDir;
             }
             set { this._baselineSubDir = value; }
         }
@@ -161,7 +161,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Test.Common.Baselined
         {
             get
             {
-                return Path.Combine(RunEnvironmentInfo.GetTestDataLocation(), CategoryName, Path.Combine( BaselineDirectory, BaselinesSubdir ));
+                return Path.Combine(RunEnvironmentInfo.GetTestDataLocation(), CategoryName, Path.Combine(BaselineDirectory, BaselinesSubdir));
             }
         }
 

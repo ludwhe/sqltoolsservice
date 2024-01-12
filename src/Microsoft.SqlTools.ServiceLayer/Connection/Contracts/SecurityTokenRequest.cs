@@ -29,7 +29,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.Contracts
         /// <summary>
         /// Gets or sets the scope array of the authentication request.
         /// </summary>
-        public string [] Scopes { get; set; }
+        public string[] Scopes { get; set; }
     }
 
     class RequestSecurityTokenResponse

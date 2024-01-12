@@ -47,16 +47,16 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             get
             {
                 // NOTE: Test matrix is defined in TableTestMatrix.txt, test cases here are identified by test ID
-                yield return new object[] {true, 0, 0, 2};    // 02
-                yield return new object[] {true, 0, 0, 4};    // 03
-                yield return new object[] {true, 0, 1, 4};    // 06
-                yield return new object[] {true, 1, 0, 4};    // 12
-                yield return new object[] {true, 1, 1, 4};    // 16
-                yield return new object[] {false, 0, 0, 1};   // 21
-                yield return new object[] {false, 0, 0, 3};   // 22
-                yield return new object[] {false, 0, 1, 3};   // 25
-                yield return new object[] {false, 1, 0, 3};   // 31
-                yield return new object[] {false, 1, 1, 3};   // 35
+                yield return new object[] { true, 0, 0, 2 };    // 02
+                yield return new object[] { true, 0, 0, 4 };    // 03
+                yield return new object[] { true, 0, 1, 4 };    // 06
+                yield return new object[] { true, 1, 0, 4 };    // 12
+                yield return new object[] { true, 1, 1, 4 };    // 16
+                yield return new object[] { false, 0, 0, 1 };   // 21
+                yield return new object[] { false, 0, 0, 3 };   // 22
+                yield return new object[] { false, 0, 1, 3 };   // 25
+                yield return new object[] { false, 1, 0, 3 };   // 31
+                yield return new object[] { false, 1, 1, 3 };   // 35
             }
         }
 
@@ -79,37 +79,37 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             get
             {
                 // NOTE: Test matrix is defined in TableTestMatrix.txt, test cases here are identified by test ID
-                yield return new object[] {true, 0, 0, 1, new RegexExpectedOutput(3, 3, 0)};    // 01
-                yield return new object[] {true, 0, 1, 1, new RegexExpectedOutput(3, 3, 0)};    // 04
-                yield return new object[] {true, 0, 1, 2, new RegexExpectedOutput(2, 2, 0)};    // 05
-                yield return new object[] {true, 0, 3, 1, new RegexExpectedOutput(3, 3, 0)};    // 07
-                yield return new object[] {true, 0, 3, 2, new RegexExpectedOutput(2, 2, 0)};    // 08
-                yield return new object[] {true, 0, 3, 4, null};                                // 09
-                yield return new object[] {true, 1, 0, 1, new RegexExpectedOutput(3, 3, 0)};    // 10
-                yield return new object[] {true, 1, 0, 2, new RegexExpectedOutput(2, 2, 0)};    // 11
-                yield return new object[] {true, 1, 1, 1, new RegexExpectedOutput(3, 3, 0)};    // 13
-                yield return new object[] {true, 1, 1, 2, new RegexExpectedOutput(2, 2, 0)};    // 14
-                yield return new object[] {true, 1, 1, 3, new RegexExpectedOutput(1, 1, 0)};    // 15
-                yield return new object[] {true, 3, 0, 1, new RegexExpectedOutput(3, 3, 0)};    // 17
-                yield return new object[] {true, 3, 0, 2, new RegexExpectedOutput(2, 2, 0)};    // 18
-                yield return new object[] {true, 3, 0, 4, null};                                // 19
-                yield return new object[] {false, 0, 0, 0, new RegexExpectedOutput(3, 3, 0)};   // 20
-                yield return new object[] {false, 0, 1, 0, new RegexExpectedOutput(3, 3, 0)};   // 23
-                yield return new object[] {false, 0, 1, 1, new RegexExpectedOutput(2, 2, 0)};   // 24
-                yield return new object[] {false, 0, 3, 0, new RegexExpectedOutput(3, 3, 0)};   // 26
-                yield return new object[] {false, 0, 3, 1, new RegexExpectedOutput(2, 2, 0)};   // 27
-                yield return new object[] {false, 0, 3, 3, null};                               // 28
-                yield return new object[] {false, 1, 0, 0, new RegexExpectedOutput(3, 3, 0)};   // 29
-                yield return new object[] {false, 1, 0, 1, new RegexExpectedOutput(2, 2, 0)};   // 30
-                yield return new object[] {false, 1, 1, 0, new RegexExpectedOutput(3, 3, 0)};   // 32
-                yield return new object[] {false, 1, 1, 1, new RegexExpectedOutput(2, 2, 0)};   // 33
-                yield return new object[] {false, 1, 1, 2, new RegexExpectedOutput(1, 1, 0)};   // 34
-                yield return new object[] {false, 3, 0, 0, new RegexExpectedOutput(3, 3, 0)};   // 36
-                yield return new object[] {false, 3, 0, 1, new RegexExpectedOutput(2, 2, 0)};   // 37
-                yield return new object[] {false, 3, 0, 3, null};                               // 38
+                yield return new object[] { true, 0, 0, 1, new RegexExpectedOutput(3, 3, 0) };    // 01
+                yield return new object[] { true, 0, 1, 1, new RegexExpectedOutput(3, 3, 0) };    // 04
+                yield return new object[] { true, 0, 1, 2, new RegexExpectedOutput(2, 2, 0) };    // 05
+                yield return new object[] { true, 0, 3, 1, new RegexExpectedOutput(3, 3, 0) };    // 07
+                yield return new object[] { true, 0, 3, 2, new RegexExpectedOutput(2, 2, 0) };    // 08
+                yield return new object[] { true, 0, 3, 4, null };                                // 09
+                yield return new object[] { true, 1, 0, 1, new RegexExpectedOutput(3, 3, 0) };    // 10
+                yield return new object[] { true, 1, 0, 2, new RegexExpectedOutput(2, 2, 0) };    // 11
+                yield return new object[] { true, 1, 1, 1, new RegexExpectedOutput(3, 3, 0) };    // 13
+                yield return new object[] { true, 1, 1, 2, new RegexExpectedOutput(2, 2, 0) };    // 14
+                yield return new object[] { true, 1, 1, 3, new RegexExpectedOutput(1, 1, 0) };    // 15
+                yield return new object[] { true, 3, 0, 1, new RegexExpectedOutput(3, 3, 0) };    // 17
+                yield return new object[] { true, 3, 0, 2, new RegexExpectedOutput(2, 2, 0) };    // 18
+                yield return new object[] { true, 3, 0, 4, null };                                // 19
+                yield return new object[] { false, 0, 0, 0, new RegexExpectedOutput(3, 3, 0) };   // 20
+                yield return new object[] { false, 0, 1, 0, new RegexExpectedOutput(3, 3, 0) };   // 23
+                yield return new object[] { false, 0, 1, 1, new RegexExpectedOutput(2, 2, 0) };   // 24
+                yield return new object[] { false, 0, 3, 0, new RegexExpectedOutput(3, 3, 0) };   // 26
+                yield return new object[] { false, 0, 3, 1, new RegexExpectedOutput(2, 2, 0) };   // 27
+                yield return new object[] { false, 0, 3, 3, null };                               // 28
+                yield return new object[] { false, 1, 0, 0, new RegexExpectedOutput(3, 3, 0) };   // 29
+                yield return new object[] { false, 1, 0, 1, new RegexExpectedOutput(2, 2, 0) };   // 30
+                yield return new object[] { false, 1, 1, 0, new RegexExpectedOutput(3, 3, 0) };   // 32
+                yield return new object[] { false, 1, 1, 1, new RegexExpectedOutput(2, 2, 0) };   // 33
+                yield return new object[] { false, 1, 1, 2, new RegexExpectedOutput(1, 1, 0) };   // 34
+                yield return new object[] { false, 3, 0, 0, new RegexExpectedOutput(3, 3, 0) };   // 36
+                yield return new object[] { false, 3, 0, 1, new RegexExpectedOutput(2, 2, 0) };   // 37
+                yield return new object[] { false, 3, 0, 3, null };                               // 38
             }
         }
-        
+
         [Test]
         [TestCaseSource(nameof(GetScriptData))]
         public async Task GetScript(bool includeIdentity, int colsWithDefaultConstraints, int colsThatAllowNull, int valuesToSkipSetting, RegexExpectedOutput expectedOutput)
@@ -118,18 +118,18 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // ... Generate the parameters for the row create
             var data = new Common.TestDbColumnsWithTableMetadata(false, includeIdentity, colsWithDefaultConstraints, colsThatAllowNull);
             ResultSet rs = await Common.GetResultSet(data.DbColumns, includeIdentity);
-            
+
             // ... Create a row create and set the appropriate number of cells 
             var rc = new RowCreate(100, rs, data.TableMetadata);
             Common.AddCells(rc, valuesToSkipSetting);
-            
+
             // If: I ask for the script for the row insert
             string script = rc.GetScript();
-            
+
             // Then:
             // ... The script should not be null
             Assert.NotNull(script);
-            
+
             // ... The script should match the expected regex output
             ValidateScriptAgainstRegex(script, expectedOutput);
         }
@@ -141,7 +141,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 // If expected output was null make sure we match the default values reges
                 Match m = GetInsert1Regex().Match(sql);
                 Assert.True(m.Success);
-                
+
                 // Table name matches
                 Assert.AreEqual(Common.TableName, m.Groups[1].Value);
             }
@@ -150,24 +150,24 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 // Do the whole validation
                 Match m = GetInsert2Regex().Match(sql);
                 Assert.True(m.Success);
-                
+
                 // Table name matches
                 Assert.AreEqual(Common.TableName, m.Groups[1].Value);
-                
+
                 // In columns match
                 string cols = m.Groups[2].Value;
                 Assert.AreEqual(expectedOutput.ExpectedInColumns, cols.Split(',').Length);
-                
+
                 // In values match
-                string vals = m.Groups[3].Value;               
+                string vals = m.Groups[3].Value;
                 Assert.AreEqual(expectedOutput.ExpectedInValues, vals.Split(',').Length);
             }
         }
-        
+
         #endregion
 
         [Test]
-        public async Task ApplyChanges([Values]bool includeIdentity)
+        public async Task ApplyChanges([Values] bool includeIdentity)
         {
             // Setup: 
             // ... Generate the parameters for the row create
@@ -204,16 +204,16 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             get
             {
                 // NOTE: Test matrix is defined in TableTestMatrix.txt, test cases here are identified by test ID
-                yield return new object[] {true, 0, 0, 2};    // 02
-                yield return new object[] {true, 0, 0, 4};    // 03
-                yield return new object[] {true, 0, 1, 4};    // 06
-                yield return new object[] {true, 1, 0, 4};    // 12
-                yield return new object[] {true, 1, 1, 4};    // 16
-                yield return new object[] {false, 0, 0, 1};   // 21
-                yield return new object[] {false, 0, 0, 3};   // 22
-                yield return new object[] {false, 0, 1, 3};   // 25
-                yield return new object[] {false, 1, 0, 3};   // 31
-                yield return new object[] {false, 1, 1, 3};   // 35
+                yield return new object[] { true, 0, 0, 2 };    // 02
+                yield return new object[] { true, 0, 0, 4 };    // 03
+                yield return new object[] { true, 0, 1, 4 };    // 06
+                yield return new object[] { true, 1, 0, 4 };    // 12
+                yield return new object[] { true, 1, 1, 4 };    // 16
+                yield return new object[] { false, 0, 0, 1 };   // 21
+                yield return new object[] { false, 0, 0, 3 };   // 22
+                yield return new object[] { false, 0, 1, 3 };   // 25
+                yield return new object[] { false, 1, 0, 3 };   // 31
+                yield return new object[] { false, 1, 1, 3 };   // 35
             }
         }
 
@@ -227,10 +227,10 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             var data = new Common.TestDbColumnsWithTableMetadata(false, includeIdentity, defaultCols, nullableCols);
             ResultSet rs = await Common.GetResultSet(data.DbColumns, includeIdentity);
             var rc = new RowCreate(100, rs, data.TableMetadata);
-            
+
             // ... Create a mock db connection for building the command
             var mockConn = new TestSqlConnection();
-            
+
             // If: I ask for a script to be generated without setting all the required values
             // Then: An exception should be thrown for the missing cells
             Assert.Throws<InvalidOperationException>(() => rc.GetCommand(mockConn));
@@ -241,37 +241,37 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             get
             {
                 // NOTE: Test matrix is defined in TableTestMatrix.txt, test cases here are identified by test ID
-                yield return new object[] {true, 0, 0, 1, new RegexExpectedOutput(3, 3, 4)};    // 01
-                yield return new object[] {true, 0, 1, 1, new RegexExpectedOutput(3, 3, 4)};    // 04
-                yield return new object[] {true, 0, 1, 2, new RegexExpectedOutput(2, 2, 4)};    // 05
-                yield return new object[] {true, 0, 3, 1, new RegexExpectedOutput(3, 3, 4)};    // 07
-                yield return new object[] {true, 0, 3, 2, new RegexExpectedOutput(2, 2, 4)};    // 08
-                yield return new object[] {true, 0, 3, 4, new RegexExpectedOutput(0, 0, 4)};    // 09
-                yield return new object[] {true, 1, 0, 1, new RegexExpectedOutput(3, 3, 4)};    // 10
-                yield return new object[] {true, 1, 0, 2, new RegexExpectedOutput(2, 2, 4)};    // 11
-                yield return new object[] {true, 1, 1, 1, new RegexExpectedOutput(3, 3, 4)};    // 13
-                yield return new object[] {true, 1, 1, 2, new RegexExpectedOutput(2, 2, 4)};    // 14
-                yield return new object[] {true, 1, 1, 3, new RegexExpectedOutput(1, 1, 4)};    // 15
-                yield return new object[] {true, 3, 0, 1, new RegexExpectedOutput(3, 3, 4)};    // 17
-                yield return new object[] {true, 3, 0, 2, new RegexExpectedOutput(2, 2, 4)};    // 18
-                yield return new object[] {true, 3, 0, 4, new RegexExpectedOutput(0, 0, 4)};    // 19
-                yield return new object[] {false, 0, 0, 0, new RegexExpectedOutput(3, 3, 3)};   // 20
-                yield return new object[] {false, 0, 1, 0, new RegexExpectedOutput(3, 3, 3)};   // 23
-                yield return new object[] {false, 0, 1, 1, new RegexExpectedOutput(2, 2, 3)};   // 24
-                yield return new object[] {false, 0, 3, 0, new RegexExpectedOutput(3, 3, 3)};   // 26
-                yield return new object[] {false, 0, 3, 1, new RegexExpectedOutput(2, 2, 3)};   // 27
-                yield return new object[] {false, 0, 3, 3, new RegexExpectedOutput(0, 0, 3)};   // 28
-                yield return new object[] {false, 1, 0, 0, new RegexExpectedOutput(3, 3, 3)};   // 29
-                yield return new object[] {false, 1, 0, 1, new RegexExpectedOutput(2, 2, 3)};   // 30
-                yield return new object[] {false, 1, 1, 0, new RegexExpectedOutput(3, 3, 3)};   // 32
-                yield return new object[] {false, 1, 1, 1, new RegexExpectedOutput(2, 2, 3)};   // 33
-                yield return new object[] {false, 1, 1, 2, new RegexExpectedOutput(1, 1, 3)};   // 34
-                yield return new object[] {false, 3, 0, 0, new RegexExpectedOutput(3, 3, 3)};   // 36
-                yield return new object[] {false, 3, 0, 1, new RegexExpectedOutput(2, 2, 3)};   // 37
-                yield return new object[] {false, 3, 0, 3, new RegexExpectedOutput(0, 0, 3)};   // 38
+                yield return new object[] { true, 0, 0, 1, new RegexExpectedOutput(3, 3, 4) };    // 01
+                yield return new object[] { true, 0, 1, 1, new RegexExpectedOutput(3, 3, 4) };    // 04
+                yield return new object[] { true, 0, 1, 2, new RegexExpectedOutput(2, 2, 4) };    // 05
+                yield return new object[] { true, 0, 3, 1, new RegexExpectedOutput(3, 3, 4) };    // 07
+                yield return new object[] { true, 0, 3, 2, new RegexExpectedOutput(2, 2, 4) };    // 08
+                yield return new object[] { true, 0, 3, 4, new RegexExpectedOutput(0, 0, 4) };    // 09
+                yield return new object[] { true, 1, 0, 1, new RegexExpectedOutput(3, 3, 4) };    // 10
+                yield return new object[] { true, 1, 0, 2, new RegexExpectedOutput(2, 2, 4) };    // 11
+                yield return new object[] { true, 1, 1, 1, new RegexExpectedOutput(3, 3, 4) };    // 13
+                yield return new object[] { true, 1, 1, 2, new RegexExpectedOutput(2, 2, 4) };    // 14
+                yield return new object[] { true, 1, 1, 3, new RegexExpectedOutput(1, 1, 4) };    // 15
+                yield return new object[] { true, 3, 0, 1, new RegexExpectedOutput(3, 3, 4) };    // 17
+                yield return new object[] { true, 3, 0, 2, new RegexExpectedOutput(2, 2, 4) };    // 18
+                yield return new object[] { true, 3, 0, 4, new RegexExpectedOutput(0, 0, 4) };    // 19
+                yield return new object[] { false, 0, 0, 0, new RegexExpectedOutput(3, 3, 3) };   // 20
+                yield return new object[] { false, 0, 1, 0, new RegexExpectedOutput(3, 3, 3) };   // 23
+                yield return new object[] { false, 0, 1, 1, new RegexExpectedOutput(2, 2, 3) };   // 24
+                yield return new object[] { false, 0, 3, 0, new RegexExpectedOutput(3, 3, 3) };   // 26
+                yield return new object[] { false, 0, 3, 1, new RegexExpectedOutput(2, 2, 3) };   // 27
+                yield return new object[] { false, 0, 3, 3, new RegexExpectedOutput(0, 0, 3) };   // 28
+                yield return new object[] { false, 1, 0, 0, new RegexExpectedOutput(3, 3, 3) };   // 29
+                yield return new object[] { false, 1, 0, 1, new RegexExpectedOutput(2, 2, 3) };   // 30
+                yield return new object[] { false, 1, 1, 0, new RegexExpectedOutput(3, 3, 3) };   // 32
+                yield return new object[] { false, 1, 1, 1, new RegexExpectedOutput(2, 2, 3) };   // 33
+                yield return new object[] { false, 1, 1, 2, new RegexExpectedOutput(1, 1, 3) };   // 34
+                yield return new object[] { false, 3, 0, 0, new RegexExpectedOutput(3, 3, 3) };   // 36
+                yield return new object[] { false, 3, 0, 1, new RegexExpectedOutput(2, 2, 3) };   // 37
+                yield return new object[] { false, 3, 0, 3, new RegexExpectedOutput(0, 0, 3) };   // 38
             }
         }
-        
+
         [Test]
         [TestCaseSource(nameof(GetCommandData))]
         public async Task GetCommand(bool includeIdentity, int defaultCols, int nullableCols, int valuesToSkip, RegexExpectedOutput expectedOutput)
@@ -280,24 +280,24 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // ... Generate the parameters for the row create
             var data = new Common.TestDbColumnsWithTableMetadata(false, includeIdentity, defaultCols, nullableCols);
             ResultSet rs = await Common.GetResultSet(data.DbColumns, includeIdentity);
-            
+
             // ... Mock db connection for building the command
             var mockConn = new TestSqlConnection(null);
-            
+
             // ... Create a row create and set the appropriate number of cells 
             var rc = new RowCreate(100, rs, data.TableMetadata);
             Common.AddCells(rc, valuesToSkip);
-            
+
             // If: I ask for the command for the row insert
             DbCommand cmd = rc.GetCommand(mockConn);
-            
+
             // Then:
             // ... The command should not be null
             Assert.NotNull(cmd);
-            
+
             // ... There should be parameters in it
             Assert.AreEqual(expectedOutput.ExpectedInValues, cmd.Parameters.Count);
-            
+
             // ... The script should match the expected regex output
             ValidateCommandAgainstRegex(cmd.CommandText, expectedOutput);
         }
@@ -307,19 +307,19 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             // Break the query into parts
             string[] splitSql = sql.Split(Environment.NewLine);
             Assert.AreEqual(3, splitSql.Length);
-            
+
             // Check the declare statement first
             Match declareMatch = GetDeclareRegex().Match(splitSql[0]);
             Assert.True(declareMatch.Success);
-            
+
             // Declared table name matches
             Assert.True(declareMatch.Groups[1].Value.StartsWith("Insert"));
             Assert.True(declareMatch.Groups[1].Value.EndsWith("Output"));
-            
+
             // Correct number of columns in declared table
             string[] declareCols = declareMatch.Groups[2].Value.Split(", ");
             Assert.AreEqual(expectedOutput.ExpectedOutColumns, declareCols.Length);
-            
+
             // Check the insert statement in the middle 
             if (expectedOutput.ExpectedInColumns == 0 || expectedOutput.ExpectedInValues == 0)
             {
@@ -327,10 +327,10 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 var insertRegex = GetInsertRegex();
                 Match insertMatch = insertRegex.Match(splitSql[1]);
                 Assert.True(insertMatch.Success);
-                
+
                 // Table name matches
                 Assert.AreEqual(Common.TableName, insertMatch.Groups[1].Value);
-                
+
                 string[] outCols = insertMatch.Groups[2].Value.Split(", ");
                 Assert.AreEqual(expectedOutput.ExpectedOutColumns, outCols.Length);
                 Assert.That(outCols, Has.All.StartsWith("inserted."), "Output columns match");
@@ -347,10 +347,10 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 var insertRegex = GetInsertFullRegex();
                 Match insertMatch = insertRegex.Match(splitSql[1]);
                 Assert.True(insertMatch.Success);
-                
+
                 // Table name matches
                 Assert.AreEqual(Common.TableName, insertMatch.Groups[1].Value);
-                
+
                 // 
                 string[] outCols = insertMatch.Groups[3].Value.Split(", ");
                 Assert.Multiple(() =>
@@ -358,7 +358,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                     Assert.AreEqual(expectedOutput.ExpectedOutColumns, outCols.Length);
                     Assert.That(outCols, Has.All.StartsWith("inserted."), "Output columns match");
                 });
-                
+
                 // In columns match
                 string[] inCols = insertMatch.Groups[2].Value.Split(", ");
                 Assert.AreEqual(expectedOutput.ExpectedInColumns, inCols.Length);
@@ -375,23 +375,23 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 Assert.AreEqual(expectedOutput.ExpectedInValues, inVals.Length);
                 Assert.That(inVals, Has.All.Match(@"@.+\d+_\d+"));
             }
-            
+
             // Check the select statement last
             var selectRegex = GetSelectRegex();
             Match selectMatch = selectRegex.Match(splitSql[2]);
             Assert.True(selectMatch.Success);
-            
+
             // Correct number of columns in declared table
             string[] selectCols = selectMatch.Groups[1].Value.Split(", ");
             Assert.AreEqual(expectedOutput.ExpectedOutColumns, selectCols.Length);
-            
+
             // Declared table name matches
             Assert.True(selectMatch.Groups[2].Value.StartsWith("Insert"));
             Assert.True(selectMatch.Groups[2].Value.EndsWith("Output"));
         }
-        
+
         #endregion
-        
+
         #region GetEditRow Tests
 
         [Test]
@@ -425,18 +425,18 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             var data = new Common.TestDbColumnsWithTableMetadata(false, false, 3, 0);
             ResultSet rs = await Common.GetResultSet(data.DbColumns, false);
             var rc = new RowCreate(rowId, rs, data.TableMetadata);
-            
+
             // If: I request an edit row from the row create
             EditRow er = rc.GetEditRow(null);
-            
+
             // Then:
             // ... The row should not be null
             Assert.NotNull(er);
-            
+
             // ... The row should not be clean
             Assert.True(er.IsDirty);
             Assert.AreEqual(EditRow.EditRowState.DirtyInsert, er.State);
-            
+
             // ... The row sould have a bunch of default values (equal to number of columns) and all are dirty
             Assert.AreEqual(rc.newCells.Length, er.Cells.Length);
             Assert.That(er.Cells.Select(ec => ec.DisplayValue), Has.All.EqualTo(Common.DefaultValue));
@@ -451,19 +451,19 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             var data = new Common.TestDbColumnsWithTableMetadata(false, true, 0, 0);
             ResultSet rs = await Common.GetResultSet(data.DbColumns, true);
             var rc = new RowCreate(rowId, rs, data.TableMetadata);
-            
+
             // If: I request an edit row from the row created
             EditRow er = rc.GetEditRow(null);
-            
+
             // Then:
             // ... The row should not be null
             Assert.NotNull(er);
             Assert.AreEqual(er.Id, rowId);
-            
+
             // ... The row should not be clean
             Assert.True(er.IsDirty);
             Assert.AreEqual(EditRow.EditRowState.DirtyInsert, er.State);
-            
+
             // ... The row should have a TBD for the identity column
             Assert.AreEqual(rc.newCells.Length, er.Cells.Length);
             Assert.AreEqual(SR.EditDataComputedColumnPlaceholder, er.Cells[0].DisplayValue);
@@ -512,9 +512,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         #endregion
 
         #region SetCell Tests
-        
+
         [Test]
-        public async Task SetCellOutOfRange([Values(-1, 3, 100)]int columnId)
+        public async Task SetCellOutOfRange([Values(-1, 3, 100)] int columnId)
         {
             // Setup: Generate a row create
             RowCreate rc = await GetStandardRowCreate();
@@ -560,9 +560,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 DataType = typeof(byte[]),
                 DataTypeName = "binary"
             }};
-            object[][] rows = {};
+            object[][] rows = { };
             var testResultSet = new TestResultSet(cols, rows);
-            var testReader = new TestDbDataReader(new[] {testResultSet}, false);
+            var testReader = new TestDbDataReader(new[] { testResultSet }, false);
             var rs = new ResultSet(0, 0, MemoryFileSystem.GetFileStreamFactory());
             await rs.ReadResultToEnd(testReader, CancellationToken.None);
 
@@ -622,11 +622,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         }
 
         #endregion
-        
+
         #region RevertCell Tests
-        
+
         [Test]
-        public async Task RevertCellOutOfRange([Values(-1,3,100)]int columnId)
+        public async Task RevertCellOutOfRange([Values(-1, 3, 100)] int columnId)
         {
             // Setup: Generate the row create
             RowCreate rc = await GetStandardRowCreate();
@@ -637,7 +637,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         }
 
         [Test]
-        public async Task RevertCellNotSet([Values(0,1)]int defaultCols)
+        public async Task RevertCellNotSet([Values(0, 1)] int defaultCols)
         {
             // Setup: 
             // ... Generate the parameters for the row create
@@ -653,7 +653,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             Assert.NotNull(result);
 
             // ... We should get back an edit cell with a value based on the default value
-            string expectedDisplayValue = defaultCols > 0 ? Common.DefaultValue : string.Empty; 
+            string expectedDisplayValue = defaultCols > 0 ? Common.DefaultValue : string.Empty;
             Assert.NotNull(result.Cell);
             Assert.AreEqual(expectedDisplayValue, result.Cell.DisplayValue);
             Assert.False(result.Cell.IsNull);    // TODO: Modify to support null defaults
@@ -683,7 +683,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
             Assert.NotNull(result);
 
             // ... We should get back an edit cell with a value based on the default value
-            string expectedDisplayValue = defaultCols > 0 ? Common.DefaultValue : string.Empty; 
+            string expectedDisplayValue = defaultCols > 0 ? Common.DefaultValue : string.Empty;
             Assert.NotNull(result.Cell);
             Assert.AreEqual(expectedDisplayValue, result.Cell.DisplayValue);
             Assert.False(result.Cell.IsNull);    // TODO: Modify to support null defaults
@@ -696,7 +696,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         }
 
         #endregion
-        
+
         private static async Task<RowCreate> GetStandardRowCreate()
         {
             var data = new Common.TestDbColumnsWithTableMetadata(false, false, 0, 0);
@@ -712,7 +712,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
                 ExpectedInValues = expectedInValues;
                 ExpectedOutColumns = expectedOutColumns;
             }
-            
+
             public int ExpectedInColumns { get; }
             public int ExpectedInValues { get; }
             public int ExpectedOutColumns { get; }

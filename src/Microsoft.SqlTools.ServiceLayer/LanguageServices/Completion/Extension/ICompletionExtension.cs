@@ -5,12 +5,12 @@
 
 #nullable disable
 
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.LanguageServices.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.SqlTools.ServiceLayer.Connection;
+using Microsoft.SqlTools.ServiceLayer.LanguageServices.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.LanguageServices.Completion.Extension
 {

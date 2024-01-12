@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.SmoMetadataProvider;
 using Microsoft.SqlServer.Management.SqlParser.Binder;
@@ -15,7 +16,6 @@ using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 using Microsoft.SqlTools.ServiceLayer.SqlContext;
 using Microsoft.SqlTools.ServiceLayer.Workspace;
-using System.Threading;
 
 namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
 {
@@ -71,7 +71,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
 
         public ConnectedBindingQueue()
             : this(true)
-        {            
+        {
         }
 
         public ConnectedBindingQueue(bool needsMetadata)
@@ -91,7 +91,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
         /// </summary>
         /// <param name="connInfo"></param>
         internal static string GetConnectionContextKey(ConnectionDetails details)
-        {            
+        {
             string key = string.Format("{0}_{1}_{2}_{3}",
                 details.ServerName ?? "NULL",
                 details.DatabaseName ?? "NULL",
@@ -154,7 +154,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
             return string.Format("{0}_{1}",
                 serverName ?? "NULL",
                 databaseName ?? "NULL");
-            
+
         }
 
         public void CloseConnections(string serverName, string databaseName, int millisecondsTimeout)
@@ -232,7 +232,7 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
                 try
                 {
                     bindingContext.BindingLock.Reset();
-                   
+
                     // populate the binding context to work with the SMO metadata provider
                     bindingContext.ServerConnection = connectionOpener.OpenServerConnection(connInfo, featureName);
 
@@ -244,19 +244,19 @@ namespace Microsoft.SqlTools.ServiceLayer.LanguageServices
                             this.CurrentSettings.SqlTools.IntelliSense.LowerCaseSuggestions.Value
                                 ? CasingStyle.Lowercase : CasingStyle.Uppercase;
                         bindingContext.Binder = BinderProvider.CreateBinder(bindingContext.SmoMetadataProvider);
-                    }         
-            
+                    }
+
                     bindingContext.BindingTimeout = ConnectedBindingQueue.DefaultBindingTimeout;
                     bindingContext.IsConnected = true;
                 }
                 catch (Exception)
                 {
                     bindingContext.IsConnected = false;
-                }       
+                }
                 finally
                 {
                     bindingContext.BindingLock.Set();
-                }         
+                }
             }
 
             return connectionKey;

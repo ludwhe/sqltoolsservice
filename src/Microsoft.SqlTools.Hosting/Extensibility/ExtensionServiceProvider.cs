@@ -148,7 +148,7 @@ namespace Microsoft.SqlTools.Extensibility
         /// <returns><see cref="ExtensionServiceProvider"/> instance</returns>
         public static ExtensionServiceProvider CreateFromAssembliesInDirectory(string directory, IList<string> inclusionList)
         {
-            Logger.Verbose("Loading service assemblies from ..."+ directory);
+            Logger.Verbose("Loading service assemblies from ..." + directory);
             var assemblyPaths = Directory.GetFiles(directory, "*.dll", SearchOption.TopDirectoryOnly);
 
             List<Assembly> assemblies = LoadAssemblies(directory, inclusionList);
@@ -162,7 +162,7 @@ namespace Microsoft.SqlTools.Extensibility
 
         private static List<Assembly> LoadAssemblies(string directory, IList<string> inclusionList)
         {
-            Logger.Verbose("Loading service assemblies from ..."+ directory);
+            Logger.Verbose("Loading service assemblies from ..." + directory);
             //AssemblyLoadContext context = new AssemblyLoader(directory);
             var assemblyPaths = Directory.GetFiles(directory, "*.dll", SearchOption.TopDirectoryOnly);
 
@@ -276,7 +276,7 @@ namespace Microsoft.SqlTools.Extensibility
 
         public static ContainerConfiguration WithAssembliesInPath(this ContainerConfiguration configuration, string path, AttributedModelProvider conventions, SearchOption searchOption = SearchOption.TopDirectoryOnly)
         {
-            var assemblyPaths = Directory.GetFiles(path, "*.dll", SearchOption.TopDirectoryOnly);        
+            var assemblyPaths = Directory.GetFiles(path, "*.dll", SearchOption.TopDirectoryOnly);
             var assemblies = assemblyPaths
                 .Select(path => Assembly.LoadFrom(path))
                 .ToList();

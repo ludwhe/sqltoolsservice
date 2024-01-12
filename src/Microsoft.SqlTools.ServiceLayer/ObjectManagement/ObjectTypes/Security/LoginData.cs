@@ -11,12 +11,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
-using Microsoft.SqlTools.Utility;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Management;
 using Microsoft.SqlTools.ServiceLayer.ObjectManagement.PermissionsData;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 {
@@ -27,25 +27,25 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
     {
         private Microsoft.SqlServer.Management.Smo.Server server;
 
-        private string              databaseName;
-        private string              loginName;
-        private bool                permit;
-        private bool                isAccessible;
-        private string              defaultSchema;
-        private string              userName;
-        private HybridDictionary    databaseRoles;
-        private StringCollection    schemaNames = null;
-        private bool                loginExists;
-        private bool                roleMembershipChanged;
-        private bool                guestStatus;
+        private string databaseName;
+        private string loginName;
+        private bool permit;
+        private bool isAccessible;
+        private string defaultSchema;
+        private string userName;
+        private HybridDictionary databaseRoles;
+        private StringCollection schemaNames = null;
+        private bool loginExists;
+        private bool roleMembershipChanged;
+        private bool guestStatus;
 
-        private bool                initializedDatabaseAccess;
-        private bool                initializedRoleMembership;
+        private bool initializedDatabaseAccess;
+        private bool initializedRoleMembership;
 
         /// <summary>
         /// The name of the database
         /// </summary>
-        public string   DatabaseName
+        public string DatabaseName
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// The default schema (user name) for the login in the database
         /// </summary>
-        public string   DefaultSchema
+        public string DefaultSchema
         {
             get
             {
@@ -78,7 +78,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Whether the login has access to the database
         /// </summary>
-        public bool     PermitDatabaseAccess
+        public bool PermitDatabaseAccess
         {
             get
             {
@@ -100,7 +100,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Whether the database is accessible
         /// </summary>
-        public bool     DatabaseIsAccessible
+        public bool DatabaseIsAccessible
         {
             get
             {
@@ -116,7 +116,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Guest account enables or disabled in the database
         /// </summary>
-        public bool     GuestStatus
+        public bool GuestStatus
         {
             get
             {
@@ -141,8 +141,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                     this.InitializeRoleMembership();
                 }
 
-                SortedList  sortedRoles = new SortedList(databaseRoles, Comparer.Default);
-                string[]    result      = new string[sortedRoles.Count];
+                SortedList sortedRoles = new SortedList(databaseRoles, Comparer.Default);
+                string[] result = new string[sortedRoles.Count];
 
                 sortedRoles.Keys.CopyTo(result, 0);
 
@@ -159,13 +159,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             {
                 if (this.schemaNames == null)
                 {
-                    this.schemaNames                = new StringCollection();
-                    Enumerator  enumerator          = new Enumerator();
-                    Urn         urn                 = new Urn(String.Format(System.Globalization.CultureInfo.InvariantCulture, "Server/Database[@Name='{0}']/Schema", Urn.EscapeString(databaseName)));
-                    string[]    fields              = new string[] { "Name"};
-                    OrderBy[]   orderBy             = new OrderBy[] { new OrderBy("Name", OrderBy.Direction.Asc)};
-                    Request     request             = new Request(urn, fields, orderBy);
-                    DataTable   enumeratorResults   = enumerator.Process(this.server.ConnectionContext, request);
+                    this.schemaNames = new StringCollection();
+                    Enumerator enumerator = new Enumerator();
+                    Urn urn = new Urn(String.Format(System.Globalization.CultureInfo.InvariantCulture, "Server/Database[@Name='{0}']/Schema", Urn.EscapeString(databaseName)));
+                    string[] fields = new string[] { "Name" };
+                    OrderBy[] orderBy = new OrderBy[] { new OrderBy("Name", OrderBy.Direction.Asc) };
+                    Request request = new Request(urn, fields, orderBy);
+                    DataTable enumeratorResults = enumerator.Process(this.server.ConnectionContext, request);
 
                     System.Diagnostics.Debug.Assert(enumeratorResults.Rows.Count != 0, "couldn't enumerate schemas in the database");
 
@@ -182,7 +182,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Has the user changed membership in any role?
         /// </summary>
-        public bool     RoleMembershipChanged
+        public bool RoleMembershipChanged
         {
             get
             {
@@ -192,7 +192,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Whether the login already exists
         /// </summary>
-        private bool    LoginExists
+        private bool LoginExists
         {
             get
             {
@@ -218,8 +218,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         {
             this.DefaultInitialize();
 
-            this.server         = server;
-            this.databaseName   = databaseName;
+            this.server = server;
+            this.databaseName = databaseName;
 
         }
 
@@ -233,10 +233,10 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         {
             this.DefaultInitialize();
 
-            this.server             = server;
-            this.loginName          = loginName;
-            this.databaseName       = databaseName;
-            this.loginExists        = true;
+            this.server = server;
+            this.loginName = loginName;
+            this.databaseName = databaseName;
+            this.loginExists = true;
 
         }
 
@@ -246,7 +246,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="databaseRoleName">The name of the database role</param>
         /// <returns>True if the login is a member of the role, false otherwise</returns>
-        public bool     IsMember(string databaseRoleName)
+        public bool IsMember(string databaseRoleName)
         {
             if (!this.initializedRoleMembership)
             {
@@ -255,10 +255,10 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 
             System.Diagnostics.Debug.Assert(databaseRoles.Contains(databaseRoleName), "databaseRoleName is not the name of a role in the database");
 
-            bool isPublic   = (0 == String.Compare(databaseRoleName, "public", StringComparison.Ordinal));
-            bool result     = isPublic || (bool) databaseRoles[databaseRoleName];
+            bool isPublic = (0 == String.Compare(databaseRoleName, "public", StringComparison.Ordinal));
+            bool result = isPublic || (bool)databaseRoles[databaseRoleName];
 
-            return result; 
+            return result;
         }
 
         /// <summary>
@@ -266,14 +266,14 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// </summary>
         /// <param name="databaseRoleName">The name of the database role</param>
         /// <param name="isMember">Whether the login is a member of the role</param>
-        public void     SetMember(string databaseRoleName, bool isMember)
+        public void SetMember(string databaseRoleName, bool isMember)
         {
             System.Diagnostics.Debug.Assert(databaseRoles.Contains(databaseRoleName), "databaseRoleName is not the name of a role in the database");
 
             if (0 != String.Compare(databaseRoleName, "public", StringComparison.Ordinal))
             {
                 databaseRoles[databaseRoleName] = isMember;
-                this.roleMembershipChanged      = true;
+                this.roleMembershipChanged = true;
             }
         }
 
@@ -281,22 +281,22 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// Create a clone of this DatabaseRoles object
         /// </summary>
         /// <returns>The clone DatabaseRoles</returns>
-        public object   Clone()
+        public object Clone()
         {
             DatabaseRoles result = new DatabaseRoles();
 
-            result.server           = this.server;
-            result.loginName        = this.loginName;
-            result.databaseName     = this.databaseName;
-            result.loginExists      = this.loginExists;
-            result.permit           = this.permit;
-            result.isAccessible     = this.isAccessible;
-            result.defaultSchema    = this.defaultSchema;
-            result.userName         = this.userName;
-            result.guestStatus      = this.guestStatus;
+            result.server = this.server;
+            result.loginName = this.loginName;
+            result.databaseName = this.databaseName;
+            result.loginExists = this.loginExists;
+            result.permit = this.permit;
+            result.isAccessible = this.isAccessible;
+            result.defaultSchema = this.defaultSchema;
+            result.userName = this.userName;
+            result.guestStatus = this.guestStatus;
 
-            result.initializedDatabaseAccess    = this.initializedDatabaseAccess;
-            result.initializedRoleMembership    = this.initializedRoleMembership;
+            result.initializedDatabaseAccess = this.initializedDatabaseAccess;
+            result.initializedRoleMembership = this.initializedRoleMembership;
 
             foreach (string key in this.databaseRoles.Keys)
             {
@@ -312,13 +312,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="userName">the name of the schema associated with the login in the database</param>
         /// <param name="hasDBAccess">whether the user has database access</param>
         /// <returns>True if there is a user associated with the login in the database, false otherwise</returns>
-        private bool    GetDatabaseUserInfo(out string userName, out bool hasDBAccess, out string defaultSchema)
+        private bool GetDatabaseUserInfo(out string userName, out bool hasDBAccess, out string defaultSchema)
         {
-            bool result     = false;
+            bool result = false;
 
-            userName        = String.Empty;
-            hasDBAccess     = false;
-            defaultSchema   = String.Empty;
+            userName = String.Empty;
+            hasDBAccess = false;
+            defaultSchema = String.Empty;
 
             if (this.isAccessible)
             {
@@ -326,29 +326,29 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 {
                     Request request = new Request();
 
-                    request.Urn         = String.Format(System.Globalization.CultureInfo.InvariantCulture,
-                                                        "Server/Database[@Name='{0}']/User[@Login='{1}']", 
-                                                        Urn.EscapeString(databaseName), 
+                    request.Urn = String.Format(System.Globalization.CultureInfo.InvariantCulture,
+                                                        "Server/Database[@Name='{0}']/User[@Login='{1}']",
+                                                        Urn.EscapeString(databaseName),
                                                         Urn.EscapeString(this.loginName));
 
                     if (server.Information.Version.Major >= 9)
                     {
-                        request.Fields      = new string[3] { "Name", "HasDBAccess", "DefaultSchema"};
+                        request.Fields = new string[3] { "Name", "HasDBAccess", "DefaultSchema" };
                     }
                     else
                     {
-                        request.Fields      = new string[2] { "Name", "HasDBAccess"};
+                        request.Fields = new string[2] { "Name", "HasDBAccess" };
                     }
 
-                    DataTable users     = new Enumerator().Process(server.ConnectionContext, request);
+                    DataTable users = new Enumerator().Process(server.ConnectionContext, request);
 
                     if (0 != users.Rows.Count)
                     {
                         System.Diagnostics.Debug.Assert(1 == users.Rows.Count, "unexpected number of users for the the login");
 
-                        result  = true;
+                        result = true;
 
-                        userName    = Convert.ToString (users.Rows[0][0], System.Globalization.CultureInfo.InvariantCulture);
+                        userName = Convert.ToString(users.Rows[0][0], System.Globalization.CultureInfo.InvariantCulture);
                         hasDBAccess = Convert.ToBoolean(users.Rows[0][1], System.Globalization.CultureInfo.InvariantCulture);
                         if (server.Information.Version.Major >= 9)
                         {
@@ -379,7 +379,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <param name="roleName">The name of the role</param>
         /// <param name="userName">The name of the user</param>
         /// <returns>True if the user is a member of the role, false otherwise</returns>
-        private bool    DatabaseRoleContainsUser(string roleName, string userName)
+        private bool DatabaseRoleContainsUser(string roleName, string userName)
         {
             bool result = false;
 
@@ -387,15 +387,15 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
             {
                 Request request = new Request();
 
-                request.Urn         = String.Format(System.Globalization.CultureInfo.InvariantCulture,
-                                                    "Server/Database[@Name='{0}']/Role[@Name='{1}']/Member[@Name='{2}']", 
-                                                    Urn.EscapeString(databaseName), 
+                request.Urn = String.Format(System.Globalization.CultureInfo.InvariantCulture,
+                                                    "Server/Database[@Name='{0}']/Role[@Name='{1}']/Member[@Name='{2}']",
+                                                    Urn.EscapeString(databaseName),
                                                     Urn.EscapeString(roleName),
                                                     Urn.EscapeString(userName));
 
-                request.Fields      = new string[1] { "Name"};
+                request.Fields = new string[1] { "Name" };
 
-                DataTable members   = new Enumerator().Process(server.ConnectionContext, request);
+                DataTable members = new Enumerator().Process(server.ConnectionContext, request);
 
                 if (0 != members.Rows.Count)
                 {
@@ -410,29 +410,29 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Initialize member variables to default values
         /// </summary>
-        private void    DefaultInitialize()
+        private void DefaultInitialize()
         {
-            this.server         = null;
-            this.loginName      = String.Empty;
-            this.databaseName   = String.Empty;
-            this.loginExists    = false;
-            this.permit         = false;
-            this.isAccessible   = false;
-            this.defaultSchema  = String.Empty;
-            this.userName       = String.Empty;
-            this.databaseRoles  = new HybridDictionary();
-            this.guestStatus    = false;
+            this.server = null;
+            this.loginName = String.Empty;
+            this.databaseName = String.Empty;
+            this.loginExists = false;
+            this.permit = false;
+            this.isAccessible = false;
+            this.defaultSchema = String.Empty;
+            this.userName = String.Empty;
+            this.databaseRoles = new HybridDictionary();
+            this.guestStatus = false;
 
-            this.initializedDatabaseAccess  = false;
-            this.initializedRoleMembership  = false;
-            this.roleMembershipChanged      = false;
+            this.initializedDatabaseAccess = false;
+            this.initializedRoleMembership = false;
+            this.roleMembershipChanged = false;
         }
 
         /// <summary>
         /// Determines status of the guest account in the database
         /// </summary>
         /// <param name="database"></param>
-        private void    GetGuestStatus(Database database)
+        private void GetGuestStatus(Database database)
         {
             System.Diagnostics.Debug.Assert(database != null, "we need a valid database to determine guest access!");
             if (database != null)
@@ -447,7 +447,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Initialize database access information
         /// </summary>
-        private void    InitializeDatabaseAccess()
+        private void InitializeDatabaseAccess()
         {
             this.initializedDatabaseAccess = true;
 
@@ -456,8 +456,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                 // determine whether the database is accessible to the user
                 try
                 {
-                    DataTable dt = new Enumerator().Process(this.server.ConnectionContext, 
-                                                            new Request(new Urn(string.Format("Server/Database[@Name='{0}']", Urn.EscapeString(databaseName))), 
+                    DataTable dt = new Enumerator().Process(this.server.ConnectionContext,
+                                                            new Request(new Urn(string.Format("Server/Database[@Name='{0}']", Urn.EscapeString(databaseName))),
                                                                         new string[] { "Status" }));
                     if (dt != null &&
                         dt.Rows.Count > 0 &&
@@ -468,13 +468,13 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
                     else
                     {
                         this.isAccessible = false;
-                    }                                       
+                    }
                 }
                 catch (Exception)
                 {
                     // if we got an exception checking accessibility, the database
                     // is inaccessible to the user at the very least
-                    this.isAccessible   = false;
+                    this.isAccessible = false;
                 }
 
                 if (this.isAccessible && (0 != this.loginName.Length))
@@ -487,40 +487,40 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
         /// <summary>
         /// Initialize role membership information for the database
         /// </summary>
-        private void    InitializeRoleMembership()
+        private void InitializeRoleMembership()
         {
             this.initializedRoleMembership = true;
 
             if (this.DatabaseIsAccessible)
             {
                 // Get user information
-                Database    database    = server.Databases[this.databaseName];
+                Database database = server.Databases[this.databaseName];
 
                 if (database != null)
                 {
                     GetGuestStatus(database);
                 }
-                
-                string      userName    = String.Empty;
-                bool        hasAccess   = false;
-                string      defaultSchema = String.Empty;
-                bool        userExists  = this.GetDatabaseUserInfo(out userName, out hasAccess, out defaultSchema);
-                
+
+                string userName = String.Empty;
+                bool hasAccess = false;
+                string defaultSchema = String.Empty;
+                bool userExists = this.GetDatabaseUserInfo(out userName, out hasAccess, out defaultSchema);
+
 
                 // get database role names
-                Request     request     = new Request();
+                Request request = new Request();
 
-                request.Urn             = String.Format(System.Globalization.CultureInfo.InvariantCulture,"Server/Database[@Name='{0}']/Role", Urn.EscapeString(databaseName));
-                request.Fields          = new string[1] { "Name"};
+                request.Urn = String.Format(System.Globalization.CultureInfo.InvariantCulture, "Server/Database[@Name='{0}']/Role", Urn.EscapeString(databaseName));
+                request.Fields = new string[1] { "Name" };
 
-                DataTable   roles       = new Enumerator().Process(server.ConnectionContext, request);
-                int         roleCount   = roles.Rows.Count;
+                DataTable roles = new Enumerator().Process(server.ConnectionContext, request);
+                int roleCount = roles.Rows.Count;
 
                 // determine which roles the user is a member of
                 for (int roleIndex = 0; roleIndex < roleCount; ++roleIndex)
                 {
-                    string  roleName        = roles.Rows[roleIndex][0].ToString();
-                    bool    isRoleMember    = (userExists) ? this.DatabaseRoleContainsUser(roleName, userName) : false;
+                    string roleName = roles.Rows[roleIndex][0].ToString();
+                    bool isRoleMember = (userExists) ? this.DatabaseRoleContainsUser(roleName, userName) : false;
 
                     this.databaseRoles.Add(roleName, isRoleMember);
                 }
@@ -554,12 +554,12 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
     /// </summary>
     internal class ServerRoles : ICloneable
     {
-        private Microsoft.SqlServer.Management.Smo.Server              server;
-        private string              loginName;
-        private bool                loginExists;
-        private HybridDictionary    serverRoles;
+        private Microsoft.SqlServer.Management.Smo.Server server;
+        private string loginName;
+        private bool loginExists;
+        private HybridDictionary serverRoles;
 
-        private bool                initialized;
+        private bool initialized;
 
         // query to list all Sql and AAD logins with their role membership, ref: https://learn.microsoft.com/en-us/azure/azure-sql/database/security-server-roles?view=azuresql
         // this is a temporary workaround for SMO not supporting server role population for Azure SQL
@@ -610,19 +610,19 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// </summary>
         private class ServerRoleInfo : ICloneable
         {
-            public string   roleDescription;
-            public bool     isMember;
+            public string roleDescription;
+            public bool isMember;
 
             public ServerRoleInfo(string roleDescription)
             {
-                this.roleDescription    = roleDescription;
-                this.isMember           = false;
+                this.roleDescription = roleDescription;
+                this.isMember = false;
             }
 
             public ServerRoleInfo(string roleDescription, bool isMember)
             {
-                this.roleDescription    = roleDescription;
-                this.isMember           = isMember;
+                this.roleDescription = roleDescription;
+                this.isMember = isMember;
             }
 
             public object Clone()
@@ -637,11 +637,11 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// </summary>
         private ServerRoles()
         {
-            this.server         = null;
-            this.loginName      = String.Empty;
-            this.loginExists    = false;
-            this.serverRoles    = new HybridDictionary();
-            this.initialized    = false;
+            this.server = null;
+            this.loginName = String.Empty;
+            this.loginExists = false;
+            this.serverRoles = new HybridDictionary();
+            this.initialized = false;
         }
 
         /// <summary>
@@ -650,11 +650,11 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <param name="server">The server with which we are working</param>
         public ServerRoles(Microsoft.SqlServer.Management.Smo.Server server)
         {
-            this.server         = server;
-            this.loginName      = String.Empty;
-            this.loginExists    = false;
-            this.serverRoles    = new HybridDictionary();
-            this.initialized    = false;
+            this.server = server;
+            this.loginName = String.Empty;
+            this.loginExists = false;
+            this.serverRoles = new HybridDictionary();
+            this.initialized = false;
         }
 
         /// <summary>
@@ -666,11 +666,11 @@ INNER JOIN sys.sql_logins AS sql_logins
         {
             System.Diagnostics.Debug.Assert(server.Logins[loginName] != null, "loginName does not refer to an actual login on the server");
 
-            this.server         = server;
-            this.loginName      = loginName;
-            this.loginExists    = true;
-            this.serverRoles    = new HybridDictionary();
-            this.initialized    = false;
+            this.server = server;
+            this.loginName = loginName;
+            this.loginExists = true;
+            this.serverRoles = new HybridDictionary();
+            this.initialized = false;
         }
 
 
@@ -687,8 +687,8 @@ INNER JOIN sys.sql_logins AS sql_logins
                     PopulateServerRoles();
                 }
 
-                SortedList  sortedRoles = new SortedList(serverRoles, Comparer.Default);
-                string[]    result      = new string[sortedRoles.Count];
+                SortedList sortedRoles = new SortedList(serverRoles, Comparer.Default);
+                string[] result = new string[sortedRoles.Count];
 
                 sortedRoles.Keys.CopyTo(result, 0);
 
@@ -701,7 +701,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// </summary>
         /// <param name="serverRoleName">The name of the role for which we are checking membership</param>
         /// <returns>True if the login is a member of the role, false otherwise</returns>
-        public bool     IsMember(string serverRoleName)
+        public bool IsMember(string serverRoleName)
         {
             if (!this.initialized)
             {
@@ -716,7 +716,7 @@ INNER JOIN sys.sql_logins AS sql_logins
             }
             else if (serverRoles.Contains(serverRoleName))
             {
-                result = ((ServerRoleInfo) serverRoles[serverRoleName]).isMember;
+                result = ((ServerRoleInfo)serverRoles[serverRoleName]).isMember;
             }
 
             return result;
@@ -727,13 +727,13 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// </summary>
         /// <param name="serverRoleName">The name of the role whose membership we wish to modify</param>
         /// <param name="isMember">True if the login should be a member of the role, false otherwise</param>
-        public void     SetMember(string serverRoleName, bool isMember)
+        public void SetMember(string serverRoleName, bool isMember)
         {
             System.Diagnostics.Debug.Assert(serverRoles.Contains(serverRoleName), "serverRoleName is not the name of a role in the server");
 
             if (0 != String.Compare(serverRoleName, "public", StringComparison.Ordinal))
             {
-                var roleInfo = ((ServerRoleInfo) serverRoles[serverRoleName]);
+                var roleInfo = ((ServerRoleInfo)serverRoles[serverRoleName]);
                 roleInfo.isMember = isMember;
             }
         }
@@ -743,27 +743,27 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// </summary>
         /// <param name="serverRoleName">The name of the role for which we are getting a description</param>
         /// <returns>The role description</returns>
-        public string   GetDescription(string serverRoleName)
+        public string GetDescription(string serverRoleName)
         {
             System.Diagnostics.Debug.Assert(serverRoles.Contains(serverRoleName), "serverRoleName is not the name of a role in the server");
-            return((ServerRoleInfo) serverRoles[serverRoleName]).roleDescription;
+            return ((ServerRoleInfo)serverRoles[serverRoleName]).roleDescription;
         }
         /// <summary>
         /// Create a clone of this ServerRoles object
         /// </summary>
         /// <returns>The clone ServerRoles object</returns>
-        public object   Clone()
+        public object Clone()
         {
             ServerRoles result = new ServerRoles();
 
-            result.server           = this.server;
-            result.loginName        = this.loginName;
-            result.loginExists      = this.loginExists;
-            result.initialized      = this.initialized;
+            result.server = this.server;
+            result.loginName = this.loginName;
+            result.loginExists = this.loginExists;
+            result.initialized = this.initialized;
 
             foreach (string key in this.serverRoles.Keys)
             {
-                ServerRoleInfo roleInfo = (ServerRoleInfo) this.serverRoles[key];
+                ServerRoleInfo roleInfo = (ServerRoleInfo)this.serverRoles[key];
                 result.serverRoles[key] = roleInfo.Clone();
             }
 
@@ -872,7 +872,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// string of asterisks to display in lieu of the actual password
         /// </summary>
-        public static string    fakePassword    = "***************";
+        public static string fakePassword = "***************";
 
         /// <summary>
         /// Private class encapsulating the data that is changed by the UI.
@@ -884,41 +884,41 @@ INNER JOIN sys.sql_logins AS sql_logins
         private class LoginPrototypeData : ICloneable
         {
             #region data members
-            private string              loginName = string.Empty;
+            private string loginName = string.Empty;
             private SqlServer.Management.Smo.LoginType loginType = SqlServer.Management.Smo.LoginType.WindowsUser;
 
             // General data
-            private string              defaultDatabase         = "master";
-            private string              defaultLanguage         = String.Empty;
-            private ServerRoles         serverRoles             = null;
-            private HybridDictionary    databaseRolesCollection = null;
+            private string defaultDatabase = "master";
+            private string defaultLanguage = String.Empty;
+            private ServerRoles serverRoles = null;
+            private HybridDictionary databaseRolesCollection = null;
 
             // Windows Authentication data
-            private bool                windowsGrantAccess      = true;
+            private bool windowsGrantAccess = true;
 
             // SQL Authentication data
-            private string     sqlPassword             = string.Empty;
-            private string     sqlPasswordConfirm      = string.Empty;
-            private string     oldPassword             = string.Empty;
+            private string sqlPassword = string.Empty;
+            private string sqlPasswordConfirm = string.Empty;
+            private string oldPassword = string.Empty;
             private bool showOldPassword = false;
 
             // yukon only
-            private bool                mustChange          = true;
-            private bool                isDisabled          = false;
-            private bool                isLockedOut         = false;
-            private bool                enforcePolicy       = true;
-            private bool                enforceExpiration   = true;
+            private bool mustChange = true;
+            private bool isDisabled = false;
+            private bool isLockedOut = false;
+            private bool enforcePolicy = true;
+            private bool enforceExpiration = true;
 
             // Certificate and Asymmetric Key based
-            private string              certificateName     = String.Empty;
-            private string              asymmetricKeyName   = String.Empty;
+            private string certificateName = String.Empty;
+            private string asymmetricKeyName = String.Empty;
 
-            private bool                initialized         = false;
-            private Login               login               = null;
+            private bool initialized = false;
+            private Login login = null;
             private Microsoft.SqlServer.Management.Smo.Server server;
-            private static string       defaultLanguageDisplay = string.Empty;
-            private bool                windowsAuthSupported = true;
-            private bool                aadAuthSupported = false;
+            private static string defaultLanguageDisplay = string.Empty;
+            private bool windowsAuthSupported = true;
+            private bool aadAuthSupported = false;
 
             private StringCollection credentials = null;
             #endregion
@@ -945,7 +945,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
             }
 
-            public string           LoginName
+            public string LoginName
             {
                 get
                 {
@@ -964,7 +964,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
             }
 
-            public string           DefaultDatabase
+            public string DefaultDatabase
             {
                 get
                 {
@@ -983,7 +983,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
             }
 
-            public string           DefaultLanguage
+            public string DefaultLanguage
             {
                 get
                 {
@@ -1002,7 +1002,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
             }
 
-            public ServerRoles      ServerRoles
+            public ServerRoles ServerRoles
             {
                 get
                 {
@@ -1026,13 +1026,13 @@ INNER JOIN sys.sql_logins AS sql_logins
 
                     return this.databaseRolesCollection;
                 }
-            }            
+            }
 
-            public bool             Exists
+            public bool Exists
             {
                 get
                 {
-                    return(this.login != null);
+                    return (this.login != null);
                 }
             }
 
@@ -1044,7 +1044,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
             }
 
-            public Login            Login
+            public Login Login
             {
                 get
                 {
@@ -1078,7 +1078,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
             }
 
-            public static string    DefaultLanguageDisplay
+            public static string DefaultLanguageDisplay
             {
                 get
                 {
@@ -1088,7 +1088,7 @@ INNER JOIN sys.sql_logins AS sql_logins
 
             // Windows Authentication properties
 
-            public bool             WindowsGrantAccess
+            public bool WindowsGrantAccess
             {
                 get
                 {
@@ -1109,7 +1109,7 @@ INNER JOIN sys.sql_logins AS sql_logins
 
             // SQL Authentication properties
 
-            public string  SqlPassword
+            public string SqlPassword
             {
                 get
                 {
@@ -1128,7 +1128,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
             }
 
-            public string  SqlPasswordConfirm
+            public string SqlPasswordConfirm
             {
                 get
                 {
@@ -1147,7 +1147,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
             }
 
-            public string  OldPassword
+            public string OldPassword
             {
                 get
                 {
@@ -1184,7 +1184,7 @@ INNER JOIN sys.sql_logins AS sql_logins
             }
 
 
-            public bool             MustChange
+            public bool MustChange
             {
                 get
                 {
@@ -1198,12 +1198,12 @@ INNER JOIN sys.sql_logins AS sql_logins
                 set
                 {
                     System.Diagnostics.Debug.Assert(this.initialized, "unexpected property set before initialization");
-                    System.Diagnostics.Debug.Assert(Server.Information.Version.Major>=9);
+                    System.Diagnostics.Debug.Assert(Server.Information.Version.Major >= 9);
                     this.mustChange = value;
                 }
             }
 
-            public bool             IsDisabled
+            public bool IsDisabled
             {
                 get
                 {
@@ -1217,12 +1217,12 @@ INNER JOIN sys.sql_logins AS sql_logins
                 set
                 {
                     System.Diagnostics.Debug.Assert(this.initialized, "unexpected property set before initialization");
-                    System.Diagnostics.Debug.Assert(Server.Information.Version.Major>=9);
+                    System.Diagnostics.Debug.Assert(Server.Information.Version.Major >= 9);
                     this.isDisabled = value;
                 }
             }
 
-            public bool             IsLockedOut
+            public bool IsLockedOut
             {
                 get
                 {
@@ -1242,7 +1242,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
             }
 
-            public bool             EnforcePolicy
+            public bool EnforcePolicy
             {
                 get
                 {
@@ -1256,12 +1256,12 @@ INNER JOIN sys.sql_logins AS sql_logins
                 set
                 {
                     System.Diagnostics.Debug.Assert(this.initialized, "unexpected property set before initialization");
-                    System.Diagnostics.Debug.Assert(Server.Information.Version.Major>=9);
+                    System.Diagnostics.Debug.Assert(Server.Information.Version.Major >= 9);
                     this.enforcePolicy = value;
                 }
             }
 
-            public bool             EnforceExpiration
+            public bool EnforceExpiration
             {
                 get
                 {
@@ -1275,13 +1275,13 @@ INNER JOIN sys.sql_logins AS sql_logins
                 set
                 {
                     System.Diagnostics.Debug.Assert(this.initialized, "unexpected property set before initialization");
-                    System.Diagnostics.Debug.Assert(Server.Information.Version.Major>=9);
+                    System.Diagnostics.Debug.Assert(Server.Information.Version.Major >= 9);
                     this.enforceExpiration = value;
                 }
             }
 
             // Certificate and Asymmtric Key properties
-            public string           CertificateName
+            public string CertificateName
             {
                 get
                 {
@@ -1293,7 +1293,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
             }
 
-            public string           AsymmetricKeyName
+            public string AsymmetricKeyName
             {
                 get
                 {
@@ -1331,11 +1331,11 @@ INNER JOIN sys.sql_logins AS sql_logins
 
             static LoginPrototypeData()
             {
-            //     ResourceManager resourceManager = new ResourceManager(
-            //                                                          "Microsoft.SqlServer.Management.SqlManagerUI.CreateLoginStrings", 
-            //                                                          typeof(LoginPrototype).Assembly);
+                //     ResourceManager resourceManager = new ResourceManager(
+                //                                                          "Microsoft.SqlServer.Management.SqlManagerUI.CreateLoginStrings", 
+                //                                                          typeof(LoginPrototype).Assembly);
 
-            //     defaultLanguageDisplay = resourceManager.GetString("prototype.defaultLanguage");
+                //     defaultLanguageDisplay = resourceManager.GetString("prototype.defaultLanguage");
             }
 
             /// <summary>
@@ -1367,24 +1367,24 @@ INNER JOIN sys.sql_logins AS sql_logins
             public LoginPrototypeData(Microsoft.SqlServer.Management.Smo.Server server, Login login)
             {
                 this.server = server;
-                this.login  = login;
+                this.login = login;
                 LoadData();
-            }          
+            }
 
             /// <summary>
             /// Create a clone of this LoginPrototypeData object
             /// </summary>
             /// <returns>The clone LoginPrototypeData object</returns>
-            public object   Clone()
+            public object Clone()
             {
                 LoginPrototypeData result = new LoginPrototypeData();
 
-                result.loginName        = this.loginName;   
-                result.loginType        = this.loginType;
+                result.loginName = this.loginName;
+                result.loginType = this.loginType;
 
-                result.defaultDatabase  = this.defaultDatabase;
-                result.defaultLanguage  = this.defaultLanguage;
-                result.serverRoles      = (this.serverRoles != null) ? (ServerRoles) this.serverRoles.Clone() : null;
+                result.defaultDatabase = this.defaultDatabase;
+                result.defaultLanguage = this.defaultLanguage;
+                result.serverRoles = (this.serverRoles != null) ? (ServerRoles)this.serverRoles.Clone() : null;
 
                 if (this.credentials != null)
                 {
@@ -1401,7 +1401,7 @@ INNER JOIN sys.sql_logins AS sql_logins
 
                     foreach (string databaseName in this.databaseRolesCollection.Keys)
                     {
-                        DatabaseRoles roles = (DatabaseRoles) this.databaseRolesCollection[databaseName];
+                        DatabaseRoles roles = (DatabaseRoles)this.databaseRolesCollection[databaseName];
 
                         result.databaseRolesCollection[databaseName] = roles.Clone();
                     }
@@ -1410,26 +1410,26 @@ INNER JOIN sys.sql_logins AS sql_logins
                 {
                     result.databaseRolesCollection = null;
                 }
-         
-                result.windowsGrantAccess       = this.windowsGrantAccess;  
-        
-                result.sqlPassword              = this.sqlPassword;             
-                result.sqlPasswordConfirm       = this.sqlPasswordConfirm;   
-                result.oldPassword              = this.oldPassword;
-                result.showOldPassword          = this.showOldPassword;
 
-                result.mustChange               = this.mustChange;
-                result.isDisabled               = this.isDisabled;
-                result.enforcePolicy            = this.enforcePolicy;
-                result.enforceExpiration        = this.enforceExpiration;
-                result.isLockedOut              = this.isLockedOut;
+                result.windowsGrantAccess = this.windowsGrantAccess;
 
-                result.certificateName          = this.certificateName;
-                result.asymmetricKeyName        = this.asymmetricKeyName;
+                result.sqlPassword = this.sqlPassword;
+                result.sqlPasswordConfirm = this.sqlPasswordConfirm;
+                result.oldPassword = this.oldPassword;
+                result.showOldPassword = this.showOldPassword;
 
-                result.initialized              = this.initialized;
-                result.server                   = this.server;
-                result.login                    = this.login;
+                result.mustChange = this.mustChange;
+                result.isDisabled = this.isDisabled;
+                result.enforcePolicy = this.enforcePolicy;
+                result.enforceExpiration = this.enforceExpiration;
+                result.isLockedOut = this.isLockedOut;
+
+                result.certificateName = this.certificateName;
+                result.asymmetricKeyName = this.asymmetricKeyName;
+
+                result.initialized = this.initialized;
+                result.server = this.server;
+                result.login = this.login;
 
                 return result;
             }
@@ -1452,12 +1452,12 @@ INNER JOIN sys.sql_logins AS sql_logins
             private void LoadExisting()
             {
                 System.Diagnostics.Debug.Assert(server != null, "server is null");
-                System.Diagnostics.Debug.Assert(login  != null, "login is null");
+                System.Diagnostics.Debug.Assert(login != null, "login is null");
 
-                this.loginName  = login.Name;
-                this.loginType  = login.LoginType;
-            
-                bool useWindowsAuthentication   = 
+                this.loginName = login.Name;
+                this.loginType = login.LoginType;
+
+                bool useWindowsAuthentication =
                     (login.LoginType == SqlServer.Management.Smo.LoginType.WindowsUser) ||
                     (login.LoginType == SqlServer.Management.Smo.LoginType.WindowsGroup);
 
@@ -1465,10 +1465,10 @@ INNER JOIN sys.sql_logins AS sql_logins
 
                 this.windowsGrantAccess = this.server.ServerType != DatabaseEngineType.SqlAzureDatabase ? !login.DenyWindowsLogin : false;
 
-                this.sqlPassword        = useSqlAuthentication ? LoginPrototype.fakePassword : string.Empty;
+                this.sqlPassword = useSqlAuthentication ? LoginPrototype.fakePassword : string.Empty;
                 this.sqlPasswordConfirm = useSqlAuthentication ? LoginPrototype.fakePassword : string.Empty;
 
-                this.defaultDatabase    = login.DefaultDatabase;
+                this.defaultDatabase = login.DefaultDatabase;
                 this.credentials = new StringCollection();
 
                 if ((login.Language != null) && (login.Language.Length != 0))
@@ -1487,22 +1487,22 @@ INNER JOIN sys.sql_logins AS sql_logins
                     if (login.LoginType == SqlServer.Management.Smo.LoginType.SqlLogin && this.server.ServerType != DatabaseEngineType.SqlAzureDatabase)
                     {
                         // these properties make sense only for Yukon+ with SQL Authentication
-                        this.mustChange         = login.MustChangePassword;
-                        this.enforcePolicy      = login.PasswordPolicyEnforced;
-                        this.enforceExpiration  = login.PasswordExpirationEnabled;
-                        this.isLockedOut           = login.IsLocked;
+                        this.mustChange = login.MustChangePassword;
+                        this.enforcePolicy = login.PasswordPolicyEnforced;
+                        this.enforceExpiration = login.PasswordExpirationEnabled;
+                        this.isLockedOut = login.IsLocked;
                     }
                     else
                     {
-                        this.mustChange         = false;
-                        this.enforcePolicy      = false;
-                        this.enforceExpiration  = false;
-                        this.isDisabled         = false;
-                        this.isLockedOut           = false;
+                        this.mustChange = false;
+                        this.enforcePolicy = false;
+                        this.enforceExpiration = false;
+                        this.isDisabled = false;
+                        this.isLockedOut = false;
                     }
-                    
-                    this.isDisabled = login.IsDisabled;  
-                 
+
+                    this.isDisabled = login.IsDisabled;
+
                     if (login.LoginType == SqlServer.Management.Smo.LoginType.Certificate)
                     {
                         this.certificateName = login.Certificate;
@@ -1513,9 +1513,9 @@ INNER JOIN sys.sql_logins AS sql_logins
                     }
                 }
 
-                this.serverRoles                = new ServerRoles(server, login.Name);
+                this.serverRoles = new ServerRoles(server, login.Name);
                 this.serverRoles.PopulateServerRoles();
-                this.databaseRolesCollection    = new HybridDictionary();
+                this.databaseRolesCollection = new HybridDictionary();
                 if (server.Information.Version.Major == 9 && !string.IsNullOrEmpty(login.Credential))
                 {
                     this.credentials.Add(login.Credential);
@@ -1537,21 +1537,21 @@ INNER JOIN sys.sql_logins AS sql_logins
                     this.loginType = SqlServer.Management.Smo.LoginType.SqlLogin;
                 }
 
-                this.defaultLanguage            = LoginPrototypeData.DefaultLanguageDisplay;
+                this.defaultLanguage = LoginPrototypeData.DefaultLanguageDisplay;
 
-                this.serverRoles                = new ServerRoles(server);
+                this.serverRoles = new ServerRoles(server);
                 this.serverRoles.PopulateServerRoles();
-                this.databaseRolesCollection    = new HybridDictionary();
-                this.credentials                = new StringCollection();
+                this.databaseRolesCollection = new HybridDictionary();
+                this.credentials = new StringCollection();
             }
 
         }
 
-        private bool                exists;
-        private CDataContainer      context;
-        private string              machineName;
-        private LoginPrototypeData  currentState;
-        private LoginPrototypeData  originalState;
+        private bool exists;
+        private CDataContainer context;
+        private string machineName;
+        private LoginPrototypeData currentState;
+        private LoginPrototypeData originalState;
 
         private bool mapToCredential;
         private SecurablePermissions[] securablePermissions = null;
@@ -1567,7 +1567,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// Whether the login already exists on the server
         /// </summary>
-        public  bool            Exists
+        public bool Exists
         {
             get
             {
@@ -1588,14 +1588,14 @@ INNER JOIN sys.sql_logins AS sql_logins
             set
             {
                 System.Diagnostics.Debug.Assert(!this.Exists, "we shouldn't be changing the login type for existing logins");
-                this.currentState.LoginType = value; 
+                this.currentState.LoginType = value;
             }
         }
 
         /// <summary>
         /// The Windows account name for the login (e.g. MYDOMAIN\mysuser)
         /// </summary>
-        public  string          LoginName
+        public string LoginName
         {
             get
             {
@@ -1610,7 +1610,7 @@ INNER JOIN sys.sql_logins AS sql_logins
             set
             {
                 System.Diagnostics.Debug.Assert(!this.Exists, "shouldn't be renaming existing logins");
-                
+
                 this.UpdateDefaultSchemaAndUserNames(value);
                 this.currentState.LoginName = value;
             }
@@ -1620,7 +1620,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// If the login is a windows login, returns the windows login name with domain name capitalized;
         /// otherwise returns the login name as-is
         /// </summary>
-        public string           CanonicalizedLoginName
+        public string CanonicalizedLoginName
         {
             get
             {
@@ -1656,7 +1656,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// Whether the Windows account is granted server access (e.g. true == grant access, false == deny access)
         /// </summary>
-        public  bool            WindowsGrantAccess
+        public bool WindowsGrantAccess
         {
             get
             {
@@ -1672,7 +1672,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// The password associated with the SQL login
         /// </summary>
-        public  string          SqlPassword
+        public string SqlPassword
         {
             get
             {
@@ -1688,7 +1688,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// The password confirmation, which should be the same as the password
         /// </summary>
-        public  string          SqlPasswordConfirm
+        public string SqlPasswordConfirm
         {
             get
             {
@@ -1704,7 +1704,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// The login's current password
         /// </summary>
-        public string           OldPassword
+        public string OldPassword
         {
             get
             {
@@ -1736,7 +1736,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// The default database for the login
         /// </summary>
-        public  string          DefaultDatabase
+        public string DefaultDatabase
         {
             get
             {
@@ -1752,7 +1752,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// The default language for the login
         /// </summary>
-        public  string          DefaultLanguage
+        public string DefaultLanguage
         {
             get
             {
@@ -1770,7 +1770,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// 
         /// Password must change at next login
         /// </summary>
-        public  bool            MustChange
+        public bool MustChange
         {
             get
             {
@@ -1787,7 +1787,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// 
         /// Is login disabled?
         /// </summary>
-        public  bool            IsDisabled
+        public bool IsDisabled
         {
             get
             {
@@ -1804,7 +1804,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// 
         /// Is login locked out?
         /// </summary>
-        public bool             IsLockedOut
+        public bool IsLockedOut
         {
             get
             {
@@ -1821,7 +1821,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// 
         /// enforce system policy on sql login's password
         /// </summary>
-        public  bool            EnforcePolicy
+        public bool EnforcePolicy
         {
             get
             {
@@ -1838,7 +1838,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// 
         /// expiration of sql login password
         /// </summary>
-        public  bool            EnforceExpiration
+        public bool EnforceExpiration
         {
             get
             {
@@ -1854,7 +1854,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// If this is a certificate based login, returns the name of the certificate;
         /// otherwise, returns an empty string
         /// </summary>
-        public  string          CertificateName
+        public string CertificateName
         {
             get
             {
@@ -1870,7 +1870,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// If this is an asymmetric key based login, returns the name of the key;
         /// otherwise, returns an empty string
         /// </summary>
-        public string           AsymmetricKeyName
+        public string AsymmetricKeyName
         {
             get
             {
@@ -1885,7 +1885,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// The server roles collection for the login
         /// </summary>
-        public  ServerRoles     ServerRoles
+        public ServerRoles ServerRoles
         {
             get
             {
@@ -1926,7 +1926,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// </summary>
         /// <param name="databaseName">The name of the database</param>
         /// <returns>The database roles collection</returns>
-        public  DatabaseRoles   GetDatabaseRoles(string databaseName)
+        public DatabaseRoles GetDatabaseRoles(string databaseName)
         {
             DatabaseRoles result = null;
 
@@ -1945,7 +1945,7 @@ INNER JOIN sys.sql_logins AS sql_logins
             }
             else
             {
-                result = (DatabaseRoles) this.currentState.DatabaseRolesCollection[databaseName];
+                result = (DatabaseRoles)this.currentState.DatabaseRolesCollection[databaseName];
             }
 
             return result;
@@ -1957,7 +1957,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <param name="databaseName">The name of the database</param>
         /// <returns>The names of the database's schemas</returns>
         public StringCollection GetDatabaseSchemaNames(string databaseName)
-        {   
+        {
             return this.GetDatabaseRoles(databaseName).SchemaNames;
         }
 
@@ -1965,19 +1965,19 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// A list of names of the databases on the server
         /// </summary>
-        public string[]         DatabaseNames
+        public string[] DatabaseNames
         {
             get
             {
-                Request request             = new Request();
+                Request request = new Request();
 
-                request.Urn                 = "Server/Database";
-                request.Fields              = new string[1] {"Name"};
-                request.OrderByList         = new OrderBy[1] { new OrderBy("Name", OrderBy.Direction.Asc)};
+                request.Urn = "Server/Database";
+                request.Fields = new string[1] { "Name" };
+                request.OrderByList = new OrderBy[1] { new OrderBy("Name", OrderBy.Direction.Asc) };
 
-                DataTable   databases       = new Enumerator().Process(this.currentState.Server.ConnectionContext, request);
-                int         databaseCount   = databases.Rows.Count;
-                string[]    result          = new string[databaseCount];
+                DataTable databases = new Enumerator().Process(this.currentState.Server.ConnectionContext, request);
+                int databaseCount = databases.Rows.Count;
+                string[] result = new string[databaseCount];
 
                 for (int databaseIndex = 0; databaseIndex < databaseCount; ++databaseIndex)
                 {
@@ -2005,7 +2005,7 @@ INNER JOIN sys.sql_logins AS sql_logins
 
                 DataView dv = certificates.DefaultView;
                 dv.RowFilter = "Name NOT LIKE '##MS%'";
-                                
+
                 return dv.ToTable();
             }
         }
@@ -2076,11 +2076,11 @@ INNER JOIN sys.sql_logins AS sql_logins
         {
             this.context = context;
             var server = context.Server;
-            this.exists         = false;
-            this.machineName    = server.ConnectionContext.TrueName.ToUpperInvariant();
-            this.currentState   = new LoginPrototypeData(server);
-            this.originalState  = (LoginPrototypeData) this.currentState.Clone();
-            this.comparer       = new SqlCollationSensitiveStringComparer(server.Information.Collation);
+            this.exists = false;
+            this.machineName = server.ConnectionContext.TrueName.ToUpperInvariant();
+            this.currentState = new LoginPrototypeData(server);
+            this.originalState = (LoginPrototypeData)this.currentState.Clone();
+            this.comparer = new SqlCollationSensitiveStringComparer(server.Information.Collation);
         }
 
         /// <summary>
@@ -2092,11 +2092,11 @@ INNER JOIN sys.sql_logins AS sql_logins
         {
             this.context = context;
             var server = context.Server;
-            this.exists         = true;
-            this.machineName    = server.ConnectionContext.TrueName.ToUpperInvariant();
-            this.currentState   = new LoginPrototypeData(server, login);
-            this.originalState  = (LoginPrototypeData) this.currentState.Clone();
-            this.comparer       = new SqlCollationSensitiveStringComparer(server.Information.Collation);
+            this.exists = true;
+            this.machineName = server.ConnectionContext.TrueName.ToUpperInvariant();
+            this.currentState = new LoginPrototypeData(server, login);
+            this.originalState = (LoginPrototypeData)this.currentState.Clone();
+            this.comparer = new SqlCollationSensitiveStringComparer(server.Information.Collation);
             try
             {
                 this.securablePermissions = SecurableUtils.GetSecurablePermissions(this.exists, PrincipalType.Login, login, context);
@@ -2121,19 +2121,19 @@ INNER JOIN sys.sql_logins AS sql_logins
         {
             this.context = context;
             var server = context.Server;
-            this.exists         = false;
-            this.machineName    = server.ConnectionContext.TrueName.ToUpperInvariant();
-            this.currentState   = new LoginPrototypeData(server);
-            this.originalState  = (LoginPrototypeData) this.currentState.Clone();
-            this.comparer       = new SqlCollationSensitiveStringComparer(server.Information.Collation);
+            this.exists = false;
+            this.machineName = server.ConnectionContext.TrueName.ToUpperInvariant();
+            this.currentState = new LoginPrototypeData(server);
+            this.originalState = (LoginPrototypeData)this.currentState.Clone();
+            this.comparer = new SqlCollationSensitiveStringComparer(server.Information.Collation);
 
             this.LoginName = login.Name;
             this.SqlPassword = login.Password;
             this.OldPassword = login.OldPassword;
             this.LoginType = GetLoginType(login);
-            if (this.DefaultLanguage != null 
+            if (this.DefaultLanguage != null
             && 0 != String.Compare(login.DefaultLanguage, SR.DefaultLanguagePlaceholder, StringComparison.Ordinal)
-            && (server.DatabaseEngineType == DatabaseEngineType.Standalone|| server.DatabaseEngineEdition == DatabaseEngineEdition.SqlManagedInstance))
+            && (server.DatabaseEngineType == DatabaseEngineType.Standalone || server.DatabaseEngineEdition == DatabaseEngineEdition.SqlManagedInstance))
             {
                 string[] arr = login.DefaultLanguage?.Split(" - ");
                 if (arr != null && arr.Length > 1)
@@ -2168,7 +2168,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// Reset the prototype state to its initial state
         /// </summary>
-        public void     Reset(Microsoft.SqlServer.Management.Smo.Server server)
+        public void Reset(Microsoft.SqlServer.Management.Smo.Server server)
         {
             if (this.Exists)
             {
@@ -2176,19 +2176,19 @@ INNER JOIN sys.sql_logins AS sql_logins
             }
             else
             {
-                this.currentState = (LoginPrototypeData) this.originalState.Clone();
+                this.currentState = (LoginPrototypeData)this.originalState.Clone();
             }
         }
 
-        public void     Reload(Microsoft.SqlServer.Management.Smo.Server server)
+        public void Reload(Microsoft.SqlServer.Management.Smo.Server server)
         {
             System.Diagnostics.Debug.Assert(this.Exists, "trying to load the state for a login that doesn't exist");
 
             Login login = server.Logins[this.LoginName];
             System.Diagnostics.Debug.Assert(login != null, "login does not exist on the server");
 
-            this.originalState  = new LoginPrototypeData(server, login);
-            this.currentState   = (LoginPrototypeData) this.originalState.Clone();
+            this.originalState = new LoginPrototypeData(server, login);
+            this.currentState = (LoginPrototypeData)this.originalState.Clone();
 
         }
 
@@ -2205,10 +2205,10 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// and password
         /// map the login to credentials
         /// </summary>
-        public void     ApplyGeneralChanges(Microsoft.SqlServer.Management.Smo.Server server)
+        public void ApplyGeneralChanges(Microsoft.SqlServer.Management.Smo.Server server)
         {
-            bool    changesMade = false;
-            Login   login       = null;
+            bool changesMade = false;
+            Login login = null;
 
             // if the login exists, get the login, otherwise make a new login
             if (this.Exists)
@@ -2250,7 +2250,7 @@ INNER JOIN sys.sql_logins AS sql_logins
             // set the default database and language
             if (!this.Exists || (this.currentState.DefaultDatabase != this.originalState.DefaultDatabase))
             {
-                login.DefaultDatabase   = this.DefaultDatabase;
+                login.DefaultDatabase = this.DefaultDatabase;
                 changesMade = true;
             }
 
@@ -2258,11 +2258,11 @@ INNER JOIN sys.sql_logins AS sql_logins
             {
                 if (this.DefaultLanguage == LoginPrototypeData.DefaultLanguageDisplay)
                 {
-                    login.Language      = String.Empty;
+                    login.Language = String.Empty;
                 }
                 else
                 {
-                    login.Language      = this.DefaultLanguage;
+                    login.Language = this.DefaultLanguage;
                 }
 
                 changesMade = true;
@@ -2324,7 +2324,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                 }
                 else
                 {
-                    login.Create();  
+                    login.Create();
                 }
             }
 
@@ -2372,7 +2372,7 @@ INNER JOIN sys.sql_logins AS sql_logins
                         throw new Exception(SR.ResetPasswordWhileUnlocking);
                     }
                 }
-            }            
+            }
 
             // enable or disable the login as needed
             if (this.currentState.IsDisabled != this.originalState.IsDisabled)
@@ -2425,8 +2425,8 @@ INNER JOIN sys.sql_logins AS sql_logins
                 // all users are always members of the public role, so skip processing for public
                 if (0 != String.Compare(role.Name, "public", StringComparison.Ordinal))
                 {
-                    bool wasOriginallyARoleMember   = this.originalState.ServerRoles.IsMember(role.Name);
-                    bool isCurrentlyARoleMember     = this.currentState.ServerRoles.IsMember(role.Name);
+                    bool wasOriginallyARoleMember = this.originalState.ServerRoles.IsMember(role.Name);
+                    bool isCurrentlyARoleMember = this.currentState.ServerRoles.IsMember(role.Name);
 
 
                     // if the login is currently a member of the role, but wasn't originally a member, add the login to the role
@@ -2448,8 +2448,8 @@ INNER JOIN sys.sql_logins AS sql_logins
             // foreach server role
             foreach (string role in this.ServerRoles.ServerRoleNames)
             {
-                 bool wasOriginallyARoleMember   = this.originalState.ServerRoles.IsMember(role);
-                bool isCurrentlyARoleMember     = this.currentState.ServerRoles.IsMember(role);
+                bool wasOriginallyARoleMember = this.originalState.ServerRoles.IsMember(role);
+                bool isCurrentlyARoleMember = this.currentState.ServerRoles.IsMember(role);
 
 
                 // if the login is currently a member of the role, but wasn't originally a member, add the login to the role
@@ -2470,7 +2470,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// <summary>
         /// Set the login's database role membership
         /// </summary>
-        public void     ApplyDatabaseRoleChanges(Microsoft.SqlServer.Management.Smo.Server server)
+        public void ApplyDatabaseRoleChanges(Microsoft.SqlServer.Management.Smo.Server server)
         {
             System.Diagnostics.Debug.Assert(server != null, "the server is null");
 
@@ -2483,28 +2483,28 @@ INNER JOIN sys.sql_logins AS sql_logins
                 // if anything has been changed, then the currentState will include the database
                 if (this.currentState.DatabaseRolesCollection.Contains(database.Name))
                 {
-                    DatabaseRoles currentDatabaseRoles  = (DatabaseRoles) this.currentState.DatabaseRolesCollection[database.Name];
-                    DatabaseRoles originalDatabaseRoles = (DatabaseRoles) this.originalState.DatabaseRolesCollection[database.Name];
+                    DatabaseRoles currentDatabaseRoles = (DatabaseRoles)this.currentState.DatabaseRolesCollection[database.Name];
+                    DatabaseRoles originalDatabaseRoles = (DatabaseRoles)this.originalState.DatabaseRolesCollection[database.Name];
 
                     // if the login is currently permitted in the database
                     if (currentDatabaseRoles.PermitDatabaseAccess)
                     {
                         // get the existing user for the login in the database
-                        bool    userRecreated       = false;
-                        string  existingUserName    = originalDatabaseRoles.UserName;
-                        User    user = 
+                        bool userRecreated = false;
+                        string existingUserName = originalDatabaseRoles.UserName;
+                        User user =
                             ((existingUserName != null) && (existingUserName.Length != 0)) ?
                             database.Users[existingUserName] :
                             null;
-                        
+
                         // If the user doesn't exist, create the user in the database.
                         if (user == null)
                         {
                             // Note that if the user name already exists and is mapped to
                             // another login, SMO will emit the appropriate error message.
 
-                            user        = new User(database, currentDatabaseRoles.UserName);
-                            user.Login  = this.LoginName;
+                            user = new User(database, currentDatabaseRoles.UserName);
+                            user.Login = this.LoginName;
                             user.Create();
                         }
                         // if a user does exist in the database for the login and
@@ -2526,12 +2526,12 @@ INNER JOIN sys.sql_logins AS sql_logins
                             if ((user.DefaultSchema != null) && (user.DefaultSchema.Length != 0) &&
                             !database.Schemas.Contains(user.DefaultSchema))
                             {
-                                Schema schema   = new Schema(database, user.DefaultSchema);
-                                schema.Owner    = user.Name;
+                                Schema schema = new Schema(database, user.DefaultSchema);
+                                schema.Owner = user.Name;
 
                                 schema.Create();
                             }
-                         }
+                        }
 
                         // if any of the roles have been changed
                         if (currentDatabaseRoles.RoleMembershipChanged || userRecreated || !this.Exists)
@@ -2545,10 +2545,10 @@ INNER JOIN sys.sql_logins AS sql_logins
                                     // If the login is new, it is not a member of any role
                                     //
                                     bool wasOriginallyARoleMember = (this.Exists && originalDatabaseRoles.IsMember(role.Name));
-                                    bool isCurrentlyARoleMember     = currentDatabaseRoles.IsMember(role.Name);
-                                    bool defaultSchemaChanged       = (originalDatabaseRoles.DefaultSchema != currentDatabaseRoles.DefaultSchema);
+                                    bool isCurrentlyARoleMember = currentDatabaseRoles.IsMember(role.Name);
+                                    bool defaultSchemaChanged = (originalDatabaseRoles.DefaultSchema != currentDatabaseRoles.DefaultSchema);
 
-                                     
+
 
                                     // if the login is currently in the role, but wasn't originally, add the login to the role
                                     if (isCurrentlyARoleMember && (!wasOriginallyARoleMember || userRecreated))
@@ -2583,7 +2583,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// Remove the login from all database roles in the named database
         /// </summary>
         /// <param name="databaseName">The name of the database from which we are removing login</param>
-        internal void   DisjoinAllDatabaseRoles(string databaseName)
+        internal void DisjoinAllDatabaseRoles(string databaseName)
         {
             DatabaseRoles roles = this.GetDatabaseRoles(databaseName);
 
@@ -2598,12 +2598,12 @@ INNER JOIN sys.sql_logins AS sql_logins
         /// the old login name to match a new login name.
         /// </summary>
         /// <param name="newLoginName">The new login name</param>
-        private void    UpdateDefaultSchemaAndUserNames(string newLoginName)
+        private void UpdateDefaultSchemaAndUserNames(string newLoginName)
         {
             foreach (DatabaseRoles databaseRoles in this.currentState.DatabaseRolesCollection.Values)
             {
                 if (databaseRoles.PermitDatabaseAccess)
-                {  
+                {
                     // if the default schema name is the same as the login name,
                     // then set the default schema name to the new login name
                     if (this.NameMatchesCurrentLoginName(databaseRoles.DefaultSchema))
@@ -2634,7 +2634,7 @@ INNER JOIN sys.sql_logins AS sql_logins
             // if the login is a windows login, do a case-insensitive comparison
             // because domain\user is equivalent to the canonicalized form of DOMAIN\user.
 
-            bool matchesSqlLogin = 
+            bool matchesSqlLogin =
                 !this.UseWindowsAuthentication &&
                 (0 == this.comparer.Compare(this.CanonicalizedLoginName, otherName));
 
@@ -2653,7 +2653,7 @@ INNER JOIN sys.sql_logins AS sql_logins
         {
             get
             {
-                if ( (!this.Exists) || (this.currentState.SqlPassword != this.originalState.SqlPassword))
+                if ((!this.Exists) || (this.currentState.SqlPassword != this.originalState.SqlPassword))
                 {
                     return true;
                 }
@@ -2683,7 +2683,7 @@ INNER JOIN sys.sql_logins AS sql_logins
     /// </summary>
     internal class CaseSensitiveCultureInvariantComparer : IComparer
     {
-        public CaseSensitiveCultureInvariantComparer() {}
+        public CaseSensitiveCultureInvariantComparer() { }
 
         /// <summary>
         /// Compare strings a and b
@@ -2698,8 +2698,8 @@ INNER JOIN sys.sql_logins AS sql_logins
                 throw new ArgumentException();
             }
 
-            string string_a = (string) a;
-            string string_b = (string) b;
+            string string_a = (string)a;
+            string string_b = (string)b;
 
             return String.Compare(string_a, string_b, StringComparison.Ordinal);
         }

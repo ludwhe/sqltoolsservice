@@ -97,13 +97,13 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             // Process up to the INTO or Target index. If INTO isn't there, expect all whitespace tokens
             ProcessAndNormalizeWhitespaceRange(nextToken, intoTokenIndexOrTargetStartTokenIndex,
                 FormatterUtilities.NormalizeNewLinesEnsureOneNewLineMinimum);
-            
+
             IncrementIndentLevel();
 
             // Process the INTO token and all whitespace up to the target start
             ProcessAndNormalizeTokenRange(intoTokenIndexOrTargetStartTokenIndex, CodeObject.Target.Position.startTokenNumber,
                 FormatterUtilities.NormalizeNewLinesOrCondenseToOneSpace, areAllTokensWhitespace: false);
-            
+
             ProcessChild(CodeObject.Target);
 
             nextToken = CodeObject.Target.Position.endTokenNumber;
@@ -171,7 +171,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
 
             return nextToken;
         }
-        
+
         private int ProcessOutputClause(int nextToken)
         {
             if (CodeObject.OutputIntoClause != null)

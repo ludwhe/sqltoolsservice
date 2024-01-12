@@ -40,7 +40,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.DataSourceIntellisen
                 DocName = ""
             };
 
-            var databaseSchemaResults = new List<ShowDatabaseSchemaResult> {databaseSchema} as IEnumerable<ShowDatabaseSchemaResult>;
+            var databaseSchemaResults = new List<ShowDatabaseSchemaResult> { databaseSchema } as IEnumerable<ShowDatabaseSchemaResult>;
             kustoClientMock.Setup(x => x.ExecuteQueryAsync<ShowDatabaseSchemaResult>(It.IsAny<string>(), It.IsAny<CancellationToken>(), "FakeDatabaseName"))
                 .Returns(Task.FromResult(databaseSchemaResults));
 
@@ -53,21 +53,21 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.DataSourceIntellisen
                 DocString = ""
             };
 
-            var functionSchemaResults = new List<ShowFunctionsResult> {functionSchema} as IEnumerable<ShowFunctionsResult>;
+            var functionSchemaResults = new List<ShowFunctionsResult> { functionSchema } as IEnumerable<ShowFunctionsResult>;
             kustoClientMock.Setup(x => x.ExecuteQueryAsync<ShowFunctionsResult>(It.IsAny<string>(), It.IsAny<CancellationToken>(), "FakeDatabaseName"))
                 .Returns(Task.FromResult(functionSchemaResults));
 
             return kustoClientMock;
         }
-        
+
         [Test]
         public void GetSemanticMarkers_Returns_Error_For_InvalidText()
         {
             var kustoClientMock = GetMockKustoClient();
-            
+
             var client = new KustoIntellisenseClient(kustoClientMock.Object);
             var semanticMarkers = client.GetSemanticMarkers(new ScriptParseInfo(), new ScriptFile("", "", ""), "InvalidText");
-            
+
             var semanticMarker = semanticMarkers.Single();
             Assert.AreEqual(ScriptFileMarkerLevel.Error, semanticMarker.Level);
             Assert.AreEqual("The name 'InvalidText' does not refer to any known column, table, variable or function.", semanticMarker.Message);
@@ -78,11 +78,11 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.DataSourceIntellisen
         public void GetSemanticMarkers_Returns_Zero_SemanticMarkers_For_ValidQueryText()
         {
             var kustoClientMock = GetMockKustoClient();
-            
+
             var client = new KustoIntellisenseClient(kustoClientMock.Object);
             var queryText = @".show commands";
             var semanticMarkers = client.GetSemanticMarkers(new ScriptParseInfo(), new ScriptFile("", "", ""), queryText);
-            
+
             Assert.AreEqual(0, semanticMarkers.Length);
         }
 
@@ -92,7 +92,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.DataSourceIntellisen
             var kustoClientMock = GetMockKustoClient();
             var client = new KustoIntellisenseClient(kustoClientMock.Object);
             var definition = client.GetDefinition("queryText", 0, 1, 1);
-            
+
             // finish these assertions once the function is implemented
             Assert.IsNull(definition);
         }
@@ -109,7 +109,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.DataSourceIntellisen
             var scriptFile = new ScriptFile("", "", "");
             var scriptParseInfo = new ScriptParseInfo();
             var documentInfo = new ScriptDocumentInfo(textDocumentPosition, scriptFile, scriptParseInfo);
-            
+
             var hover = client.GetHoverHelp(documentInfo, new Position());
 
             Assert.IsNotNull(hover);
@@ -130,14 +130,14 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.DataSourceIntellisen
             var scriptParseInfo = new ScriptParseInfo();
             var documentInfo = new ScriptDocumentInfo(textDocumentPosition, scriptFile, scriptParseInfo);
             var items = client.GetAutoCompleteSuggestions(documentInfo, position);
-            
+
             Assert.AreEqual(20, items.Length);
         }
         [Test]
         public void UpdateDatabase_Updates_SchemaState()
         {
             var kustoClientMock = GetMockKustoClient();
-            
+
             var databaseSchema = new ShowDatabaseSchemaResult
             {
                 DatabaseName = "NewDatabaseName",
@@ -152,10 +152,10 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.DataSourceIntellisen
                 DocName = ""
             };
 
-            var databaseSchemaResults = new List<ShowDatabaseSchemaResult> {databaseSchema} as IEnumerable<ShowDatabaseSchemaResult>;
+            var databaseSchemaResults = new List<ShowDatabaseSchemaResult> { databaseSchema } as IEnumerable<ShowDatabaseSchemaResult>;
             kustoClientMock.Setup(x => x.ExecuteQueryAsync<ShowDatabaseSchemaResult>(It.IsAny<string>(), It.IsAny<CancellationToken>(), "NewDatabaseName"))
                 .Returns(Task.FromResult(databaseSchemaResults));
-            
+
             var client = new KustoIntellisenseClient(kustoClientMock.Object);
             client.UpdateDatabase("NewDatabaseName");
 
@@ -168,7 +168,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource.DataSourceIntellisen
             var scriptParseInfo = new ScriptParseInfo();
             var documentInfo = new ScriptDocumentInfo(textDocumentPosition, scriptFile, scriptParseInfo);
             var items = client.GetAutoCompleteSuggestions(documentInfo, position);
-            
+
             Assert.AreEqual(19, items.Length);
             var tableItem = items.FirstOrDefault(x => x.Detail == "Table");
 

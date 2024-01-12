@@ -21,7 +21,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
         private static IEnumerable<Tuple<ConnectionDetails, string>> ConnectionDetailsSource()
         {
             var results = new List<Tuple<ConnectionDetails, string>>();
-            
+
             var details1 = new ConnectionDetails
             {
                 ServerName = "ServerName",
@@ -31,9 +31,9 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
                 DatabaseDisplayName = "DisplayName",
                 GroupId = "GroupId"
             };
-            
+
             results.Add(new Tuple<ConnectionDetails, string>(details1, "ServerName_DatabaseName_UserName_AuthenticationType_DisplayName_GroupId"));
-            
+
             var details2 = new ConnectionDetails
             {
                 ServerName = null,
@@ -45,7 +45,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
             };
 
             results.Add(new Tuple<ConnectionDetails, string>(details2, "NULL_NULL_NULL_NULL"));
-            
+
             var details3 = new ConnectionDetails
             {
                 ServerName = null,
@@ -55,12 +55,12 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
                 DatabaseDisplayName = null,
                 GroupId = null
             };
-            
+
             results.Add(new Tuple<ConnectionDetails, string>(details3, "NULL_NULL_NULL_NULL"));
-            
+
             return results;
         }
-        
+
         [TestCaseSource(nameof(ConnectionDetailsSource))]
         public void GetConnectionContextKey_Returns_Key(Tuple<ConnectionDetails, string> tuple)
         {
@@ -74,7 +74,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
             var dataSourceFactory = new Mock<IDataSourceFactory>();
             var connectedBindingQueue = new ConnectedBindingQueue(dataSourceFactory.Object);
             var connectionKey = connectedBindingQueue.AddConnectionContext(null, false);
-            
+
             Assert.AreEqual(string.Empty, connectionKey);
         }
 
@@ -84,20 +84,20 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
             var connectionDetails = new ConnectionDetails();
             var connectionFactory = new Mock<IDataSourceConnectionFactory>();
             var connectionInfo = new ConnectionInfo(connectionFactory.Object, "ownerUri", connectionDetails);
-            
+
             var dataSourceFactory = new Mock<IDataSourceFactory>();
             var connectedBindingQueue = new ConnectedBindingQueue(dataSourceFactory.Object);
             var connectionKey = connectedBindingQueue.AddConnectionContext(connectionInfo, false, "featureName");
-            
+
             Assert.AreEqual("NULL_NULL_NULL_NULL", connectionKey);
         }
-        
+
         [Test]
         public void AddConnectionContext_Sets_BindingContext()
         {
             var connectionDetails = new ConnectionDetails
             {
-                AccountToken = "AzureAccountToken" 
+                AccountToken = "AzureAccountToken"
             };
             var connectionFactory = new Mock<IDataSourceConnectionFactory>();
             var connectionInfo = new ConnectionInfo(connectionFactory.Object, "ownerUri", connectionDetails);
@@ -113,7 +113,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
             var connectionKey =
                 connectedBindingQueue.AddConnectionContext(connectionInfo, false, "featureName");
             var bindingContext = connectedBindingQueue.GetOrCreateBindingContext(connectionKey);
-            
+
             Assert.AreEqual(dataSourceMock.Object, bindingContext.DataSource);
             Assert.AreEqual(500, bindingContext.BindingTimeout);
             Assert.AreEqual(true, bindingContext.IsConnected);
@@ -125,13 +125,13 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.LanguageServices
             var connectionDetails = new ConnectionDetails();
             var connectionFactory = new Mock<IDataSourceConnectionFactory>();
             var connectionInfo = new ConnectionInfo(connectionFactory.Object, "ownerUri", connectionDetails);
-            
+
             var dataSourceFactory = new Mock<IDataSourceFactory>();
             var connectedBindingQueue = new ConnectedBindingQueue(dataSourceFactory.Object);
             var connectionKey = connectedBindingQueue.AddConnectionContext(connectionInfo, false, "featureName");
-            
+
             connectedBindingQueue.RemoveBindingContext(connectionInfo);
-            
+
             Assert.IsFalse(connectedBindingQueue.BindingContextMap.ContainsKey(connectionKey));
         }
     }

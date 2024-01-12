@@ -77,7 +77,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Metadata
             TableViewTableTypeBase smoResult;
             switch (objectType.ToLowerInvariant())
             {
-                case "table":                    
+                case "table":
                     Table table = string.IsNullOrEmpty(schemaName) ? new Table(database, objectName) : new Table(database, objectName, schemaName);
                     table.Refresh();
                     smoResult = table;
@@ -120,7 +120,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Metadata
             bool isMemoryOptimized = smoTable != null && smoTable.IsMemoryOptimized;
 
             // Escape the parts of the name
-            string[] objectNameParts = {smoResult.Schema, smoResult.Name};
+            string[] objectNameParts = { smoResult.Schema, smoResult.Name };
             string escapedMultipartName = ToSqlScript.FormatMultipartIdentifier(objectNameParts);
 
             return new TableMetadata

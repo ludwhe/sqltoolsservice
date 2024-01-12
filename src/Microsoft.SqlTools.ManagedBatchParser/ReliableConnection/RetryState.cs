@@ -7,7 +7,7 @@ using System;
 
 namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
 {
-    public class RetryState 
+    public class RetryState
     {
         private int _retryCount = 0;
         private TimeSpan _delay = TimeSpan.Zero;
@@ -17,7 +17,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         /// <summary>
         /// Gets or sets the current retry attempt count.
         /// </summary>
-        public int RetryCount 
+        public int RetryCount
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         /// <summary>
         /// Gets or sets the delay indicating how long the current thread will be suspended for before the next iteration will be invoked.
         /// </summary>
-        public TimeSpan Delay 
+        public TimeSpan Delay
         {
             get
             {
@@ -47,7 +47,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         /// <summary>
         /// Gets or sets the exception which caused the retry conditions to occur.
         /// </summary>
-        public Exception LastError 
+        public Exception LastError
         {
             get
             {
@@ -63,8 +63,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         /// Gets or sets a value indicating whether we should ignore delay in order to be able to execute our tests faster
         /// </summary>
         /// <remarks>Intended for test use ONLY</remarks>
-        internal bool IsDelayDisabled 
-        { 
+        internal bool IsDelayDisabled
+        {
             get
             {
                 return _isDelayDisabled;

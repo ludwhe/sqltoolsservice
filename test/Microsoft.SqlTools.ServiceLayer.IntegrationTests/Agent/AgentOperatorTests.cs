@@ -6,11 +6,7 @@
 #nullable disable
 
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.Agent;
-using Microsoft.SqlTools.ServiceLayer.Agent.Contracts;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using Moq;
 using NUnit.Framework;
 
@@ -54,7 +50,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Agent
                 var connectionResult = await LiveConnectionHelper.InitLiveConnectionInfoAsync("master", queryTempFile.FilePath);
                 await AgentTestUtils.DeleteAgentOperator(service, connectionResult, operatorInfo);
 
-                 // test
+                // test
                 await AgentTestUtils.CreateAgentOperator(service, connectionResult, operatorInfo);
 
                 // cleanup
@@ -101,7 +97,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Agent
                 await AgentTestUtils.DeleteAgentOperator(service, connectionResult, operatorInfo);
                 await AgentTestUtils.CreateAgentOperator(service, connectionResult, operatorInfo);
 
-                 // test
+                // test
                 await AgentTestUtils.DeleteAgentOperator(service, connectionResult, operatorInfo);
             }
         }

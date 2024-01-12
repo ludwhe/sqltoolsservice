@@ -3,13 +3,13 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
-using Microsoft.SqlTools.BatchParser.Utility;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode;
 using System.Globalization;
+using System.IO;
+using Microsoft.SqlTools.BatchParser.Utility;
 using Microsoft.SqlTools.ManagedBatchParser;
+using Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode;
 
 namespace Microsoft.SqlTools.ServiceLayer.BatchParser
 {

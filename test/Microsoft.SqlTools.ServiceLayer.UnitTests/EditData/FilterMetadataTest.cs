@@ -26,7 +26,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.EditData
         {
             EditColumnMetadata[] metas = CreateMetadataColumns(new string[] { "[col1]", "[col2]", "[col3]" });
             DbColumnWrapper[] cols = CreateColumnWrappers(new string[] { metas[0].EscapedName, metas[1].EscapedName, metas[2].EscapedName });
- 
+
             EditColumnMetadata[] filteredData = EditTableMetadata.FilterColumnMetadata(metas, cols);
             ValidateFilteredData(filteredData, cols);
         }

@@ -12,18 +12,18 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Extensibility;
-using Microsoft.SqlTools.Hosting;
-using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.Kusto.ServiceLayer.Connection;
 using Microsoft.Kusto.ServiceLayer.Connection.Contracts;
 using Microsoft.Kusto.ServiceLayer.LanguageServices;
 using Microsoft.Kusto.ServiceLayer.ObjectExplorer.Contracts;
-using Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes;
 using Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel;
+using Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes;
 using Microsoft.Kusto.ServiceLayer.SqlContext;
 using Microsoft.Kusto.ServiceLayer.Utility;
 using Microsoft.Kusto.ServiceLayer.Workspace;
+using Microsoft.SqlTools.Extensibility;
+using Microsoft.SqlTools.Hosting;
+using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
@@ -82,13 +82,13 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
             _serviceProvider = provider;
             _connectionService = provider.GetService<ConnectionService>();
             _connectionManager = provider.GetService<IConnectionManager>();
-            
+
             try
             {
                 _connectionService.RegisterConnectedQueue(connectionName, _connectedBindingQueue);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.Error(ex.Message);
             }
@@ -111,7 +111,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
             serviceHost.SetRequestHandler(RefreshRequest.Type, HandleRefreshRequest);
             serviceHost.SetRequestHandler(CloseSessionRequest.Type, HandleCloseSessionRequest);
             serviceHost.SetRequestHandler(FindNodesRequest.Type, HandleFindNodesRequest);
-            
+
             WorkspaceService<SqlToolsSettings> workspaceService = _serviceProvider.GetService<WorkspaceService<SqlToolsSettings>>();
             if (workspaceService != null)
             {
@@ -273,7 +273,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
             if (_sessionMap.TryGetValue(uri, out session))
             {
                 // Remove the session from active sessions and disconnect
-                if(_sessionMap.TryRemove(session.Uri, out session))
+                if (_sessionMap.TryRemove(session.Uri, out session))
                 {
                     if (session != null && session.ConnectionInfo != null)
                     {
@@ -458,12 +458,12 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
                 }
                 return session;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await SendSessionFailedNotification(uri, ex.Message);
                 return null;
             }
-        }        
+        }
 
         private async Task<ConnectionCompleteParams> Connect(ConnectParams connectParams, string uri)
         {
@@ -472,7 +472,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
             {
                 // open connection based on request details
                 ConnectionCompleteParams result = await _connectionService.Connect(connectParams);
-                connectionErrorMessage = result != null ? $"{result.Messages} error code:{result.ErrorNumber}"  : string.Empty;
+                connectionErrorMessage = result != null ? $"{result.Messages} error code:{result.ErrorNumber}" : string.Empty;
                 if (result != null && !string.IsNullOrEmpty(result.ConnectionId))
                 {
                     return result;
@@ -482,7 +482,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
                     await SendSessionFailedNotification(uri, result.ErrorMessage);
                     return null;
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -518,17 +518,17 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
         private async Task RunExpandTask(ObjectExplorerSession session, ExpandParams expandParams, bool forceRefresh = false)
         {
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-            Task task = ExpandNodeAsync(session, expandParams,  cancellationTokenSource.Token, forceRefresh);
+            Task task = ExpandNodeAsync(session, expandParams, cancellationTokenSource.Token, forceRefresh);
             await Task.Run(async () =>
             {
-                ObjectExplorerTaskResult result =  await RunTaskWithTimeout(task, 
+                ObjectExplorerTaskResult result = await RunTaskWithTimeout(task,
                     _settings?.ExpandTimeout ?? ObjectExplorerSettings.DefaultExpandTimeout);
 
                 if (result != null && !result.IsCompleted)
                 {
                     cancellationTokenSource.Cancel();
                     ExpandResponse response = CreateExpandResponse(session, expandParams);
-                    response.ErrorMessage = result.Exception != null ? result.Exception.Message: $"Failed to expand node: {expandParams.NodePath} in session {session.Uri}";
+                    response.ErrorMessage = result.Exception != null ? result.Exception.Message : $"Failed to expand node: {expandParams.NodePath} in session {session.Uri}";
                     await _serviceHost.SendEvent(ExpandCompleteNotification.Type, response);
                 }
                 return result;
@@ -541,7 +541,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
             TimeSpan timeout = TimeSpan.FromSeconds(timeoutInSec);
             await Task.WhenAny(task, Task.Delay(timeout));
             result.IsCompleted = task.IsCompleted;
-            if(task.Exception != null)
+            if (task.Exception != null)
             {
                 result.Exception = task.Exception;
             }
@@ -626,7 +626,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
             {
                 _connectedBindingQueue.OnUnhandledException -= OnUnhandledException;
                 _connectedBindingQueue.Dispose();
-            }            
+            }
         }
 
         private async void OnUnhandledException(string queueKey, Exception ex)

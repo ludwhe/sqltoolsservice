@@ -9,12 +9,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.Agent;
-using Microsoft.SqlTools.ServiceLayer.Agent.Contracts;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.ObjectManagement;
-using Microsoft.SqlTools.ServiceLayer.Management;
-using Microsoft.SqlTools.ServiceLayer.Utility;
 using Moq;
 using static Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility.LiveConnectionHelper;
 
@@ -386,16 +381,17 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Agent
             );
         }
 
-        public static AgentNotebookInfo GetNotebook(TestConnectionResult connectionResult, string name){
-             var notebookList = AgentNotebookHelper.GetAgentNotebooks(connectionResult.ConnectionInfo).Result;
-             foreach(AgentNotebookInfo n in notebookList)
-             {
-                 if(n.Name == name)
-                 {
-                      return n;
-                 }
-             }
-             return null;
+        public static AgentNotebookInfo GetNotebook(TestConnectionResult connectionResult, string name)
+        {
+            var notebookList = AgentNotebookHelper.GetAgentNotebooks(connectionResult.ConnectionInfo).Result;
+            foreach (AgentNotebookInfo n in notebookList)
+            {
+                if (n.Name == name)
+                {
+                    return n;
+                }
+            }
+            return null;
         }
 
 

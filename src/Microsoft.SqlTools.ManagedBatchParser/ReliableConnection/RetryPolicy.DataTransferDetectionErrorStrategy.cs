@@ -21,7 +21,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             {
                 get { return instance; }
             }
-            
+
             protected override bool CanRetrySqlException(SqlException sqlException)
             {
                 // Enumerate through all errors found in the exception.

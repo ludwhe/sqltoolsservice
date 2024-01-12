@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx.Contracts
         /// <summary>
         /// Gets or sets the create streaming job TSQL.  Should not be used if Statement is set.
         /// </summary>
-        public string CreateStreamingJobTsql { get; set;}
+        public string CreateStreamingJobTsql { get; set; }
     }
 
     /// <summary>
@@ -30,7 +30,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx.Contracts
     /// </summary>
     public class ValidateStreamingJobResult : ResultStatus
     {
-        
+
     }
 
     /// <summary>

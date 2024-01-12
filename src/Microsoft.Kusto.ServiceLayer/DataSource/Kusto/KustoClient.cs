@@ -10,14 +10,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Kusto.Cloud.Platform.Data;
-using Kusto.Data;
-using Kusto.Data.Common;
-using Kusto.Data.Data;
-using Kusto.Data.Exceptions;
-using Kusto.Data.Net.Client;
-using Kusto.Language;
-using Kusto.Language.Editor;
 using Microsoft.Kusto.ServiceLayer.Connection;
 using Microsoft.Kusto.ServiceLayer.DataSource.Contracts;
 using Microsoft.Kusto.ServiceLayer.Utility;
@@ -34,7 +26,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private ICslQueryProvider _kustoQueryProvider;
-        
+
         public string ClusterName { get; private set; }
         public string DatabaseName { get; private set; }
 
@@ -54,7 +46,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
             {
                 return;
             }
-            
+
             var dataReader = ExecuteQuery(".show databases | top 1 by DatabaseName | project DatabaseName", new CancellationToken());
             var databaseName = dataReader.ToEnumerable().Select(row => row["DatabaseName"]).FirstOrDefault();
             DatabaseName = databaseName?.ToString() ?? "";
@@ -66,10 +58,10 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
             {
                 return false;
             }
-            
+
             _kustoQueryProvider.Dispose();
             _kustoAdminProvider.Dispose();
-            
+
             var connectionDetails = new DataSourceConnectionDetails
             {
                 ServerName = ClusterName,
@@ -77,7 +69,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
                 UserToken = accountToken,
                 AuthenticationType = AzureMFA
             };
-            
+
             Initialize(connectionDetails);
             return true;
         }
@@ -87,12 +79,12 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
             var stringBuilder = string.IsNullOrWhiteSpace(connectionDetails.ConnectionString)
                 ? new KustoConnectionStringBuilder(connectionDetails.ServerName, connectionDetails.DatabaseName)
                 : new KustoConnectionStringBuilder(connectionDetails.ConnectionString);
-            
+
             ClusterName = stringBuilder.DataSource;
             var databaseName = KustoQueryUtils.ParseDatabaseName(stringBuilder.InitialCatalog);
             DatabaseName = databaseName;
             stringBuilder.InitialCatalog = databaseName;
-            
+
             ValidationUtils.IsNotNull(ClusterName, nameof(ClusterName));
 
             switch (connectionDetails.AuthenticationType)

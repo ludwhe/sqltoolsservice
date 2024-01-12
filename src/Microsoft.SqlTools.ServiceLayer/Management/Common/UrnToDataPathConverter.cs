@@ -52,7 +52,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         public static string ConvertUrnToDataPath(Urn urn)
         {
             String element = String.Empty;
-            if(urn == null)
+            if (urn == null)
             {
                 throw new ArgumentNullException("urn");
             }
@@ -74,18 +74,18 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// <param name="writer">XmlWriter that the results will be written to.</param>
         private static void ConvertUrnToDataPath(Urn urn, XmlWriter xmlWriter)
         {
-            if(urn == null)
+            if (urn == null)
             {
                 throw new ArgumentNullException("urn");
             }
-            if(xmlWriter == null)
+            if (xmlWriter == null)
             {
                 throw new ArgumentNullException("xmlWriter");
             }
 
             // preserve the order so do the parent first
             Urn parent = urn.Parent;
-            if(parent != null)
+            if (parent != null)
             {
                 ConvertUrnToDataPath(parent, xmlWriter);
             }
@@ -93,7 +93,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
             String tag = urn.Type;
 
             // don't put server into the olap path.
-            if(tag != "OlapServer")
+            if (tag != "OlapServer")
             {
                 xmlWriter.WriteElementString(tag + "ID", urn.GetAttribute("ID"));
             }
@@ -108,12 +108,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         {
             System.Diagnostics.Debug.Assert(false, "do not use this function. See bugs 322423 and 115450 in SQLBU Defect tracking");
 
-            if(null == source) return String.Empty;
+            if (null == source) return String.Empty;
 
             StringBuilder sb = new StringBuilder();
-            foreach(char c in source)
+            foreach (char c in source)
             {
-                switch(c)
+                switch (c)
                 {
                     case '<':
                         sb.Append("&lt;");

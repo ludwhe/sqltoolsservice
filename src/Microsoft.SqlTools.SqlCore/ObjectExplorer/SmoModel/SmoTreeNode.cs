@@ -27,7 +27,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
         {
             // TODO setup initialization
         }
-        
+
         /// <summary>
         /// Is this a system (MSShipped) object?
         /// </summary>
@@ -69,7 +69,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
             {
                 //Ignore the exception, sometimes the urn returns exception and I' not sure why
             }
-            
+
             if (schemaBaseObject != null)
             {
                 ObjectMetadata.Schema = schemaBaseObject.Schema;

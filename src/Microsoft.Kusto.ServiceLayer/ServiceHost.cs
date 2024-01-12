@@ -212,8 +212,8 @@ namespace Microsoft.Kusto.ServiceLayer
                     Features = FeaturesMetadataProviderHelper.CreateFeatureMetadataProviders()
                 }
             };
-            
-            await requestContext.SendResult(capabilitiesResult);            
+
+            await requestContext.SendResult(capabilitiesResult);
         }
 
         /// <summary>

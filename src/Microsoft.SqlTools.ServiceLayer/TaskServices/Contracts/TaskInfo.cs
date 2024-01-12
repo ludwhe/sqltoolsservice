@@ -15,12 +15,12 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices.Contracts
         /// <summary>
         /// An id to unify the task
         /// </summary>
-        public string TaskId { get; set;  }
+        public string TaskId { get; set; }
 
         /// <summary>
         /// Task status
         /// </summary>
-        public SqlTaskStatus Status { get;  set; }
+        public SqlTaskStatus Status { get; set; }
 
         /// <summary>
         /// Task execution mode

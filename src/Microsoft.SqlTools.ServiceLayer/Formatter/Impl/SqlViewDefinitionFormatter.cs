@@ -146,6 +146,6 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         private int ProcessQueryExpression(int nextToken)
         {
             return ProcessQuerySection(nextToken, CodeObject.QueryExpression);
-        }        
+        }
     }
 }

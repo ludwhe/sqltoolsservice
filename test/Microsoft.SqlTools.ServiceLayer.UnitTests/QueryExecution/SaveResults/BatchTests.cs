@@ -13,12 +13,12 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.SaveResults
     public class BatchTests
     {
         [Test]
-        public void SaveAsFailsOutOfRangeResultSet([Values(-1,100)] int resultSetIndex)
+        public void SaveAsFailsOutOfRangeResultSet([Values(-1, 100)] int resultSetIndex)
         {
             // If: I attempt to save results for an invalid result set index
             // Then: I should get an ArgumentOutOfRange exception
             Batch batch = Common.GetBasicExecutedBatch();
-            SaveResultsRequestParams saveParams = new SaveResultsRequestParams {ResultSetIndex = resultSetIndex};
+            SaveResultsRequestParams saveParams = new SaveResultsRequestParams { ResultSetIndex = resultSetIndex };
             Assert.Throws<ArgumentOutOfRangeException>(() =>
                 batch.SaveAs(saveParams, null, null, null));
         }

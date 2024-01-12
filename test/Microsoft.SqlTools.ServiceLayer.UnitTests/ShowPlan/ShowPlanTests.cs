@@ -9,11 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using NUnit.Framework;
 using Microsoft.SqlTools.ServiceLayer.ExecutionPlan;
 using Microsoft.SqlTools.ServiceLayer.ExecutionPlan.Contracts;
 using Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan;
 using Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan.Comparison;
+using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ShowPlan
 {

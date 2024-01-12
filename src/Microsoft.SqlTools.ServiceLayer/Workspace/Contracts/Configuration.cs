@@ -9,7 +9,7 @@ using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.Workspace.Contracts
 {
-    public class DidChangeConfigurationNotification<TConfig> 
+    public class DidChangeConfigurationNotification<TConfig>
     {
         public static readonly
             EventType<DidChangeConfigurationParams<TConfig>> Type =

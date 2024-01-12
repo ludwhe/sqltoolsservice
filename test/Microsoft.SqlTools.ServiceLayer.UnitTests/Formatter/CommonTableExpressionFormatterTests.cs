@@ -11,7 +11,7 @@ using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
 {
-    
+
     public class CommonTableExpressionFormatterTests : FormatterUnitTestsBase
     {
         [SetUp]
@@ -23,21 +23,21 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
         [Test]
         public void CTE()
         {
-            LoadAndFormatAndCompare("CTE", GetInputFile("CTE.sql"), 
+            LoadAndFormatAndCompare("CTE", GetInputFile("CTE.sql"),
                 GetBaselineFile("CTE.sql"), new FormatOptions(), true);
         }
 
         [Test]
         public void CTE_OneColumn()
         {
-            LoadAndFormatAndCompare("CTE_OneColumn", GetInputFile("CTE_OneColumn.sql"), 
+            LoadAndFormatAndCompare("CTE_OneColumn", GetInputFile("CTE_OneColumn.sql"),
                 GetBaselineFile("CTE_OneColumn.sql"), new FormatOptions(), true);
         }
 
         [Test]
         public void CTE_MultipleExpressions()
         {
-            LoadAndFormatAndCompare("CTE_MultipleExpressions", GetInputFile("CTE_MultipleExpressions.sql"), 
+            LoadAndFormatAndCompare("CTE_MultipleExpressions", GetInputFile("CTE_MultipleExpressions.sql"),
                 GetBaselineFile("CTE_MultipleExpressions.sql"), new FormatOptions(), true);
         }
 
@@ -48,7 +48,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             options.PlaceCommasBeforeNextStatement = true;
 
             // TODO:  fix verify to account for commma placement - this can 
-            LoadAndFormatAndCompare("CTE_CommasBeforeDefinition", GetInputFile("CTE.sql"), 
+            LoadAndFormatAndCompare("CTE_CommasBeforeDefinition", GetInputFile("CTE.sql"),
                 GetBaselineFile("CTE_CommasBeforeDefinition.sql"), options, false);
         }
 
@@ -58,7 +58,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             FormatOptions options = new FormatOptions();
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
 
-            LoadAndFormatAndCompare("CTE_EachReferenceOnNewLine", GetInputFile("CTE.sql"), 
+            LoadAndFormatAndCompare("CTE_EachReferenceOnNewLine", GetInputFile("CTE.sql"),
                 GetBaselineFile("CTE_EachReferenceOnNewLine.sql"), options, true);
         }
 
@@ -70,7 +70,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
 
             // TODO:  fix verify to account for commma placement - this can 
-            LoadAndFormatAndCompare("CTE_EachReferenceOnNewLine_CommasBeforeDefinition", GetInputFile("CTE.sql"), 
+            LoadAndFormatAndCompare("CTE_EachReferenceOnNewLine_CommasBeforeDefinition", GetInputFile("CTE.sql"),
                 GetBaselineFile("CTE_EachReferenceOnNewLine_CommasBeforeDefinition.sql"), options, false);
         }
 
@@ -90,7 +90,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             FormatOptions options = new FormatOptions();
             options.SpacesPerIndent = 20;
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
-            LoadAndFormatAndCompare("CTE_20Spaces", GetInputFile("CTE.sql"), 
+            LoadAndFormatAndCompare("CTE_20Spaces", GetInputFile("CTE.sql"),
                 GetBaselineFile("CTE_20Spaces.sql"), options, true);
         }
 
@@ -100,7 +100,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             FormatOptions options = new FormatOptions();
             options.KeywordCasing = CasingOptions.Uppercase;
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
-            LoadAndFormatAndCompare("CTE_UpperCaseKeywords", GetInputFile("CTE.sql"), 
+            LoadAndFormatAndCompare("CTE_UpperCaseKeywords", GetInputFile("CTE.sql"),
                 GetBaselineFile("CTE_UpperCaseKeywords.sql"), options, true);
         }
 
@@ -110,7 +110,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Formatter
             FormatOptions options = new FormatOptions();
             options.KeywordCasing = CasingOptions.Lowercase;
             options.PlaceEachReferenceOnNewLineInQueryStatements = true;
-            LoadAndFormatAndCompare("CTE_LowerCaseKeywords", GetInputFile("CTE.sql"), 
+            LoadAndFormatAndCompare("CTE_LowerCaseKeywords", GetInputFile("CTE.sql"),
                 GetBaselineFile("CTE_LowerCaseKeywords.sql"), options, true);
         }
 

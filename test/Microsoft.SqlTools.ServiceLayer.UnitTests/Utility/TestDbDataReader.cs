@@ -216,9 +216,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
 
         public override int GetInt32(int ordinal)
         {
-            string allChars = ((string) RowEnumerator.Current[ordinal]);
+            string allChars = ((string)RowEnumerator.Current[ordinal]);
             int x = 0;
-            if(allChars.Length != 1 || !Int32.TryParse(allChars.ToString(), out x) )
+            if (allChars.Length != 1 || !Int32.TryParse(allChars.ToString(), out x))
             {
                 throw new InvalidCastException();
             }

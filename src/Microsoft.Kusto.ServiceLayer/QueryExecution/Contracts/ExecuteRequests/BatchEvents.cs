@@ -26,7 +26,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts.ExecuteRequests
 
     public class BatchCompleteEvent
     {
-        public static readonly 
+        public static readonly
             EventType<BatchEventParams> Type =
             EventType<BatchEventParams>.Create("query/batchComplete");
     }

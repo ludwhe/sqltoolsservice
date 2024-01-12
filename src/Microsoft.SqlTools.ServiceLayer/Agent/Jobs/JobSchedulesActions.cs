@@ -43,7 +43,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 STParameters parameters = new STParameters();
                 parameters.SetDocument(this.DataContainer.Document);
                 parameters.GetParam("urn", ref urn);
-            
+
                 JobSchedule jobStep = this.data.Job.Parent.Parent.GetSmoObject(urn) as JobSchedule;
                 if (jobStep != null)
                 {

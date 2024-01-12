@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 
 namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts
-{    
+{
     public class BackupInfo
     {
         /// <summary>

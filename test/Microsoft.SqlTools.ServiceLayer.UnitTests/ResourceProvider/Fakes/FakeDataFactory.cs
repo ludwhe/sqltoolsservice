@@ -121,7 +121,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
             return response;
         }
 
-        internal static ServiceResponse<DatabaseInstanceInfo> CreateDatabaseInstanceResponse(int numberOfServers, ServerDefinition serverDefinition = null, 
+        internal static ServiceResponse<DatabaseInstanceInfo> CreateDatabaseInstanceResponse(int numberOfServers, ServerDefinition serverDefinition = null,
             string serverName = "", Exception exception = null)
         {
             serverDefinition = serverDefinition ?? ServerDefinition.Default;

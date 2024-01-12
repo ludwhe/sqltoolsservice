@@ -5,15 +5,15 @@
 
 #nullable disable
 
+using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.SqlParser.Intellisense;
-using Microsoft.SqlServer.Management.Common;
 
 namespace Microsoft.SqlTools.ServiceLayer.Scripting
 {
     internal partial class Scripter
     {
-		private void Initialize()
+        private void Initialize()
         {
             // Instantiate the mapping dictionaries 
 
@@ -74,6 +74,5 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting
             objectScriptMap.Add("fulltextcatalog", "Fulltext Catalog");
             objectScriptMap.Add("userdefinedtabletype", "Type");
         }
-	}
+    }
 }
-	

@@ -30,7 +30,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting.Contracts
     /// </summary>
     public class ScriptingListObjectsRequest
     {
-        public static readonly RequestType<ScriptingListObjectsParams, ScriptingListObjectsResult> Type = 
+        public static readonly RequestType<ScriptingListObjectsParams, ScriptingListObjectsResult> Type =
             RequestType<ScriptingListObjectsParams, ScriptingListObjectsResult>.Create("scripting/listObjects");
     }
 }

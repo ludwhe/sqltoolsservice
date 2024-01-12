@@ -586,7 +586,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.Contracts
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Gets or sets the connection name
         /// </summary>
         public string ConnectionName

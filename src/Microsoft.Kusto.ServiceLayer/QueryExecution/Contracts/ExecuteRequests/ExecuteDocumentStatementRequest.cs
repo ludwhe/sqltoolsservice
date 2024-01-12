@@ -20,13 +20,13 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts.ExecuteRequests
         /// <summary>
         /// Column in the document for the location of the SQL statement
         /// </summary>
-        public int Column { get; set; }        
+        public int Column { get; set; }
     }
-    
+
     public class ExecuteDocumentStatementRequest
     {
-        public static readonly 
-            RequestType<ExecuteDocumentStatementParams, ExecuteRequestResult> Type = 
+        public static readonly
+            RequestType<ExecuteDocumentStatementParams, ExecuteRequestResult> Type =
             RequestType<ExecuteDocumentStatementParams, ExecuteRequestResult>.Create("query/executedocumentstatement");
     }
 }

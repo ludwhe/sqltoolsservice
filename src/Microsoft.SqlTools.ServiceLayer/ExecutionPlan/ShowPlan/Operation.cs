@@ -35,7 +35,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         /// <param name="name">Operator name</param>
         /// <param name="displayNameKey">Display name resource ID</param>
         /// <returns></returns>
-        public Operation(string name, string displayNameKey): this(name, displayNameKey, null, null)
+        public Operation(string name, string displayNameKey) : this(name, displayNameKey, null, null)
         {
 
         }

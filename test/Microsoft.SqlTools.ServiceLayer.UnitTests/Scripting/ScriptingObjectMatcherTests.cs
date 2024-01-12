@@ -445,7 +445,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Scripting
             "]]",
             "view"
         };
-        
+
 
         [Test]
         public void TestQuoteObjectName()

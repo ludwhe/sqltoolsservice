@@ -50,10 +50,10 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
                 // Note: after this it becomes hard to interpret actual keywords in the Tokens enum.
                 // Should review and re-assess later
             };
-            
-            foreach(int[] range in keywordRanges)
+
+            foreach (int[] range in keywordRanges)
             {
-                for(int i = range[0]; i <= range[1]; i++)
+                for (int i = range[0]; i <= range[1]; i++)
                 {
                     KeywordIdentifiers.Add(i);
                 }

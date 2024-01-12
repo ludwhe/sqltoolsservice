@@ -25,7 +25,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
                 event2.Values.Add("event_sequence", "2");
                 ProfilerEvent event3 = new ProfilerEvent("event3", "1/3/2017");
                 event3.Values.Add("event_sequence", "3");
-                
+
                 return new List<ProfilerEvent>
                 {
                     event1,
@@ -49,7 +49,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
             {
                 AllEvents[sessionId] = new List<ProfilerEvent>();
             }
-            AllEvents[sessionId].AddRange(events);            
+            AllEvents[sessionId].AddRange(events);
         }
 
         public void SessionStopped(string viewerId, SessionId sessionId, string errorMessage)
@@ -203,9 +203,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
 
         public SessionId Id { get { return new SessionId("testsession_51"); } }
 
-        public void Start(){}
+        public void Start() { }
 
-        public void Stop(){}
+        public void Stop() { }
         public string GetTargetXml()
         {
             return testXEventXml;
@@ -288,9 +288,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
 
         public SessionId Id { get { return new SessionId("testsession_1"); } }
 
-        public void Start(){}
+        public void Start() { }
 
-        public void Stop(){}
+        public void Stop() { }
 
         private int pollCount = 0;
         private string[] poll_returns = { testXEventXml_1, testXEventXml_2, testXEventXml_3 };
@@ -303,7 +303,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
         }
     }
 
-        public class TestXEventSession2 : IXEventSession
+    public class TestXEventSession2 : IXEventSession
     {
         private const string testXEventXml_1 =
             "<RingBufferTarget truncated=\"0\" processingTime=\"3\" totalEventsProcessed=\"1\" eventCount=\"1\" droppedCount=\"0\" memoryUsed=\"47996\">" +
@@ -379,9 +379,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
 
         public SessionId Id { get { return new SessionId("testsession_2"); } }
 
-        public void Start(){}
+        public void Start() { }
 
-        public void Stop(){}
+        public void Stop() { }
 
         private int pollCount = 0;
         private string[] poll_returns = { testXEventXml_1, testXEventXml_2, testXEventXml_3 };
@@ -399,7 +399,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
         private int sessionNum = 1;
         public IXEventSession GetXEventSession(string sessionName, ConnectionInfo connInfo)
         {
-            if(sessionNum == 1)
+            if (sessionNum == 1)
             {
                 sessionNum = 2;
                 return new TestXEventSession1();
@@ -413,7 +413,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
 
         public IXEventSession CreateXEventSession(string createStatement, string sessionName, ConnectionInfo connInfo)
         {
-            if(sessionNum == 1)
+            if (sessionNum == 1)
             {
                 sessionNum = 2;
                 return new TestXEventSession1();

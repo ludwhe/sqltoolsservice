@@ -32,7 +32,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         {
             Validate.IsNotNull(nameof(visitor), visitor);
             Validate.IsNotNull(nameof(codeObject), codeObject);
-            
+
             return DoCreate(visitor, codeObject as T);
         }
 

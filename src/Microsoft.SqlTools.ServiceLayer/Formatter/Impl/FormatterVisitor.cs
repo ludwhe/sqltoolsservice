@@ -42,7 +42,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             f.Format();
         }
 
-        private ASTNodeFormatter GetFormatter<T>(T codeObject) where T:SqlCodeObject
+        private ASTNodeFormatter GetFormatter<T>(T codeObject) where T : SqlCodeObject
         {
             Type astType = typeof(T);
             ASTNodeFormatter formatter;
@@ -81,7 +81,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
 
             return script.TokenManager.IsTokenWhitespace(tokenId) || script.TokenManager.IsTokenComment(tokenId);
         }
-        
+
         /// <summary>
         /// Checks that the token streams of two SqlScript objects differ only by whitespace tokens or
         /// by the relative positioning of commas and comments. The important rule enforced is that there are
@@ -99,7 +99,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
 
         internal delegate bool IgnoreToken(SqlScript script, int tokenIndex);
 
-        public static void VerifyTokenStreamsOnlyDifferBy(SqlScript script1, SqlScript script2, IgnoreToken ignoreToken )
+        public static void VerifyTokenStreamsOnlyDifferBy(SqlScript script1, SqlScript script2, IgnoreToken ignoreToken)
         {
             int t1 = 0;
             int t2 = 0;
@@ -162,8 +162,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             }
         }
 
-        
-        
+
+
 
     }
 

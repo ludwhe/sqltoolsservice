@@ -11,7 +11,7 @@ using System.ComponentModel;
 
 namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 {
-	internal sealed class PropertyValue : PropertyDescriptor
+    internal sealed class PropertyValue : PropertyDescriptor
     {
         #region Constructors
 
@@ -21,9 +21,9 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             this.propertyValue = value;
         }
 
-        public PropertyValue(PropertyDescriptor baseProperty, object value) 
-			: this(baseProperty.Name, value)
-		{
+        public PropertyValue(PropertyDescriptor baseProperty, object value)
+            : this(baseProperty.Name, value)
+        {
             this.baseProperty = baseProperty;
         }
 
@@ -32,14 +32,14 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         #region Public methods and properties
 
         public object Value
-		{
-			get { return this.propertyValue; }
-			set { this.propertyValue = value; }
-		}
+        {
+            get { return this.propertyValue; }
+            set { this.propertyValue = value; }
+        }
 
         public string DisplayValue
         {
-            get => this.Converter.ConvertToString(null, null, this.Value); 
+            get => this.Converter.ConvertToString(null, null, this.Value);
         }
 
         public int DisplayOrder
@@ -85,7 +85,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 
         #endregion
 
-		#region PropertyDesciptor overrides
+        #region PropertyDesciptor overrides
 
         public override AttributeCollection Attributes
         {
@@ -95,43 +95,43 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             }
         }
 
-		public override bool CanResetValue(object component)
-		{
-			return false;
-		}
+        public override bool CanResetValue(object component)
+        {
+            return false;
+        }
 
-		public override bool IsReadOnly
-		{
-			get { return true; }
-		}
+        public override bool IsReadOnly
+        {
+            get { return true; }
+        }
 
-		public override Type ComponentType
-		{
-			get { return this.GetType(); }
-		}
+        public override Type ComponentType
+        {
+            get { return this.GetType(); }
+        }
 
-		public override Type PropertyType
-		{
-			get { return this.propertyValue != null ? this.propertyValue.GetType() : typeof(string); }
-		}
+        public override Type PropertyType
+        {
+            get { return this.propertyValue != null ? this.propertyValue.GetType() : typeof(string); }
+        }
 
-		public override object GetValue(object component)
-		{
-			return this.propertyValue;
-		}
+        public override object GetValue(object component)
+        {
+            return this.propertyValue;
+        }
 
-		public override void ResetValue(object component)
-		{
-		}
+        public override void ResetValue(object component)
+        {
+        }
 
-		public override void SetValue(object component, object value)
-		{
-		}
+        public override void SetValue(object component, object value)
+        {
+        }
 
-		public override bool ShouldSerializeValue(object component)
-		{
-			return false;
-		}
+        public override bool ShouldSerializeValue(object component)
+        {
+            return false;
+        }
 
         public override string DisplayName
         {
@@ -165,7 +165,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             }
         }
 
-		#endregion
+        #endregion
 
         private void InitializeDisplayAttributesIfNecessary()
         {
@@ -198,17 +198,19 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             {
                 this.isLongString = showInToolTipAttribute.LongString;
                 this.showInTooltip = showInToolTipAttribute.Value;
-            } else 
+            }
+            else
             {
                 this.showInTooltip = false;
             }
 
-            BetterValueAttribute betterValueAttribute = 
+            BetterValueAttribute betterValueAttribute =
             Attributes[typeof(BetterValueAttribute)] as BetterValueAttribute;
             if (betterValueAttribute != null)
             {
                 this.betterValue = betterValueAttribute.Value;
-            } else
+            }
+            else
             {
                 this.betterValue = BetterValue.None;
             }

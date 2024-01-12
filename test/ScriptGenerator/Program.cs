@@ -5,9 +5,9 @@
 
 #nullable disable
 
-using ScriptGenerator.Properties;
 using System.IO;
 using System.Text.RegularExpressions;
+using ScriptGenerator.Properties;
 
 namespace ScriptGenerator
 {
@@ -18,7 +18,7 @@ namespace ScriptGenerator
         static readonly Regex CreateTableRegex = CreateTableSyntaxRegex();
         static readonly Regex AlterTableConstraintRegex = AlterTableSyntaxRegex();
         static readonly Regex CreateViewRegex = CreateViewSyntaxRegex();
-        static readonly Regex CreateProcedureRegex = CreateProcedureSyntaxRegex(); 
+        static readonly Regex CreateProcedureRegex = CreateProcedureSyntaxRegex();
         static void Main(string[] args)
         {
             var options = new CommandOptions(args);
@@ -39,7 +39,7 @@ namespace ScriptGenerator
                     {
                         string tablesScript = Resources.AdventureWorksTablesCreate.Replace(oldDbName, newDbName);
                         tablesScript = CreateTableRegex.Replace(tablesScript, "${begin}" + t + "${middle}" + t + "${end}");
-                        writer.WriteLine(AlterTableConstraintRegex.Replace(tablesScript, "${begin}"+ t + "${middle}" + t + "${end}"));
+                        writer.WriteLine(AlterTableConstraintRegex.Replace(tablesScript, "${begin}" + t + "${middle}" + t + "${end}"));
                     }
                     // Multiple copies of Create View statements
                     for (int v = 1; v <= options.ViewsMultiplier; v++)

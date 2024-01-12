@@ -42,7 +42,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
             }
             else if (rows > 0)
             {
-               AddRange(new Tuple<int, int>(0, rows));  
+                AddRange(new Tuple<int, int>(0, rows));
             }
         }
 
@@ -67,7 +67,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
 
         public IEnumerator<object[]> GetEnumerator()
         {
-            return (IEnumerator<object[]>) Rows.GetEnumerator();
+            return (IEnumerator<object[]>)Rows.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

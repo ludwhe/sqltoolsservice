@@ -5,12 +5,12 @@
 
 using System;
 using System.Globalization;
-using Microsoft.SqlTools.Extensibility;
 using Microsoft.Kusto.ServiceLayer.Connection.Contracts;
-using Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes;
-using Microsoft.Kusto.ServiceLayer.Utility;
 using Microsoft.Kusto.ServiceLayer.DataSource;
 using Microsoft.Kusto.ServiceLayer.DataSource.Metadata;
+using Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes;
+using Microsoft.Kusto.ServiceLayer.Utility;
+using Microsoft.SqlTools.Extensibility;
 using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
@@ -99,7 +99,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
         private QueryContext CreateContext(IMultiServiceProvider serviceProvider)
         {
             string exceptionMessage;
-   
+
             try
             {
                 return new QueryContext(DataSource, serviceProvider)

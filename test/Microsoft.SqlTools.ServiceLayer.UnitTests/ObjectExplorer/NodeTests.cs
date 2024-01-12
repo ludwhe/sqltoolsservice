@@ -74,7 +74,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ObjectExplorer
 
             var smoquery = typeof(SqlCore.ObjectExplorer.SmoModel.SmoQuerier).Assembly;
             // TODO can all tests use the standard service provider?
-            ServiceProvider = ExtensionServiceProvider.CreateFromAssembliesInDirectory(Path.GetDirectoryName(smoquery.Location),new string[] { Path.GetFileName(smoquery.Location) });
+            ServiceProvider = ExtensionServiceProvider.CreateFromAssembliesInDirectory(Path.GetDirectoryName(smoquery.Location), new string[] { Path.GetFileName(smoquery.Location) });
         }
 
         [Test]

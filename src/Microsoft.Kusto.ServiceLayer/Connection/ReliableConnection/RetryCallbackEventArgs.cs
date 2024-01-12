@@ -43,7 +43,7 @@ namespace Microsoft.Kusto.ServiceLayer.Connection.ReliableConnection
         public TimeSpan Delay
         {
             get { return _delay; }
-        } 
+        }
 
         public Exception Exception
         {

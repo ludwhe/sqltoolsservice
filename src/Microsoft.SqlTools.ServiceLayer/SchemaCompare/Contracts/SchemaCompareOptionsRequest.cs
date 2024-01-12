@@ -24,7 +24,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare.Contracts
     /// </summary>
     public class SchemaCompareOptionsResult : ResultStatus
     {
-        public DeploymentOptions DefaultDeploymentOptions { get; set; }        
+        public DeploymentOptions DefaultDeploymentOptions { get; set; }
     }
 
     /// <summary>

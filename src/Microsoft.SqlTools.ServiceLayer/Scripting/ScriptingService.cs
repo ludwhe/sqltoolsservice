@@ -6,20 +6,20 @@
 #nullable disable
 
 using System;
-using System.IO;
 using System.Collections.Concurrent;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Hosting;
 using Microsoft.SqlTools.ServiceLayer.Scripting.Contracts;
-using Microsoft.SqlTools.Utility;
 using Microsoft.SqlTools.ServiceLayer.Utility;
-using static Microsoft.SqlTools.Utility.SqlConstants;
-using System.Linq;
 using Microsoft.SqlTools.SqlCore.Scripting;
 using Microsoft.SqlTools.SqlCore.Scripting.Contracts;
+using Microsoft.SqlTools.Utility;
+using static Microsoft.SqlTools.Utility.SqlConstants;
 
 namespace Microsoft.SqlTools.ServiceLayer.Scripting
 {

@@ -174,7 +174,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Azure
             Dictionary<string, List<string>> subscriptionToDatabaseMap = new Dictionary<string, List<string>>();
             for (int i = 0; i < numberOfSubscriptions; i++)
             {
-                string id = Guid.NewGuid().ToString();                
+                string id = Guid.NewGuid().ToString();
                 subscriptionToDatabaseMap.Add(id, null);
             }
             return subscriptionToDatabaseMap;

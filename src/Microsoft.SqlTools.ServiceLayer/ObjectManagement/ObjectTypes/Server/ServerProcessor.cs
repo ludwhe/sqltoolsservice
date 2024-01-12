@@ -9,7 +9,7 @@ using SMO = Microsoft.SqlServer.Management.Smo;
 
 namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement.ObjectTypes.Server
 {
-     /// <summary>
+    /// <summary>
     /// Class to manage affinity for 64 processors in an independent manner for I/O as well as processors
     /// </summary>
     internal sealed class AffinityManager

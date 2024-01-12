@@ -4,30 +4,30 @@
 //
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Admin;
-using static Microsoft.SqlTools.ServiceLayer.Admin.AzureSqlDbHelper;
 using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.Management;
-using Microsoft.SqlTools.ServiceLayer.ObjectManagement.Contracts;
-using Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation;
-using Microsoft.SqlTools.ServiceLayer.Utility;
-using Microsoft.SqlTools.Utility;
-using System.Text;
-using System.IO;
-using Microsoft.SqlTools.ServiceLayer.Utility.SqlScriptFormatters;
-using System.Collections.Specialized;
-using Microsoft.SqlTools.SqlCore.Utility;
-using System.Collections.Concurrent;
-using Microsoft.Data.SqlClient;
-using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlTools.ServiceLayer.DisasterRecovery;
 using Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts;
+using Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation;
+using Microsoft.SqlTools.ServiceLayer.Management;
+using Microsoft.SqlTools.ServiceLayer.ObjectManagement.Contracts;
+using Microsoft.SqlTools.ServiceLayer.Utility;
+using Microsoft.SqlTools.ServiceLayer.Utility.SqlScriptFormatters;
+using Microsoft.SqlTools.SqlCore.Utility;
+using Microsoft.SqlTools.Utility;
+using static Microsoft.SqlTools.ServiceLayer.Admin.AzureSqlDbHelper;
 
 namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 {

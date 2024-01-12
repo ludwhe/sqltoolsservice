@@ -59,7 +59,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Credentials.Win32
                 Assert.True(new Win32Credential() is IDisposable, "Credential should implement IDisposable Interface.");
             });
         }
-        
+
         [Test]
         public void Credential_Dispose_ShouldNotThrowException()
         {
@@ -90,7 +90,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Credentials.Win32
                 Assert.True(saved.Save());
             });
         }
-        
+
         [Test]
         public void Credential_Delete()
         {
@@ -111,7 +111,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Credentials.Win32
                 Assert.False(credential.Delete());
             });
         }
-       
+
         [Test]
         public void Credential_Load()
         {

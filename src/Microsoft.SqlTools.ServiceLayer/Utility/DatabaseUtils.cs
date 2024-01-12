@@ -5,18 +5,18 @@
 
 #nullable disable
 
-using Microsoft.SqlServer.Management.Common;
-using Microsoft.SqlServer.Management.Dmf;
-using Microsoft.SqlServer.Management.Sdk.Sfc;
-using Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlTools.ServiceLayer.Management;
-using Microsoft.SqlTools.SqlCore.Utility;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
+using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.Dmf;
+using Microsoft.SqlServer.Management.Sdk.Sfc;
+using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlTools.ServiceLayer.Management;
+using Microsoft.SqlTools.SqlCore.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.Utility
 {

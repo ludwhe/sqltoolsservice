@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// </summary>
         /// <param name="sender"></param>
         void OnCancel(object sender);
-      
+
         /// <summary>
         /// Overridable function that allow a derived class to implement its
         /// OnScript functionality. 
@@ -44,7 +44,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// NOTE: same as OnGatherUiInformation, this method is always called from UI thread
         /// </summary>
         /// <param name="sender"></param>
-        void OnTaskCompleted(object sender, ExecutionMode executionMode, RunType executionType);        
+        void OnTaskCompleted(object sender, ExecutionMode executionMode, RunType executionType);
     }
 
     /// <summary>
@@ -52,15 +52,15 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
 	/// It is reused by ViewSwitcherControlsManager and treepanelform classes
 	/// </summary>
 	internal class ExecutionHandlerDelegate
-	{        
+    {
         private object cancelCriticalSection = new object();
         private IManagementAction managementAction;
 
         public ExecutionHandlerDelegate(IManagementAction managementAction)
-		{        
-            this.managementAction = managementAction;      
+        {
+            this.managementAction = managementAction;
         }
-       
+
         /// <summary>
         /// </summary>
         /// <param name="runType"></param>
@@ -82,8 +82,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
                 default:
                     throw new InvalidOperationException(SR.UnexpectedRunType);
             }
-                
-            if((this.managementAction.LastExecutionResult == ExecutionMode.Failure) || 
+
+            if ((this.managementAction.LastExecutionResult == ExecutionMode.Failure) ||
                 (this.managementAction.LastExecutionResult == ExecutionMode.Cancel))
             {
                 return this.managementAction.LastExecutionResult;
@@ -102,16 +102,16 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         {
             lock (this.cancelCriticalSection)
             {
-                this.managementAction.OnCancel(sender);                     
+                this.managementAction.OnCancel(sender);
             }
         }
-	}
+    }
 
     /// <summary>
 	/// manager that hooks up tree view with the individual views
 	/// </summary>
 	internal sealed class ExecutionHandler : IDisposable
-	{
+    {
         /// <summary>
         /// handler that we delegate execution related tasks to
         /// </summary>
@@ -135,7 +135,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// <summary>
         /// text of the generated script if RunNow method was called last time with scripting option
         /// </summary>
-        private StringBuilder script; 
+        private StringBuilder script;
 
         /// <summary>
         /// creates instance of the class and returns service provider that aggregates the provider
@@ -149,7 +149,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// that will be managed by this class
         /// </param>
         public ExecutionHandler(IExecutionAwareManagementAction managementAction)
-        {     
+        {
             this.managementAction = managementAction;
             this.executionHandlerDelegate = new ExecutionHandlerDelegate(managementAction);
         }
@@ -184,8 +184,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
             {
                 if (this.script != null)
                 {
-                    return this.script.ToString();                    
-                } 
+                    return this.script.ToString();
+                }
                 else
                 {
                     return string.Empty;
@@ -216,7 +216,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
                 {
                     PreProcessExecutionInfo preProcessInfo = new PreProcessExecutionInfo(runType);
                     if (!this.managementAction.PreProcessExecution(preProcessInfo, out this.executionResult))
-                    {                       
+                    {
                         // In case of scripting preProcessInfo.Script must contain text of the script
                         if (executionResult == ExecutionMode.Success && IsScripting(runType) && preProcessInfo.Script != null)
                         {
@@ -250,11 +250,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
                 ProcessExceptionDuringExecution(e);
 
                 return;
-            } 
+            }
             finally
             {
                 //do postprocess action
-                if (this.managementAction != null)            
+                if (this.managementAction != null)
                 {
                     this.managementAction.PostProcessExecution(runType, this.executionResult);
                 }
@@ -291,7 +291,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// <param name="executionMode"></param>
         /// <param name="executionType"></param>
         public void OnTaskCompleted(object sender, ExecutionMode executionResult, RunType executionType)
-        {         
+        {
         }
 
         /// <summary>
@@ -305,7 +305,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
                 managementActionAsDisposable.Dispose();
             }
         }
-        
+
         #endregion
 
         #region private helpers
@@ -317,12 +317,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// <returns></returns>
         private bool IsScripting(RunType runType)
         {
-            return (runType == RunType.ScriptToClipboard || 
-                    runType == RunType.ScriptToFile || 
+            return (runType == RunType.ScriptToClipboard ||
+                    runType == RunType.ScriptToFile ||
                     runType == RunType.ScriptToWindow ||
                     runType == RunType.ScriptToJob);
         }
-        
+
         /// <summary>
         /// ensure that we have valid StringBulder for scripting
         /// </summary>
@@ -331,7 +331,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
             if (this.script == null)
             {
                 this.script = new StringBuilder(256);
-            } 
+            }
             else
             {
                 this.script.Length = 0;
@@ -345,9 +345,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         private void ProcessExceptionDuringExecution(Exception ex)
         {
             // show the error
-            this.executionResult = ExecutionMode.Failure; 
+            this.executionResult = ExecutionMode.Failure;
             this.executionFailureException = ex;
         }
         #endregion
-	}
+    }
 }

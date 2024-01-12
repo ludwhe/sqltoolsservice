@@ -87,9 +87,9 @@ namespace Microsoft.SqlTools.SqlCore.Scripting.Contracts
 
         public override bool Equals(object obj)
         {
-            return 
+            return
                 obj != null &&
-                this.GetType() == obj.GetType() && 
+                this.GetType() == obj.GetType() &&
                 this.Equals((ScriptingObject)obj);
         }
 

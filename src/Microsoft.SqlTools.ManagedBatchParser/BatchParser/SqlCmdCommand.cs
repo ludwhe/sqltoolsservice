@@ -14,7 +14,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser
         {
             this.LexerTokenType = tokenType;
         }
-    
+
         public LexerTokenType LexerTokenType { get; private set; }
     }
 }

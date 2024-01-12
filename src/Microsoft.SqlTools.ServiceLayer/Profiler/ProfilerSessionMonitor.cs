@@ -105,7 +105,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
                 }
                 else
                 {
-                    viewers = new List<string>{ viewerId };
+                    viewers = new List<string> { viewerId };
                     sessionViewers.Add(session.Id, viewers);
                 }
             }
@@ -238,7 +238,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
                                     SendEventsToListeners(viewerId, events, eventsLost);
                                 }
                             }
-                        }                        
+                        }
                     }
                     finally
                     {
@@ -263,7 +263,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
             }
 
             events.AddRange(session.GetCurrentEvents());
-            
+
             return session.FilterProfilerEvents(events);
         }
 
@@ -276,7 +276,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
             {
                 foreach (var listener in this.listeners)
                 {
-                    foreach(string viewerId in sessionViewers[sessionId])
+                    foreach (string viewerId in sessionViewers[sessionId])
                     {
                         listener.SessionStopped(viewerId, sessionId, errorMessage);
                     }

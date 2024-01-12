@@ -26,7 +26,7 @@ namespace Microsoft.SqlTools.ServiceLayer.SqlAssessment.Contracts
         /// </summary>
         public SqlObjectType TargetType { get; set; }
     }
-    
+
     /// <summary>
     /// Describes an item returned by SQL Assessment RPC methods
     /// </summary>

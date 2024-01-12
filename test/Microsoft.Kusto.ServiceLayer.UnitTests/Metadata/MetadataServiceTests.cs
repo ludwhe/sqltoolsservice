@@ -31,15 +31,15 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.Metadata
             var connectionFactoryMock = new Mock<IDataSourceConnectionFactory>();
             var requestContextMock = new Mock<RequestContext<MetadataQueryResult>>();
             requestContextMock.Setup(x => x.SendResult(It.IsAny<MetadataQueryResult>())).Returns(Task.CompletedTask);
-            
+
             var dataSourceMock = new Mock<IDataSource>();
             dataSourceMock.Setup(x => x.GetChildObjects(It.IsAny<DataSourceObjectMetadata>(), It.IsAny<bool>()))
-                .Returns(new List<DataSourceObjectMetadata> {new DataSourceObjectMetadata {PrettyName = "TestName"}});
-            
+                .Returns(new List<DataSourceObjectMetadata> { new DataSourceObjectMetadata { PrettyName = "TestName" } });
+
             var dataSourceFactoryMock = new Mock<IDataSourceFactory>();
             dataSourceFactoryMock.Setup(x => x.Create(It.IsAny<ConnectionDetails>(), It.IsAny<string>()))
                 .Returns(dataSourceMock.Object);
-            
+
             var reliableDataSource = new ReliableDataSourceConnection(new ConnectionDetails(), RetryPolicyFactory.NoRetryPolicy,
                 RetryPolicyFactory.NoRetryPolicy, dataSourceFactoryMock.Object, "");
 
@@ -50,9 +50,9 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.Metadata
             };
             var connectionInfo = new ConnectionInfo(connectionFactoryMock.Object, "", connectionDetails);
             connectionInfo.AddConnection(ConnectionType.Default, reliableDataSource);
-            
+
             connectionManagerMock.Setup(x => x.TryGetValue(It.IsAny<string>(), out connectionInfo));
-            
+
             var metadataService = new MetadataService();
             metadataService.InitializeService(serviceHostMock.Object, connectionManagerMock.Object);
 

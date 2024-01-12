@@ -14,7 +14,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
 {
     [Exportable("SqlServer", "azure", typeof(IServerDiscoveryProvider),
         "Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes.FakeSecureServerDiscoveryProvider")]
-    public class FakeSecureServerDiscoveryProvider :  ExportableBase, IServerDiscoveryProvider, ISecureService
+    public class FakeSecureServerDiscoveryProvider : ExportableBase, IServerDiscoveryProvider, ISecureService
     {
         public FakeSecureServerDiscoveryProvider(IExportableMetadata metadata)
         {
@@ -24,14 +24,14 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
         public async Task<ServiceResponse<ServerInstanceInfo>> GetServerInstancesAsync()
         {
             return await Task.Run(() => new ServiceResponse<ServerInstanceInfo>());
-        }      
-        
+        }
+
         public IDatabaseResourceManager DatabaseResourceManager
         {
             get;
             set;
         }
-       
+
         public IAccountManager AccountManager
         {
             get
@@ -40,7 +40,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Fakes
             }
             set
             {
-                
+
             }
         }
 

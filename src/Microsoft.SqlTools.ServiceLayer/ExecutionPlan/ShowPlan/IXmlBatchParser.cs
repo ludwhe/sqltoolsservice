@@ -13,7 +13,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
     /// This is used for XML ShowPlan saving.
     /// </summary>
     public interface IXmlBatchParser
-	{
+    {
         /// <summary>
         /// Builds one or more Graphs that
         /// represnet data from the data source.
@@ -29,5 +29,5 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         /// <param name="statementIndex">Statement index in the data source</param>
         /// <returns>Statement block type object</returns>
         StmtBlockType GetSingleStatementObject(object dataSource, int statementIndex);
-	}
+    }
 }

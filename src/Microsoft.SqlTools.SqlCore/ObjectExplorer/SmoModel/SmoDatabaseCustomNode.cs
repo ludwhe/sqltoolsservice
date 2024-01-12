@@ -3,11 +3,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
+using System;
 using System.Collections.Generic;
-using Microsoft.SqlTools.Utility;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.SqlCore.ObjectExplorer.Nodes;
-using System;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 {

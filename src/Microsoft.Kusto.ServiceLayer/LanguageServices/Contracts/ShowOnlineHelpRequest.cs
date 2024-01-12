@@ -9,8 +9,8 @@ namespace Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts
 {
     public class ShowOnlineHelpRequest
     {
-        public static readonly 
-            RequestType<string, object> Type = 
+        public static readonly
+            RequestType<string, object> Type =
             RequestType<string, object>.Create("SqlTools/showOnlineHelp");
     }
 }

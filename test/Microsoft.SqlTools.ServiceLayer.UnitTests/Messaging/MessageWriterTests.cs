@@ -31,7 +31,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Messaging
             // serialize\deserialize a request
             var message = new Message();
             message.MessageType = MessageType.Request;
-            message.Id = "id";            
+            message.Id = "id";
             message.Method = "method";
             message.Contents = null;
             var serializedMessage = this.messageSerializer.SerializeMessage(message);
@@ -83,7 +83,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Messaging
             // Read the message
             await outputStream.ReadAsync(buffer, 0, Common.ExpectedMessageByteCount);
 
-            Assert.AreEqual(Common.TestEventString, 
+            Assert.AreEqual(Common.TestEventString,
                 Encoding.UTF8.GetString(buffer, 0, Common.ExpectedMessageByteCount));
 
             outputStream.Dispose();

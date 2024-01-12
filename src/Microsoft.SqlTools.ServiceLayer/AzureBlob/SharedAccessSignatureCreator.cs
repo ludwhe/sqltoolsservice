@@ -6,12 +6,12 @@
 #nullable disable
 
 using System;
-using Microsoft.SqlServer.Management.Smo;
-using Azure.Storage.Blobs;
-using Azure.Storage;
-using Azure.Storage.Sas;
-using Microsoft.SqlTools.ServiceLayer.AzureBlob.Contracts;
 using System.Globalization;
+using Azure.Storage;
+using Azure.Storage.Blobs;
+using Azure.Storage.Sas;
+using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlTools.ServiceLayer.AzureBlob.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.AzureBlob
 {
@@ -66,9 +66,9 @@ namespace Microsoft.SqlTools.ServiceLayer.AzureBlob
                     oldCredential.Drop();
                 }
 
-                    azureCredential.Create(identity, secretString);
-                    return azureCredential;
-                }
+                azureCredential.Create(identity, secretString);
+                return azureCredential;
+            }
             catch (Exception ex)
             {
                 throw new FailedOperationException(SR.WriteSASCredentialToSqlServerFailed, ex);

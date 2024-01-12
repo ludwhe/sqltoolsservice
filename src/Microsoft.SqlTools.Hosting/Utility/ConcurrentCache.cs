@@ -23,7 +23,7 @@ namespace Microsoft.SqlTools.Utility
                 {
                     foreach (var key in keys)
                     {
-                        _cache.Remove(key);                        
+                        _cache.Remove(key);
                     }
                 }
             }, out exception);
@@ -32,7 +32,7 @@ namespace Microsoft.SqlTools.Utility
                 throw exception;
             }
         }
-        
+
         public T Get(string key)
         {
             T result = default(T);

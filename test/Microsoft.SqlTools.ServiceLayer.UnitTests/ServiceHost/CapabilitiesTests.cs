@@ -24,14 +24,15 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Capabilities
             Hosting.ServiceHost host = Hosting.ServiceHost.Instance;
             var requestContext = new Mock<RequestContext<CapabilitiesResult>>();
             requestContext.Setup(x => x.SendResult(It.IsAny<CapabilitiesResult>())).Returns(Task.FromResult(new object()));
-            
+
             await host.HandleCapabilitiesRequest(new CapabilitiesRequest
             {
-                HostName = "Test Host", HostVersion = "1.0"
+                HostName = "Test Host",
+                HostVersion = "1.0"
             }, requestContext.Object);
 
             requestContext.Verify(x => x.SendResult(It.Is<CapabilitiesResult>(
-                 i => i.Capabilities.ConnectionProvider.Options != null)));         
+                 i => i.Capabilities.ConnectionProvider.Options != null)));
         }
     }
 }

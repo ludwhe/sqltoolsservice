@@ -4,8 +4,6 @@
 //
 
 using Microsoft.Kusto.ServiceLayer.Formatter;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Microsoft.Kusto.ServiceLayer.SqlContext
 {
@@ -83,6 +81,6 @@ namespace Microsoft.Kusto.ServiceLayer.SqlContext
         {
             get;
             set;
-        }        
+        }
     }
 }

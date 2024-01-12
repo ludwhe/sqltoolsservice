@@ -9,12 +9,12 @@ using Microsoft.SqlTools.Hosting.Protocol.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.LanguageServices.Contracts
 {
-    public class SyntaxParseParams 
+    public class SyntaxParseParams
     {
         public string OwnerUri { get; set; }
         public string Query { get; set; }
     }
-    
+
     public class SyntaxParseResult
     {
         public bool Parseable { get; set; }

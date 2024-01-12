@@ -4,14 +4,14 @@
 //
 
 #nullable disable
+using System;
+using System.Threading;
 using Microsoft.SqlServer.Dac;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.TaskServices;
 using Microsoft.SqlTools.ServiceLayer.Utility;
-using static Microsoft.SqlTools.Utility.SqlConstants;
 using Microsoft.SqlTools.Utility;
-using System;
-using System.Threading;
+using static Microsoft.SqlTools.Utility.SqlConstants;
 
 namespace Microsoft.SqlTools.ServiceLayer.DacFx
 {
@@ -87,7 +87,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DacFx
             {
                 // Pass in Azure authentication token if needed
                 this.DacServices = this.ConnInfo.ConnectionDetails.AzureAccountToken != null && this.ConnInfo.ConnectionDetails.AuthenticationType == AzureMFA
-                    ? new DacServices(this.ConnectionString, new AccessTokenProvider(this.ConnInfo.ConnectionDetails.AzureAccountToken)) 
+                    ? new DacServices(this.ConnectionString, new AccessTokenProvider(this.ConnInfo.ConnectionDetails.AzureAccountToken))
                     : new DacServices(this.ConnectionString);
                 Execute();
             }

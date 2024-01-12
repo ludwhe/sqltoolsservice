@@ -6,8 +6,6 @@
 #nullable disable
 
 using System;
-using Microsoft.SqlTools.ServiceLayer.BatchParser;
-using Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ManagedBatchParser.UnitTests.BatchParser

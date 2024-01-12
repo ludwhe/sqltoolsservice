@@ -195,7 +195,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
         public string GetPropertyValueAsString(string propertyName)
         {
             LocalizedPropertyInfo propertyValue = null;
-            if(!string.IsNullOrEmpty(propertyName) && Properties != null)
+            if (!string.IsNullOrEmpty(propertyName) && Properties != null)
             {
                 Properties.TryGetValue(propertyName, out propertyValue);
             }

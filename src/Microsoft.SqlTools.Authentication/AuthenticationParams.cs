@@ -57,8 +57,9 @@ namespace Microsoft.SqlTools.Authentication
         /// <param name="scopes">Scopes for access token</param>
         /// <param name="userName">User hint information</param>
         /// <param name="connectionId">Connection Id for tracing Microsoft Entra authentication request</param>
-        public AuthenticationParams(AuthenticationMethod authMethod, string authority, string audience, 
-            string resource, string[] scopes, string userName, Guid connectionId) {
+        public AuthenticationParams(AuthenticationMethod authMethod, string authority, string audience,
+            string resource, string[] scopes, string userName, Guid connectionId)
+        {
             this.AuthenticationMethod = authMethod;
             this.Authority = authority;
             this.Audience = audience;

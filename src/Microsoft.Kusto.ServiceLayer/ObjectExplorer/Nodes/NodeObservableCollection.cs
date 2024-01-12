@@ -5,11 +5,11 @@
 
 #nullable disable
 
-using Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel;
 
 namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.Nodes
 {

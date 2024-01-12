@@ -29,14 +29,14 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.DisasterRecovery
 
         public RestoreOptions RestoreOptions { get; set; }
 
-        public bool IsTailLogBackupPossible { get;  set; }
+        public bool IsTailLogBackupPossible { get; set; }
 
-        public bool IsTailLogBackupWithNoRecoveryPossible { get;  set; }
+        public bool IsTailLogBackupWithNoRecoveryPossible { get; set; }
 
         public bool TailLogWithNoRecovery { get; set; }
         public string TailLogBackupFile { get; set; }
 
-        public RestorePlan RestorePlan { get;  set; }
+        public RestorePlan RestorePlan { get; set; }
 
         public bool CloseExistingConnections { get; set; }
         public RestoreParams RestoreParams { get; set; }

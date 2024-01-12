@@ -4,14 +4,14 @@
 //
 
 #nullable disable
+using System;
+using System.Threading;
 using Microsoft.SqlServer.Dac.Compare;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.DacFx;
 using Microsoft.SqlTools.ServiceLayer.SchemaCompare.Contracts;
 using Microsoft.SqlTools.ServiceLayer.TaskServices;
 using Microsoft.SqlTools.Utility;
-using System;
-using System.Threading;
 
 namespace Microsoft.SqlTools.ServiceLayer.SchemaCompare
 {

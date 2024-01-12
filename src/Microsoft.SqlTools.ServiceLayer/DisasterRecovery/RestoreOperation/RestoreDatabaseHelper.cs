@@ -6,14 +6,14 @@
 #nullable disable
 
 using System;
+using System.Collections.Concurrent;
 using System.Linq;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.DisasterRecovery.Contracts;
-using Microsoft.SqlTools.Utility;
-using System.Collections.Concurrent;
 using Microsoft.SqlTools.ServiceLayer.Utility;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
 {
@@ -23,7 +23,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
     public class RestoreDatabaseHelper
     {
         public const string LastBackupTaken = "lastBackupTaken";
-        private ConcurrentDictionary<string, RestoreDatabaseTaskDataObject> sessions = new ConcurrentDictionary<string, RestoreDatabaseTaskDataObject>(); 
+        private ConcurrentDictionary<string, RestoreDatabaseTaskDataObject> sessions = new ConcurrentDictionary<string, RestoreDatabaseTaskDataObject>();
 
         /// <summary>
         /// Creates response which includes information about the server given to restore (default data location, db names with backupsets)
@@ -32,7 +32,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
         {
             RestoreConfigInfoResponse response = new RestoreConfigInfoResponse();
             RestoreDatabaseTaskDataObject restoreTaskObject = null;
-            
+
             try
             {
                 restoreTaskObject = CreateRestoreForNewSession(restoreConfigInfoRequest.OwnerUri);
@@ -48,9 +48,9 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                     response.ConfigInfo.Add(RestoreOptionsHelper.DefaultBackupFolder, restoreTaskObject.DefaultBackupFolder);
                 }
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
-                Logger.Warning($"Failed to create restore config info. error: { ex.Message}");
+                Logger.Warning($"Failed to create restore config info. error: {ex.Message}");
                 response.ErrorMessage = ex.Message;
             }
             finally
@@ -62,7 +62,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                 }
             }
             return response;
-            
+
         }
 
         /// <summary>
@@ -109,9 +109,9 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                         response.SessionId = restoreDataObject.SessionId;
                         response.DatabaseName = restoreDataObject.TargetDatabaseName;
 
-                        response.PlanDetails.Add(RestoreOptionsHelper.TargetDatabaseName, 
+                        response.PlanDetails.Add(RestoreOptionsHelper.TargetDatabaseName,
                             RestoreOptionFactory.Instance.CreateAndValidate(RestoreOptionsHelper.TargetDatabaseName, restoreDataObject));
-                        response.PlanDetails.Add(RestoreOptionsHelper.SourceDatabaseName, 
+                        response.PlanDetails.Add(RestoreOptionsHelper.SourceDatabaseName,
                             RestoreOptionFactory.Instance.CreateAndValidate(RestoreOptionsHelper.SourceDatabaseName, restoreDataObject));
 
                         response.PlanDetails.Add(RestoreOptionsHelper.ReadHeaderFromMedia, RestorePlanDetailInfo.Create(
@@ -126,7 +126,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                         });
                         response.CanRestore = CanRestore(restoreDataObject);
 
-                        response.PlanDetails.Add(LastBackupTaken, 
+                        response.PlanDetails.Add(LastBackupTaken,
                             RestorePlanDetailInfo.Create(name: LastBackupTaken, currentValue: restoreDataObject.GetLastBackupTaken(), isReadOnly: true));
 
                         response.BackupSetsToRestore = restoreDataObject.GetSelectedBakupSets();
@@ -134,7 +134,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                         response.DatabaseNamesFromBackupSets = dbNames == null ? new string[] { } : dbNames.ToArray();
 
                         RestoreOptionsHelper.AddOptions(response, restoreDataObject);
-                      
+
                     }
                     else
                     {
@@ -154,7 +154,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                     response.ErrorMessage = SR.RestorePlanFailed;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.ErrorMessage = ex.Message;
 
@@ -163,7 +163,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
                     response.ErrorMessage += Environment.NewLine;
                     response.ErrorMessage += ex.InnerException.Message;
                 }
-                Logger.Information($"Failed to create restore plan. error: { response.ErrorMessage}");
+                Logger.Information($"Failed to create restore plan. error: {response.ErrorMessage}");
             }
             return response;
 
@@ -198,7 +198,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
             {
                 restoreTaskObject.ConnectionInfo = connectionInfo;
             }
-            
+
             return restoreTaskObject;
         }
 
@@ -219,7 +219,7 @@ namespace Microsoft.SqlTools.ServiceLayer.DisasterRecovery.RestoreOperation
             return null;
         }
 
-       
+
 
         private bool CanChangeTargetDatabase(RestoreDatabaseTaskDataObject restoreDataObject)
         {

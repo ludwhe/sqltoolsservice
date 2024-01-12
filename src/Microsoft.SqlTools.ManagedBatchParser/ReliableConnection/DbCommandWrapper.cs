@@ -63,9 +63,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         {
             if (_isReliableCommand)
             {
-                return ((ReliableSqlConnection.ReliableSqlCommand) _command).GetUnderlyingCommand();
+                return ((ReliableSqlConnection.ReliableSqlCommand)_command).GetUnderlyingCommand();
             }
-            return (SqlCommand) _command;
+            return (SqlCommand)_command;
         }
     }
 }

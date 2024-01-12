@@ -5,18 +5,18 @@
 
 #nullable disable
 
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.SqlTools.Extensibility;
+using Microsoft.SqlTools.Hosting;
 using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.ServiceLayer.TaskServices.Contracts;
-using System;
-using System.Threading.Tasks;
-using Microsoft.SqlTools.Hosting;
-using Microsoft.SqlTools.Extensibility;
 using Microsoft.SqlTools.Utility;
-using System.Linq;
 
 namespace Microsoft.SqlTools.ServiceLayer.TaskServices
 {
-    public class TaskService: HostedService<TaskService>, IComposableService
+    public class TaskService : HostedService<TaskService>, IComposableService
     {
         private static readonly Lazy<TaskService> instance = new Lazy<TaskService>(() => new TaskService());
         private SqlTaskManager taskManager = null;
@@ -140,7 +140,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TaskServices
                 await serviceHost.SendEvent(TaskStatusChangedNotification.Type, progressInfo);
             }
         }
-        
+
         private async void OnTaskScriptAdded(object sender, TaskEventArgs<TaskScript> e)
         {
             SqlTask sqlTask = e.SqlTask;

@@ -68,7 +68,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 {
                     this.principals[i] = new ArrayList();
                 }
-                
+
                 if (configAction == ConfigAction.Update)
                 {
                     RefreshData();
@@ -90,10 +90,10 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// </summary>
         /// <returns>Always returns false</returns>
         protected override bool DoPreProcessExecution(RunType runType, out ExecutionMode executionResult)
-        {        
-           base.DoPreProcessExecution(runType, out executionResult);
+        {
+            base.DoPreProcessExecution(runType, out executionResult);
 
-           if (this.configAction == ConfigAction.Create)
+            if (this.configAction == ConfigAction.Create)
             {
                 return Create();
             }
@@ -117,9 +117,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         private bool CreateOrUpdateProxyAccount(AgentProxyInfo proxyInfo)
         {
             ProxyAccount proxyAccount = null;
-            if (this.configAction == ConfigAction.Create)        
+            if (this.configAction == ConfigAction.Create)
             {
-                proxyAccount = new ProxyAccount(this.DataContainer.Server.JobServer, 
+                proxyAccount = new ProxyAccount(this.DataContainer.Server.JobServer,
                                                 proxyInfo.AccountName,
                                                 proxyInfo.CredentialName,
                                                 proxyInfo.IsEnabled,
@@ -133,8 +133,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 // Try refresh and check again
                 this.DataContainer.Server.JobServer.ProxyAccounts.Refresh();
                 if (this.DataContainer.Server.JobServer.ProxyAccounts.Contains(this.proxyAccountName))
-                {              
-                    proxyAccount = AgentProxyAccountActions.GetProxyAccount(this.proxyAccountName, this.DataContainer.Server.JobServer);    
+                {
+                    proxyAccount = AgentProxyAccountActions.GetProxyAccount(this.proxyAccountName, this.DataContainer.Server.JobServer);
                     // Set the other properties
                     proxyAccount.CredentialName = proxyInfo.CredentialName;
                     proxyAccount.Description = proxyInfo.Description;
@@ -149,7 +149,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                     {
                         proxyAccount.Rename(proxyInfo.AccountName);
                     }
-                }             
+                }
             }
             else
             {
@@ -211,7 +211,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             }
 #endif 
         }
-        
+
         public bool Create()
         {
             CreateOrUpdateProxyAccount(this.proxyInfo);
@@ -232,11 +232,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 this.DataContainer.Server.JobServer.ProxyAccounts.Refresh();
                 if (this.DataContainer.Server.JobServer.ProxyAccounts.Contains(this.proxyAccountName))
                 {
-                    ProxyAccount proxyAccount = AgentProxyAccountActions.GetProxyAccount(this.proxyAccountName, this.DataContainer.Server.JobServer);    
+                    ProxyAccount proxyAccount = AgentProxyAccountActions.GetProxyAccount(this.proxyAccountName, this.DataContainer.Server.JobServer);
                     proxyAccount.DropIfExists();
                 }
             }
-        
+
             return false;
         }
 
@@ -250,14 +250,14 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 throw new ArgumentNullException("proxyAccount");
             }
 
-            ArrayList principalsToAdd    = new ArrayList();
+            ArrayList principalsToAdd = new ArrayList();
             ArrayList principalsToRemove = new ArrayList();
-            
+
             // Process Sql Logins 
             if (ExtractPermissionsToAddAndRemove(
-                this.configAction == ConfigAction.Update ? proxyAccount.EnumLogins() : null, 
-                this.principals[(int) ProxyPrincipalType.SqlLogin], 
-                principalsToAdd, 
+                this.configAction == ConfigAction.Update ? proxyAccount.EnumLogins() : null,
+                this.principals[(int)ProxyPrincipalType.SqlLogin],
+                principalsToAdd,
                 principalsToRemove))
             {
                 foreach (string principal in principalsToRemove)
@@ -273,9 +273,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
             // Process Server Roles
             if (ExtractPermissionsToAddAndRemove(
-                this.configAction == ConfigAction.Update ? proxyAccount.EnumServerRoles() : null, 
-                this.principals[(int) ProxyPrincipalType.ServerRole], 
-                principalsToAdd, 
+                this.configAction == ConfigAction.Update ? proxyAccount.EnumServerRoles() : null,
+                this.principals[(int)ProxyPrincipalType.ServerRole],
+                principalsToAdd,
                 principalsToRemove))
             {
                 foreach (string principal in principalsToRemove)
@@ -291,9 +291,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
             // Process Msdb Roles
             if (ExtractPermissionsToAddAndRemove(
-                this.configAction == ConfigAction.Update ? proxyAccount.EnumMsdbRoles() : null, 
-                this.principals[(int) ProxyPrincipalType.MsdbRole], 
-                principalsToAdd, 
+                this.configAction == ConfigAction.Update ? proxyAccount.EnumMsdbRoles() : null,
+                this.principals[(int)ProxyPrincipalType.MsdbRole],
+                principalsToAdd,
                 principalsToRemove))
             {
                 foreach (string principal in principalsToRemove)
@@ -321,7 +321,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             principalsToRemove.Clear();
 
             // Sort both input lists
-            DataRow[] existingRows = existingPermissions != null? existingPermissions.Select(string.Empty, "Name DESC") : new DataRow[] {};
+            DataRow[] existingRows = existingPermissions != null ? existingPermissions.Select(string.Empty, "Name DESC") : new DataRow[] { };
             newPermissions.Sort();
 
             // Go through both lists at the same time and find differences
@@ -330,7 +330,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
             while (newPos < newPermissions.Count && existingPos < existingRows.Length)
             {
-                int result = string.Compare(existingRows[existingPos]["Name"] as string, newPermissions[newPos] as string,StringComparison.Ordinal);
+                int result = string.Compare(existingRows[existingPos]["Name"] as string, newPermissions[newPos] as string, StringComparison.Ordinal);
 
                 if (result < 0)
                 {
@@ -369,12 +369,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 principalsToRemove.Add(existingRows[existingPos++]["Name"]);
             }
 
-            return(principalsToAdd.Count > 0 || principalsToRemove.Count > 0);
+            return (principalsToAdd.Count > 0 || principalsToRemove.Count > 0);
         }
 
         private void RefreshData()
         {
-           // Reset all principal collections
+            // Reset all principal collections
             for (int i = 0; i < this.principals.Length; ++i)
             {
                 this.principals[i].Clear();
@@ -425,8 +425,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             {
                 throw new ArgumentException("proxyAccountName");
             }
-            
-            if (jobServer == null) 
+
+            if (jobServer == null)
             {
                 throw new ArgumentNullException("jobServer");
             }
@@ -465,7 +465,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
             // Get duplicate flag
             string mode = string.Empty;
-            if (parameters.GetParam(AgentProxyAccountActions.ProxyAccountMode, ref mode) && 
+            if (parameters.GetParam(AgentProxyAccountActions.ProxyAccountMode, ref mode) &&
                 0 == string.Compare(mode, AgentProxyAccountActions.ProxyAccountDuplicateMode, StringComparison.Ordinal))
             {
                 duplicate = true;
@@ -481,8 +481,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// the list of proxy accounts.</param>
         /// <returns>An array containing names of proxy accounts</returns>
         internal static string[] ListProxyAccountsForSubsystem(
-            ServerConnection serverConnection, 
-            string subsystemName, 
+            ServerConnection serverConnection,
+            string subsystemName,
             bool includeSysadmin)
         {
             ArrayList proxyAccounts = new ArrayList();
@@ -499,7 +499,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 Request req = new Request();
 
                 req.Urn = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                                        "Server/JobServer/ProxyAccount/AgentSubSystem[@Name = \"{0}\"]", 
+                                        "Server/JobServer/ProxyAccount/AgentSubSystem[@Name = \"{0}\"]",
                                         Urn.EscapeString(subsystemName));
                 req.ResultType = ResultType.IDataReader;
                 req.Fields = new string[] { "Name" };
@@ -517,7 +517,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 }
             }
 
-            return (string[]) proxyAccounts.ToArray(typeof(string));
+            return (string[])proxyAccounts.ToArray(typeof(string));
         }
         #endregion
     }

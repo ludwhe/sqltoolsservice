@@ -124,7 +124,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                 uddts = smoContext.Database.UserDefinedDataTypes;
             }
             Column column = context as Column;
-            if(column != null)
+            if (column != null)
             {
                 return GetCustomizedLabel(column, uddts);
             }
@@ -149,7 +149,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     return GetSimpleColumnLabel(column, uddts);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.Error($"Failed to get customized column name. error:{ex.Message}");
             }
@@ -174,11 +174,11 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
 
                 }
 
-                if(dataType.SqlDataType == SqlDataType.UserDefinedDataType && uddts != null)
+                if (dataType.SqlDataType == SqlDataType.UserDefinedDataType && uddts != null)
                 {
                     foreach (UserDefinedDataType item in uddts)
                     {
-                        if(item.Name == dataType.Name)
+                        if (item.Name == dataType.Name)
                         {
                             typeName += $"({item.SystemType})";
                             break;

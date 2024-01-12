@@ -10,7 +10,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
 {
     internal class UrnUtils
     {
-        private UrnUtils () { }
+        private UrnUtils() { }
 
         /// <summary>
         /// Get the list of Urn attributes for this item.
@@ -21,10 +21,10 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         {
             String[]? urnAttributes = null;
 
-            if(urn.XPathExpression != null && urn.XPathExpression.Length > 0)
+            if (urn.XPathExpression != null && urn.XPathExpression.Length > 0)
             {
                 int index = urn.XPathExpression.Length - 1;
-                if(index >= 0)
+                if (index >= 0)
                 {
                     System.Collections.SortedList list = urn.XPathExpression[index].FixedProperties;
                     System.Collections.ICollection keys = list.Keys;
@@ -32,7 +32,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
                     urnAttributes = new String[keys.Count];
 
                     int i = 0;
-                    foreach(object o in keys)
+                    foreach (object o in keys)
                     {
                         string? key = o.ToString();
                         if (key != null)

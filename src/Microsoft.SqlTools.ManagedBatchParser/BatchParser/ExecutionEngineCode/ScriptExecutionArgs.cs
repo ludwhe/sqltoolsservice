@@ -23,12 +23,12 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
         /// Constructor method for ScriptExecutionArgs
         /// </summary>
         public ScriptExecutionArgs(
-            string script, 
-            SqlConnection connection, 
-            int timeOut, 
-            ExecutionEngineConditions conditions, 
+            string script,
+            SqlConnection connection,
+            int timeOut,
+            ExecutionEngineConditions conditions,
             IBatchEventsHandler batchEventHandlers)
-            : this (script, (IDbConnection)connection, timeOut, conditions, batchEventHandlers)
+            : this(script, (IDbConnection)connection, timeOut, conditions, batchEventHandlers)
         {
             // nothing
         }
@@ -43,8 +43,8 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode
             ExecutionEngineConditions conditions,
             IBatchEventsHandler batchEventHandlers,
             int startingLine,
-            IDictionary<string,string> variables)
-            : this(script, (IDbConnection) connection, timeOut, conditions, batchEventHandlers, startingLine, variables)
+            IDictionary<string, string> variables)
+            : this(script, (IDbConnection)connection, timeOut, conditions, batchEventHandlers, startingLine, variables)
         {
             // nothing
         }

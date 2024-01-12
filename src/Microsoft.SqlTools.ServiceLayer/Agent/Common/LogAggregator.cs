@@ -14,11 +14,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     #region LogSourceAggregation - ILogSource info built from multiple other sources
     internal class LogSourceAggregation : ILogSource, ITypedColumns, IDisposable
     {
-#region Constants
+        #region Constants
         private const int cMaximumNotificationChunkSize = 128; // 16384 high no: faster aggregation, low no: responsive ui
-#endregion
+        #endregion
 
-#region Variables
+        #region Variables
         private string m_logName = null;
         private bool m_logInitialized = false;
         private string[] m_fieldNames = null;
@@ -32,9 +32,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         private List<ILogEntry> m_currentEntrySources = null;
         private List<Exception> m_exceptionList = null;
 
-#endregion
+        #endregion
 
-#region Reverse order Property
+        #region Reverse order Property
         private bool ReverseOrder
         {
             get
@@ -42,9 +42,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 return true;
             }
         }
-#endregion
+        #endregion
 
-#region Constructor
+        #region Constructor
         /// <summary>
         /// 
         /// </summary>
@@ -52,7 +52,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// <param name="name"></param>
         /// <param name="sources"></param>
         /// <param name="filter">if null no filter, else use it to filter every ILogEntry</param>
-        public LogSourceAggregation (LogAggregator owner, string name, ILogSource[] sources, ILogConstraints filterTemplate)
+        public LogSourceAggregation(LogAggregator owner, string name, ILogSource[] sources, ILogConstraints filterTemplate)
         {
             m_owner = owner;
 
@@ -88,13 +88,13 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             m_exceptionList = null;
         }
 
-#endregion
+        #endregion
 
-#region ILogSource interface implementation
+        #region ILogSource interface implementation
 
         bool ILogSource.OrderedByDateDescending
         {
-            get {return this.ReverseOrder;}
+            get { return this.ReverseOrder; }
         }
 
         ILogEntry ILogSource.CurrentEntry
@@ -106,7 +106,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         }
 
         bool ILogSource.ReadEntry()
-        {           
+        {
             //the m_currentEntrySources list contains the list of currentEntries for each logSource
             //when the readentry is called for the first time the list is null so we need to initialize it
             if (m_currentEntrySources == null)
@@ -304,7 +304,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             }
 
             // report all inner source loaded
-            m_owner.Raise_AggregationProgress("LogViewerSR.AggregationProgress_InitializationDone", 
+            m_owner.Raise_AggregationProgress("LogViewerSR.AggregationProgress_InitializationDone",
                                               LogAggregator.cProgressLoaded,
                                               null);
 
@@ -330,17 +330,17 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
         ILogSource[] ILogSource.SubSources
         {
-            get { return null;}
+            get { return null; }
         }
 
-        ILogSource      ILogSource.GetRefreshedClone()
+        ILogSource ILogSource.GetRefreshedClone()
         {
             return this;
         }
 
-#endregion
+        #endregion
 
-#region Implementation
+        #region Implementation
         /// <summary>
         /// computes the available fields for the aggregated log source
         /// </summary>
@@ -349,11 +349,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         {
             List<string> ar = new List<string>();
 
-            foreach(ILogSource s in sources)
+            foreach (ILogSource s in sources)
             {
                 if ((s != null) && (s.FieldNames != null))
                 {
-                    foreach(string fieldName in s.FieldNames)
+                    foreach (string fieldName in s.FieldNames)
                     {
                         if (ar.Contains(fieldName))
                         {
@@ -422,9 +422,9 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             m_exceptionList.Add(e);
         }
 
-#endregion
+        #endregion
 
-#region [Conditional("DEBUG")] validate correctness of a log source
+        #region [Conditional("DEBUG")] validate correctness of a log source
         /// <summary>
         /// validate if entries are in correct order
         /// 
@@ -441,11 +441,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         /// <param name="entries"></param>
         /// <param name="reverseOrder"></param>
         [System.Diagnostics.Conditional("DEBUG")]
-        private static void ConditionalDEBUG_ValidateLogEntriesOrder(List<ILogEntry> entries, 
+        private static void ConditionalDEBUG_ValidateLogEntriesOrder(List<ILogEntry> entries,
                                                                      bool reverseOrder)
         {
             System.Diagnostics.Debug.WriteLine("LogSourceAggregation.ConditionalDEBUG_ValidateLogEntriesOrder ------- reverseOrder=" + reverseOrder.ToString());
-            
+
             if ((entries == null) || (entries.Count < 2))
             {
                 return;
@@ -474,7 +474,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 }
             }
         }
-#endregion
+        #endregion
 
 
         #region ITypedColumns Members
@@ -494,7 +494,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
         #endregion
     }
-#endregion
+    #endregion
 
     #region TypedColumnCollection
 
@@ -541,14 +541,14 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     /// </summary>
     internal class LogAggregator : ILogAggregator
     {
-#region Constants
-        internal const int cProgressLogCreated      =   1;
-        internal const int cProgressLoaded          =  15;
-        internal const int cProgressAlmostDone      =  95;
-        internal const int cProgressDone            = 100;
-#endregion
+        #region Constants
+        internal const int cProgressLogCreated = 1;
+        internal const int cProgressLoaded = 15;
+        internal const int cProgressAlmostDone = 95;
+        internal const int cProgressDone = 100;
+        #endregion
 
-#region Properties - CancelInternal (lock-ed access)
+        #region Properties - CancelInternal (lock-ed access)
         private volatile bool m_boolCancelInternal = false;
         internal bool CancelInternal
         {
@@ -598,13 +598,13 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 m_reverseOrder = value;
             }
         }
-#endregion
+        #endregion
 
-#region Variables
+        #region Variables
         private LogSourceAggregation m_currentSource = null;
-#endregion
+        #endregion
 
-#region Constructor
+        #region Constructor
         /// <summary>
         /// create an log aggregator using a default empty cache
         /// </summary>
@@ -612,15 +612,15 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         {
         }
 
-#endregion
+        #endregion
 
-#region ILogAggregator interface implementation
+        #region ILogAggregator interface implementation
         ILogSource ILogAggregator.PrepareAggregation(string outputLogSourceName, ILogSource[] sources, ILogConstraints filterTemplate)
         {
             ILogSource outputSource = CreateUninitializedAggregation(outputLogSourceName, sources, filterTemplate);
 
             m_currentSource = outputSource as LogSourceAggregation;
-            
+
             return outputSource;
         }
 
@@ -631,11 +631,11 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
         void ILogAggregator.StopAsyncWork()
         {
-             StopInternal = true;
+            StopInternal = true;
         }
-#endregion
+        #endregion
 
-#region CreateUninitializedAggregation algorithm
+        #region CreateUninitializedAggregation algorithm
         /// <summary>
         /// agregates one or more sources -> creates a new (uninitialized) aggregation
         /// 
@@ -651,7 +651,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         private ILogSource CreateUninitializedAggregation(string outputLogSourceName, ILogSource[] sources, ILogConstraints filterTemplate)
         {
             // zero sources - nothing we can do
-            if ((sources == null) || (sources.Length==0))
+            if ((sources == null) || (sources.Length == 0))
             {
                 return null;
             }
@@ -663,36 +663,36 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 newAggregation = new LogSourceAggregation(this, outputLogSourceName, sources, filterTemplate);
 
                 return newAggregation;
-                
+
             }
             finally
             {
-                Raise_AggregationProgress( "LogViewerSR.AggregationProgress_BeginInitialize", 
+                Raise_AggregationProgress("LogViewerSR.AggregationProgress_BeginInitialize",
                                           cProgressLogCreated,
                                           null);
             }
         }
-#endregion
+        #endregion
 
-#region DelegateAggregationWorkImplementation - entry for - asynchronous invocation with callback ***** via delegate
+        #region DelegateAggregationWorkImplementation - entry for - asynchronous invocation with callback ***** via delegate
         private List<Exception> m_exceptionsList = new List<Exception>();
-#endregion
+        #endregion
 
-#region Report Progress
+        #region Report Progress
         /// <summary>
         /// if job not null and callbackProgress available -> invoke progress delegate in ui thread
         /// </summary>
         /// <param name="job"></param>
         /// <param name="message"></param>
         /// <param name="percent"></param>
-        internal void Raise_AggregationProgress(string message, 
+        internal void Raise_AggregationProgress(string message,
                                                 int percent,
                                                 IList<Exception> exceptionList)
         {
         }
 
-#endregion
+        #endregion
     }
-#endregion
+    #endregion
 }
 

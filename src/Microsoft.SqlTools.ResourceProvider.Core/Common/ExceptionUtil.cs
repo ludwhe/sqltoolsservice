@@ -27,7 +27,7 @@ namespace Microsoft.SqlTools.ResourceProvider.Core
         /// </summary>
         internal static bool IsDbException(this Exception ex)
         {
-            return ex.IsExceptionType(typeof (DbException));
+            return ex.IsExceptionType(typeof(DbException));
         }
 
         /// <summary>

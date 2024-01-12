@@ -73,9 +73,9 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
             // Set all the fields for the base
             AllowDBNull = SafeGetValue<bool?>(row, "AllowDBNull");
             BaseCatalogName = SafeGetValue<string>(row, "BaseCatalogName");
-            BaseColumnName = SafeGetValue<string>(row,"BaseColumnName");
-            BaseSchemaName = SafeGetValue<string>(row,"BaseSchemaName");
-            BaseServerName = SafeGetValue<string>(row,"BaseServerName");
+            BaseColumnName = SafeGetValue<string>(row, "BaseColumnName");
+            BaseSchemaName = SafeGetValue<string>(row, "BaseSchemaName");
+            BaseServerName = SafeGetValue<string>(row, "BaseServerName");
             BaseTableName = SafeGetValue<string>(row, "BaseTableName");
             ColumnOrdinal = SafeGetValue<int?>(row, "ColumnOrdinal");
             ColumnSize = SafeGetValue<int?>(row, "ColumnSize");
@@ -95,7 +95,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
             DataTypeName = SafeGetValue<string>(row, "ColumnType") ?? "dynamic";
             ColumnName = SafeGetValue<string>(row, "ColumnName");
         }
-        
+
         private T SafeGetValue<T>(DataRow row, string attribName)
         {
             try
@@ -108,8 +108,8 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
             catch
             {
                 // Ignore exceptions
-            } 
-            
+            }
+
             return default(T);
         }
 
@@ -182,7 +182,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
         /// Logic taken from SSDT determination of unknown columns. It may not even be possible to
         /// have "unknown" column types with the .NET Core SqlClient.
         /// </remarks>
-        public bool IsUnknownType => DataType == typeof(object) && 
+        public bool IsUnknownType => DataType == typeof(object) &&
                                      DataTypeName.Equals(UnknownTypeName, StringComparison.OrdinalIgnoreCase);
 
         #endregion
@@ -190,7 +190,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
 
         private void DetermineSqlDbType()
         {
-            if(string.IsNullOrEmpty(DataTypeName))
+            if (string.IsNullOrEmpty(DataTypeName))
             {
                 SqlDbType = SqlDbType.Udt;
                 return;
@@ -293,7 +293,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts
     /// </summary>
     public sealed class TypeConvertor
     {
-        private static Dictionary<SqlDbType,Type> _typeMap = new Dictionary<SqlDbType,Type>();
+        private static Dictionary<SqlDbType, Type> _typeMap = new Dictionary<SqlDbType, Type>();
 
         static TypeConvertor()
         {

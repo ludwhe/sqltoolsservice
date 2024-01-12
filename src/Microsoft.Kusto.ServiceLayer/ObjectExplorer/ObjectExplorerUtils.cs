@@ -51,7 +51,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer
         /// <returns>A Tree Node that matches the condition</returns>
         public static TreeNode FindNode(TreeNode node, Predicate<TreeNode> condition, Predicate<TreeNode> filter, bool expandIfNeeded = false)
         {
-            if(node == null)
+            if (node == null)
             {
                 return null;
             }

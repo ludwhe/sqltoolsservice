@@ -140,7 +140,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource
                 Name = "Folder 2"
             };
             dictionary.SafeAdd(key, newRecord);
-            
+
             Assert.AreEqual(2, dictionary[key].Count);
         }
 
@@ -153,13 +153,13 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource
             {
                 [key] = new Dictionary<string, DataSourceObjectMetadata>()
             };
-            
+
             var newRecord = new DataSourceObjectMetadata
             {
                 Name = "Folder 2"
             };
             dictionary.SafeAdd(key, newRecord);
-            
+
             Assert.AreEqual(1, dictionary[key].Count);
         }
 
@@ -167,7 +167,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource
         public void AddRange_Keeps_Existing_Records_And_Order()
         {
             var key = "DatabaseName";
-            
+
             var existingObjectMetadata = new DataSourceObjectMetadata
             {
                 PrettyName = "Ball Table"
@@ -175,7 +175,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource
 
             var dictionary = new ConcurrentDictionary<string, IEnumerable<DataSourceObjectMetadata>>
             {
-                [key] = new List<DataSourceObjectMetadata> {existingObjectMetadata}
+                [key] = new List<DataSourceObjectMetadata> { existingObjectMetadata }
             };
 
             var newMetadata = new DataSourceObjectMetadata
@@ -183,10 +183,10 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource
                 PrettyName = "Apple Table"
             };
 
-            dictionary.AddRange(key, new List<DataSourceObjectMetadata> {newMetadata});
-            
+            dictionary.AddRange(key, new List<DataSourceObjectMetadata> { newMetadata });
+
             Assert.AreEqual(2, dictionary[key].Count());
-            
+
             // ensure order by clause
             Assert.AreEqual(newMetadata.PrettyName, dictionary[key].First().PrettyName);
             Assert.AreEqual(existingObjectMetadata.PrettyName, dictionary[key].Last().PrettyName);

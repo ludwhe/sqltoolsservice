@@ -84,7 +84,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
             for (int i = lastChildEndTokenNumber; i < endTokenNumber; i++)
             {
                 if (TokenManager.TokenList[i].TokenId == FormatterTokens.TOKEN_AS
-                    && !TokenManager.IsTokenWhitespace(TokenManager.TokenList[i-1].TokenId))
+                    && !TokenManager.IsTokenWhitespace(TokenManager.TokenList[i - 1].TokenId))
                 {
                     TokenData td = TokenManager.TokenList[i];
                     AddIndentedNewLineReplacement(td.StartIndex);

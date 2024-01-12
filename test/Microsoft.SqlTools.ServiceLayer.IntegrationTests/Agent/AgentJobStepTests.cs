@@ -6,9 +6,7 @@
 #nullable disable
 
 using System.Threading.Tasks;
-using Microsoft.SqlTools.ServiceLayer.Agent;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Agent
@@ -29,13 +27,13 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Agent
                 var job = AgentTestUtils.GetTestJobInfo();
                 await AgentTestUtils.DeleteAgentJob(service, connectionResult, job, verify: false);
                 await AgentTestUtils.CreateAgentJob(service, connectionResult, job);
-                var stepInfo =  AgentTestUtils.GetTestJobStepInfo(connectionResult, job);
+                var stepInfo = AgentTestUtils.GetTestJobStepInfo(connectionResult, job);
 
                 // test
                 await AgentTestUtils.CreateAgentJobStep(service, connectionResult, stepInfo);
 
                 // cleanup
-                await AgentTestUtils.DeleteAgentJob(service, connectionResult, job, verify: false);                
+                await AgentTestUtils.DeleteAgentJob(service, connectionResult, job, verify: false);
             }
         }
 
@@ -53,7 +51,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Agent
                 var job = AgentTestUtils.GetTestJobInfo();
                 await AgentTestUtils.DeleteAgentJob(service, connectionResult, job, verify: false);
                 await AgentTestUtils.CreateAgentJob(service, connectionResult, job);
-                var stepInfo =  AgentTestUtils.GetTestJobStepInfo(connectionResult, job);
+                var stepInfo = AgentTestUtils.GetTestJobStepInfo(connectionResult, job);
                 await AgentTestUtils.CreateAgentJobStep(service, connectionResult, stepInfo);
 
                 // test
@@ -79,15 +77,15 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Agent
                 var job = AgentTestUtils.GetTestJobInfo();
                 await AgentTestUtils.DeleteAgentJob(service, connectionResult, job, verify: false);
                 await AgentTestUtils.CreateAgentJob(service, connectionResult, job);
-                var stepInfo =  AgentTestUtils.GetTestJobStepInfo(connectionResult, job);
+                var stepInfo = AgentTestUtils.GetTestJobStepInfo(connectionResult, job);
                 await AgentTestUtils.CreateAgentJobStep(service, connectionResult, stepInfo);
 
-                 // test
+                // test
                 await AgentTestUtils.DeleteAgentJobStep(service, connectionResult, stepInfo);
 
                 // cleanup
-                await AgentTestUtils.DeleteAgentJob(service, connectionResult, job, verify: false);             
+                await AgentTestUtils.DeleteAgentJob(service, connectionResult, job, verify: false);
             }
-        }          
+        }
     }
 }

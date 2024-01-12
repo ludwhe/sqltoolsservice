@@ -5,9 +5,12 @@
 
 #nullable disable
 
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Microsoft.SqlServer.Management.XEvent;
 using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.ServiceLayer.Connection;
@@ -16,9 +19,6 @@ using Microsoft.SqlTools.ServiceLayer.Profiler.Contracts;
 using Microsoft.SqlTools.ServiceLayer.UnitTests.Utility;
 using Moq;
 using NUnit.Framework;
-using System.IO;
-using System.Reflection;
-using System.Linq;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
 {
@@ -62,8 +62,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
             };
 
             // start profiling session
-            await profilerService.HandleStartProfilingRequest(requestParams, requestContext.Object);            
-            requestContext.VerifyAll();            
+            await profilerService.HandleStartProfilingRequest(requestParams, requestContext.Object);
+            requestContext.VerifyAll();
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
             pollingTimer.Interval = 10000;
             pollingTimer.Start();
             bool timeout = false;
-            pollingTimer.Elapsed += new System.Timers.ElapsedEventHandler((s_, e_) => {timeout = true;});
+            pollingTimer.Elapsed += new System.Timers.ElapsedEventHandler((s_, e_) => { timeout = true; });
             while (!recievedEvents && !timeout)
             {
                 Thread.Sleep(250);
@@ -250,7 +250,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
             pollingTimer.Interval = 10000;
             pollingTimer.Start();
             bool timeout = false;
-            pollingTimer.Elapsed += new System.Timers.ElapsedEventHandler((s_, e_) => {timeout = true;});
+            pollingTimer.Elapsed += new System.Timers.ElapsedEventHandler((s_, e_) => { timeout = true; });
             while (sessionStopped == false && !timeout)
             {
                 Thread.Sleep(250);
@@ -263,7 +263,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
 
         [Test]
         public void StartProfilingRequest_defaults_to_remote()
-        { 
+        {
             var param = new StartProfilingParams();
             Assert.That(param.SessionType, Is.EqualTo(ProfilingSessionType.RemoteSession), nameof(param.SessionType));
         }
@@ -272,7 +272,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
         public async Task StartProfilingRequest_creates_a_LocalFile_session_on_request()
         {
             var filePath = @"c:\folder\file.xel";
-            var param = new StartProfilingParams() { OwnerUri = "someUri", SessionType = ProfilingSessionType.LocalFile, SessionName =  filePath};
+            var param = new StartProfilingParams() { OwnerUri = "someUri", SessionType = ProfilingSessionType.LocalFile, SessionName = filePath };
             var mockSession = new Mock<IObservableXEventSession>();
             mockSession.Setup(p => p.GetTargetXml()).Callback(() =>
             {
@@ -287,7 +287,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Profiler
                 });
             var sessionFactory = new Mock<IXEventSessionFactory>();
             sessionFactory.Setup(s => s.OpenLocalFileSession(filePath))
-                .Returns (mockSession.Object)
+                .Returns(mockSession.Object)
                 .Verifiable();
             var profilerService = new ProfilerService() { XEventSessionFactory = sessionFactory.Object };
             await profilerService.HandleStartProfilingRequest(param, requestContext.Object);

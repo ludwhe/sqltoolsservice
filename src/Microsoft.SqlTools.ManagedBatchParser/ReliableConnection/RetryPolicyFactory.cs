@@ -101,7 +101,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
         /// Creates and returns a default Retry Policy for Schema based operations.
         /// </summary>
         /// <returns>An instance of <see cref="RetryPolicy"/> class.</returns>
-        public static RetryPolicy CreateDefaultSchemaCommandRetryPolicy(bool useRetry, int retriesPerPhase =  RetryPolicyDefaults.DefaulSchemaRetryCount)
+        public static RetryPolicy CreateDefaultSchemaCommandRetryPolicy(bool useRetry, int retriesPerPhase = RetryPolicyDefaults.DefaulSchemaRetryCount)
         {
             RetryPolicy policy;
 
@@ -183,7 +183,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection
             policy.FastFirstRetry = false;
             policy.RetryOccurred += CreateDatabaseCommandFailureRetry;
             policy.IgnoreErrorOccurred += CreateDatabaseCommandFailureIgnore;
-            
+
             return policy;
         }
 

@@ -33,12 +33,12 @@ namespace Microsoft.SqlTools.Hosting.Protocol.Channel
             this.outputStream = outputStream ?? System.Console.OpenStandardOutput();
 
             // Set up the reader and writer
-            this.MessageReader = 
+            this.MessageReader =
                 new MessageReader(
                     this.inputStream,
                     messageSerializer);
 
-            this.MessageWriter = 
+            this.MessageWriter =
                 new MessageWriter(
                     this.outputStream,
                     messageSerializer);

@@ -12,7 +12,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Messaging
 {
     #region Request Types
 
-    internal sealed class TestRequest 
+    internal sealed class TestRequest
     {
         public Task ProcessMessage(MessageWriter messageWriter)
         {

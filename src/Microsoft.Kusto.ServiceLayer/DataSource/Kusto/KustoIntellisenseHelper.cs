@@ -4,8 +4,6 @@
 //
 
 using System.Collections.Generic;
-using Kusto.Language;
-using Kusto.Language.Editor;
 using Microsoft.Kusto.ServiceLayer.DataSource.Intellisense;
 using Microsoft.Kusto.ServiceLayer.LanguageServices;
 using Microsoft.Kusto.ServiceLayer.LanguageServices.Contracts;

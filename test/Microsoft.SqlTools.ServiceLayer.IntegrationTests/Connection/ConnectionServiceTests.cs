@@ -7,12 +7,7 @@
 using System.Data;
 using System.Data.Common;
 using System.Threading.Tasks;
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.QueryExecution;
-using Microsoft.SqlTools.ServiceLayer.SqlContext;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using Moq;
 using NUnit.Framework;
 
@@ -182,23 +177,23 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.Connection
             ConnectionService service = ConnectionService.Instance;
             var requestParams = new GetConnectionStringParams();
             requestParams.OwnerUri = null;
-            requestParams.ConnectionDetails = new ConnectionDetails() 
+            requestParams.ConnectionDetails = new ConnectionDetails()
             {
-                ServerName = "testServer", 
-                DatabaseName = "testDatabase", 
-                UserName = "sa", 
-                Password = "[placeholder]", 
+                ServerName = "testServer",
+                DatabaseName = "testDatabase",
+                UserName = "sa",
+                Password = "[placeholder]",
                 ApplicationName = "sqlops-connection-string"
             };
             requestParams.IncludePassword = true;
-            requestParams.IncludeApplicationName = true; 
-            
+            requestParams.IncludeApplicationName = true;
+
             // get the expected connection string from the connection details being passed to ConnectionService
             string expectedConnectionString = ConnectionService.CreateConnectionStringBuilder(requestParams.ConnectionDetails).ToString();
 
             var requestContext = new Mock<SqlTools.Hosting.Protocol.RequestContext<string>>();
             requestContext.Setup(x => x.SendResult(It.Is<string>((connectionString) => connectionString.Contains(expectedConnectionString))))
-                            .Returns(Task.FromResult(new object()));                      
+                            .Returns(Task.FromResult(new object()));
 
             await service.HandleGetConnectionStringRequest(requestParams, requestContext.Object);
             requestContext.VerifyAll();

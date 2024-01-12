@@ -4,9 +4,9 @@
 //
 
 using System;
+using Microsoft.SqlServer.Dac.Model;
 using Microsoft.SqlTools.ServiceLayer.DacFx.Contracts;
 using Microsoft.SqlTools.Utility;
-using Microsoft.SqlServer.Dac.Model;
 
 namespace Microsoft.SqlTools.ServiceLayer.DacFx
 {

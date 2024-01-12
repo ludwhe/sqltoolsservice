@@ -67,7 +67,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
            };
 
         #endregion
-        
+
         #region Public Methods
 
         /// <summary>
@@ -80,23 +80,23 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
         public static string FormatColumnType(DbColumn column, bool useSemanticEquivalent = false)
         {
             string typeName = column.DataTypeName.ToUpperInvariant();
-            
+
             // TODO: This doesn't support UDTs at all.
             // TODO: It's unclear if this will work on a case-sensitive db collation
-            
+
             // Strip any unecessary info from the front certain types
             if (typeName.EndsWith("HIERARCHYID") || typeName.EndsWith("GEOGRAPHY") || typeName.EndsWith("GEOMETRY"))
             {
                 string[] typeNameComponents = typeName.Split(".");
                 typeName = typeNameComponents[typeNameComponents.Length - 1];
             }
-            
+
             // Replace timestamp columns with semantic equivalent if requested
             if (useSemanticEquivalent && typeName == "TIMESTAMP")
             {
                 typeName = "VARBINARY(8)";
             }
-            
+
             // If the type supports length parameters, the add those
             switch (typeName)
             {
@@ -118,7 +118,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
 
                     typeName += $"({length})";
                     break;
-                    
+
                 // Types with precision and scale
                 case "NUMERIC":
                 case "DECIMAL":
@@ -128,7 +128,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
                     }
                     typeName += $"({column.NumericPrecision}, {column.NumericScale})";
                     break;
-                
+
                 // Types with scale only
                 case "DATETIME2":
                 case "DATETIMEOFFSET":
@@ -143,7 +143,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
 
             return typeName;
         }
-        
+
         /// <summary>
         /// Escapes an identifier such as a table name or column name by wrapping it in square brackets
         /// </summary>
@@ -153,7 +153,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
         {
             return $"[{EscapeString(identifier, ']')}]";
         }
-        
+
         /// <summary>
         /// Escapes a multi-part identifier such as a table name or column name with multiple
         /// parts split by '.'
@@ -165,7 +165,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
             // If the object is a multi-part identifier (eg, dbo.tablename) split it, and escape as necessary
             return FormatMultipartIdentifier(identifier.Split('.'));
         }
-        
+
         /// <summary>
         /// Escapes a multipart identifier such as a table name, given an array of the parts of the
         /// multipart identifier.
@@ -177,7 +177,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
             IEnumerable<string> escapedParts = identifiers.Select(FormatIdentifier);
             return string.Join(".", escapedParts);
         }
-        
+
         /// <summary>
         /// Converts an object into a string for SQL script
         /// </summary>
@@ -205,7 +205,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
             }
             return FormatFunctions[dataType](value, column);
         }
-        
+
         /// <summary>
         /// Converts a cell value into a string for SQL script
         /// </summary>
@@ -218,11 +218,11 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
 
             return FormatValue(value.RawObject, column);
         }
-        
+
         #endregion
-        
+
         #region Private Helpers
-        
+
         /// <summary>
         /// Returns a valid SQL string packaged in single quotes with single quotes inside escaped
         /// </summary>
@@ -232,7 +232,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
         {
             return $"N'{EscapeString(rawString, '\'')}'";
         }
-        
+
         /// <summary>
         /// Replaces all instances of <paramref name="escapeCharacter"/> with a duplicate of 
         /// <paramref name="escapeCharacter"/>. For example "can't" becomes "can''t"
@@ -255,7 +255,7 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
             }
             return sb.ToString();
         }
-        
+
         private static string FormatBinary(object value)
         {
             byte[] bytes = value as byte[];
@@ -267,32 +267,32 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
 
             return "0x" + BitConverter.ToString(bytes).Replace("-", string.Empty);
         }
-        
+
         private static string FormatBool(object value)
         {
             // Attempt to cast to bool
             bool boolValue = (bool)value;
             return boolValue ? "1" : "0";
         }
-        
+
         private static string FormatDateTime(object value, string format)
         {
             string dateTimeString = ((DateTime)value).ToString(format, CultureInfo.InvariantCulture);
             return EscapeQuotedSqlString(dateTimeString);
         }
-        
+
         private static string FormatDateTimeOffset(object value)
         {
             string dateTimeString = ((DateTimeOffset)value).ToString(CultureInfo.InvariantCulture);
             return EscapeQuotedSqlString(dateTimeString);
         }
-        
+
         private static string FormatDouble(object value)
         {
             // The "R" formatting means "Round Trip", which preserves fidelity
             return ((double)value).ToString("R");
         }
-        
+
         private static string FormatFloat(object value)
         {
             // The "R" formatting means "Round Trip", which preserves fidelity
@@ -305,24 +305,24 @@ namespace Microsoft.Kusto.ServiceLayer.Utility.SqlScriptFormatters
             string typeString = FormatColumnType(column);
             return $"CAST({numericString} AS {typeString})";
         }
-        
+
         private static string FormatTimeSpan(object value)
         {
             // "c" provides "HH:mm:ss.FFFFFFF", and time column accepts up to 7 precision
             string timeSpanString = ((TimeSpan)value).ToString("c", CultureInfo.InvariantCulture);
             return EscapeQuotedSqlString(timeSpanString);
         }
-        
+
         private static string SimpleFormatter(object value)
         {
             return value.ToString();
         }
-        
+
         private static string SimpleStringFormatter(object value)
         {
             return EscapeQuotedSqlString(value.ToString());
         }
-        
+
         #endregion
     }
 }

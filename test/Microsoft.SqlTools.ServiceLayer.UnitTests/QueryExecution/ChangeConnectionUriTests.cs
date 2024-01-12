@@ -28,23 +28,24 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             // ... I request a query (doesn't matter what kind)
             var workspaceService = Common.GetPrimedWorkspaceService(Constants.StandardQuery);
             var queryService = Common.GetPrimedExecutionService(null, true, false, false, workspaceService);
-            var executeParams = new ExecuteDocumentSelectionParams {QuerySelection = null, OwnerUri = Constants.OwnerUri};
+            var executeParams = new ExecuteDocumentSelectionParams { QuerySelection = null, OwnerUri = Constants.OwnerUri };
             var executeRequest = RequestContextMocks.Create<ExecuteRequestResult>(null);
             await queryService.HandleExecuteRequest(executeParams, executeRequest.Object);
             await queryService.WorkTask;
             await queryService.ActiveQueries[Constants.OwnerUri].ExecutionTask;
-            
+
             const string newOwnerUri = "newTestFile";
             Query query;
             queryService.ActiveQueries.TryGetValue(Constants.OwnerUri, out query);
 
             // ... And then I change the uri for the query
-            var changeUriParams = new ConnectionUriChangedParams {
+            var changeUriParams = new ConnectionUriChangedParams
+            {
                 OriginalOwnerUri = Constants.OwnerUri,
                 NewOwnerUri = newOwnerUri
             };
-        
-            
+
+
             await queryService.HandleConnectionUriChangedNotification(changeUriParams, new TestEventContext());
 
             // Then:
@@ -61,7 +62,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution
             var workspaceService = new Mock<WorkspaceService<SqlToolsSettings>>();
             var queryService = Common.GetPrimedExecutionService(null, false, false, false, workspaceService.Object);
             const string newOwnerUri = "newTestFile";
-            var changeUriParams = new ConnectionUriChangedParams {
+            var changeUriParams = new ConnectionUriChangedParams
+            {
                 OriginalOwnerUri = Constants.OwnerUri,
                 NewOwnerUri = newOwnerUri
             };

@@ -49,7 +49,7 @@ namespace Microsoft.SqlTools.Hosting.Protocol.Contracts
         /// Gets or sets a JToken containing error details.
         /// </summary>
         public JToken Error { get; set; }
-        
+
         /// <summary>
         /// Creates a message with an Unknown type.
         /// </summary>

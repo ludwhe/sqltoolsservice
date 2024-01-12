@@ -4,11 +4,11 @@
 //
 
 using System;
-using Microsoft.SqlTools.ServiceLayer.SqlContext;
-using Microsoft.Kusto.ServiceLayer.Utility;
-using Microsoft.SqlTools.Utility;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.Kusto.ServiceLayer.Utility;
+using Microsoft.SqlTools.ServiceLayer.SqlContext;
+using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.Kusto.ServiceLayer
 {
@@ -18,7 +18,7 @@ namespace Microsoft.Kusto.ServiceLayer
     internal class Program
     {
         internal static string ServiceName;
-        
+
         /// <summary>
         /// Main entry point into the SQL Tools API Service Layer
         /// </summary>
@@ -34,7 +34,7 @@ namespace Microsoft.Kusto.ServiceLayer
                 }
 
                 ServiceName = commandOptions.ServiceName;
-                
+
                 string logFilePath = commandOptions.LogFilePath;
                 if (string.IsNullOrWhiteSpace(logFilePath))
                 {

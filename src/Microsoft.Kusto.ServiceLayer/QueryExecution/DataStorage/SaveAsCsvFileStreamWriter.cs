@@ -49,20 +49,20 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
         public override void WriteRow(IList<DbCellValue> row, IList<DbColumnWrapper> columns)
         {
             char delimiter = ',';
-            if(!string.IsNullOrEmpty(saveParams.Delimiter))
+            if (!string.IsNullOrEmpty(saveParams.Delimiter))
             {
                 // first char in string
                 delimiter = saveParams.Delimiter[0];
             }
 
             string lineSeperator = Environment.NewLine;
-            if(!string.IsNullOrEmpty(saveParams.LineSeperator))
+            if (!string.IsNullOrEmpty(saveParams.LineSeperator))
             {
                 lineSeperator = saveParams.LineSeperator;
             }
 
             char textIdentifier = '"';
-            if(!string.IsNullOrEmpty(saveParams.TextIdentifier))
+            if (!string.IsNullOrEmpty(saveParams.TextIdentifier))
             {
                 // first char in string
                 textIdentifier = saveParams.TextIdentifier[0];
@@ -73,7 +73,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
             Encoding encoding;
             try
             {
-                if(int.TryParse(saveParams.Encoding, out codepage))
+                if (int.TryParse(saveParams.Encoding, out codepage))
                 {
                     encoding = Encoding.GetEncoding(codepage);
                 }
@@ -83,7 +83,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
                 }
             }
             catch
-            {    
+            {
                 // Fallback encoding when specified codepage is invalid
                 encoding = Encoding.GetEncoding("utf-8");
             }
@@ -94,7 +94,7 @@ namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
                 // Build the string
                 var selectedColumns = columns.Skip(ColumnStartIndex ?? 0).Take(ColumnCount ?? columns.Count)
                     .Select(c => EncodeCsvField(c.ColumnName, delimiter, textIdentifier) ?? string.Empty);
-                
+
                 string headerLine = string.Join(delimiter, selectedColumns);
 
                 // Encode it and write it out

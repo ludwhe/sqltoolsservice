@@ -295,7 +295,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         {
             get
             {
-                if (this.serverConnection == null && this.dataContainer != null && 
+                if (this.serverConnection == null && this.dataContainer != null &&
                     this.dataContainer.ContainerServerType == CDataContainer.ServerType.SQL)
                 {
                     this.serverConnection = this.dataContainer.ServerConnection;
@@ -313,7 +313,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// <returns></returns>
         protected static bool IsScripting(RunType runType)
         {
-            return(runType != RunType.RunNow && runType != RunType.RunNowAndExit);
+            return (runType != RunType.RunNow && runType != RunType.RunNowAndExit);
         }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// result of the execution. It will let exception fly out if it was raised during execution
         /// </returns>
         protected ExecutionMode DoPreProcessExecutionAndRunViews(RunType runType)
-        {          
+        {
             ExecutionMode executionResult;
             if (DoPreProcessExecution(runType, out executionResult))
             {
@@ -349,7 +349,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         {
             get
             {
-                ServerSwitchingAttribute switchingAttrib = 
+                ServerSwitchingAttribute switchingAttrib =
                     Utils.GetCustomAttribute(this, typeof(ServerSwitchingAttribute)) as ServerSwitchingAttribute;
 
                 if (DataContainer == null)
@@ -374,7 +374,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
                     {
                         return true;//switch by default in SQL case
                     }
-                }               
+                }
                 else
                 {
                     throw new InvalidOperationException();
@@ -421,12 +421,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
                 && this.DataContainer.Server.ServerType == DatabaseEngineType.SqlAzureDatabase)
             {
                 sc = this.parentDb.ExecutionManager.ConnectionContext.CapturedSql.Text;
-            }                
+            }
 
             StringBuilder script = new StringBuilder(4096);
             if (sc != null)
             {
-                for (int i = 0; i < sc.Count; i ++)
+                for (int i = 0; i < sc.Count; i++)
                 {
                     script.AppendFormat("{0}\r\nGO\r\n", sc[i].ToString());
                 }
@@ -440,8 +440,8 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
         /// </summary>
         /// <param name="executionInfo"></param>
         /// <param name="executionResult"></param>
-        private void ExecuteForSql(PreProcessExecutionInfo executionInfo, out ExecutionMode executionResult) 
-        {          
+        private void ExecuteForSql(PreProcessExecutionInfo executionInfo, out ExecutionMode executionResult)
+        {
             Microsoft.SqlServer.Management.Smo.Server oldServer = null;
             if (this.NeedToSwitchServer)
             {
@@ -548,7 +548,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// returns internal helper class that we delegate execution of the panels one by one when 
         /// we do it ourselves during scripting
         /// </summary>
@@ -664,7 +664,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
             {
                 // TODO: uncomment next line when SMO server will have support for Cancel
                 // this.dataContainer.Server.Cancel();
-            }          
+            }
         }
     }
 }

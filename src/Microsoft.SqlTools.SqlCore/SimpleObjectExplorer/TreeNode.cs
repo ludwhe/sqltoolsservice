@@ -48,16 +48,16 @@ namespace Microsoft.SqlTools.SqlCore.SimpleObjectExplorer
                 Name = this.Name,
                 Schema = this.SchemaName,
             };
-            if(addParentInScriptingObject)
+            if (addParentInScriptingObject)
             {
                 // Find first non folder parent
                 TreeNode nodFolderParent = this.Parent;
-                while( nodFolderParent as FolderNode != null)
+                while (nodFolderParent as FolderNode != null)
                 {
                     nodFolderParent = nodFolderParent.Parent;
                 }
 
-                if(nodFolderParent != null)
+                if (nodFolderParent != null)
                 {
                     this.ScriptingObject.ParentName = nodFolderParent.ScriptingObject.Name;
                     this.ScriptingObject.ParentTypeName = nodFolderParent.ScriptingObject.Type;

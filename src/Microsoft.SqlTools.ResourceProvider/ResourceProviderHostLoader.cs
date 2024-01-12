@@ -6,11 +6,6 @@
 #nullable disable
 
 using System.Collections.Generic;
-using Microsoft.SqlTools.Extensibility;
-using Microsoft.SqlTools.Hosting;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.SqlContext;
-using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.SqlTools.ResourceProvider
 {
@@ -53,7 +48,7 @@ namespace Microsoft.SqlTools.ResourceProvider
 
             serviceProvider.RegisterSingleService(sqlToolsContext);
             serviceProvider.RegisterSingleService(serviceHost);
-            
+
             InitializeHostedServices(serviceProvider, serviceHost);
 
             serviceHost.InitializeRequestHandlers();

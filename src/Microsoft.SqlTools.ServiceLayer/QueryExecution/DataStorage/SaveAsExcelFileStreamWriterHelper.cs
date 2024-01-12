@@ -82,7 +82,7 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution.DataStorage
             private XmlWriter writer;
             private ReferenceManager referenceManager;
             private bool hasOpenRowTag;
-            
+
             private readonly int columnCount;
             private bool autoFilterColumns;
             private bool hasStartedSheetData;
@@ -214,7 +214,7 @@ namespace Microsoft.SqlTools.ServiceLayer.QueryExecution.DataStorage
                         break;
                 }
             }
-            
+
             /// <summary>
             /// Write a sheetView that freezes the top row.  Must be called before any rows have been added.
             /// </summary>

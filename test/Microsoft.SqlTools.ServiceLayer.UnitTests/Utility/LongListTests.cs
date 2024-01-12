@@ -38,15 +38,15 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
 
             // Then:
             // ... There should be no values in the list
-            Assert.Throws<ArgumentOutOfRangeException>(() => { var x = ll[index]; }) ;
+            Assert.Throws<ArgumentOutOfRangeException>(() => { var x = ll[index]; });
             Assert.Throws<ArgumentOutOfRangeException>(() => ll.GetItem(index));
         }
 
         [Test]
-        public void GetItemNotExpanded([Values(0,1,2)] long index)
+        public void GetItemNotExpanded([Values(0, 1, 2)] long index)
         {
             // If: I construct a new long list with a couple items in it
-            LongList<int> ll = new LongList<int> {0, 1, 2};
+            LongList<int> ll = new LongList<int> { 0, 1, 2 };
 
             // Then: I can read back the value from the list
             Assert.AreEqual(3, ll.Count);
@@ -58,7 +58,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         public void GetItemExanded()
         {
             // If: I construct a new long list that is guaranteed to have been expanded
-            LongList<int> ll = new LongList<int> {ExpandListSize = 2};
+            LongList<int> ll = new LongList<int> { ExpandListSize = 2 };
             for (int i = 0; i < 10; i++)
             {
                 ll.Add(i);
@@ -96,7 +96,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
             // If:
             // ... I construct a new long list with a few items in it
             // ... And I set all values to new values
-            LongList<int> ll = new LongList<int> {0, 1, 2};
+            LongList<int> ll = new LongList<int> { 0, 1, 2 };
             for (int i = 0; i < ll.Count; i++)
             {
                 ll.SetItem(i, 8);
@@ -111,7 +111,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
             // If:
             // ... I construct a new long list with a few items in it
             // ... And I set all values to new values
-            LongList<int> ll = new LongList<int> {0, 1, 2};
+            LongList<int> ll = new LongList<int> { 0, 1, 2 };
             for (int i = 0; i < ll.Count; i++)
             {
                 ll[i] = 8;
@@ -125,7 +125,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         {
             // If:
             // ... I construct a new long list that is guaranteed to have been expanded
-            LongList<int> ll = new LongList<int> {ExpandListSize = 2};
+            LongList<int> ll = new LongList<int> { ExpandListSize = 2 };
             for (int i = 0; i < 10; i++)
             {
                 ll.Add(i);
@@ -145,7 +145,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         {
             // If:
             // ... I construct a new long list that is guaranteed to have been expanded
-            LongList<int> ll = new LongList<int> {ExpandListSize = 2};
+            LongList<int> ll = new LongList<int> { ExpandListSize = 2 };
             for (int i = 0; i < 10; i++)
             {
                 ll.Add(i);
@@ -176,7 +176,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         }
 
         [Test]
-        public void RemoveAtNotExpanded([Values(0,2,4)] long index)
+        public void RemoveAtNotExpanded([Values(0, 2, 4)] long index)
         {
             // If:
             // ... I create a long list with a few elements in it (and one element that will be removed)
@@ -202,7 +202,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
             // If:
             // ... I create a long list that is guaranteed to be expanded
             //     (Created with 2x the values, evaluate the )
-            LongList<int> ll = new LongList<int> {ExpandListSize = 2};
+            LongList<int> ll = new LongList<int> { ExpandListSize = 2 };
             for (int j = 0; j < 2; j++)
             {
                 for (int i = 0; i < 10; i++)
@@ -270,7 +270,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         public void GetEnumeratorExpanded()
         {
             // Setup: Create a long list with a handful of elements
-            LongList<int> ll = new LongList<int> {ExpandListSize = 2};
+            LongList<int> ll = new LongList<int> { ExpandListSize = 2 };
             for (int i = 0; i < 5; i++)
             {
                 ll.Add(i);
@@ -286,10 +286,10 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         }
 
         [Test]
-        public void LongSkipOutOfRange([Values(-1,5,100)] long index)
+        public void LongSkipOutOfRange([Values(-1, 5, 100)] long index)
         {
             // Setup: Create a long list with a handful of elements
-            LongList<int> ll = new LongList<int> {ExpandListSize = 2};
+            LongList<int> ll = new LongList<int> { ExpandListSize = 2 };
             for (int i = 0; i < 5; i++)
             {
                 ll.Add(i);
@@ -303,7 +303,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         }
 
         [Test]
-        public void LongSkip([Values(0,2)] long index)
+        public void LongSkip([Values(0, 2)] long index)
         {
             // Setup: Create a long list with a handful of elements
             LongList<int> ll = new LongList<int>();
@@ -318,15 +318,15 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
             // Then: The elements including the skip start index should be in the output
             for (int i = 0; i < values.Length; i++)
             {
-                Assert.AreEqual(ll[i+index], values[i]);
+                Assert.AreEqual(ll[i + index], values[i]);
             }
         }
 
         [Test]
-        public void LongSkipExpanded([Values(0,1,3)] long index)
+        public void LongSkipExpanded([Values(0, 1, 3)] long index)
         {
             // Setup: Create a long list with a handful of elements
-            LongList<int> ll = new LongList<int> {ExpandListSize = 2};
+            LongList<int> ll = new LongList<int> { ExpandListSize = 2 };
             for (int i = 0; i < 5; i++)
             {
                 ll.Add(i);
@@ -338,7 +338,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
             // Then: The elements including the skip start index should be in the output
             for (int i = 0; i < values.Length; i++)
             {
-                Assert.AreEqual(ll[i+index], values[i]);
+                Assert.AreEqual(ll[i + index], values[i]);
             }
         }
 
@@ -350,17 +350,17 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
         [Test]
         public void LongListExpandTest()
         {
-            var longList = new LongList<int> {ExpandListSize = 3};
+            var longList = new LongList<int> { ExpandListSize = 3 };
             for (int i = 0; i < 6; ++i)
             {
                 longList.Add(i);
             }
             Assert.AreEqual(6, longList.Count);
             Assert.NotNull(longList.GetItem(4));
-            
+
             bool didEnum = false;
             foreach (var j in longList)
-            {            
+            {
                 didEnum = true;
                 break;
             }

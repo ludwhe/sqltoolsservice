@@ -6,13 +6,13 @@
 #nullable disable
 
 using System;
-using System.Data;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using Microsoft.SqlServer.Management.Smo.Agent;
 using Microsoft.SqlTools.ServiceLayer.Agent.Contracts;
-using System.Linq;
 
-namespace Microsoft.SqlTools.ServiceLayer.Agent 
+namespace Microsoft.SqlTools.ServiceLayer.Agent
 {
     public class AgentUtilities
     {
@@ -40,13 +40,13 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             {
                 Name = job.Name,
                 Description = job.Description,
-                CurrentExecutionStatus = (Contracts.JobExecutionStatus) job.CurrentExecutionStatus,
-                LastRunOutcome = (Contracts.CompletionResult) job.LastRunOutcome,
+                CurrentExecutionStatus = (Contracts.JobExecutionStatus)job.CurrentExecutionStatus,
+                LastRunOutcome = (Contracts.CompletionResult)job.LastRunOutcome,
                 CurrentExecutionStep = job.CurrentExecutionStep,
                 Enabled = job.Enabled,
                 HasTarget = job.HasTarget,
                 HasSchedule = job.HasSchedule,
-                HasStep = job.HasStep, 
+                HasStep = job.HasStep,
                 Runnable = job.Runnable,
                 Category = job.Category,
                 CategoryId = job.CategoryID,
@@ -67,16 +67,17 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
 
         public static AgentNotebookInfo ConvertToAgentNotebookInfo(JobProperties job)
         {
-            return new AgentNotebookInfo(){
+            return new AgentNotebookInfo()
+            {
                 Name = job.Name,
                 Description = job.Description,
-                CurrentExecutionStatus = (Contracts.JobExecutionStatus) job.CurrentExecutionStatus,
-                LastRunOutcome = (Contracts.CompletionResult) job.LastRunOutcome,
+                CurrentExecutionStatus = (Contracts.JobExecutionStatus)job.CurrentExecutionStatus,
+                LastRunOutcome = (Contracts.CompletionResult)job.LastRunOutcome,
                 CurrentExecutionStep = job.CurrentExecutionStep,
                 Enabled = job.Enabled,
                 HasTarget = job.HasTarget,
                 HasSchedule = job.HasSchedule,
-                HasStep = job.HasStep, 
+                HasStep = job.HasStep,
                 Runnable = job.Runnable,
                 Category = job.Category,
                 CategoryId = job.CategoryID,
@@ -175,7 +176,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             stepInfo.ProxyName = step.ProxyName;
             return stepInfo;
         }
-        
+
 
         internal static AgentScheduleInfo ConvertToAgentScheduleInfo(JobSchedule schedule)
         {
@@ -184,10 +185,10 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             scheduleInfo.Name = schedule.Name;
             scheduleInfo.JobName = " ";
             scheduleInfo.IsEnabled = schedule.IsEnabled;
-            scheduleInfo.FrequencyTypes = (Contracts.FrequencyTypes) schedule.FrequencyTypes;
-            scheduleInfo.FrequencySubDayTypes = (Contracts.FrequencySubDayTypes) schedule.FrequencySubDayTypes;
+            scheduleInfo.FrequencyTypes = (Contracts.FrequencyTypes)schedule.FrequencyTypes;
+            scheduleInfo.FrequencySubDayTypes = (Contracts.FrequencySubDayTypes)schedule.FrequencySubDayTypes;
             scheduleInfo.FrequencySubDayInterval = schedule.FrequencySubDayInterval;
-            scheduleInfo.FrequencyRelativeIntervals = (Contracts.FrequencyRelativeIntervals) schedule.FrequencyRelativeIntervals;
+            scheduleInfo.FrequencyRelativeIntervals = (Contracts.FrequencyRelativeIntervals)schedule.FrequencyRelativeIntervals;
             scheduleInfo.FrequencyRecurrenceFactor = schedule.FrequencyRecurrenceFactor;
             scheduleInfo.FrequencyInterval = schedule.FrequencyInterval;
             scheduleInfo.DateCreated = schedule.DateCreated;
@@ -205,7 +206,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         internal static AgentAlertInfo[] ConvertToAgentAlertInfo(List<Alert> alerts)
         {
             var result = new List<AgentAlertInfo>();
-            foreach(Alert alert in alerts)
+            foreach (Alert alert in alerts)
             {
                 AgentAlertInfo alertInfo = new AgentAlertInfo();
                 alertInfo.Id = alert.ID;
@@ -214,7 +215,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 alertInfo.EventDescriptionKeyword = alert.EventDescriptionKeyword;
                 alertInfo.EventSource = alert.EventSource;
                 alertInfo.HasNotification = alert.HasNotification;
-                alertInfo.IncludeEventDescription = (Contracts.NotifyMethods) alert.IncludeEventDescription;
+                alertInfo.IncludeEventDescription = (Contracts.NotifyMethods)alert.IncludeEventDescription;
                 alertInfo.IsEnabled = alert.IsEnabled;
                 alertInfo.JobId = alert.JobID.ToString();
                 alertInfo.JobName = alert.JobName;
@@ -228,7 +229,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 alertInfo.DatabaseName = alert.DatabaseName;
                 alertInfo.CountResetDate = alert.CountResetDate.ToString();
                 alertInfo.CategoryName = alert.CategoryName;
-                alertInfo.AlertType = (Contracts.AlertType) alert.AlertType;
+                alertInfo.AlertType = (Contracts.AlertType)alert.AlertType;
                 alertInfo.WmiEventNamespace = alert.WmiEventNamespace;
                 alertInfo.WmiEventQuery = alert.WmiEventQuery;
                 result.Add(alertInfo);
@@ -236,16 +237,16 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             return result.ToArray();
         }
 
-        public static List<AgentJobHistoryInfo> ConvertToAgentJobHistoryInfo(List<ILogEntry> logEntries, DataRow jobRow, JobStepCollection steps) 
+        public static List<AgentJobHistoryInfo> ConvertToAgentJobHistoryInfo(List<ILogEntry> logEntries, DataRow jobRow, JobStepCollection steps)
         {
             List<AgentJobHistoryInfo> jobs = new List<AgentJobHistoryInfo>();
             // get all the values for a job history
-            foreach (ILogEntry entry in logEntries) 
+            foreach (ILogEntry entry in logEntries)
             {
                 // Make a new AgentJobHistoryInfo object
                 var jobHistoryInfo = new AgentJobHistoryInfo();
                 jobHistoryInfo.InstanceId = Convert.ToInt32(jobRow[UrnInstanceID], System.Globalization.CultureInfo.InvariantCulture);
-                jobHistoryInfo.JobId = (Guid) jobRow[UrnJobId];
+                jobHistoryInfo.JobId = (Guid)jobRow[UrnJobId];
                 var logEntry = entry as LogSourceJobHistory.LogEntryJobHistory;
                 jobHistoryInfo.RunStatus = entry.Severity == SeverityClass.Error ? 0 : 1;
                 jobHistoryInfo.SqlMessageId = logEntry.SqlMessageID;
@@ -267,7 +268,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 foreach (LogSourceJobHistory.LogEntryJobHistory subEntry in entry.SubEntries.Cast<LogSourceJobHistory.LogEntryJobHistory>())
                 {
                     if (steps.Contains(subEntry.StepName))
-                    {                                              
+                    {
                         var jobId = jobRow[UrnJobId].ToString();
                         jobSteps.Add(AgentUtilities.ConvertToAgentJobStep(steps.ItemById(Convert.ToInt32(subEntry.StepID)), subEntry, jobId));
                     }
@@ -278,16 +279,16 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             return jobs;
         }
 
-        public static List<AgentNotebookHistoryInfo> ConvertToAgentNotebookHistoryInfo(List<ILogEntry> logEntries, DataRow jobRow, JobStepCollection steps) 
+        public static List<AgentNotebookHistoryInfo> ConvertToAgentNotebookHistoryInfo(List<ILogEntry> logEntries, DataRow jobRow, JobStepCollection steps)
         {
             List<AgentNotebookHistoryInfo> jobs = new List<AgentNotebookHistoryInfo>();
             // get all the values for a job history
-            foreach (ILogEntry entry in logEntries) 
+            foreach (ILogEntry entry in logEntries)
             {
                 // Make a new AgentJobHistoryInfo object
                 var jobHistoryInfo = new AgentNotebookHistoryInfo();
                 jobHistoryInfo.InstanceId = Convert.ToInt32(jobRow[UrnInstanceID], System.Globalization.CultureInfo.InvariantCulture);
-                jobHistoryInfo.JobId = (Guid) jobRow[UrnJobId];
+                jobHistoryInfo.JobId = (Guid)jobRow[UrnJobId];
                 var logEntry = entry as LogSourceJobHistory.LogEntryJobHistory;
                 jobHistoryInfo.RunStatus = entry.Severity == SeverityClass.Error ? 0 : 1;
                 jobHistoryInfo.SqlMessageId = logEntry.SqlMessageID;
@@ -309,7 +310,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 foreach (LogSourceJobHistory.LogEntryJobHistory subEntry in entry.SubEntries.Cast<LogSourceJobHistory.LogEntryJobHistory>())
                 {
                     if (steps.Contains(subEntry.StepName))
-                    {                                              
+                    {
                         var jobId = jobRow[UrnJobId].ToString();
                         jobSteps.Add(AgentUtilities.ConvertToAgentJobStep(steps.ItemById(Convert.ToInt32(subEntry.StepID)), logEntry, jobId));
                     }

@@ -383,10 +383,10 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         public bool CheckIfLastStepCompletionActionWillChange()
         {
             bool lastStepCompletionActionWillChange = false;
-            if(this.jobSteps.Count > 0)
+            if (this.jobSteps.Count > 0)
             {
                 // get the last step
-                JobStepData lastStep = this.jobSteps[this.jobSteps.Count-1] as JobStepData;
+                JobStepData lastStep = this.jobSteps[this.jobSteps.Count - 1] as JobStepData;
                 if (lastStep != null && parent.Mode == JobData.ActionMode.Edit && lastStep.SuccessAction == StepCompletionAction.GoToNextStep)
                 {
                     lastStepCompletionActionWillChange = true;
@@ -486,7 +486,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
             string jobIdString = string.Empty;
             parameters.GetParam("urn", ref urn);
             parameters.GetParam("jobid", ref jobIdString);
-            
+
             // save current state of default fields 
             StringCollection originalFields = this.context.Server.GetDefaultInitFields(typeof(JobStep));
 
@@ -541,7 +541,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
                 this.context.Server.SetDefaultInitFields(typeof(JobStep), originalFields);
             }
         }
-        
+
         /// <summary>
         /// Set default values for a new empty job
         /// </summary>

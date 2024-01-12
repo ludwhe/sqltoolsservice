@@ -18,7 +18,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
     /// <summary>
     /// Base class for building hierarchy of Graph objects from ShowPlan Record Set
     /// </summary>
-	internal abstract partial class DataReaderNodeBuilder: INodeBuilder
+	internal abstract partial class DataReaderNodeBuilder : INodeBuilder
     {
         #region Constructor
 
@@ -26,8 +26,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         /// Initializes base class members.
         /// </summary>
         /// <param name="showPlanType">Show Plan type.</param>
-        public DataReaderNodeBuilder() 
-        {}
+        public DataReaderNodeBuilder()
+        { }
 
         #endregion
 
@@ -40,7 +40,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         /// <param name="dataSource">Data Source.</param>
         /// <returns>An array of AnalysisServices Graph objects.</returns>
         public ShowPlanGraph[] Execute(object dataSource)
-		{
+        {
             var reader = dataSource as IDataReader;
 
             if (reader == null)
@@ -141,7 +141,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         /// <summary>
         /// Gets the ShowPlanType of hte resordset
         /// </summary>
-        protected abstract ShowPlanType ShowPlanType{ get; }
+        protected abstract ShowPlanType ShowPlanType { get; }
 
         /// <summary>
         /// Sequentially reads all columns from IDataReader
@@ -207,7 +207,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             else
             {
                 // This is an operation node
-                
+
                 // Remove StatementText property
                 PropertyDescriptor statementTextProperty = node.Properties["StatementText"];
                 if (statementTextProperty != null)
@@ -251,8 +251,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                 // EstimateExecutions = EstimateRebinds +  EstimateRewinds + 1
                 if (node["EstimateRebinds"] != null && node["EstimateRewinds"] != null)
                 {
-                    double estimateRebinds = (double) node["EstimateRebinds"];
-                    double estimateRewinds = (double) node["EstimateRewinds"];
+                    double estimateRebinds = (double)node["EstimateRebinds"];
+                    double estimateRewinds = (double)node["EstimateRewinds"];
                     node["EstimateExecutions"] = estimateRebinds + estimateRewinds + 1;
                 }
 

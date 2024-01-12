@@ -47,7 +47,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.TaskServices
             SqlTask sqlTask = new SqlTask(new TaskMetadata(), operation.FunctionToRun, null);
             Assert.AreEqual(SqlTaskStatus.NotStarted, sqlTask.TaskStatus);
 
-            Task taskToVerify = sqlTask.RunAsync().ContinueWith(task => {
+            Task taskToVerify = sqlTask.RunAsync().ContinueWith(task =>
+            {
                 Assert.AreEqual(sqlTask.TaskStatus, expectedStatus);
                 Assert.AreEqual(true, sqlTask.IsCompleted);
                 Assert.True(sqlTask.Duration > 0);
@@ -96,10 +97,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.TaskServices
             SqlTask sqlTask = new SqlTask(new TaskMetadata(), operation.FunctionToRun, operation.FunctionToCancel);
             Assert.AreEqual(SqlTaskStatus.NotStarted, sqlTask.TaskStatus);
 
-            Task taskToVerify = sqlTask.RunAsync().ContinueWith(task => {
+            Task taskToVerify = sqlTask.RunAsync().ContinueWith(task =>
+            {
                 Assert.AreEqual(sqlTask.TaskStatus, expectedStatus);
                 Assert.AreEqual(true, sqlTask.IsCompleted);
-               // Assert.True(sqlTask.Duration > 0);
+                // Assert.True(sqlTask.Duration > 0);
             });
             Assert.AreEqual(SqlTaskStatus.InProgress, sqlTask.TaskStatus);
             Thread.Sleep(1000);
@@ -118,7 +120,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.TaskServices
             SqlTask sqlTask = new SqlTask(new TaskMetadata(), operation.FunctionToRun, operation.FunctionToCancel);
             Assert.AreEqual(SqlTaskStatus.NotStarted, sqlTask.TaskStatus);
 
-            Task taskToVerify = sqlTask.RunAsync().ContinueWith(task => {
+            Task taskToVerify = sqlTask.RunAsync().ContinueWith(task =>
+            {
                 Assert.AreEqual(sqlTask.TaskStatus, expectedStatus);
                 Assert.AreEqual(true, sqlTask.IsCancelRequested);
                 Assert.True(sqlTask.Duration > 0);
@@ -140,7 +143,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.TaskServices
             SqlTask sqlTask = new SqlTask(new TaskMetadata(), operation.FunctionToRun, operation.FunctionToCancel);
             Assert.AreEqual(SqlTaskStatus.NotStarted, sqlTask.TaskStatus);
 
-            Task taskToVerify = sqlTask.RunAsync().ContinueWith(task => {
+            Task taskToVerify = sqlTask.RunAsync().ContinueWith(task =>
+            {
                 Assert.AreEqual(sqlTask.TaskStatus, expectedStatus);
                 Assert.True(sqlTask.Duration > 0);
             });
@@ -162,7 +166,8 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.TaskServices
             SqlTask sqlTask = new SqlTask(new TaskMetadata(), operation.FunctionToScript, null);
             Assert.AreEqual(SqlTaskStatus.NotStarted, sqlTask.TaskStatus);
 
-            Task taskToVerify = sqlTask.RunAsync().ContinueWith(task => {
+            Task taskToVerify = sqlTask.RunAsync().ContinueWith(task =>
+            {
                 Assert.AreEqual(sqlTask.TaskStatus, expectedStatus);
                 Assert.AreEqual(true, sqlTask.IsCompleted);
                 Assert.NotNull(operation.TaskScript);

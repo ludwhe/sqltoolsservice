@@ -62,7 +62,7 @@ namespace Microsoft.SqlTools.ServiceLayer.BatchParser
             CalculateLineColumnForOffset(token.Text, offset, 0, token.Begin.Line, token.Begin.Column, out line, out column);
         }
 
-        internal static void CalculateLineColumnForOffset(string text, int offset, 
+        internal static void CalculateLineColumnForOffset(string text, int offset,
             int offsetDelta, int lineDelta, int columnDelta, out int line, out int column)
         {
             line = lineDelta;

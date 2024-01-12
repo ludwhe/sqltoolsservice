@@ -5,12 +5,12 @@
 
 #nullable disable
 
-using Microsoft.SqlServer.XEvent.XELite;
-using Microsoft.SqlTools.ServiceLayer.Profiler.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.SqlServer.XEvent.XELite;
+using Microsoft.SqlTools.ServiceLayer.Profiler.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.Profiler
 {
@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
         private readonly XeStreamObservable observableSession;
         private readonly SessionId sessionId;
         public IObservable<ProfilerEvent> ObservableSessionEvents => observableSession;
-        
+
         public override void Start()
         {
             Session?.Start();
@@ -77,11 +77,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Profiler
                 var xeventFetcherFuncCallBack = xeventFetcher();
                 var xeventFetcherTask = xeventFetcherFuncCallBack.ReadEventStream(OnEventRead, cancellationTokenSource.Token);
                 xeventFetcherTask.ContinueWith(OnStreamClosed);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Task.FromException<IXEventFetcher>(ex).ContinueWith(OnStreamClosed);
             }
-            
+
         }
 
         /// <summary>

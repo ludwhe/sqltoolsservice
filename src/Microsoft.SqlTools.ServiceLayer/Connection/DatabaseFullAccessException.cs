@@ -9,7 +9,7 @@ using System;
 
 namespace Microsoft.SqlTools.ServiceLayer.Connection
 {
-    public class DatabaseFullAccessException: Exception
+    public class DatabaseFullAccessException : Exception
     {
         public DatabaseFullAccessException()
             : base()

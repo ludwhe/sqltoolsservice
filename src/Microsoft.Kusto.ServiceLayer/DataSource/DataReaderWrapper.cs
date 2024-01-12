@@ -10,7 +10,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource
 {
     public class DataReaderWrapper : IDataReader
     {
-        private IDataReader _inner ;
+        private IDataReader _inner;
 
         protected DataReaderWrapper()
         {

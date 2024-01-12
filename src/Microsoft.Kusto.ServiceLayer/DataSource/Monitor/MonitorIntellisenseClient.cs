@@ -5,8 +5,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Kusto.Language;
-using Kusto.Language.Symbols;
 using Microsoft.Kusto.ServiceLayer.DataSource.Intellisense;
 using Microsoft.Kusto.ServiceLayer.DataSource.Monitor.Responses;
 
@@ -34,7 +32,7 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
                 var tableSymbol = new TableSymbol(table.Name, columnSymbols);
                 members.Add(tableSymbol);
             }
-            
+
             var databaseSymbol = new DatabaseSymbol(metadata.Workspaces.First().Id, members);
             return globalState.WithDatabase(databaseSymbol);
         }

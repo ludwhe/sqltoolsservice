@@ -44,10 +44,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
                 if (td.TokenId == FormatterTokens.LEX_END_OF_LINE_COMMENT)
                 {
                     foundComment = true;
-                } else if (td.TokenId == FormatterTokens.TOKEN_TABLE)
+                }
+                else if (td.TokenId == FormatterTokens.TOKEN_TABLE)
                 {
                     tableTokenIndex = i;
-                } else if (td.TokenId == FormatterTokens.TOKEN_CREATE)
+                }
+                else if (td.TokenId == FormatterTokens.TOKEN_CREATE)
                 {
                     createTokenIndex = i;
                 }

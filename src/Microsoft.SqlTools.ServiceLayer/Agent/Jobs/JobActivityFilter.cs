@@ -18,7 +18,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
         All = -1,
         NotIdleOrSuspended = 0,
         Executing = 1,
-        WaitingForWorkerThread = 2,        
+        WaitingForWorkerThread = 2,
         BetweenRetries = 3,
         Idle = 4,
         Suspended = 5,
@@ -31,12 +31,12 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     //
     internal enum EnumCompletionResult
     {
-        All = -1,    
-        Failed = 0,        
+        All = -1,
+        Failed = 0,
         Succeeded = 1,
         Retry = 2,
         Cancelled = 3,
-        InProgress = 4,    
+        InProgress = 4,
         Unknown = 5
     }
 
@@ -45,7 +45,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Agent
     //
     internal enum EnumThreeState
     {
-        All,    
+        All,
         Yes,
         No
     }

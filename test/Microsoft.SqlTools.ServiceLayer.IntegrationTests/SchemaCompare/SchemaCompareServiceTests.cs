@@ -4,25 +4,18 @@
 //
 
 #nullable disable
-using Microsoft.SqlServer.Dac.Compare;
-using Microsoft.SqlServer.Dac.Model;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.DacFx.Contracts;
-using Microsoft.SqlTools.ServiceLayer.SchemaCompare;
-using Microsoft.SqlTools.ServiceLayer.SchemaCompare.Contracts;
-using Microsoft.SqlTools.ServiceLayer.TaskServices;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.SqlTools.ServiceLayer.Utility;
-using Moq;
 using System;
-using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+using Microsoft.SqlServer.Dac;
+using Microsoft.SqlServer.Dac.Compare;
+using Microsoft.SqlServer.Dac.Model;
+using Moq;
 using NUnit.Framework;
 using static Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility.LiveConnectionHelper;
-using System.Collections.Generic;
-using Microsoft.SqlServer.Dac;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.SchemaCompare
 {
@@ -1211,7 +1204,7 @@ WITH VALUES
             SqlTestDb sourceDb = await SqlTestDb.CreateNewAsync(TestServerType.OnPrem, false, null, SourceScript, "SchemaCompareOpenScmpSource");
             SqlTestDb targetDb = await SqlTestDb.CreateNewAsync(TestServerType.OnPrem, false, null, TargetScript, "SchemaCompareOpenScmpTarget");
 
-           try
+            try
             {
                 SchemaCompareEndpoint sourceEndpoint = CreateSchemaCompareEndpoint(sourceDb, SchemaCompareEndpointType.Database);
                 SchemaCompareEndpoint targetEndpoint = CreateSchemaCompareEndpoint(targetDb, SchemaCompareEndpointType.Project, true);

@@ -31,8 +31,8 @@ namespace Microsoft.SqlTools.ServiceLayer.TestDriver.Tests
                 {
                     RootPath = Path.GetTempPath(),
                     Capabilities = new ClientCapabilities()
-                };                   
-                       
+                };
+
                 InitializeResult result = await testService.Driver.SendRequest(InitializeRequest.Type, initializeRequest);
                 Assert.NotNull(result);
             }

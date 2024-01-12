@@ -13,7 +13,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
     /// an array of AnalysisServices Graph objects.
     /// </summary>
     public interface INodeBuilder
-	{
+    {
         /// <summary>
         /// Builds one or more Graphs that
         /// represnet data from the data source.
@@ -21,5 +21,5 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         /// <param name="dataSource">Data Source.</param>
         /// <returns>An array of AnalysisServices Graph objects.</returns>
 		ShowPlanGraph[] Execute(object dataSource);
-	}
+    }
 }

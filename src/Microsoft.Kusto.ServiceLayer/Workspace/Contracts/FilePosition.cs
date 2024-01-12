@@ -104,7 +104,7 @@ namespace Microsoft.Kusto.ServiceLayer.Workspace.Contracts
         }
 
         #endregion
-   
+
     }
 }
 

@@ -6,11 +6,11 @@
 #nullable disable
 
 using System;
-using Microsoft.Data.SqlClient;
 using System.Globalization;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
-using SMO = Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlTools.SqlCore.Utility;
+using SMO = Microsoft.SqlServer.Management.Smo;
 
 namespace Microsoft.SqlTools.ServiceLayer.Management
 {
@@ -552,7 +552,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Management
             return sqlerror.Number;
         }
 
-        
+
 
         /// <summary>
         /// Get the windows login name with the domain portion in all-caps

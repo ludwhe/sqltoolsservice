@@ -148,7 +148,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
                         returnSet.Add(newPath);
                     }
                 }
-                
+
                 return returnSet;
             }
         }
@@ -224,7 +224,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
                 {
                     return null;
                 }
-                
+
                 var containedNode = TreeRoot.GetNode(containedType);
                 if (containedNode == this)
                 {
@@ -240,7 +240,7 @@ namespace Microsoft.Kusto.ServiceLayer.ObjectExplorer.DataSourceModel
                 {
                     return SR.Keys.GetString(this.LocLabel.Remove(0, 3));
                 }
-                
+
                 return string.Empty;
             }
 

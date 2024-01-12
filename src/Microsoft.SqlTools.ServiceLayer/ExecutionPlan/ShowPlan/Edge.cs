@@ -12,18 +12,18 @@ using System.Globalization;
 namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 {
     public class Edge
-	{
-		#region Constructor
+    {
+        #region Constructor
 
         public Node FromNode;
         public Node ToNode;
 
-		public Edge(Node fromNode, Node toNode)
-		{
+        public Edge(Node fromNode, Node toNode)
+        {
             Initialize(toNode as Node);
         }
 
-		#endregion
+        #endregion
 
         #region Public properties and methods
 
@@ -75,7 +75,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         {
             get
             {
-                if(this["ActualRowsRead"] ==  null && this["ActualRows"] == null)
+                if (this["ActualRowsRead"] == null && this["ActualRows"] == null)
                 {
                     // If Actual Row count and ActualRowsRead are not set, default to estimated row count
                     return EstimatedRowCount;
@@ -125,7 +125,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
 
         #endregion
 
-		#region Implementation details
+        #region Implementation details
 
         /// <summary>
         /// Copy some of edge properties from the node connected through this edge.
@@ -133,7 +133,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
         /// <param name="node">The node connected on the right side of the edge.</param>
         private void Initialize(Node node)
         {
-            this.properties = new PropertyDescriptorCollection(new PropertyDescriptor[] {});
+            this.properties = new PropertyDescriptorCollection(new PropertyDescriptor[] { });
 
             string[] propertyNames = new string[]
             {
@@ -142,7 +142,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
                 "AvgRowSize",
                 "EstimateRows",
                 "EstimateRowsAllExecs",
-                "StatementEstRows" 
+                "StatementEstRows"
             };
 
             // Copy properties
@@ -158,7 +158,7 @@ namespace Microsoft.SqlTools.ServiceLayer.ExecutionPlan.ShowPlan
             this.EstimatedDataSize = this.RowSize * this.EstimatedRowCount;
         }
 
-		#endregion
+        #endregion
 
         #region Private variables
 

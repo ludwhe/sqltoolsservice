@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Formatter
         }
 
     }
-    
+
     internal class NewLineSeparatedListFormatter : WhiteSpaceSeparatedListFormatter
     {
         public NewLineSeparatedListFormatter(FormatterVisitor visitor, SqlCodeObject codeObject, bool incrementIndentLevelOnPrefixRegion)

@@ -20,7 +20,7 @@ namespace Microsoft.SqlTools.Hosting.Contracts
 
     public class HostingErrorEvent
     {
-        public static readonly 
+        public static readonly
             EventType<HostingErrorParams> Type =
             EventType<HostingErrorParams>.Create("hosting/error");
 

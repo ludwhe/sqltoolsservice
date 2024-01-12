@@ -4,25 +4,19 @@
 //
 
 #nullable disable
-using Microsoft.SqlServer.Management.Common;
-using Microsoft.SqlServer.Management.SqlParser.Intellisense;
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.LanguageServices;
-using Microsoft.SqlTools.ServiceLayer.Scripting;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.SqlTools.ServiceLayer.Workspace.Contracts;
-using Moq;
 using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.SqlParser.Intellisense;
+using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
+using Moq;
 using NUnit.Framework;
 using ConnectionType = Microsoft.SqlTools.ServiceLayer.Connection.ConnectionType;
 using Location = Microsoft.SqlTools.ServiceLayer.Workspace.Contracts.Location;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.LanguageServices
 {
@@ -236,11 +230,11 @@ GO";
             .Callback<string, Func<IBindingContext, CancellationToken, object>, Func<IBindingContext, object>, Func<Exception, object>, int?, int?>(
                 (key, bindOperation, timeoutOperation, errHandler, t1, t2) =>
                 {
-                    if(timeoutOperation != null)
+                    if (timeoutOperation != null)
                     {
                         timeoutResult = (DefinitionResult)timeoutOperation(null);
                     }
-                    
+
                     itemMock.Object.Result = timeoutResult;
                 })
             .Returns(() => itemMock.Object);
@@ -415,7 +409,7 @@ GO";
             var connectionService = LiveConnectionHelper.GetLiveTestConnectionService();
             connectionService.Disconnect(new DisconnectParams
             {
-                    OwnerUri = connInfo.OwnerUri
+                OwnerUri = connInfo.OwnerUri
             });
         }
 
@@ -713,7 +707,7 @@ GO";
 
             //cursor on master
             TextDocumentPosition masterDocument = CreateTextDocPositionWithCursor(17, OwnerUri);
-            
+
             LiveConnectionHelper.TestConnectionResult connectionResult = LiveConnectionHelper.InitLiveConnectionInfo(null);
             ScriptFile scriptFile = connectionResult.ScriptFile;
             ConnectionInfo connInfo = connectionResult.ConnectionInfo;
@@ -825,7 +819,7 @@ GO";
                 {
                     fileUri = new Uri(filePath);
                 }
-                else 
+                else
                 {
                     filePath = filePath.Replace("file:/", "file://");
                     if (Uri.IsWellFormedUriString(filePath, UriKind.Absolute))
@@ -835,7 +829,7 @@ GO";
                 }
                 if (fileUri != null && File.Exists(fileUri.LocalPath))
                 {
-                    File.Delete(fileUri.LocalPath);                    
+                    File.Delete(fileUri.LocalPath);
                 }
             }
             catch (Exception)

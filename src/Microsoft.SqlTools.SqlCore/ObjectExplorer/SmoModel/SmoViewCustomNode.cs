@@ -25,7 +25,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     return $"{view.Schema}.{view.Name} ({SR.Ledger_LabelPart})";
                 }
             }
-            catch {} //Ignore the exception and just not change create custom name
+            catch { } //Ignore the exception and just not change create custom name
 
             return string.Empty;
         }
@@ -41,7 +41,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     return "Ledger";
                 }
             }
-            catch {} //Ignore the exception and just not change create custom name
+            catch { } //Ignore the exception and just not change create custom name
 
             return string.Empty;
         }
@@ -68,7 +68,7 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
                     return $"{view.Schema}.{view.Name} ({SR.Ledger_LabelPart})";
                 }
             }
-            catch {} //Ignore the exception and just not change create custom name
+            catch { } //Ignore the exception and just not change create custom name
 
             return string.Empty;
         }
@@ -97,4 +97,4 @@ namespace Microsoft.SqlTools.SqlCore.ObjectExplorer.SmoModel
             return string.Empty;
         }
     }
-} 
+}

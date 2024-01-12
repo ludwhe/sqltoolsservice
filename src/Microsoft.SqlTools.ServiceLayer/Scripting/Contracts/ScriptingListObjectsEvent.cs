@@ -32,7 +32,7 @@ namespace Microsoft.SqlTools.ServiceLayer.Scripting.Contracts
     /// </summary>
     public class ScriptingListObjectsCompleteEvent
     {
-        public static readonly EventType<ScriptingListObjectsCompleteParams> Type = 
+        public static readonly EventType<ScriptingListObjectsCompleteParams> Type =
             EventType<ScriptingListObjectsCompleteParams>.Create("scripting/listObjectsComplete");
     }
 }

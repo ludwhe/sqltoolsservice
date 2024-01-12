@@ -22,7 +22,7 @@ namespace Microsoft.SqlTools.ServiceLayer.TestDriver.Tests
     /// <summary>
     /// Scripting service end-to-end integration tests that use the SqlScriptPublishModel type to generate scripts.
     /// </summary>
-    public class SqlScriptPublishModelTests 
+    public class SqlScriptPublishModelTests
     {
         [OneTimeSetUp]
         public void SetupSqlScriptPublishModelTests()
@@ -401,5 +401,5 @@ namespace Microsoft.SqlTools.ServiceLayer.TestDriver.Tests
                 }
             }
         }
-   }
+    }
 }

@@ -196,7 +196,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.QueryExecution.Execution
             string queryText = string.Format("{0}\r\nGO\r\n{1}", Constants.StandardQuery, Common.NoOpQuery);
             var fileStreamFactory = MemoryFileSystem.GetFileStreamFactory();
             Query query = new Query(queryText, ci, new QueryExecutionSettings(), fileStreamFactory);
-            BatchCallbackHelper(query, 
+            BatchCallbackHelper(query,
                 b => batchStartCallbacksReceived++,
                 b => batchCompletionCallbacksReceived++,
                 m => batchMessageCallbacksReceived++);

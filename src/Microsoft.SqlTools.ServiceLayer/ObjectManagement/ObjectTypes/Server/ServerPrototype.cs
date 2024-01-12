@@ -4,15 +4,15 @@
 //
 
 using System;
-using Microsoft.SqlServer.Management.Smo;
-using SMO = Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlServer.Management.Common;
-using Microsoft.SqlTools.ServiceLayer.ServerConfigurations;
-using System.Collections.Generic;
-using Microsoft.SqlTools.ServiceLayer.ObjectManagement.ObjectTypes.Server;
-using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlTools.ServiceLayer.ObjectManagement.ObjectTypes.Server;
+using Microsoft.SqlTools.ServiceLayer.ServerConfigurations;
 using Microsoft.SqlTools.ServiceLayer.Utility;
+using SMO = Microsoft.SqlServer.Management.Smo;
 
 namespace Microsoft.SqlTools.ServiceLayer.ObjectManagement
 {

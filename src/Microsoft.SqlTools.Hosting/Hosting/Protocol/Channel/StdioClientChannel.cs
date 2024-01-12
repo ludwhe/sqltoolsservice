@@ -43,9 +43,9 @@ namespace Microsoft.SqlTools.Hosting.Protocol.Channel
 
             if (serverProcessArguments != null)
             {
-                this.serviceProcessArguments = 
+                this.serviceProcessArguments =
                     string.Join(
-                        " ", 
+                        " ",
                         serverProcessArguments);
             }
         }
@@ -77,12 +77,12 @@ namespace Microsoft.SqlTools.Hosting.Protocol.Channel
             this.outputStream = outputStream ?? this.serviceProcess.StandardInput.BaseStream;
 
             // Set up the message reader and writer
-            this.MessageReader = 
+            this.MessageReader =
                 new MessageReader(
                     this.inputStream,
                     messageSerializer);
 
-            this.MessageWriter = 
+            this.MessageWriter =
                 new MessageWriter(
                     this.outputStream,
                     messageSerializer);

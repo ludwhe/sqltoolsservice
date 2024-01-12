@@ -6,21 +6,12 @@
 #nullable disable
 
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlTools.Extensibility;
-using Microsoft.SqlTools.Hosting.Protocol;
-using Microsoft.SqlTools.ServiceLayer.Connection;
-using Microsoft.SqlTools.ServiceLayer.Connection.ReliableConnection;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
-using Microsoft.SqlTools.ServiceLayer.TaskServices;
-using Microsoft.SqlTools.ServiceLayer.TaskServices.Contracts;
-using Microsoft.SqlTools.ServiceLayer.Test.Common;
-using Microsoft.SqlTools.ServiceLayer.UnitTests;
-using Microsoft.SqlTools.ServiceLayer.UnitTests.Utility;
 using Moq;
 using NUnit.Framework;
 using static Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility.LiveConnectionHelper;
@@ -138,7 +129,7 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.TaskServices
                 .RegisterSingleService(service);
         }
 
-        private Server CreateServerObject(ConnectionInfo connInfo   )
+        private Server CreateServerObject(ConnectionInfo connInfo)
         {
             SqlConnection connection = null;
             DbConnection dbConnection = connInfo.AllConnections.First();
@@ -155,4 +146,4 @@ namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.TaskServices
             return new Server(new ServerConnection(connection));
         }
     }
-} 
+}

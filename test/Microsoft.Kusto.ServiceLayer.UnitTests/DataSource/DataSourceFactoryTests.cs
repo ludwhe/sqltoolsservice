@@ -12,8 +12,8 @@ using Microsoft.Kusto.ServiceLayer.DataSource;
 using Microsoft.Kusto.ServiceLayer.DataSource.Intellisense;
 using Microsoft.Kusto.ServiceLayer.LanguageServices;
 using Microsoft.Kusto.ServiceLayer.Workspace.Contracts;
-using static Microsoft.SqlTools.Utility.SqlConstants;
 using NUnit.Framework;
+using static Microsoft.SqlTools.Utility.SqlConstants;
 
 namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource
 {
@@ -70,9 +70,9 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource
             var parseInfo = new ScriptParseInfo();
             var file = new ScriptFile("", "", "");
             var queryText = ".show databases";
-            
+
             var semanticMarkers = DataSourceFactory.GetDefaultSemanticMarkers(DataSourceType.Kusto, parseInfo, file, queryText);
-            
+
             Assert.AreEqual(0, semanticMarkers.Length);
         }
 
@@ -93,7 +93,7 @@ namespace Microsoft.Kusto.ServiceLayer.UnitTests.DataSource
                     {"Key", "Object"}
                 }
             };
-            
+
             var serverInfo = DataSourceFactory.ConvertToServerInfoFormat(DataSourceType.Kusto, diagnosticsInfo);
 
             Assert.IsNotNull(serverInfo.Options);

@@ -9,8 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Azure.Management.Sql.Models;
-using Microsoft.Rest;
 using Microsoft.SqlTools.ResourceProvider.Core;
 using Microsoft.SqlTools.ResourceProvider.Core.Authentication;
 using Microsoft.SqlTools.ResourceProvider.DefaultImpl;
@@ -51,7 +49,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Azure
         private void MockServersAndDatabases(List<string> resourceNames, IAzureResourceManagementSession session)
         {
             IEnumerable<IAzureResource> azureResources = resourceNames.Select(
-                x => new AzureResourceWrapper(new TrackedResource(Guid.NewGuid().ToString(), "id", x, "type")) { ResourceGroupName = Guid.NewGuid().ToString()}
+                x => new AzureResourceWrapper(new TrackedResource(Guid.NewGuid().ToString(), "id", x, "type")) { ResourceGroupName = Guid.NewGuid().ToString() }
             ).ToList();
 
             List<IAzureSqlServerResource> servers = new List<IAzureSqlServerResource>();
@@ -86,9 +84,9 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.ResourceProvider.Azure
         }
 
         internal static string GetServerName(string name)
-        {           
+        {
             string azureResourceName = name;
-             int separatorIndex = azureResourceName.IndexOf("/", StringComparison.OrdinalIgnoreCase);
+            int separatorIndex = azureResourceName.IndexOf("/", StringComparison.OrdinalIgnoreCase);
             if (separatorIndex >= 0)
             {
                 return azureResourceName.Substring(0, separatorIndex);

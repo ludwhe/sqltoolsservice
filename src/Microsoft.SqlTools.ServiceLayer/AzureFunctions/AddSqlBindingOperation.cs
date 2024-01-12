@@ -11,11 +11,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.SqlTools.ServiceLayer.AzureFunctions.Contracts;
 using Microsoft.SqlTools.ServiceLayer.Utility;
 using Microsoft.SqlTools.Utility;
-using Microsoft.CodeAnalysis.CSharp;
 
 namespace Microsoft.SqlTools.ServiceLayer.AzureFunctions
 {
@@ -140,7 +140,7 @@ namespace Microsoft.SqlTools.ServiceLayer.AzureFunctions
             var argumentList = SyntaxFactory.AttributeArgumentList();
             argumentList = argumentList.AddArguments(SyntaxFactory.AttributeArgument(SyntaxFactory.IdentifierName($"\"{Parameters.objectName}\"")));
             argumentList = argumentList.AddArguments(SyntaxFactory.AttributeArgument(SyntaxFactory.AssignmentExpression(SyntaxKind.SimpleAssignmentExpression, SyntaxFactory.IdentifierName("ConnectionStringSetting"), SyntaxFactory.IdentifierName($"\"{Parameters.connectionStringSetting}\""))));
-            
+
             SyntaxList<AttributeListSyntax> attributesList = new SyntaxList<AttributeListSyntax>();
             attributesList = attributesList.Add(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(SyntaxFactory.Attribute(SyntaxFactory.IdentifierName("Sql")).WithArgumentList(argumentList))));
 
@@ -154,7 +154,8 @@ namespace Microsoft.SqlTools.ServiceLayer.AzureFunctions
             {
                 typeSyntax = SyntaxFactory.ParseTypeName("IAsyncCollector<Object>");
 
-            } else 
+            }
+            else
             {
                 syntaxTokenList = syntaxTokenList.Add(SyntaxFactory.Token(SyntaxKind.OutKeyword));
                 typeSyntax = SyntaxFactory.ParseTypeName(typeof(Object).Name);

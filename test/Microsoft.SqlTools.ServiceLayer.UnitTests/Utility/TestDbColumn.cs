@@ -84,11 +84,11 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
 
         private string GetDbColString(Type colType)
         {
-            if(colType == typeof(string))
+            if (colType == typeof(string))
             {
                 return "nvarchar";
             }
-            else if(colType == typeof(int))
+            else if (colType == typeof(int))
             {
                 return "int";
             }
@@ -96,7 +96,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Utility
             {
                 return "decimal";
             }
-            else if(colType == typeof(DateTime))
+            else if (colType == typeof(DateTime))
             {
                 return "datetime";
             }

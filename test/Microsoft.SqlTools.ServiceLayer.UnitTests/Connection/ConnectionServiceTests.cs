@@ -5,6 +5,14 @@
 
 #nullable disable
 
+using System;
+using System.Collections.Concurrent;
+using System.Data;
+using System.Data.Common;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.SqlTools.Hosting.Protocol;
 using Microsoft.SqlTools.ServiceLayer.Admin.Contracts;
@@ -12,18 +20,10 @@ using Microsoft.SqlTools.ServiceLayer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using Microsoft.SqlTools.ServiceLayer.UnitTests.Utility;
-using static Microsoft.SqlTools.Utility.SqlConstants;
 using Moq;
 using Moq.Protected;
 using NUnit.Framework;
-using System;
-using System.Data;
-using System.Data.Common;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Concurrent;
+using static Microsoft.SqlTools.Utility.SqlConstants;
 
 namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Connection
 {
@@ -475,7 +475,7 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Connection
             new object[] {"sa", ""},
         };
 
-      
+
         /// <summary>
         /// Verify that when using sql logins, the password can be empty.
         /// </summary>
@@ -483,15 +483,15 @@ namespace Microsoft.SqlTools.ServiceLayer.UnitTests.Connection
         public void ConnectingWithNoPasswordWorksForSqlLogin(string userName, string password)
         {
             // Connect
-            var connectionResult = 
+            var connectionResult =
                 ConnectionService.CreateConnectionStringBuilder(new ConnectionDetails()
-                    {
-                        ServerName = "my-server",
-                        DatabaseName = "test",
-                        UserName = userName,
-                        Password = password,
-                        AuthenticationType = SqlLogin
-                    });
+                {
+                    ServerName = "my-server",
+                    DatabaseName = "test",
+                    UserName = userName,
+                    Password = password,
+                    AuthenticationType = SqlLogin
+                });
 
             Assert.That(connectionResult, Is.Not.Null.Or.Empty, "check that the connection was successful");
         }
