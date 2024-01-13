@@ -10,6 +10,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Kusto.Language;
+using Kusto.Language.Editor;
 using Microsoft.Kusto.ServiceLayer.DataSource.Monitor.Responses;
 
 namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor

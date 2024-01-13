@@ -8,6 +8,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Kusto.ServiceLayer.Scripting.Contracts;
+using Microsoft.SqlServer.Management.Sdk.Sfc;
+using Microsoft.SqlServer.Management.SqlScriptPublish;
 using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.Kusto.ServiceLayer.Scripting

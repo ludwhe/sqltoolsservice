@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Kusto.Language;
+using Kusto.Language.Symbols;
+using Kusto.Language.Syntax;
 using Microsoft.Kusto.ServiceLayer.DataSource.Intellisense;
 
 namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
@@ -76,12 +79,12 @@ namespace Microsoft.Kusto.ServiceLayer.DataSource.Kusto
             if (cluster == null)
             {
                 cluster = new ClusterSymbol(clusterName, new[] { databaseSymbol }, isOpen: true);
-                globals = globals.AddOrUpdateCluster(cluster);
+                globals = globals.AddOrReplaceCluster(cluster);
             }
             else
             {
                 cluster = cluster.AddOrUpdateDatabase(databaseSymbol);
-                globals = globals.AddOrUpdateCluster(cluster);
+                globals = globals.AddOrReplaceCluster(cluster);
             }
 
             return globals.WithCluster(cluster).WithDatabase(databaseSymbol);

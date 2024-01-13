@@ -5,6 +5,7 @@
 
 using Microsoft.Kusto.ServiceLayer.DataSource.Intellisense;
 using Microsoft.Kusto.ServiceLayer.Workspace.Contracts;
+using Microsoft.SqlServer.Management.SqlParser.Parser;
 using Microsoft.SqlTools.Utility;
 
 namespace Microsoft.Kusto.ServiceLayer.LanguageServices

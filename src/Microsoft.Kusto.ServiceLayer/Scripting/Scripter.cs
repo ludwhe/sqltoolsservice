@@ -3,9 +3,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
+using System.Composition;
 using System.Text;
 using Microsoft.Kusto.ServiceLayer.DataSource;
 using Microsoft.Kusto.ServiceLayer.Scripting.Contracts;
+using Microsoft.SqlServer.Management.Sdk.Sfc;
 
 namespace Microsoft.Kusto.ServiceLayer.Scripting
 {

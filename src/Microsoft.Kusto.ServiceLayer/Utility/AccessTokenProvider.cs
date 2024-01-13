@@ -4,6 +4,7 @@
 //
 
 using System;
+using Microsoft.SqlServer.Dac;
 
 namespace Microsoft.Kusto.ServiceLayer.Utility
 {

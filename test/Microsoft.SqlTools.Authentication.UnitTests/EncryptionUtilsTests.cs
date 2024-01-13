@@ -4,6 +4,7 @@
 //
 
 using Microsoft.SqlTools.Authentication.Utility;
+using NUnit.Framework.Legacy;
 
 namespace Microsoft.SqlTools.Authentication.UnitTests
 {

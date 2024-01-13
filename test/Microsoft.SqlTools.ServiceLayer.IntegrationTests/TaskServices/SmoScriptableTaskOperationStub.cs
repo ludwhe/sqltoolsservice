@@ -6,6 +6,7 @@
 #nullable disable
 
 using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlTools.ServiceLayer.TaskServices;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.TaskServices
 {

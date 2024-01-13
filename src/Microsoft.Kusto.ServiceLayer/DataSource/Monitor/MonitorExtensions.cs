@@ -6,6 +6,7 @@
 using System;
 using System.Data;
 using System.Linq;
+using Kusto.Language.Symbols;
 
 namespace Microsoft.Kusto.ServiceLayer.DataSource.Monitor
 {

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Kusto.ServiceLayer.QueryExecution.Contracts;
+using Newtonsoft.Json;
 
 namespace Microsoft.Kusto.ServiceLayer.QueryExecution.DataStorage
 {

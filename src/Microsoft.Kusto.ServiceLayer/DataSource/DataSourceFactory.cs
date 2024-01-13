@@ -5,6 +5,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Composition;
+using Kusto.Data;
+using Kusto.Language;
+using Kusto.Language.Editor;
 using Microsoft.Kusto.ServiceLayer.Connection.Contracts;
 using Microsoft.Kusto.ServiceLayer.DataSource.Contracts;
 using Microsoft.Kusto.ServiceLayer.DataSource.Intellisense;

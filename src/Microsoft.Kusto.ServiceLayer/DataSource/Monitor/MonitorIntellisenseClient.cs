@@ -5,6 +5,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Kusto.Language;
+using Kusto.Language.Symbols;
 using Microsoft.Kusto.ServiceLayer.DataSource.Intellisense;
 using Microsoft.Kusto.ServiceLayer.DataSource.Monitor.Responses;
 

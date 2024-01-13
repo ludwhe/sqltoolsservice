@@ -4,6 +4,8 @@
 //
 
 using System.Collections.Generic;
+using Kusto.Language;
+using Kusto.Language.Editor;
 
 namespace Microsoft.Kusto.ServiceLayer.DataSource.Intellisense
 {

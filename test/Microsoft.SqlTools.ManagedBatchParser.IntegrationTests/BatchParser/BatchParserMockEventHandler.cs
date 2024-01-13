@@ -8,6 +8,7 @@
 using System;
 using System.Diagnostics;
 using Microsoft.Data.SqlClient;
+using Microsoft.SqlTools.ServiceLayer.BatchParser.ExecutionEngineCode;
 
 namespace Microsoft.SqlTools.ManagedBatchParser.UnitTests.BatchParser
 {

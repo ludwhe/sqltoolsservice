@@ -14,7 +14,12 @@ using System.Reflection;
 using System.Threading.Tasks;
 
 using Microsoft.SqlServer.Management.Assessment;
+using Microsoft.SqlTools.ServiceLayer.Connection;
+using Microsoft.SqlTools.ServiceLayer.Connection.Contracts;
 using Microsoft.SqlTools.ServiceLayer.IntegrationTests.Utility;
+using Microsoft.SqlTools.ServiceLayer.SqlAssessment;
+using Microsoft.SqlTools.ServiceLayer.SqlAssessment.Contracts;
+using Microsoft.SqlTools.ServiceLayer.Test.Common;
 using NUnit.Framework;
 
 namespace Microsoft.SqlTools.ServiceLayer.IntegrationTests.SqlAssessment
